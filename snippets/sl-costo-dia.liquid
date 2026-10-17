@@ -1,0 +1,13 @@
+{%- comment -%}
+  "≈ $X al día · dura ~N días". Oculto si falta custom.duracion_dias.
+  Parámetros: precio (centavos), dias, texto_costo ("≈ {precio} al día"), texto_dura ("dura ~{dias} días").
+{%- endcomment -%}
+{%- if dias > 0 -%}
+  {%- liquid
+    assign por_dia = precio | times: 1.0 | divided_by: dias | divided_by: 10000.0 | round | times: 10000
+    assign por_dia_texto = por_dia | money_without_trailing_zeros
+    assign t_costo = texto_costo | replace: '{precio}', por_dia_texto
+    assign t_dura = texto_dura | replace: '{dias}', dias
+  -%}
+  <p class="sl-costo-dia">{{ t_costo }} · {{ t_dura }}</p>
+{%- endif -%}

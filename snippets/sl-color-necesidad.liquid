@@ -1,0 +1,23 @@
+{%- comment -%}
+  Color de la necesidad. Orden: custom.color → custom.tipo_piel → menta.
+  Imprime solo el nombre del color (menta, durazno, celeste, lila, lima, amarillo, rosa).
+{%- endcomment -%}
+{%- liquid
+  assign color = product.metafields.custom.color.value
+  if color == blank
+    assign tipo = product.metafields.custom.tipo_piel.value | first | downcase
+    case tipo
+      when 'piel grasa'
+        assign color = 'menta'
+      when 'piel seca'
+        assign color = 'durazno'
+      when 'piel mixta'
+        assign color = 'celeste'
+      when 'piel sensible'
+        assign color = 'lila'
+      else
+        assign color = 'menta'
+    endcase
+  endif
+-%}
+{{- color -}}

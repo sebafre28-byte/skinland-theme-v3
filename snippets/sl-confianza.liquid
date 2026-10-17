@@ -1,0 +1,9 @@
+{%- comment -%} Sellos de confianza desde los ajustes del tema. {%- endcomment -%}
+{%- assign sellos = settings.sl_confianza_1 | append: '|' | append: settings.sl_confianza_2 | append: '|' | append: settings.sl_confianza_3 | split: '|' -%}
+<ul class="sl-confianza" role="list">
+  {%- for sello in sellos -%}
+    {%- if sello != blank -%}
+      <li class="sl-chip">{{ sello }}</li>
+    {%- endif -%}
+  {%- endfor -%}
+</ul>

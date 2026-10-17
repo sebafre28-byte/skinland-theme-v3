@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "hero": {
+      "type": "sl-pdp-hero",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero"
+  ]
+}

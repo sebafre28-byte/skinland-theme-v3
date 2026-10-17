@@ -1,0 +1,476 @@
+{{ 'sl-pdp-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign mf = product.metafields.custom
+  assign variante = product.selected_or_first_available_variant
+  assign precio = variante.price
+  assign disponible = variante.available
+  assign form_id = 'sl-form-' | append: product.id
+  assign comp_form_id = 'sl-form-comp-' | append: product.id
+
+  capture bs_raw
+    render 'sl-bundle-sum', product: product
+  endcapture
+  assign bs = bs_raw | strip | split: '|'
+  assign bs_suma = bs[0] | plus: 0
+  assign bs_ahorro = bs[1] | plus: 0
+  assign pasos = bs[3] | plus: 0
+
+  capture color_necesidad
+    render 'sl-color-necesidad', product: product
+  endcapture
+  assign color_necesidad = color_necesidad | strip
+
+  assign dias = mf.duracion_dias.value | default: 0
+  assign tipo_piel = mf.tipo_piel.value | first
+  assign insignia = mf.routine_badge.value
+  assign versiones = mf.versiones.value
+  assign beneficios = mf.beneficios_clave.value
+  assign rating = product.metafields.reviews.rating.value
+  assign rating_n = product.metafields.reviews.rating_count.value | default: 0
+  assign cta = mf.routine_cta_text.value | default: section.settings.cta_texto_defecto
+  assign precio_texto = precio | money_without_trailing_zeros
+
+  assign tiene_video = false
+  for v in mf.videos.value
+    if v.permiso_uso.value and v.video.value != blank and tiene_video == false
+      assign video = v
+      assign tiene_video = true
+    endif
+  endfor
+  assign imagenes = product.images
+  assign total_items = imagenes.size
+  if tiene_video
+    assign total_items = total_items | plus: 1
+  endif
+-%}
+
+<product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
+  <div class="sl-hero sl-scope" data-sl-color="{{ color_necesidad }}">
+    <div class="sl-container">
+      {%- if section.settings.mostrar_migas -%}
+        <nav class="sl-migas" aria-label="{{ section.settings.migas_aria }}">
+          <a href="{{ routes.root_url }}">{{ section.settings.migas_inicio }}</a>
+          {%- if collection != blank -%}
+            <span aria-hidden="true">/</span> <a href="{{ collection.url }}">{{ collection.title }}</a>
+          {%- endif -%}
+          <span aria-hidden="true">/</span> <span aria-current="page">{{ product.title }}</span>
+        </nav>
+      {%- endif -%}
+
+      <div class="sl-hero__grid">
+        {%- comment -%} Galería {%- endcomment -%}
+        <div class="sl-galeria" data-sl-galeria>
+          <div class="sl-galeria__escenario sl-galeria__escenario--{{ section.settings.imagen_ajuste }}">
+            {%- for imagen in imagenes -%}
+              {%- if forloop.index == 2 and tiene_video -%}
+                <div class="sl-galeria__item sl-galeria__item--video" data-sl-item hidden>
+                  <template data-sl-video>
+                    {{ video.video.value | video_tag: image_size: '600x', controls: true, preload: 'none', playsinline: true, class: 'sl-galeria__video' }}
+                  </template>
+                </div>
+              {%- endif -%}
+              <div class="sl-galeria__item" data-sl-item {% unless forloop.first %}hidden{% endunless %}>
+                <img
+                  src="{{ imagen | image_url: width: 900 }}"
+                  srcset="{{ imagen | image_url: width: 450 }} 450w, {{ imagen | image_url: width: 700 }} 700w, {{ imagen | image_url: width: 900 }} 900w, {{ imagen | image_url: width: 1200 }} 1200w"
+                  sizes="(min-width: 990px) 540px, calc(100vw - 32px)"
+                  alt="{{ imagen.alt | default: product.title | escape }}"
+                  width="{{ imagen.width }}"
+                  height="{{ imagen.height }}"
+                  {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+                >
+              </div>
+            {%- endfor -%}
+            {%- if tiene_video and imagenes.size < 2 -%}
+              <div class="sl-galeria__item sl-galeria__item--video" data-sl-item {% if imagenes.size > 0 %}hidden{% endif %}>
+                <template data-sl-video>
+                  {{ video.video.value | video_tag: image_size: '600x', controls: true, preload: 'none', playsinline: true, class: 'sl-galeria__video' }}
+                </template>
+              </div>
+            {%- endif -%}
+
+            {%- assign chip_pasos = section.settings.texto_pasos | replace: '{pasos}', pasos -%}
+            {%- if pasos > 0 -%}
+              <span class="sl-galeria__chip">
+                {{- chip_pasos -}}
+                {%- if dias > 0 %} · {{ section.settings.texto_dura | replace: '{dias}', dias }}{% endif -%}
+              </span>
+            {%- endif -%}
+            {%- if bs_ahorro > 0 -%}
+              <span class="sl-galeria__ahorro">{{ section.settings.sticker_ahorro }}<br>{{ bs_ahorro | money_without_trailing_zeros }}</span>
+            {%- endif -%}
+          </div>
+
+          {%- if total_items > 1 -%}
+            <ul class="sl-galeria__minis" role="list">
+              {%- assign idx = 0 -%}
+              {%- for imagen in imagenes -%}
+                {%- if forloop.index == 2 and tiene_video -%}
+                  <li>
+                    <button type="button" class="sl-galeria__mini sl-galeria__mini--video" data-sl-thumb="{{ idx }}" aria-pressed="false" aria-label="{{ section.settings.video_aria }}">
+                      {% render 'sl-icon', name: 'play', size: 16 %}
+                      <span>{{ section.settings.video_etiqueta }}</span>
+                    </button>
+                  </li>
+                  {%- assign idx = idx | plus: 1 -%}
+                {%- endif -%}
+                <li>
+                  <button type="button" class="sl-galeria__mini" data-sl-thumb="{{ idx }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ section.settings.foto_aria | replace: '{n}', forloop.index }}">
+                    <img src="{{ imagen | image_url: width: 160 }}" alt="" width="72" height="72" loading="lazy">
+                  </button>
+                </li>
+                {%- assign idx = idx | plus: 1 -%}
+              {%- endfor -%}
+              {%- if tiene_video and imagenes.size < 2 -%}
+                <li>
+                  <button type="button" class="sl-galeria__mini sl-galeria__mini--video" data-sl-thumb="{{ idx }}" aria-pressed="false" aria-label="{{ section.settings.video_aria }}">
+                    {% render 'sl-icon', name: 'play', size: 16 %}
+                    <span>{{ section.settings.video_etiqueta }}</span>
+                  </button>
+                </li>
+              {%- endif -%}
+            </ul>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Caja de compra {%- endcomment -%}
+        <div class="sl-buybox">
+          {%- if tipo_piel != blank or insignia != blank -%}
+            <div class="sl-buybox__chips">
+              {%- if tipo_piel != blank -%}
+                <span class="sl-chip sl-chip--color">{{ tipo_piel }}</span>
+              {%- endif -%}
+              {%- if insignia != blank -%}
+                <span class="sl-chip{% if tipo_piel == blank %} sl-chip--color{% endif %}">{{ insignia }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          <h1 class="sl-h1 sl-buybox__titulo">{{ product.title }}</h1>
+
+          {%- if rating_n >= 1 and rating != blank -%}
+            <a class="sl-resenas-link" href="#sl-resenas">
+              <span aria-hidden="true" class="sl-resenas-link__estrellas">
+                {%- assign llenas = rating.value | round -%}
+                {%- for i in (1..5) -%}{% if i <= llenas %}★{% else %}☆{% endif %}{%- endfor -%}
+              </span>
+              <strong>{{ rating.value }}</strong> · {{ section.settings.texto_resenas | replace: '{n}', rating_n }}
+            </a>
+          {%- endif -%}
+
+          {%- if mf.routine_subtitle.value != blank -%}
+            <p class="sl-buybox__bajada">{{ mf.routine_subtitle.value }}</p>
+          {%- endif -%}
+
+          {%- if versiones.size > 1 -%}
+            <div class="sl-versiones">
+              <span class="sl-etiqueta">{{ section.settings.texto_versiones }}</span>
+              <div class="sl-versiones__lista">
+                {%- for v in versiones -%}
+                  {%- liquid
+                    assign v_nombre = v.metafields.custom.version_nombre.value | default: v.title
+                    assign v_pasos = v.metafields.custom.routine_products.value.size
+                    assign v_actual = false
+                    if v.id == product.id
+                      assign v_actual = true
+                    endif
+                    capture v_color
+                      render 'sl-color-necesidad', product: v
+                    endcapture
+                    assign v_color = v_color | strip
+                  -%}
+                  <a
+                    href="{{ v.url }}"
+                    class="sl-version{% if v_actual %} sl-version--actual{% endif %}"
+                    data-sl-version
+                    {% if v_actual %}aria-current="page" data-sl-color="{{ v_color }}"{% endif %}
+                  >
+                    <span class="sl-version__cabecera">
+                      <strong>
+                        {%- if v_pasos > 0 -%}
+                          {{ section.settings.texto_version_pasos | replace: '{nombre}', v_nombre | replace: '{pasos}', v_pasos }}
+                        {%- else -%}
+                          {{ v_nombre }}
+                        {%- endif -%}
+                      </strong>
+                      {%- if v_actual -%}{% render 'sl-icon', name: 'check', size: 16 %}{%- endif -%}
+                    </span>
+                    <span class="sl-version__precio">{{ v.selected_or_first_available_variant.price | money_without_trailing_zeros }}</span>
+                    {%- if v.available == false -%}
+                      <span class="sl-version__resumen">{{ section.settings.agotado_texto }}</span>
+                    {%- elsif v.metafields.custom.version_resumen.value != blank -%}
+                      <span class="sl-version__resumen">{{ v.metafields.custom.version_resumen.value }}</span>
+                    {%- endif -%}
+                  </a>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          <div class="sl-buybox__precio">
+            <div class="sl-buybox__precio-fila">
+              <span class="sl-precio">{{ precio_texto }}</span>
+              {%- if bs_ahorro > 0 -%}
+                <span class="sl-buybox__separado">{{ section.settings.texto_por_separado }} <s>{{ bs_suma | money_without_trailing_zeros }}</s></span>
+              {%- endif -%}
+            </div>
+            {%- if bs_ahorro > 0 -%}
+              <span class="sl-sticker">−{{ bs_ahorro | money_without_trailing_zeros }}</span>
+            {%- endif -%}
+            {%- render 'sl-costo-dia', precio: precio, dias: dias, texto_costo: section.settings.texto_costo_dia, texto_dura: section.settings.texto_dura -%}
+            {%- if settings.sl_texto_cuotas != blank -%}
+              <p class="sl-texto-chico">{{ settings.sl_texto_cuotas }}</p>
+            {%- endif -%}
+          </div>
+
+          {%- if mf.cro_hook.value != blank -%}
+            <p class="sl-promesa">{{ mf.cro_hook.value }}</p>
+          {%- endif -%}
+
+          {%- if beneficios.size > 0 -%}
+            <ol class="sl-beneficios" role="list">
+              {%- for b in beneficios limit: 3 -%}
+                <li><span class="sl-beneficios__n sl-beneficios__n--{{ forloop.index }}" aria-hidden="true">{{ forloop.index }}</span><span>{{ b }}</span></li>
+              {%- endfor -%}
+            </ol>
+          {%- endif -%}
+
+          <product-form class="sl-form" data-section-id="{{ section.id }}">
+            <div class="product-form__error-message-wrapper sl-form__error" role="alert" hidden>
+              <span class="product-form__error-message"></span>
+            </div>
+            {%- form 'product', product, id: form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+              <input type="hidden" name="id" value="{{ variante.id }}" class="product-variant-id" {% unless disponible %}disabled{% endunless %}>
+              <button
+                id="ProductSubmitButton-{{ section.id }}"
+                type="submit"
+                name="add"
+                class="sl-btn sl-btn--compra sl-btn--block product-form__submit"
+                {% unless disponible %}disabled{% endunless %}
+              >
+                <span>
+                  {%- if disponible -%}
+                    {{ cta }} · {{ precio_texto }}
+                  {%- else -%}
+                    {{ section.settings.agotado_texto }}
+                  {%- endif -%}
+                </span>
+                {%- render 'loading-spinner' -%}
+              </button>
+            {%- endform -%}
+          </product-form>
+
+          {%- if settings.sl_test_url != blank or settings.sl_aly_url != blank -%}
+            <p class="sl-ayuda">
+              {{ section.settings.ayuda_intro }}
+              {%- if settings.sl_test_url != blank %} <a href="{{ settings.sl_test_url }}">{{ section.settings.ayuda_test }}</a>{% endif -%}
+              {%- if settings.sl_test_url != blank and settings.sl_aly_url != blank %} · {% endif -%}
+              {%- if settings.sl_aly_url != blank %}<a href="{{ settings.sl_aly_url }}">{{ section.settings.ayuda_aly }}</a>{% endif -%}
+            </p>
+          {%- endif -%}
+
+          {% render 'sl-envio-gratis',
+            product: product,
+            precio: precio,
+            texto_incluido: section.settings.envio_incluido,
+            texto_falta: section.settings.envio_falta,
+            texto_complemento: section.settings.envio_complemento,
+            texto_agregar: section.settings.envio_agregar,
+            comp_form_id: comp_form_id
+          %}
+
+          {% render 'sl-confianza' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</product-component>
+
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'sl-pdp-hero.js' | asset_url }}" defer="defer"></script>
+
+{{ product | structured_data }}
+
+{% schema %}
+{
+  "name": "Skinland · Ficha (hero)",
+  "tag": "section",
+  "class": "sl-pdp-hero-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Galería"
+    },
+    {
+      "type": "select",
+      "id": "imagen_ajuste",
+      "label": "Ajuste de la foto",
+      "options": [
+        { "value": "contain", "label": "Completa, sobre el color" },
+        { "value": "cover", "label": "Rellena todo el recuadro" }
+      ],
+      "default": "contain"
+    },
+    {
+      "type": "checkbox",
+      "id": "mostrar_migas",
+      "label": "Mostrar migas de pan (escritorio)",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "texto_pasos",
+      "label": "Chip: pasos",
+      "info": "Usa {pasos}.",
+      "default": "{pasos} pasos"
+    },
+    {
+      "type": "text",
+      "id": "texto_dura",
+      "label": "Duración",
+      "info": "Usa {dias}. Se muestra solo si el producto tiene duración.",
+      "default": "dura ~{dias} días"
+    },
+    {
+      "type": "text",
+      "id": "sticker_ahorro",
+      "label": "Sticker de ahorro",
+      "default": "Ahorras"
+    },
+    {
+      "type": "header",
+      "content": "Caja de compra"
+    },
+    {
+      "type": "text",
+      "id": "texto_versiones",
+      "label": "Título del selector de versión",
+      "default": "Elige tu versión"
+    },
+    {
+      "type": "text",
+      "id": "texto_version_pasos",
+      "label": "Nombre de la versión",
+      "info": "Usa {nombre} y {pasos}.",
+      "default": "{nombre} · {pasos} pasos"
+    },
+    {
+      "type": "text",
+      "id": "texto_por_separado",
+      "label": "Texto de \"por separado\"",
+      "default": "Por separado"
+    },
+    {
+      "type": "text",
+      "id": "texto_costo_dia",
+      "label": "Costo por día",
+      "info": "Usa {precio}.",
+      "default": "≈ {precio} al día"
+    },
+    {
+      "type": "text",
+      "id": "texto_resenas",
+      "label": "Texto de reseñas",
+      "info": "Usa {n}. Solo se muestra con reseñas reales (reviews.rating_count).",
+      "default": "{n} reseñas"
+    },
+    {
+      "type": "text",
+      "id": "cta_texto_defecto",
+      "label": "Texto del botón de compra",
+      "info": "Se usa si el producto no tiene routine_cta_text.",
+      "default": "Comenzar mi rutina"
+    },
+    {
+      "type": "text",
+      "id": "agotado_texto",
+      "label": "Texto de agotado",
+      "default": "Agotado"
+    },
+    {
+      "type": "text",
+      "id": "ayuda_intro",
+      "label": "Ayuda: introducción",
+      "default": "¿No sabes si es para ti?"
+    },
+    {
+      "type": "text",
+      "id": "ayuda_test",
+      "label": "Ayuda: link al test",
+      "default": "Test de 1 min"
+    },
+    {
+      "type": "text",
+      "id": "ayuda_aly",
+      "label": "Ayuda: link a Aly",
+      "default": "Pregúntale a Aly"
+    },
+    {
+      "type": "header",
+      "content": "Envío gratis"
+    },
+    {
+      "type": "text",
+      "id": "envio_incluido",
+      "label": "Chip cuando ya llega",
+      "default": "Envío gratis incluido"
+    },
+    {
+      "type": "text",
+      "id": "envio_falta",
+      "label": "Cuando falta",
+      "info": "Usa {falta}.",
+      "default": "Te faltan {falta} para envío gratis"
+    },
+    {
+      "type": "text",
+      "id": "envio_complemento",
+      "label": "Sugerencia del complemento",
+      "info": "Usa {producto} y {precio}.",
+      "default": "Suma {producto} ({precio}) y tu envío queda gratis."
+    },
+    {
+      "type": "text",
+      "id": "envio_agregar",
+      "label": "Botón del complemento",
+      "default": "+ Agregar"
+    },
+    {
+      "type": "header",
+      "content": "Textos accesibles"
+    },
+    {
+      "type": "text",
+      "id": "migas_aria",
+      "label": "Migas de pan",
+      "default": "Ruta"
+    },
+    {
+      "type": "text",
+      "id": "migas_inicio",
+      "label": "Inicio",
+      "default": "Inicio"
+    },
+    {
+      "type": "text",
+      "id": "foto_aria",
+      "label": "Foto",
+      "info": "Usa {n}.",
+      "default": "Ver foto {n}"
+    },
+    {
+      "type": "text",
+      "id": "video_aria",
+      "label": "Video",
+      "default": "Ver video"
+    },
+    {
+      "type": "text",
+      "id": "video_etiqueta",
+      "label": "Etiqueta de la miniatura del video",
+      "default": "Video"
+    }
+  ]
+}
+{% endschema %}

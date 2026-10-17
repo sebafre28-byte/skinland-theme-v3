@@ -1,0 +1,64 @@
+{%- comment -%}
+  Envío gratis: chip si el precio llega al umbral; si no, barra de progreso + complemento sugerido.
+  Parámetros: product, precio (centavos), texto_incluido, texto_falta ("{falta}"),
+  texto_complemento ("{producto}", "{precio}"), texto_agregar, comp_form_id.
+  El complemento se agrega con un <product-form> nativo (otro formulario de Dawn), sin fetch propio.
+{%- endcomment -%}
+{%- liquid
+  assign umbral = settings.sl_envio_gratis_umbral | times: 100
+  assign comp = settings.sl_complemento_envio
+  assign mostrar = false
+  assign falta = 0
+  if umbral > 0
+    assign mostrar = true
+    if precio < umbral
+      assign falta = umbral | minus: precio
+    endif
+  endif
+-%}
+{%- if mostrar -%}
+  {%- if falta == 0 -%}
+    <p class="sl-envio sl-envio--incluido"><span class="sl-chip sl-chip--ok">{% render 'sl-icon', name: 'check', size: 14 %}{{ texto_incluido }}</span></p>
+  {%- else -%}
+    {%- liquid
+      assign progreso = precio | times: 100 | divided_by: umbral
+      assign comp_var = comp.selected_or_first_available_variant
+      assign falta_texto = falta | money_without_trailing_zeros
+      assign umbral_texto = umbral | money_without_trailing_zeros
+      assign comp_precio = comp_var.price | money_without_trailing_zeros
+      assign sugerir = false
+      if comp != blank and comp.available and comp_var.price >= falta
+        assign sugerir = true
+        for c in product.metafields.custom.routine_products.value
+          if c.id == comp.id
+            assign sugerir = false
+          endif
+        endfor
+      endif
+    -%}
+    <div class="sl-envio">
+      <div class="sl-envio__cabecera">
+        <strong>{{ texto_falta | replace: '{falta}', falta_texto }}</strong>
+        <span class="sl-texto-chico">{{ umbral_texto }}</span>
+      </div>
+      <div class="sl-envio__barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progreso }}"><span style="width: {{ progreso }}%"></span></div>
+      {%- if sugerir -%}
+        <div class="sl-envio__complemento">
+          {%- if comp.featured_image -%}
+            <img class="sl-envio__foto" src="{{ comp.featured_image | image_url: width: 120 }}" alt="" width="52" height="52" loading="lazy">
+          {%- endif -%}
+          <p class="sl-envio__texto">{{ texto_complemento | replace: '{producto}', comp.title | replace: '{precio}', comp_precio }}</p>
+          <product-form class="sl-envio__form" data-hide-errors="true">
+            {%- form 'product', comp, id: comp_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+              <input type="hidden" name="id" value="{{ comp_var.id }}" class="product-variant-id">
+              <button type="submit" name="add" class="sl-btn sl-btn--sm">
+                <span>{{ texto_agregar }}</span>
+                {%- render 'loading-spinner' -%}
+              </button>
+            {%- endform -%}
+          </product-form>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endif -%}

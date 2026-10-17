@@ -1,0 +1,36 @@
+{%- comment -%}
+  Única fuente de "Por separado", "Ahorras" y "−$X".
+  Suma el precio de la primera variante disponible de cada producto de custom.routine_products.
+  Devuelve "suma|ahorro|completo|pasos" (importes en centavos, como Liquid).
+  completo = falso si falta un componente o alguno está agotado; en ese caso ahorro = 0.
+  No usa compare_at_price ni routine_savings_text.
+
+  Uso:
+    {%- capture bs_raw -%}{% render 'sl-bundle-sum', product: product %}{%- endcapture -%}
+    {%- assign bs = bs_raw | strip | split: '|' -%}
+    suma = {{ bs[0] | plus: 0 }}, ahorro = {{ bs[1] | plus: 0 }}, completo = {{ bs[2] }}, pasos = {{ bs[3] | plus: 0 }}
+{%- endcomment -%}
+{%- liquid
+  assign componentes = product.metafields.custom.routine_products.value
+  assign precio = product.selected_or_first_available_variant.price
+  assign suma = 0
+  assign pasos = 0
+  assign completo = true
+  if componentes == blank
+    assign completo = false
+  endif
+  for c in componentes
+    assign pasos = pasos | plus: 1
+    assign v = c.variants | where: 'available' | first
+    if v == blank
+      assign completo = false
+      assign v = c.variants | first
+    endif
+    assign suma = suma | plus: v.price
+  endfor
+  assign ahorro = 0
+  if completo and suma > precio
+    assign ahorro = suma | minus: precio
+  endif
+-%}
+{{ suma }}|{{ ahorro }}|{{ completo }}|{{ pasos }}
