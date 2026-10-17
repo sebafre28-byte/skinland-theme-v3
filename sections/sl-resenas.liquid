@@ -1,0 +1,61 @@
+{%- liquid
+  assign rating_n = product.metafields.reviews.rating_count.value | default: 0
+  assign hay_app = false
+  for block in section.blocks
+    if block.type == '@app'
+      assign hay_app = true
+    endif
+  endfor
+  assign mostrar = false
+  if rating_n >= 1 and hay_app
+    assign mostrar = true
+  endif
+-%}
+
+{%- if mostrar -%}
+  {{ 'sl-resenas.css' | asset_url | stylesheet_tag }}
+  <section class="sl-resenas sl-scope" id="sl-resenas" aria-labelledby="sl-resenas-{{ section.id }}">
+    <div class="sl-par__inner">
+      <h2 class="sl-h2" id="sl-resenas-{{ section.id }}">{{ section.settings.titulo }}</h2>
+      <div class="sl-resenas__app">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- elsif request.design_mode -%}
+  {{ 'sl-resenas.css' | asset_url | stylesheet_tag }}
+  <p class="sl-resenas__aviso sl-scope">{{ section.settings.aviso_editor }}</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Reseñas",
+  "tag": "div",
+  "class": "sl-par sl-par--izq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Lo que dicen quienes la usan"
+    },
+    {
+      "type": "text",
+      "id": "aviso_editor",
+      "label": "Aviso en el editor",
+      "info": "Solo se ve dentro del editor del tema, no en la tienda.",
+      "default": "Reseñas ocultas: se muestran solo con una app de reseñas instalada, su bloque agregado aquí y al menos una reseña real del producto."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
+{% endschema %}

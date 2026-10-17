@@ -38,6 +38,10 @@
     "ingredientes": {
       "type": "sl-ingredientes",
       "settings": {}
+    },
+    "resenas": {
+      "type": "sl-resenas",
+      "settings": {}
     }
   },
   "order": [
@@ -47,6 +51,7 @@
     "uso",
     "para_ti",
     "resultados",
-    "ingredientes"
+    "ingredientes",
+    "resenas"
   ]
 }

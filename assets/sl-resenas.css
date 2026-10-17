@@ -1,0 +1,8 @@
+/* sl-resenas · contenedor de la app de reseñas (solo con reseñas reales). Referencia: FichaDesktop.html */
+.sl-resenas { padding: 0 0 30px; }
+.sl-resenas .sl-par__inner { display: flex; flex-direction: column; gap: 12px; }
+.sl-resenas__aviso { margin: 16px; padding: 12px; border: 2px dashed var(--sl-tinta); border-radius: var(--sl-radio-m); font-size: 13px; }
+.sl-resenas__app { color: var(--sl-tinta); font-family: var(--sl-font-body); }
+@media screen and (min-width: 990px) {
+  .sl-resenas { padding: 64px 0; }
+}
