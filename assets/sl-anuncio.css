@@ -1,0 +1,33 @@
+.sl-anuncio {
+  background: var(--sl-lima);
+  color: var(--sl-tinta);
+  border-bottom: 2px solid var(--sl-tinta);
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.sl-anuncio__track { display: flex; width: max-content; min-width: 100%; justify-content: center; }
+.sl-anuncio__lista { display: flex; flex: none; margin: 0; padding: 0; list-style: none; }
+.sl-anuncio__item { padding: 9px 0; }
+.sl-anuncio__item + .sl-anuncio__item::before,
+.sl-anuncio__lista + .sl-anuncio__lista .sl-anuncio__item:first-child::before {
+  content: '✦' / '';
+  padding: 0 14px;
+}
+.sl-anuncio__item a { color: inherit; text-decoration: none; }
+.sl-anuncio__item a:hover { text-decoration: underline; }
+.sl-anuncio.is-scrolling .sl-anuncio__track { justify-content: flex-start; animation: sl-anuncio-scroll var(--sl-anuncio-duracion, 24s) linear infinite; }
+.sl-anuncio.is-scrolling:hover .sl-anuncio__track { animation-play-state: paused; }
+@keyframes sl-anuncio-scroll { to { transform: translateX(-50%); } }
+
+@media screen and (min-width: 750px) {
+  .sl-anuncio { font-size: 12px; }
+  .sl-anuncio__item { padding: 10px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sl-anuncio { overflow-x: auto; }
+  .sl-anuncio.is-scrolling .sl-anuncio__track { animation: none; }
+}

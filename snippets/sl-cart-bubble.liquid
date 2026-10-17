@@ -1,0 +1,12 @@
+{%- comment -%}
+  Contenido del ícono del carrito (header). Lo usan sl-header y la sección cart-icon-bubble,
+  que Dawn re-renderiza al cambiar el carrito.
+{%- endcomment -%}
+<span class="sl-header__carrito-icono">{% render 'sl-icon', name: 'cart', size: 20 %}</span>
+<span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+{%- if cart != empty -%}
+  <span class="sl-header__contador">
+    <span aria-hidden="true">{% if cart.item_count < 100 %}{{ cart.item_count }}{% else %}99+{% endif %}</span>
+    <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+  </span>
+{%- endif -%}

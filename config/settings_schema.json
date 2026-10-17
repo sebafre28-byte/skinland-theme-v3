@@ -8,6 +8,202 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "Skinland · Sistema",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "sl_logo",
+        "label": "Logo (SVG con el punto)",
+        "info": "Sobre fondo claro. Si está vacío se usa el logo incluido en el tema."
+      },
+      {
+        "type": "image_picker",
+        "id": "sl_logo_oscuro",
+        "label": "Logo para fondo oscuro",
+        "info": "Color salvia, para el footer. Si está vacío se usa el logo incluido en el tema."
+      },
+      {
+        "type": "header",
+        "content": "Envío y precios"
+      },
+      {
+        "type": "number",
+        "id": "sl_envio_gratis_umbral",
+        "label": "Envío gratis desde (CLP)",
+        "default": 64990
+      },
+      {
+        "type": "product",
+        "id": "sl_complemento_envio",
+        "label": "Complemento para completar el envío gratis",
+        "info": "Se sugiere solo si está disponible, completa lo que falta y no es parte de la rutina."
+      },
+      {
+        "type": "text",
+        "id": "sl_texto_cuotas",
+        "label": "Texto de cuotas",
+        "info": "Solo con cuotas reales con Mercado Pago. Vacío = no se muestra nada."
+      },
+      {
+        "type": "header",
+        "content": "Enlaces de ayuda"
+      },
+      {
+        "type": "url",
+        "id": "sl_test_url",
+        "label": "Test de piel",
+        "info": "Vacío = se oculta."
+      },
+      {
+        "type": "url",
+        "id": "sl_aly_url",
+        "label": "Aly, la asesora IA",
+        "info": "Vacío = se oculta."
+      },
+      {
+        "type": "url",
+        "id": "sl_whatsapp_url",
+        "label": "WhatsApp"
+      },
+      {
+        "type": "header",
+        "content": "Textos de marca"
+      },
+      {
+        "type": "text",
+        "id": "sl_confianza_1",
+        "label": "Sello de confianza 1",
+        "default": "100% originales"
+      },
+      {
+        "type": "text",
+        "id": "sl_confianza_2",
+        "label": "Sello de confianza 2",
+        "default": "Despacho a todo Chile"
+      },
+      {
+        "type": "text",
+        "id": "sl_confianza_3",
+        "label": "Sello de confianza 3",
+        "default": "Pago seguro Mercado Pago"
+      },
+      {
+        "type": "text",
+        "id": "sl_aviso_dermatologo",
+        "label": "Aviso al dermatólogo",
+        "default": "Si tu acné es severo, doloroso o persistente, consulta a un dermatólogo."
+      },
+      {
+        "type": "text",
+        "id": "sl_nota_videos",
+        "label": "Nota al pie de videos",
+        "default": "Solo videos reales; si es colaboración pagada, se indica."
+      },
+      {
+        "type": "header",
+        "content": "Colores"
+      },
+      {
+        "type": "color",
+        "id": "sl_color_tinta",
+        "label": "Tinta",
+        "default": "#17261F",
+        "info": "Texto, bordes y sombras duras."
+      },
+      {
+        "type": "color",
+        "id": "sl_color_logo",
+        "label": "Logo sobre claro",
+        "default": "#12221C"
+      },
+      {
+        "type": "color",
+        "id": "sl_color_salvia",
+        "label": "Salvia",
+        "default": "#A5AFA0",
+        "info": "Solo sobre fondo tinta."
+      },
+      {
+        "type": "color",
+        "id": "sl_color_crema",
+        "label": "Crema",
+        "default": "#F0ECE6",
+        "info": "Fondo general."
+      },
+      {
+        "type": "color",
+        "id": "sl_color_blanco",
+        "label": "Blanco",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "sl_color_compra",
+        "label": "Verde compra",
+        "default": "#3D5A4F",
+        "info": "Solo botones de compra."
+      },
+      {
+        "type": "color",
+        "id": "sl_color_texto_2",
+        "label": "Texto secundario",
+        "default": "#3F4A45"
+      },
+      {
+        "type": "color",
+        "id": "sl_color_texto_oscuro_2",
+        "label": "Texto secundario sobre tinta",
+        "default": "#C9C3B8"
+      },
+      {
+        "type": "color",
+        "id": "sl_color_lima",
+        "label": "Lima",
+        "default": "#DCF56C"
+      },
+      {
+        "type": "color",
+        "id": "sl_color_menta",
+        "label": "Menta · piel grasa",
+        "default": "#8EE3B8"
+      },
+      {
+        "type": "color",
+        "id": "sl_color_durazno",
+        "label": "Durazno · piel seca",
+        "default": "#FFB38A"
+      },
+      {
+        "type": "color",
+        "id": "sl_color_celeste",
+        "label": "Celeste · piel mixta",
+        "default": "#A9D8FF"
+      },
+      {
+        "type": "color",
+        "id": "sl_color_lila",
+        "label": "Lila · sensible",
+        "default": "#CBB8FF"
+      },
+      {
+        "type": "color",
+        "id": "sl_color_amarillo",
+        "label": "Amarillo · manchas",
+        "default": "#FFE58A"
+      },
+      {
+        "type": "color",
+        "id": "sl_color_rosa",
+        "label": "Rosa · líneas",
+        "default": "#FFA3C8"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.logo.name",
     "settings": [
       {

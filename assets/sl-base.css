@@ -1,0 +1,160 @@
+/* Skinland V3 · Color Pop — sistema base. Los colores vienen de snippets/sl-head.liquid (ajustes del tema). */
+
+:root {
+  --sl-font-display: 'Funnel Display', system-ui, sans-serif;
+  --sl-font-body: 'Funnel Sans', system-ui, sans-serif;
+  --sl-borde: 2px solid var(--sl-tinta);
+  --sl-radio-s: 10px;
+  --sl-radio-m: 14px;
+  --sl-radio-l: 18px;
+  --sl-radio-xl: 24px;
+  --sl-radio-galeria: 26px;
+  --sl-sombra: 4px 4px 0 var(--sl-tinta);
+  --sl-sombra-destacada: 6px 6px 0 var(--sl-tinta);
+  --sl-contenedor: 1200px;
+  --sl-gutter: 20px;
+  /* Dawn lee estas variables: las apuntamos a las fuentes alojadas */
+  --font-body-family: var(--sl-font-body);
+  --font-heading-family: var(--sl-font-display);
+  --font-body-weight: 400;
+  --font-heading-weight: 800;
+}
+
+@media screen and (min-width: 750px) {
+  :root { --sl-gutter: 32px; }
+}
+
+body {
+  font-family: var(--sl-font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--sl-tinta);
+  background: var(--sl-crema);
+}
+
+/* Foco visible: contorno de 3 px lima + tinta */
+.sl-scope :focus-visible,
+.sl-btn:focus-visible,
+.sl-chip:focus-visible {
+  outline: 3px solid var(--sl-tinta);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px var(--sl-lima);
+}
+
+.sl-container {
+  width: 100%;
+  max-width: calc(var(--sl-contenedor) + var(--sl-gutter) * 2);
+  margin: 0 auto;
+  padding-inline: var(--sl-gutter);
+}
+
+/* Tipografía */
+.sl-h1, .sl-h2, .sl-h3, .sl-precio {
+  font-family: var(--sl-font-display);
+  font-weight: 800;
+  color: var(--sl-tinta);
+  margin: 0;
+}
+.sl-h1 { font-size: 46px; line-height: .95; letter-spacing: -.035em; }
+.sl-h2 { font-size: 32px; line-height: 1; letter-spacing: -.03em; }
+.sl-h3 { font-size: 22px; line-height: 1.1; letter-spacing: -.02em; }
+.sl-precio { font-size: 38px; line-height: 1; letter-spacing: -.02em; }
+.sl-texto-chico { font-size: 13px; }
+.sl-etiqueta { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+
+@media screen and (min-width: 750px) {
+  .sl-h1 { font-size: 54px; }
+  .sl-h2 { font-size: 42px; }
+  .sl-precio { font-size: 44px; }
+}
+
+/* Marcador lima en un título */
+.sl-marcador {
+  display: inline-block;
+  transform: rotate(-1.5deg);
+  background: var(--sl-lima);
+  border: var(--sl-borde);
+  border-radius: var(--sl-radio-m);
+  padding: 0 8px;
+}
+
+/* Botones */
+.sl-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: var(--sl-borde);
+  border-radius: var(--sl-radio-m);
+  background: var(--sl-blanco);
+  color: var(--sl-tinta);
+  font-family: var(--sl-font-body);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.sl-btn--sm { min-height: 44px; padding: 0 12px; font-size: 13px; border-radius: var(--sl-radio-s); }
+.sl-btn--lg { min-height: 52px; }
+.sl-btn--compra {
+  min-height: 58px;
+  padding: 0 22px;
+  border-radius: 16px;
+  background: var(--sl-compra);
+  color: #fff;
+  font-family: var(--sl-font-display);
+  font-size: 18px;
+  font-weight: 700;
+  box-shadow: var(--sl-sombra);
+}
+.sl-btn--compra:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--sl-tinta); }
+.sl-btn--tinta { background: var(--sl-tinta); color: #fff; box-shadow: 4px 4px 0 var(--sl-lima); border-radius: 16px; min-height: 58px; font-family: var(--sl-font-display); font-size: 18px; }
+.sl-btn[disabled], .sl-btn[aria-disabled='true'] { opacity: .55; cursor: not-allowed; box-shadow: none; }
+.sl-btn--block { width: 100%; }
+
+/* Chips, stickers y sellos */
+.sl-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border: var(--sl-borde);
+  border-radius: 999px;
+  background: var(--sl-blanco);
+  color: var(--sl-tinta);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.sl-sticker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border: var(--sl-borde);
+  border-radius: var(--sl-radio-s);
+  background: var(--sl-lima);
+  font-family: var(--sl-font-display);
+  font-size: 13px;
+  font-weight: 800;
+  transform: rotate(-3deg);
+}
+
+/* Color por necesidad: se aplica con data-sl-color en el contenedor */
+[data-sl-color='menta'] { --sl-necesidad: var(--sl-menta); }
+[data-sl-color='durazno'] { --sl-necesidad: var(--sl-durazno); }
+[data-sl-color='celeste'] { --sl-necesidad: var(--sl-celeste); }
+[data-sl-color='lila'] { --sl-necesidad: var(--sl-lila); }
+[data-sl-color='lima'] { --sl-necesidad: var(--sl-lima); }
+[data-sl-color='amarillo'] { --sl-necesidad: var(--sl-amarillo); }
+[data-sl-color='rosa'] { --sl-necesidad: var(--sl-rosa); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sl-scope *, .sl-btn { animation: none !important; transition: none !important; }
+}

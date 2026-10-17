@@ -1,0 +1,148 @@
+{{ 'sl-header.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign menu_links = linklists[section.settings.menu].links
+  assign test_url = settings.sl_test_url
+-%}
+
+<header class="sl-header sl-scope" data-sl-header>
+  <div class="sl-header__inner">
+    <button
+      type="button"
+      class="sl-header__menu-btn"
+      aria-label="{{ section.settings.menu_aria }}"
+      aria-controls="sl-menu"
+      aria-haspopup="dialog"
+      data-sl-menu-open
+    >
+      {% render 'sl-icon', name: 'menu', size: 24 %}
+    </button>
+
+    <a class="sl-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      {% render 'sl-logo', class: 'sl-header__logo-img' %}
+    </a>
+
+    <nav class="sl-header__nav" aria-label="{{ section.settings.nav_aria }}">
+      <ul class="sl-header__nav-lista">
+        {%- for link in menu_links -%}
+          <li class="sl-header__nav-item{% if link.links.size > 0 %} sl-header__nav-item--sub{% endif %}">
+            {%- if link.links.size > 0 -%}
+              <a href="{{ link.url }}" class="sl-header__nav-link" {% if link.current %}aria-current="page"{% endif %}>{{ link.title }}</a>
+              <button type="button" class="sl-header__sub-btn" aria-expanded="false" aria-label="{{ link.title | escape }}" data-sl-sub-btn>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <ul class="sl-header__sub">
+                {%- for sub in link.links -%}
+                  <li><a href="{{ sub.url }}" {% if sub.current %}aria-current="page"{% endif %}>{{ sub.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- else -%}
+              <a href="{{ link.url }}" class="sl-header__nav-link" {% if link.current %}aria-current="page"{% endif %}>{{ link.title }}</a>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+        {%- if test_url != blank -%}
+          <li class="sl-header__nav-item">
+            <a href="{{ test_url }}" class="sl-header__test">{{ section.settings.test_texto }}</a>
+          </li>
+        {%- endif -%}
+      </ul>
+    </nav>
+
+    <div class="sl-header__acciones">
+      <a href="{{ routes.search_url }}" class="sl-header__icon sl-header__icon--buscar" aria-label="{{ section.settings.buscar_aria }}">
+        {% render 'sl-icon', name: 'search', size: 19 %}
+      </a>
+      <a href="{{ routes.cart_url }}" class="sl-header__icon sl-header__icon--carrito" id="cart-icon-bubble">
+        {% render 'sl-cart-bubble' %}
+      </a>
+    </div>
+  </div>
+
+  <dialog id="sl-menu" class="sl-menu" aria-label="{{ section.settings.menu_aria }}" data-sl-menu>
+    <div class="sl-menu__panel">
+      <div class="sl-menu__cabecera">
+        <a href="{{ routes.root_url }}" class="sl-menu__logo" aria-label="{{ shop.name | escape }}">
+          {% render 'sl-logo', class: 'sl-header__logo-img' %}
+        </a>
+        <button type="button" class="sl-menu__cerrar" aria-label="{{ section.settings.cerrar_aria }}" data-sl-menu-close>
+          {% render 'sl-icon', name: 'close', size: 22 %}
+        </button>
+      </div>
+      {%- if test_url != blank -%}
+        <a href="{{ test_url }}" class="sl-menu__test">{{ section.settings.test_texto }}</a>
+      {%- endif -%}
+      <ul class="sl-menu__lista">
+        {%- for link in menu_links -%}
+          <li>
+            <a href="{{ link.url }}" class="sl-menu__link" {% if link.current %}aria-current="page"{% endif %}>{{ link.title }}</a>
+            {%- if link.links.size > 0 -%}
+              <ul class="sl-menu__sub">
+                {%- for sub in link.links -%}
+                  <li><a href="{{ sub.url }}" {% if sub.current %}aria-current="page"{% endif %}>{{ sub.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+      <a href="{{ routes.search_url }}" class="sl-menu__buscar">
+        {% render 'sl-icon', name: 'search', size: 18 %}
+        {{ section.settings.buscar_aria }}
+      </a>
+    </div>
+  </dialog>
+</header>
+
+<script src="{{ 'sl-header.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Skinland · Header",
+  "tag": "section",
+  "class": "sl-header-section",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menú principal",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "test_texto",
+      "label": "Texto del botón del test",
+      "info": "Se muestra solo si el ajuste \"Test de piel\" del tema tiene URL.",
+      "default": "Test de piel"
+    },
+    {
+      "type": "header",
+      "content": "Textos accesibles"
+    },
+    {
+      "type": "text",
+      "id": "menu_aria",
+      "label": "Abrir menú",
+      "default": "Abrir menú"
+    },
+    {
+      "type": "text",
+      "id": "cerrar_aria",
+      "label": "Cerrar menú",
+      "default": "Cerrar menú"
+    },
+    {
+      "type": "text",
+      "id": "nav_aria",
+      "label": "Navegación principal",
+      "default": "Principal"
+    },
+    {
+      "type": "text",
+      "id": "buscar_aria",
+      "label": "Buscar",
+      "default": "Buscar"
+    }
+  ]
+}
+{% endschema %}

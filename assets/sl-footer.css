@@ -1,0 +1,36 @@
+.sl-footer { background: var(--sl-tinta); color: var(--sl-crema); margin-top: auto; }
+.sl-footer a { color: var(--sl-crema); }
+.sl-footer__inner { display: flex; flex-direction: column; gap: 18px; padding: 32px 20px 18px; }
+.sl-footer__logo { display: inline-block; align-self: flex-start; }
+.sl-footer__logo-img { display: block; height: 30px; width: auto; }
+.sl-footer__contacto { margin: 12px 0 0; font-size: 12px; color: var(--sl-texto-oscuro-2); }
+.sl-footer__contacto a { color: var(--sl-texto-oscuro-2); margin-right: 6px; }
+.sl-footer__columnas { display: flex; flex-direction: column; gap: 4px; }
+.sl-footer__titulo { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
+.sl-footer__lista { display: flex; flex-wrap: wrap; gap: 0 18px; margin: 0; padding: 0; list-style: none; }
+.sl-footer__lista a { display: inline-block; padding: 6px 0; font-size: 14px; text-decoration: none; }
+.sl-footer__lista a:hover { text-decoration: underline; }
+.sl-footer__base { display: flex; flex-direction: column; gap: 6px; padding: 0 20px 32px; font-size: 12px; color: var(--sl-texto-oscuro-2); }
+.sl-footer__base p { margin: 0; }
+.sl-footer__medios { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 0; padding: 0; list-style: none; }
+.sl-footer__medio { height: 24px; width: auto; }
+
+@media screen and (min-width: 750px) {
+  .sl-footer__inner {
+    max-width: calc(var(--sl-contenedor) + 64px); margin: 0 auto;
+    flex-direction: row; justify-content: space-between; align-items: flex-start;
+    padding: 56px 32px 24px;
+  }
+  .sl-footer__logo-img { height: 34px; }
+  .sl-footer__columnas { flex-direction: row; gap: 64px; }
+  .sl-footer__titulo {
+    position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal;
+    margin: 0 0 8px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--sl-texto-oscuro-2);
+  }
+  .sl-footer__lista { display: block; }
+  .sl-footer__lista li { display: block; }
+  .sl-footer__base {
+    max-width: calc(var(--sl-contenedor) + 64px); margin: 0 auto;
+    flex-direction: row; flex-wrap: wrap; justify-content: space-between; padding: 0 32px 40px;
+  }
+}

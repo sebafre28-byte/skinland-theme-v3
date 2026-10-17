@@ -1,0 +1,130 @@
+{{ 'sl-footer.css' | asset_url | stylesheet_tag }}
+
+<footer class="sl-footer sl-scope">
+  <div class="sl-footer__inner">
+    <div class="sl-footer__marca">
+      <a href="{{ routes.root_url }}" class="sl-footer__logo" aria-label="{{ shop.name | escape }}">
+        {% render 'sl-logo', oscuro: true, class: 'sl-footer__logo-img' %}
+      </a>
+      {%- if section.settings.contacto != blank or section.settings.email != blank -%}
+        <p class="sl-footer__contacto">
+          {%- if section.settings.email != blank -%}
+            <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+          {%- endif -%}
+          {{ section.settings.contacto }}
+        </p>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="sl-footer__columnas">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'menu' -%}
+              {%- assign enlaces = linklists[block.settings.menu].links -%}
+              {%- if enlaces.size > 0 -%}
+                <nav class="sl-footer__columna" aria-label="{{ block.settings.titulo | escape }}" {{ block.shopify_attributes }}>
+                  <h2 class="sl-footer__titulo">{{ block.settings.titulo }}</h2>
+                  <ul class="sl-footer__lista">
+                    {%- for link in enlaces -%}
+                      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                </nav>
+              {%- endif -%}
+            {%- when 'politicas' -%}
+              {%- if shop.policies.size > 0 -%}
+                <nav class="sl-footer__columna" aria-label="{{ block.settings.titulo | escape }}" {{ block.shopify_attributes }}>
+                  <h2 class="sl-footer__titulo">{{ block.settings.titulo }}</h2>
+                  <ul class="sl-footer__lista">
+                    {%- for policy in shop.policies -%}
+                      <li><a href="{{ policy.url }}">{{ policy.title }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                </nav>
+              {%- endif -%}
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="sl-footer__base">
+    <p class="sl-footer__copy">© {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+    {%- if section.settings.texto_pagos != blank -%}
+      <p class="sl-footer__pagos">{{ section.settings.texto_pagos }}</p>
+    {%- endif -%}
+    {%- if section.settings.mostrar_medios_pago and shop.enabled_payment_types.size > 0 -%}
+      <ul class="sl-footer__medios" role="list">
+        {%- for type in shop.enabled_payment_types -%}
+          <li>{{ type | payment_type_svg_tag: class: 'sl-footer__medio' }}</li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Skinland · Footer",
+  "tag": "section",
+  "class": "sl-footer-section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Correo de contacto"
+    },
+    {
+      "type": "text",
+      "id": "contacto",
+      "label": "Texto junto al correo"
+    },
+    {
+      "type": "text",
+      "id": "texto_pagos",
+      "label": "Texto de pagos",
+      "default": "Pago seguro con Mercado Pago, crédito y débito"
+    },
+    {
+      "type": "checkbox",
+      "id": "mostrar_medios_pago",
+      "label": "Mostrar íconos de medios de pago activos",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menú",
+      "settings": [
+        {
+          "type": "text",
+          "id": "titulo",
+          "label": "Título",
+          "default": "Tienda"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menú"
+        }
+      ]
+    },
+    {
+      "type": "politicas",
+      "name": "Políticas",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "titulo",
+          "label": "Título",
+          "default": "Ayuda"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

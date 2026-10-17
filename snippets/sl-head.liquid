@@ -1,0 +1,37 @@
+{%- comment -%}
+  Tokens del sistema Skinland, fuentes alojadas y hoja base. Se renderiza en <head>.
+  Los valores salen de los ajustes del tema (Skinland · Sistema).
+{%- endcomment -%}
+<style>
+  @font-face { font-family: 'Funnel Display'; font-weight: 500; font-style: normal; font-display: swap; src: url('{{ 'funnel-display-latin-500-normal.woff2' | asset_url }}') format('woff2'); }
+  @font-face { font-family: 'Funnel Display'; font-weight: 600; font-style: normal; font-display: swap; src: url('{{ 'funnel-display-latin-600-normal.woff2' | asset_url }}') format('woff2'); }
+  @font-face { font-family: 'Funnel Display'; font-weight: 700; font-style: normal; font-display: swap; src: url('{{ 'funnel-display-latin-700-normal.woff2' | asset_url }}') format('woff2'); }
+  @font-face { font-family: 'Funnel Display'; font-weight: 800; font-style: normal; font-display: swap; src: url('{{ 'funnel-display-latin-800-normal.woff2' | asset_url }}') format('woff2'); }
+  @font-face { font-family: 'Funnel Sans'; font-weight: 400; font-style: normal; font-display: swap; src: url('{{ 'funnel-sans-latin-400-normal.woff2' | asset_url }}') format('woff2'); }
+  @font-face { font-family: 'Funnel Sans'; font-weight: 500; font-style: normal; font-display: swap; src: url('{{ 'funnel-sans-latin-500-normal.woff2' | asset_url }}') format('woff2'); }
+  @font-face { font-family: 'Funnel Sans'; font-weight: 600; font-style: normal; font-display: swap; src: url('{{ 'funnel-sans-latin-600-normal.woff2' | asset_url }}') format('woff2'); }
+  @font-face { font-family: 'Funnel Sans'; font-weight: 700; font-style: normal; font-display: swap; src: url('{{ 'funnel-sans-latin-700-normal.woff2' | asset_url }}') format('woff2'); }
+
+  :root {
+    --sl-tinta: {{ settings.sl_color_tinta }};
+    --sl-logo: {{ settings.sl_color_logo }};
+    --sl-salvia: {{ settings.sl_color_salvia }};
+    --sl-crema: {{ settings.sl_color_crema }};
+    --sl-blanco: {{ settings.sl_color_blanco }};
+    --sl-compra: {{ settings.sl_color_compra }};
+    --sl-texto-2: {{ settings.sl_color_texto_2 }};
+    --sl-texto-oscuro-2: {{ settings.sl_color_texto_oscuro_2 }};
+    --sl-lima: {{ settings.sl_color_lima }};
+    --sl-menta: {{ settings.sl_color_menta }};
+    --sl-durazno: {{ settings.sl_color_durazno }};
+    --sl-celeste: {{ settings.sl_color_celeste }};
+    --sl-lila: {{ settings.sl_color_lila }};
+    --sl-amarillo: {{ settings.sl_color_amarillo }};
+    --sl-rosa: {{ settings.sl_color_rosa }};
+  }
+</style>
+{%- comment %}theme-check-disable AssetPreload{% endcomment -%}
+<link rel="preload" as="font" type="font/woff2" href="{{ 'funnel-display-latin-800-normal.woff2' | asset_url }}" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="{{ 'funnel-sans-latin-400-normal.woff2' | asset_url }}" crossorigin>
+{%- comment %}theme-check-enable AssetPreload{% endcomment -%}
+{{ 'sl-base.css' | asset_url | stylesheet_tag }}

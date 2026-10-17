@@ -1,0 +1,30 @@
+{%- comment -%}
+  Logo de Skinland. Parámetros: oscuro (true = versión para fondo tinta), class.
+  Orden: ajuste del tema (SVG) → logo incluido en el tema → nombre de la tienda como texto.
+{%- endcomment -%}
+{%- liquid
+  if oscuro
+    assign logo_setting = settings.sl_logo_oscuro
+    assign logo_asset = 'sl-logo-oscuro.png'
+  else
+    assign logo_setting = settings.sl_logo
+    assign logo_asset = 'sl-logo.png'
+  endif
+-%}
+{%- if logo_setting != blank -%}
+  <img
+    class="{{ class }}"
+    src="{{ logo_setting | image_url: height: 80 }}"
+    alt="{{ shop.name | escape }}"
+    width="{{ logo_setting.width }}"
+    height="{{ logo_setting.height }}"
+  >
+{%- else -%}
+  <img
+    class="{{ class }}"
+    src="{{ logo_asset | asset_url }}"
+    alt="{{ shop.name | escape }}"
+    width="797"
+    height="180"
+  >
+{%- endif -%}
