@@ -1,7 +1,7 @@
 {%- comment -%}
   Envío gratis: chip si el precio llega al umbral; si no, barra de progreso + complemento sugerido.
-  Parámetros: product, precio (centavos), texto_incluido, texto_falta ("{falta}"),
-  texto_complemento ("{producto}", "{precio}"), texto_agregar, comp_form_id.
+  Parámetros: product, precio (centavos), texto_incluido, texto_falta ("[falta]"),
+  texto_complemento ("[producto]", "[precio]"), texto_agregar, comp_form_id.
   El complemento se agrega con un <product-form> nativo (otro formulario de Dawn), sin fetch propio.
 {%- endcomment -%}
 {%- liquid
@@ -38,7 +38,7 @@
     -%}
     <div class="sl-envio">
       <div class="sl-envio__cabecera">
-        <strong>{{ texto_falta | replace: '{falta}', falta_texto }}</strong>
+        <strong>{{ texto_falta | replace: '[falta]', falta_texto }}</strong>
         <span class="sl-texto-chico">{{ umbral_texto }}</span>
       </div>
       <div class="sl-envio__barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progreso }}"><span style="width: {{ progreso }}%"></span></div>
@@ -47,7 +47,7 @@
           {%- if comp.featured_image -%}
             <img class="sl-envio__foto" src="{{ comp.featured_image | image_url: width: 120 }}" alt="" width="52" height="52" loading="lazy">
           {%- endif -%}
-          <p class="sl-envio__texto">{{ texto_complemento | replace: '{producto}', comp.title | replace: '{precio}', comp_precio }}</p>
+          <p class="sl-envio__texto">{{ texto_complemento | replace: '[producto]', comp.title | replace: '[precio]', comp_precio }}</p>
           <product-form class="sl-envio__form" data-hide-errors="true">
             {%- form 'product', comp, id: comp_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
               <input type="hidden" name="id" value="{{ comp_var.id }}" class="product-variant-id">

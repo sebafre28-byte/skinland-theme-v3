@@ -90,11 +90,11 @@
               </div>
             {%- endif -%}
 
-            {%- assign chip_pasos = section.settings.texto_pasos | replace: '{pasos}', pasos -%}
+            {%- assign chip_pasos = section.settings.texto_pasos | replace: '[pasos]', pasos -%}
             {%- if pasos > 0 -%}
               <span class="sl-galeria__chip">
                 {{- chip_pasos -}}
-                {%- if dias > 0 %} · {{ section.settings.texto_dura | replace: '{dias}', dias }}{% endif -%}
+                {%- if dias > 0 %} · {{ section.settings.texto_dura | replace: '[dias]', dias }}{% endif -%}
               </span>
             {%- endif -%}
             {%- if bs_ahorro > 0 -%}
@@ -116,7 +116,7 @@
                   {%- assign idx = idx | plus: 1 -%}
                 {%- endif -%}
                 <li>
-                  <button type="button" class="sl-galeria__mini" data-sl-thumb="{{ idx }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ section.settings.foto_aria | replace: '{n}', forloop.index }}">
+                  <button type="button" class="sl-galeria__mini" data-sl-thumb="{{ idx }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ section.settings.foto_aria | replace: '[n]', forloop.index }}">
                     <img src="{{ imagen | image_url: width: 160 }}" alt="" width="72" height="72" loading="lazy">
                   </button>
                 </li>
@@ -155,7 +155,7 @@
                 {%- assign llenas = rating.value | round -%}
                 {%- for i in (1..5) -%}{% if i <= llenas %}★{% else %}☆{% endif %}{%- endfor -%}
               </span>
-              <strong>{{ rating.value }}</strong> · {{ section.settings.texto_resenas | replace: '{n}', rating_n }}
+              <strong>{{ rating.value }}</strong> · {{ section.settings.texto_resenas | replace: '[n]', rating_n }}
             </a>
           {%- endif -%}
 
@@ -189,7 +189,7 @@
                     <span class="sl-version__cabecera">
                       <strong>
                         {%- if v_pasos > 0 -%}
-                          {{ section.settings.texto_version_pasos | replace: '{nombre}', v_nombre | replace: '{pasos}', v_pasos }}
+                          {{ section.settings.texto_version_pasos | replace: '[nombre]', v_nombre | replace: '[pasos]', v_pasos }}
                         {%- else -%}
                           {{ v_nombre }}
                         {%- endif -%}
@@ -322,15 +322,15 @@
       "type": "text",
       "id": "texto_pasos",
       "label": "Chip: pasos",
-      "info": "Usa {pasos}.",
-      "default": "{pasos} pasos"
+      "info": "Usa [pasos].",
+      "default": "[pasos] pasos"
     },
     {
       "type": "text",
       "id": "texto_dura",
       "label": "Duración",
-      "info": "Usa {dias}. Se muestra solo si el producto tiene duración.",
-      "default": "dura ~{dias} días"
+      "info": "Usa [dias]. Se muestra solo si el producto tiene duración.",
+      "default": "dura ~[dias] días"
     },
     {
       "type": "text",
@@ -352,8 +352,8 @@
       "type": "text",
       "id": "texto_version_pasos",
       "label": "Nombre de la versión",
-      "info": "Usa {nombre} y {pasos}.",
-      "default": "{nombre} · {pasos} pasos"
+      "info": "Usa [nombre] y [pasos].",
+      "default": "[nombre] · [pasos] pasos"
     },
     {
       "type": "text",
@@ -365,15 +365,15 @@
       "type": "text",
       "id": "texto_costo_dia",
       "label": "Costo por día",
-      "info": "Usa {precio}.",
-      "default": "≈ {precio} al día"
+      "info": "Usa [precio].",
+      "default": "≈ [precio] al día"
     },
     {
       "type": "text",
       "id": "texto_resenas",
       "label": "Texto de reseñas",
-      "info": "Usa {n}. Solo se muestra con reseñas reales (reviews.rating_count).",
-      "default": "{n} reseñas"
+      "info": "Usa [n]. Solo se muestra con reseñas reales (reviews.rating_count).",
+      "default": "[n] reseñas"
     },
     {
       "type": "text",
@@ -420,15 +420,15 @@
       "type": "text",
       "id": "envio_falta",
       "label": "Cuando falta",
-      "info": "Usa {falta}.",
-      "default": "Te faltan {falta} para envío gratis"
+      "info": "Usa [falta].",
+      "default": "Te faltan [falta] para envío gratis"
     },
     {
       "type": "text",
       "id": "envio_complemento",
       "label": "Sugerencia del complemento",
-      "info": "Usa {producto} y {precio}.",
-      "default": "Suma {producto} ({precio}) y tu envío queda gratis."
+      "info": "Usa [producto] y [precio].",
+      "default": "Suma [producto] ([precio]) y tu envío queda gratis."
     },
     {
       "type": "text",
@@ -456,8 +456,8 @@
       "type": "text",
       "id": "foto_aria",
       "label": "Foto",
-      "info": "Usa {n}.",
-      "default": "Ver foto {n}"
+      "info": "Usa [n].",
+      "default": "Ver foto [n]"
     },
     {
       "type": "text",
