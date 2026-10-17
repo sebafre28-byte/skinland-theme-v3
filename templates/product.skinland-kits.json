@@ -1,8 +1,7 @@
 {
   "sections": {
     "hero": {
-      "type": "sl-pdp-hero",
-      "settings": {}
+      "type": "sl-pdp-hero"
     }
   },
   "order": [
