@@ -3,7 +3,7 @@
 .sl-resenas .sl-par__inner { display: flex; flex-direction: column; gap: 12px; }
 .sl-resenas__aviso { margin: 16px; padding: 12px; border: 2px dashed var(--sl-tinta); border-radius: var(--sl-radio-m); font-size: 13px; }
 .sl-resenas__app { color: var(--sl-tinta); font-family: var(--sl-font-body); }
-.sl-resenas__lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.sl-resenas__lista { align-items: start; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
 .sl-resena { display: flex; flex-direction: column; gap: 8px; padding: 16px; border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); }
 .sl-resena__cabecera { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 .sl-resena__estrellas { font-size: 16px; letter-spacing: 2px; color: var(--sl-tinta); }

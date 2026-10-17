@@ -1,0 +1,19 @@
+/* sl-faq · "Preguntas frecuentes" con <details>, sin JS. Referencia: ExpressMovil.html, FichaDesktop.html */
+.sl-faq { padding: 0 0 30px; }
+.sl-faq .sl-par__inner { display: flex; flex-direction: column; gap: 10px; }
+.sl-faq__titulo { font-size: 28px; letter-spacing: -.02em; margin-bottom: 4px; }
+.sl-faq__lista { display: flex; flex-direction: column; gap: 10px; }
+.sl-faq__item { border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); padding: 0 14px; }
+.sl-faq__pregunta {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 52px; padding: 8px 0;
+  font-size: 15px; font-weight: 700; line-height: 1.3; cursor: pointer; list-style: none;
+}
+.sl-faq__pregunta::-webkit-details-marker { display: none; }
+.sl-faq__pregunta::after { content: '+' / ''; flex: none; font-size: 20px; line-height: 1; }
+.sl-faq__item[open] > .sl-faq__pregunta::after { content: '–' / ''; }
+.sl-faq__respuesta { margin: 0; padding: 0 0 14px; font-size: 14px; line-height: 1.45; }
+.sl-faq__ayuda { align-self: flex-start; min-height: 44px; display: inline-flex; align-items: center; padding-top: 4px; font-size: 14px; font-weight: 700; color: var(--sl-tinta); }
+@media screen and (min-width: 990px) {
+  .sl-faq { padding: 64px 0; }
+  .sl-faq__titulo { font-size: 42px; }
+}

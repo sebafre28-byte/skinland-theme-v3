@@ -1,0 +1,168 @@
+{{ 'sl-faq.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign mf = product.metafields.custom
+  assign lista = ''
+  assign omitidas = 0
+  assign vistos = '|'
+  assign sep = '@@@@'
+
+  assign propias = mf.faq_items.value
+  if propias.size > 0
+    for f in propias
+      capture c
+        render 'sl-faq-item', pregunta: f.pregunta.value, respuesta: f.respuesta.value
+      endcapture
+      assign c = c | strip
+      assign clave = '|' | append: f.system.handle | append: '|'
+      if c == 'CLAIM'
+        assign omitidas = omitidas | plus: 1
+      elsif c != blank
+        if lista != ''
+          assign lista = lista | append: sep
+        endif
+        assign lista = lista | append: c
+        assign vistos = vistos | append: clave
+      endif
+    endfor
+  else
+    assign lineas = mf.faq.value | newline_to_br | split: '<br />'
+    for linea in lineas
+      if linea contains '→'
+        assign partes = linea | split: '→'
+        assign q = partes[0]
+        assign a = ''
+        for p in partes
+          if forloop.index > 1
+            if a == ''
+              assign a = p
+            else
+              assign a = a | append: '→' | append: p
+            endif
+          endif
+        endfor
+        capture c
+          render 'sl-faq-item', pregunta: q, respuesta: a
+        endcapture
+        assign c = c | strip
+        if c == 'CLAIM'
+          assign omitidas = omitidas | plus: 1
+        elsif c != blank
+          if lista != ''
+            assign lista = lista | append: sep
+          endif
+          assign lista = lista | append: c
+        endif
+      endif
+    endfor
+  endif
+
+  assign globales = section.settings.globales
+  assign por_convencion = false
+  if globales == blank
+    assign por_convencion = true
+    assign globales = shop.metaobjects.skinland_faq.values
+  endif
+  for g in globales
+    assign h = g.system.handle
+    assign clave = '|' | append: h | append: '|'
+    assign ya_esta = false
+    if vistos contains clave
+      assign ya_esta = true
+    endif
+    assign tiene_prefijo = false
+    if h contains 'faq-global'
+      assign tiene_prefijo = true
+    endif
+    assign es_global = true
+    if por_convencion and tiene_prefijo == false
+      assign es_global = false
+    endif
+    if es_global and ya_esta == false
+      capture c
+        render 'sl-faq-item', pregunta: g.pregunta.value, respuesta: g.respuesta.value
+      endcapture
+      assign c = c | strip
+      if c == 'CLAIM'
+        assign omitidas = omitidas | plus: 1
+      elsif c != blank
+        if lista != ''
+          assign lista = lista | append: sep
+        endif
+        assign lista = lista | append: c
+        assign vistos = vistos | append: clave
+      endif
+    endif
+  endfor
+
+  assign items = lista | split: sep
+
+  assign enlace_ayuda = ''
+  assign texto_ayuda = ''
+  if settings.sl_aly_url != blank
+    assign enlace_ayuda = settings.sl_aly_url
+    assign texto_ayuda = section.settings.texto_aly
+  elsif settings.sl_whatsapp_url != blank
+    assign enlace_ayuda = settings.sl_whatsapp_url
+    assign texto_ayuda = section.settings.texto_whatsapp
+  endif
+-%}
+
+{%- if items.size > 0 -%}
+  <section class="sl-faq sl-scope" aria-labelledby="sl-faq-{{ section.id }}" data-sl-faq data-sl-omitidas="{{ omitidas }}">
+    <div class="sl-par__inner">
+      <h2 class="sl-h2 sl-faq__titulo" id="sl-faq-{{ section.id }}">{{ section.settings.titulo }}</h2>
+      <div class="sl-faq__lista">
+        {%- for item in items -%}
+          {%- assign qa = item | split: '####' -%}
+          <details class="sl-faq__item"{% if forloop.first %} open{% endif %}>
+            <summary class="sl-faq__pregunta">{{ qa[0] | escape }}</summary>
+            <p class="sl-faq__respuesta">{{ qa[1] | escape | newline_to_br }}</p>
+          </details>
+        {%- endfor -%}
+      </div>
+      {%- if enlace_ayuda != blank -%}
+        <a class="sl-faq__ayuda" href="{{ enlace_ayuda }}">{{ texto_ayuda }}</a>
+      {%- endif -%}
+    </div>
+  </section>
+  {%- if omitidas > 0 -%}
+    <script src="{{ 'sl-faq.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Preguntas",
+  "tag": "div",
+  "class": "sl-par sl-par--der",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Preguntas frecuentes"
+    },
+    {
+      "type": "metaobject_list",
+      "id": "globales",
+      "label": "Preguntas globales",
+      "metaobject_type": "skinland_faq",
+      "info": "Opcional. Se muestran después de las del producto. Si está vacío, se usan las entradas cuyo identificador empieza con \"faq-global\" (despacho, originales, pagos, cambios)."
+    },
+    {
+      "type": "text",
+      "id": "texto_aly",
+      "label": "Link a Aly",
+      "default": "¿Otra duda? Pregúntale a Aly →"
+    },
+    {
+      "type": "text",
+      "id": "texto_whatsapp",
+      "label": "Link a WhatsApp",
+      "info": "Se usa si no hay URL de Aly.",
+      "default": "¿Otra duda? Escríbenos por WhatsApp →"
+    }
+  ]
+}
+{% endschema %}

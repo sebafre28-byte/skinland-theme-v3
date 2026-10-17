@@ -44,6 +44,10 @@
     "resenas": {
       "type": "sl-resenas",
       "settings": {}
+    },
+    "faq": {
+      "type": "sl-faq",
+      "settings": {}
     }
   },
   "order": [
@@ -54,6 +58,7 @@
     "para_ti",
     "resultados",
     "ingredientes",
-    "resenas"
+    "resenas",
+    "faq"
   ]
 }

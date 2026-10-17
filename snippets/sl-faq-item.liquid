@@ -1,0 +1,19 @@
+{%- comment -%}
+  Prepara una pregunta frecuente. Parámetros: pregunta, respuesta.
+  Imprime "pregunta####respuesta"; "CLAIM" si el texto trae un claim no permitido; vacío si falta algo.
+{%- endcomment -%}
+{%- liquid
+  assign q = pregunta | strip
+  assign a = respuesta | strip
+  if q != blank and a != blank
+    assign texto = q | append: ' ' | append: a
+    capture claim
+      render 'sl-claim', texto: texto
+    endcapture
+    if claim contains '1'
+      echo 'CLAIM'
+    else
+      echo q | append: '####' | append: a
+    endif
+  endif
+-%}
