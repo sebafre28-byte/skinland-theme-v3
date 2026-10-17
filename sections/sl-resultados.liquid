@@ -1,0 +1,141 @@
+{{ 'sl-resultados.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign crudo = product.metafields.custom.routine_results.value
+  assign lineas = crudo | newline_to_br | split: '<br />'
+  assign n_ok = 0
+  assign n_omitidas = 0
+  for linea in lineas
+    assign l = linea | strip
+    if l != blank
+      assign bajo = l | downcase
+      if bajo contains '%' or bajo contains 'estudio clínico' or bajo contains 'clínicamente' or bajo contains 'clinicamente'
+        assign n_omitidas = n_omitidas | plus: 1
+      else
+        assign partes = l | split: ' — '
+        if partes.size >= 2
+          assign n_ok = n_ok | plus: 1
+        endif
+      endif
+    endif
+  endfor
+-%}
+
+{%- if n_ok > 0 -%}
+  <section class="sl-resultados sl-scope" aria-labelledby="sl-resultados-{{ section.id }}" data-sl-resultados data-sl-omitidas="{{ n_omitidas }}">
+    <div class="sl-par__inner">
+      <h2 class="sl-h2" id="sl-resultados-{{ section.id }}">{{ section.settings.titulo }}</h2>
+      <ol class="sl-resultados__lista" role="list">
+        {%- assign i = 0 -%}
+        {%- for linea in lineas -%}
+          {%- liquid
+            assign l = linea | strip
+            assign bajo = l | downcase
+            assign valida = false
+            if l != blank
+              unless bajo contains '%' or bajo contains 'estudio clínico' or bajo contains 'clínicamente' or bajo contains 'clinicamente'
+                assign partes = l | split: ' — '
+                if partes.size >= 2
+                  assign valida = true
+                endif
+              endunless
+            endif
+          -%}
+          {%- if valida -%}
+            {%- liquid
+              assign i = i | plus: 1
+              assign ciclo = i | modulo: 3
+              assign etiqueta = partes[0] | strip
+              assign clave = etiqueta | downcase
+              case clave
+                when '7 días'
+                  assign etiqueta = section.settings.etiqueta_7
+                when '14 días'
+                  assign etiqueta = section.settings.etiqueta_14
+                when '30 días'
+                  assign etiqueta = section.settings.etiqueta_30
+              endcase
+              assign titulo = partes[1] | strip
+              assign detalle = ''
+              for p in partes
+                if forloop.index > 2
+                  if detalle == ''
+                    assign detalle = p | strip
+                  else
+                    assign detalle = detalle | append: ' — ' | append: p | strip
+                  endif
+                endif
+              endfor
+            -%}
+            <li class="sl-resultados__item">
+              <span class="sl-resultados__etiqueta sl-resultados__etiqueta--{{ ciclo }}">{{ etiqueta }}</span>
+              <div class="sl-resultados__cuerpo">
+                <p class="sl-resultados__titulo">{{ titulo }}</p>
+                {%- if detalle != blank -%}
+                  <details class="sl-resultados__mas">
+                    <summary>{{ section.settings.texto_detalle }}</summary>
+                    <p>{{ detalle }}</p>
+                  </details>
+                {%- endif -%}
+              </div>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ol>
+      {%- if section.settings.pie != blank -%}
+        <p class="sl-resultados__pie">{{ section.settings.pie }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+{%- elsif n_omitidas > 0 -%}
+  <div hidden data-sl-resultados data-sl-omitidas="{{ n_omitidas }}"></div>
+{%- endif -%}
+{%- if n_ok > 0 or n_omitidas > 0 -%}
+  <script src="{{ 'sl-resultados.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Qué puedes esperar",
+  "tag": "div",
+  "class": "sl-par sl-par--izq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Qué puedes esperar"
+    },
+    {
+      "type": "text",
+      "id": "etiqueta_7",
+      "label": "Etiqueta de \"7 días\"",
+      "default": "Semana 1"
+    },
+    {
+      "type": "text",
+      "id": "etiqueta_14",
+      "label": "Etiqueta de \"14 días\"",
+      "default": "Semana 2"
+    },
+    {
+      "type": "text",
+      "id": "etiqueta_30",
+      "label": "Etiqueta de \"30 días\"",
+      "default": "Mes 1"
+    },
+    {
+      "type": "text",
+      "id": "texto_detalle",
+      "label": "Texto para ver el detalle",
+      "default": "Ver detalle"
+    },
+    {
+      "type": "text",
+      "id": "pie",
+      "label": "Pie",
+      "default": "Cada piel es distinta: tiempos referenciales con uso diario."
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,27 @@
+/* sl-resultados · "Qué puedes esperar". Referencia: ExpressMovil.html, KitMovil.html, FichaDesktop.html */
+.sl-resultados { padding: 30px 0; background: var(--sl-blanco); border-block: var(--sl-borde); }
+.sl-resultados .sl-par__inner { display: flex; flex-direction: column; gap: 12px; }
+.sl-resultados__lista { display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.sl-resultados__item { display: flex; align-items: stretch; overflow: hidden; border: var(--sl-borde); border-radius: 16px; background: var(--sl-blanco); }
+.sl-resultados__etiqueta {
+  flex: 0 0 96px; display: flex; align-items: center; justify-content: center; padding: 8px;
+  border-right: var(--sl-borde); text-align: center;
+  font-family: var(--sl-font-display); font-size: 15px; font-weight: 800; line-height: 1.1;
+}
+.sl-resultados__etiqueta--1 { background: var(--sl-lima); }
+.sl-resultados__etiqueta--2 { background: var(--sl-durazno); }
+.sl-resultados__etiqueta--0 { background: var(--sl-lila); }
+.sl-resultados__cuerpo { padding: 14px 12px; font-size: 14px; line-height: 1.4; min-width: 0; }
+.sl-resultados__titulo { margin: 0; }
+.sl-resultados__mas { margin-top: 6px; font-size: 13px; }
+.sl-resultados__mas summary { cursor: pointer; font-weight: 700; min-height: 24px; }
+.sl-resultados__mas p { margin: 6px 0 0; color: var(--sl-texto-2); }
+.sl-resultados__pie { margin: 0; font-size: 12px; }
+
+@media screen and (min-width: 990px) {
+  .sl-resultados { padding: 64px 0; }
+  .sl-resultados__lista { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+  .sl-resultados__item { flex: 1 1 140px; flex-direction: column; }
+  .sl-resultados__etiqueta { flex: none; justify-content: flex-start; padding: 10px 12px; border-right: 0; border-bottom: var(--sl-borde); text-align: left; font-size: 16px; }
+  .sl-resultados__cuerpo { padding: 12px; }
+}

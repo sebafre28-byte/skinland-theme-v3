@@ -17,6 +17,9 @@
     },
     "para_ti": {
       "type": "sl-para-ti"
+    },
+    "resultados": {
+      "type": "sl-resultados"
     }
   },
   "order": [
@@ -24,6 +27,7 @@
     "videos",
     "incluye",
     "uso",
-    "para_ti"
+    "para_ti",
+    "resultados"
   ]
 }
