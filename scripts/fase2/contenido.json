@@ -31,35 +31,119 @@
     }
   },
   "alternativas": [
-    { "key": "alt-tirante-express-seca", "situacion": "Tu piel se siente tirante o seca", "producto": "rutina-express-piel-seca" },
-    { "key": "alt-tirante-esencial-seca", "situacion": "Tu piel se siente tirante o seca", "producto": "rutina-piel-seca" },
-    { "key": "alt-granitos-kit", "situacion": "Te salen granitos seguido", "producto": "kit-anti-acne" },
-    { "key": "alt-mas-simple-express", "situacion": "Quieres una rutina más simple", "producto": "rutina-express-piel-grasa" },
-    { "key": "alt-sensible-express", "situacion": "Tu piel es muy sensible o reactiva", "producto": "rutina-express-piel-sensible" },
-    { "key": "alt-sensible-esencial", "situacion": "Tu piel es muy sensible o reactiva", "producto": "rutina-piel-sensible" }
+    {
+      "key": "alt-tirante-express-seca",
+      "situacion": "Tu piel se siente tirante o seca",
+      "producto": "rutina-express-piel-seca"
+    },
+    {
+      "key": "alt-tirante-esencial-seca",
+      "situacion": "Tu piel se siente tirante o seca",
+      "producto": "rutina-piel-seca"
+    },
+    {
+      "key": "alt-granitos-kit",
+      "situacion": "Te salen granitos seguido",
+      "producto": "kit-anti-acne"
+    },
+    {
+      "key": "alt-mas-simple-express",
+      "situacion": "Quieres una rutina más simple",
+      "producto": "rutina-express-piel-grasa"
+    },
+    {
+      "key": "alt-sensible-express",
+      "situacion": "Tu piel es muy sensible o reactiva",
+      "producto": "rutina-express-piel-sensible"
+    },
+    {
+      "key": "alt-sensible-esencial",
+      "situacion": "Tu piel es muy sensible o reactiva",
+      "producto": "rutina-piel-sensible"
+    }
   ],
   "faq": [
-    { "key": "faq-principiante", "pregunta": "¿Sirve si nunca he tenido una rutina de skincare?", "respuesta": "Sí. Es una base ordenada pensada para empezar de forma simple: cada paso tiene un rol claro y se usa siempre en el mismo orden. Si tu piel es grasa y quieres partir sin sumar productos de más, es un buen punto de partida." },
-    { "key": "faq-uso-diario", "pregunta": "¿Puedo usarla todos los días?", "respuesta": "Sí, está pensada para uso diario, mañana y noche. Si tu piel es sensible a los activos del limpiador, puedes partir usándolo una vez al día y ajustar según cómo responda tu piel." },
-    { "key": "faq-crema-piel-grasa", "pregunta": "¿Tengo que usar crema si mi piel ya es grasa?", "respuesta": "Sí. La piel grasa también necesita hidratación. La clave es una textura ligera que hidrate sin dejar sensación pesada, como la de gel crema que viene en esta rutina." },
-    { "key": "faq-express-o-esencial", "pregunta": "¿Express o Esencial?", "respuesta": "La Express son 3 pasos: limpiar, hidratar y proteger. La Esencial son 4: suma la ampolla Tea-Trica como paso de tratamiento y usa otro limpiador y otro protector solar. Si dudas, parte por la Express: la ampolla la puedes agregar por separado cuando quieras." },
-    { "key": "faq-solo-un-producto", "pregunta": "¿Puedo comprar solo uno de los productos?", "respuesta": "Sí. En «Qué incluye» puedes agregar cada producto por separado. Llevando la rutina completa el precio es menor que comprando los productos sueltos." },
-    { "key": "faq-duracion", "pregunta": "¿Cuánto me dura?", "respuesta": "Con uso diario, mañana y noche, está pensada para durar alrededor de 2 meses. Depende de cuánto producto uses y de la constancia." },
-    { "key": "faq-resultados-tiempos", "pregunta": "¿Cuándo voy a notar cambios?", "respuesta": "Cada piel es distinta y los tiempos son referenciales. Lo que más ayuda es la constancia: usarla todos los días, mañana y noche, y no cambiar de producto a la semana." },
-    { "key": "faq-kit-para-quien", "pregunta": "¿Para quién es el Kit Anti Acné?", "respuesta": "Para piel con tendencia a granitos, poros congestionados o brillo. Incluye la rutina de pasos diarios más parches para el granito puntual. Si tu acné es severo, doloroso o persistente, consulta a un dermatólogo." },
-    { "key": "faq-kit-parches", "pregunta": "¿Cómo uso los parches?", "respuesta": "Aplícalos sobre un granito activo, con la piel limpia y completamente seca. Cámbialo cuando se vea blanco o se expanda. Cada parche es de un solo uso y no se debe poner sobre heridas abiertas." },
-    { "key": "faq-kit-vs-esencial", "pregunta": "¿Qué diferencia tiene con la Rutina Esencial?", "respuesta": "El kit suma parches para el granito puntual y usa un limpiador y un protector solar distintos a los de la Esencial." },
-    { "key": "faq-global-despacho", "pregunta": "¿Cuándo llega mi pedido?", "respuesta": "Despachamos a todo Chile desde Santiago. Procesamos tu pedido en 1 a 2 días hábiles y la entrega toma entre 1 y 3 días hábiles en la Región Metropolitana, 2 a 5 en las regiones V, VI, VII y VIII, y 4 a 8 en el resto del país. Cuando sale tu pedido te llega un correo con el número de seguimiento. El envío es gratis al llegar al monto que ves en la barra de envío; bajo ese monto, el costo se calcula al pagar según tu dirección." },
-    { "key": "faq-global-originales", "pregunta": "¿Los productos son originales?", "respuesta": "Sí, son productos coreanos originales, seleccionados por Skinland. [COMPLETAR: de dónde los compra Skinland y qué respaldo puede mostrar, por ejemplo distribuidor autorizado o factura de importación]" },
-    { "key": "faq-global-pagos", "pregunta": "¿Cómo puedo pagar?", "respuesta": "Pagas con Mercado Pago, con tarjeta de crédito o débito, en un checkout seguro. Skinland no guarda los datos de tu tarjeta. [COMPLETAR: cuotas sin interés reales con Mercado Pago, si existen]" },
-    { "key": "faq-global-cambios", "pregunta": "¿Puedo cambiar o devolver mi pedido?", "respuesta": "Tienes 10 días corridos desde que recibes tu pedido para pedir un cambio o devolución. El producto debe estar sin abrir, con su sello y su empaque original. Si llega dañado, con una falla o distinto a lo que compraste, aplica la garantía legal y Skinland asume el costo del envío de vuelta. En kits y rutinas con algún producto abierto no hay cambio por cambio de opinión. El detalle está en la política de cambios y devoluciones." }
+    {
+      "key": "faq-principiante",
+      "pregunta": "¿Sirve si nunca he tenido una rutina de skincare?",
+      "respuesta": "Sí. Es una base ordenada pensada para empezar de forma simple: cada paso tiene un rol claro y se usa siempre en el mismo orden. Si tu piel es grasa y quieres partir sin sumar productos de más, es un buen punto de partida."
+    },
+    {
+      "key": "faq-uso-diario",
+      "pregunta": "¿Puedo usarla todos los días?",
+      "respuesta": "Sí, está pensada para uso diario, mañana y noche. Si tu piel es sensible a los activos del limpiador, puedes partir usándolo una vez al día y ajustar según cómo responda tu piel."
+    },
+    {
+      "key": "faq-crema-piel-grasa",
+      "pregunta": "¿Tengo que usar crema si mi piel ya es grasa?",
+      "respuesta": "Sí. La piel grasa también necesita hidratación. La clave es una textura ligera que hidrate sin dejar sensación pesada, como la de gel crema que viene en esta rutina."
+    },
+    {
+      "key": "faq-express-o-esencial",
+      "pregunta": "¿Express o Esencial?",
+      "respuesta": "La Express son 3 pasos: limpiar, hidratar y proteger. La Esencial son 4: suma la ampolla Tea-Trica como paso de tratamiento y usa otro limpiador y otro protector solar. Si dudas, parte por la Express: la ampolla la puedes agregar por separado cuando quieras."
+    },
+    {
+      "key": "faq-solo-un-producto",
+      "pregunta": "¿Puedo comprar solo uno de los productos?",
+      "respuesta": "Sí. En «Qué incluye» puedes agregar cada producto por separado. Llevando la rutina completa el precio es menor que comprando los productos sueltos."
+    },
+    {
+      "key": "faq-duracion",
+      "pregunta": "¿Cuánto me dura?",
+      "respuesta": "Con uso diario, mañana y noche, está pensada para durar alrededor de 2 meses. Depende de cuánto producto uses y de la constancia."
+    },
+    {
+      "key": "faq-resultados-tiempos",
+      "pregunta": "¿Cuándo voy a notar cambios?",
+      "respuesta": "Cada piel es distinta y los tiempos son referenciales. Lo que más ayuda es la constancia: usarla todos los días, mañana y noche, y no cambiar de producto a la semana."
+    },
+    {
+      "key": "faq-kit-para-quien",
+      "pregunta": "¿Para quién es el Kit Anti Acné?",
+      "respuesta": "Para piel con tendencia a granitos, poros congestionados o brillo. Incluye la rutina de pasos diarios más parches para el granito puntual. Si tu acné es severo, doloroso o persistente, consulta a un dermatólogo."
+    },
+    {
+      "key": "faq-kit-parches",
+      "pregunta": "¿Cómo uso los parches?",
+      "respuesta": "Aplícalos sobre un granito activo, con la piel limpia y completamente seca. Cámbialo cuando se vea blanco o se expanda. Cada parche es de un solo uso y no se debe poner sobre heridas abiertas."
+    },
+    {
+      "key": "faq-kit-vs-esencial",
+      "pregunta": "¿Qué diferencia tiene con la Rutina Esencial?",
+      "respuesta": "El kit suma parches para el granito puntual y usa un limpiador y un protector solar distintos a los de la Esencial."
+    },
+    {
+      "key": "faq-global-despacho",
+      "pregunta": "¿Cuándo llega mi pedido?",
+      "respuesta": "Despachamos a todo Chile desde Santiago. Procesamos tu pedido en 1 a 2 días hábiles y la entrega toma entre 1 y 3 días hábiles en la Región Metropolitana, 2 a 5 en las regiones V, VI, VII y VIII, y 4 a 8 en el resto del país. Cuando sale tu pedido te llega un correo con el número de seguimiento. El envío es gratis al llegar al monto que ves en la barra de envío; bajo ese monto, el costo se calcula al pagar según tu dirección."
+    },
+    {
+      "key": "faq-global-originales",
+      "pregunta": "¿Los productos son originales?",
+      "respuesta": "Sí, son productos coreanos originales, seleccionados por Skinland."
+    },
+    {
+      "key": "faq-global-pagos",
+      "pregunta": "¿Cómo puedo pagar?",
+      "respuesta": "Pagas con Mercado Pago, con tarjeta de crédito o débito, en un checkout seguro. Skinland no guarda los datos de tu tarjeta. También puedes pagar en cuotas sin interés con Mercado Pago."
+    },
+    {
+      "key": "faq-global-cambios",
+      "pregunta": "¿Puedo cambiar o devolver mi pedido?",
+      "respuesta": "Tienes 10 días corridos desde que recibes tu pedido para pedir un cambio o devolución. El producto debe estar sin abrir, con su sello y su empaque original. Si llega dañado, con una falla o distinto a lo que compraste, aplica la garantía legal y Skinland asume el costo del envío de vuelta. En kits y rutinas con algún producto abierto no hay cambio por cambio de opinión. El detalle está en la política de cambios y devoluciones."
+    }
   ],
   "productos": {
     "rutina-express-piel-grasa": {
       "color": "menta",
       "version_nombre": "Express",
       "version_resumen": "Limpia · hidrata · protege",
-      "versiones": ["rutina-express-piel-grasa", "rutina-piel-grasa", "kit-anti-acne"],
+      "versiones": [
+        "rutina-express-piel-grasa",
+        "rutina-piel-grasa",
+        "kit-anti-acne"
+      ],
       "cro_hook": "Ayuda a controlar el brillo y a que tus poros se vean más finos, en 3 pasos.",
       "beneficios_clave": [
         "Ayuda a controlar el brillo durante el día, sin resecar.",
@@ -68,14 +152,28 @@
       ],
       "upgrade": "kit-anti-acne",
       "upgrade_texto": "¿También te salen granitos?",
-      "alternativas": ["alt-tirante-express-seca", "alt-granitos-kit"],
-      "faq_items": ["faq-principiante", "faq-uso-diario", "faq-crema-piel-grasa", "faq-express-o-esencial", "faq-solo-un-producto", "faq-duracion"]
+      "alternativas": [
+        "alt-tirante-express-seca",
+        "alt-granitos-kit"
+      ],
+      "faq_items": [
+        "faq-principiante",
+        "faq-uso-diario",
+        "faq-crema-piel-grasa",
+        "faq-express-o-esencial",
+        "faq-solo-un-producto",
+        "faq-duracion"
+      ]
     },
     "rutina-piel-grasa": {
       "color": "menta",
       "version_nombre": "Esencial",
       "version_resumen": "Limpia · trata · hidrata · protege",
-      "versiones": ["rutina-express-piel-grasa", "rutina-piel-grasa", "kit-anti-acne"],
+      "versiones": [
+        "rutina-express-piel-grasa",
+        "rutina-piel-grasa",
+        "kit-anti-acne"
+      ],
       "cro_hook": "Rutina de 4 pasos para ayudar a equilibrar el brillo y a que los poros se vean más limpios.",
       "beneficios_clave": [
         "Limpieza con BHA que ayuda a que los poros se sientan más despejados.",
@@ -84,14 +182,30 @@
       ],
       "upgrade": null,
       "_nota_upgrade": "Sin escalón al kit: el kit no incluye el limpiador ni el protector solar de la Esencial, así que no es un 'esta rutina + extras'. Decisión pendiente.",
-      "alternativas": ["alt-tirante-esencial-seca", "alt-granitos-kit", "alt-mas-simple-express"],
-      "faq_items": ["faq-principiante", "faq-uso-diario", "faq-crema-piel-grasa", "faq-resultados-tiempos", "faq-express-o-esencial", "faq-solo-un-producto", "faq-duracion"]
+      "alternativas": [
+        "alt-tirante-esencial-seca",
+        "alt-granitos-kit",
+        "alt-mas-simple-express"
+      ],
+      "faq_items": [
+        "faq-principiante",
+        "faq-uso-diario",
+        "faq-crema-piel-grasa",
+        "faq-resultados-tiempos",
+        "faq-express-o-esencial",
+        "faq-solo-un-producto",
+        "faq-duracion"
+      ]
     },
     "kit-anti-acne": {
       "color": "lima",
       "version_nombre": "Kit",
       "version_resumen": "Rutina + ampolla + parches",
-      "versiones": ["rutina-express-piel-grasa", "rutina-piel-grasa", "kit-anti-acne"],
+      "versiones": [
+        "rutina-express-piel-grasa",
+        "rutina-piel-grasa",
+        "kit-anti-acne"
+      ],
       "cro_hook": "Rutina de 4 pasos más parches, para ayudar a que tu piel con granitos se vea más calmada y pareja.",
       "beneficios_clave": [
         "Limpia, trata, hidrata y protege, con parches para el granito puntual.",
@@ -99,12 +213,32 @@
         "Ayuda a que los poros se vean más finos y el brillo se note menos."
       ],
       "upgrade": null,
-      "alternativas": ["alt-mas-simple-express", "alt-tirante-esencial-seca", "alt-sensible-esencial"],
-      "faq_items": ["faq-kit-para-quien", "faq-kit-parches", "faq-kit-vs-esencial", "faq-solo-un-producto", "faq-duracion", "faq-resultados-tiempos"],
+      "alternativas": [
+        "alt-mas-simple-express",
+        "alt-tirante-esencial-seca",
+        "alt-sensible-esencial"
+      ],
+      "faq_items": [
+        "faq-kit-para-quien",
+        "faq-kit-parches",
+        "faq-kit-vs-esencial",
+        "faq-solo-un-producto",
+        "faq-duracion",
+        "faq-resultados-tiempos"
+      ],
       "ing": [
-        { "nombre": "Centella Asiática", "desc": "Ayuda a calmar la apariencia de la piel." },
-        { "nombre": "Niacinamida", "desc": "Ayuda a equilibrar el brillo." },
-        { "nombre": "Ácido Salicílico (BHA)", "desc": "Presente en la limpieza para ayudar a limpiar los poros." }
+        {
+          "nombre": "Centella Asiática",
+          "desc": "Ayuda a calmar la apariencia de la piel."
+        },
+        {
+          "nombre": "Niacinamida",
+          "desc": "Ayuda a equilibrar el brillo."
+        },
+        {
+          "nombre": "Ácido Salicílico (BHA)",
+          "desc": "Presente en la limpieza para ayudar a limpiar los poros."
+        }
       ],
       "live": {
         "routine_results": "7 días — Piel más fresca y cómoda — La limpieza con Centella y BHA y la ampolla Tea-Trica ayudan a que la piel se sienta más calmada, mientras los parches cubren el granito puntual y ayudan a no tocarlo.\n14 días — Brillo menos notorio — La crema gel con Niacinamida y el protector solar ligero acompañan el día a día y ayudan a que el brillo se note menos y la piel se sienta más equilibrada.\n30 días — Piel con apariencia más pareja — Con uso constante, la rutina ayuda a que la piel luzca más uniforme y cuidada. Cada piel es distinta y los tiempos son referenciales.",
