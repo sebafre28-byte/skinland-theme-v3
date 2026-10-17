@@ -104,6 +104,13 @@
         "default": "Solo videos reales; si es colaboración pagada, se indica."
       },
       {
+        "type": "checkbox",
+        "id": "sl_resenas_solo_verificadas",
+        "label": "Reseñas manuales: solo compras verificadas",
+        "info": "Si está activo, una reseña manual debe tener marcada \"Compra verificada\" para mostrarse.",
+        "default": true
+      },
+      {
         "type": "header",
         "content": "Colores"
       },

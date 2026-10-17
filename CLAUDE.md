@@ -40,7 +40,7 @@ Lee siempre, en este orden:
 - **Fuentes** alojadas en `assets/` (`.woff2` de Funnel Display y Funnel Sans, licencia OFL). Sin Google Fonts.
 - **Datos:**
   - metacampos `custom.*` y metaobjetos `skinland_faq`, `skinland_video` y `skinland_alternativa`;
-  - reseñas, solo desde los metacampos estándar `reviews.*` de una app real.
+  - reseñas: manuales verificadas (metaobjeto `skinland_resena`, con compra verificada y permiso de uso) mientras no haya app; si hay una app con `reviews.*`, manda la app. Nunca `resena_*`, `rating_producto` ni reseñas de otras tiendas.
 - **Las secciones se ocultan solas** si no tienen datos. Nunca hay bloques vacíos ni datos de ejemplo.
 
 ## Git y Shopify

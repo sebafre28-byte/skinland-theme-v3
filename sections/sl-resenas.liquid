@@ -1,30 +1,77 @@
 {%- liquid
-  assign rating_n = product.metafields.reviews.rating_count.value | default: 0
+  capture rs_raw
+    render 'sl-resenas-datos', product: product
+  endcapture
+  assign rs = rs_raw | strip | split: '|'
+  assign origen = rs[2]
+
   assign hay_app = false
   for block in section.blocks
     if block.type == '@app'
       assign hay_app = true
     endif
   endfor
-  assign mostrar = false
-  if rating_n >= 1 and hay_app
-    assign mostrar = true
+
+  assign modo = 'ninguno'
+  if origen == 'app' and hay_app
+    assign modo = 'app'
+  elsif origen == 'manual'
+    assign modo = 'manual'
   endif
 -%}
 
-{%- if mostrar -%}
+{%- if modo != 'ninguno' -%}
   {{ 'sl-resenas.css' | asset_url | stylesheet_tag }}
   <section class="sl-resenas sl-scope" id="sl-resenas" aria-labelledby="sl-resenas-{{ section.id }}">
     <div class="sl-par__inner">
       <h2 class="sl-h2" id="sl-resenas-{{ section.id }}">{{ section.settings.titulo }}</h2>
-      <div class="sl-resenas__app">
-        {%- for block in section.blocks -%}
-          {%- case block.type -%}
-            {%- when '@app' -%}
-              {% render block %}
-          {%- endcase -%}
-        {%- endfor -%}
-      </div>
+
+      {%- if modo == 'app' -%}
+        <div class="sl-resenas__app">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when '@app' -%}
+                {% render block %}
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <ul class="sl-resenas__lista" role="list">
+          {%- assign mostradas = 0 -%}
+          {%- for r in shop.metaobjects.skinland_resena.values -%}
+            {%- capture ok -%}{% render 'sl-resena-valida', resena: r, product: product %}{%- endcapture -%}
+            {%- if ok contains '1' and mostradas < section.settings.maximo -%}
+              {%- liquid
+                assign mostradas = mostradas | plus: 1
+                assign e = r.estrellas.value | plus: 0
+                assign pie = r.autora.value
+                if r.tipo_piel.value != blank
+                  assign pie = pie | append: ' · ' | append: r.tipo_piel.value
+                endif
+                if r.fecha.value != blank
+                  assign fecha_txt = r.fecha.value | date: '%d/%m/%Y'
+                  assign pie = pie | append: ' · ' | append: fecha_txt
+                endif
+              -%}
+              <li class="sl-resena">
+                <div class="sl-resena__cabecera">
+                  <span class="sl-resena__estrellas" role="img" aria-label="{{ section.settings.estrellas_aria | replace: '[n]', e }}">
+                    {%- for i in (1..5) -%}{% if i <= e %}★{% else %}☆{% endif %}{%- endfor -%}
+                  </span>
+                  {%- if r.compra_verificada.value == true -%}
+                    <span class="sl-chip sl-resena__chip">{{ section.settings.chip_verificada }}</span>
+                  {%- endif -%}
+                </div>
+                <p class="sl-resena__texto">{{ r.texto.value | escape | newline_to_br }}</p>
+                {%- if r.foto.value != blank -%}
+                  <img class="sl-resena__foto" src="{{ r.foto.value | image_url: width: 500 }}" alt="{{ section.settings.foto_alt | replace: '[autora]', r.autora.value | escape }}" width="250" height="250" loading="lazy">
+                {%- endif -%}
+                <p class="sl-resena__autora">{{ pie | escape }}</p>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
     </div>
   </section>
 {%- elsif request.design_mode -%}
@@ -45,11 +92,40 @@
       "default": "Lo que dicen quienes la usan"
     },
     {
+      "type": "range",
+      "id": "maximo",
+      "label": "Máximo de reseñas a mostrar",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "text",
+      "id": "chip_verificada",
+      "label": "Chip de compra verificada",
+      "default": "Compra verificada"
+    },
+    {
+      "type": "text",
+      "id": "estrellas_aria",
+      "label": "Estrellas (accesible)",
+      "info": "Usa [n].",
+      "default": "[n] de 5 estrellas"
+    },
+    {
+      "type": "text",
+      "id": "foto_alt",
+      "label": "Texto alternativo de la foto",
+      "info": "Usa [autora].",
+      "default": "Foto de [autora]"
+    },
+    {
       "type": "text",
       "id": "aviso_editor",
       "label": "Aviso en el editor",
       "info": "Solo se ve dentro del editor del tema, no en la tienda.",
-      "default": "Reseñas ocultas: se muestran solo con una app de reseñas instalada, su bloque agregado aquí y al menos una reseña real del producto."
+      "default": "Reseñas ocultas: se muestran con reseñas manuales válidas de este producto (metaobjeto Skinland · Reseña) o con una app de reseñas y su bloque agregado aquí."
     }
   ],
   "blocks": [

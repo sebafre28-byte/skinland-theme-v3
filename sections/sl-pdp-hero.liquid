@@ -26,8 +26,12 @@
   assign insignia = mf.routine_badge.value
   assign versiones = mf.versiones.value
   assign beneficios = mf.beneficios_clave.value
-  assign rating = product.metafields.reviews.rating.value
-  assign rating_n = product.metafields.reviews.rating_count.value | default: 0
+  capture rs_raw
+    render 'sl-resenas-datos', product: product
+  endcapture
+  assign rs = rs_raw | strip | split: '|'
+  assign rating_n = rs[0] | plus: 0
+  assign rating_prom = rs[1] | times: 1.0
   assign cta = mf.routine_cta_text.value | default: section.settings.cta_texto_defecto
   assign precio_texto = precio | money_without_trailing_zeros
 
@@ -149,13 +153,22 @@
 
           <h1 class="sl-h1 sl-buybox__titulo">{{ product.title }}</h1>
 
-          {%- if rating_n >= 1 and rating != blank -%}
+          {%- if rating_n >= 1 -%}
+            {%- if rating_n == 1 -%}
+              {%- assign resenas_texto = section.settings.texto_resena_una | replace: '[n]', rating_n -%}
+            {%- else -%}
+              {%- assign resenas_texto = section.settings.texto_resenas | replace: '[n]', rating_n -%}
+            {%- endif -%}
             <a class="sl-resenas-link" href="#sl-resenas">
-              <span aria-hidden="true" class="sl-resenas-link__estrellas">
-                {%- assign llenas = rating.value | round -%}
-                {%- for i in (1..5) -%}{% if i <= llenas %}★{% else %}☆{% endif %}{%- endfor -%}
-              </span>
-              <strong>{{ rating.value }}</strong> · {{ section.settings.texto_resenas | replace: '[n]', rating_n }}
+              {%- if rating_n >= section.settings.resenas_minimo_promedio -%}
+                <span aria-hidden="true" class="sl-resenas-link__estrellas">
+                  {%- assign llenas = rating_prom | round -%}
+                  {%- for i in (1..5) -%}{% if i <= llenas %}★{% else %}☆{% endif %}{%- endfor -%}
+                </span>
+                <strong>{{ rs[1] }}</strong> · {{ resenas_texto }}
+              {%- else -%}
+                {{ resenas_texto }}
+              {%- endif -%}
             </a>
           {%- endif -%}
 
@@ -374,8 +387,26 @@
       "type": "text",
       "id": "texto_resenas",
       "label": "Texto de reseñas",
-      "info": "Usa [n]. Solo se muestra con reseñas reales (reviews.rating_count).",
+      "info": "Usa [n]. Solo se muestra con reseñas reales (de una app o manuales verificadas).",
       "default": "[n] reseñas"
+    },
+    {
+      "type": "text",
+      "id": "texto_resena_una",
+      "label": "Texto con una sola reseña",
+      "info": "Usa [n].",
+      "default": "[n] reseña"
+    },
+    {
+      "type": "range",
+      "id": "resenas_minimo_promedio",
+      "label": "Mostrar estrellas y promedio desde",
+      "info": "Con menos reseñas se muestra solo la cantidad.",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3,
+      "unit": " reseñas"
     },
     {
       "type": "text",

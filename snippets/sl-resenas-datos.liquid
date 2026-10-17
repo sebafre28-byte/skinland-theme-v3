@@ -1,0 +1,33 @@
+{%- comment -%}
+  Cantidad y promedio de reseñas de un producto. Parámetro: product.
+  Devuelve "cantidad|promedio|origen". origen = app (metacampos reviews.* de una app), manual (skinland_resena) o none.
+  Si una app tiene reseñas, manda la app; si no, se usan las reseñas manuales válidas.
+
+  Uso:
+    {%- capture rs_raw -%}{% render 'sl-resenas-datos', product: product %}{%- endcapture -%}
+    {%- assign rs = rs_raw | strip | split: '|' -%}
+{%- endcomment -%}
+{%- liquid
+  assign app_n = product.metafields.reviews.rating_count.value | default: 0
+  if app_n >= 1 and product.metafields.reviews.rating.value != blank
+    echo app_n | append: '|' | append: product.metafields.reviews.rating.value.value | append: '|app'
+  else
+    assign n = 0
+    assign suma = 0
+    for r in shop.metaobjects.skinland_resena.values
+      capture ok
+        render 'sl-resena-valida', resena: r, product: product
+      endcapture
+      if ok contains '1'
+        assign n = n | plus: 1
+        assign suma = suma | plus: r.estrellas.value
+      endif
+    endfor
+    if n > 0
+      assign promedio = suma | times: 1.0 | divided_by: n | round: 1
+      echo n | append: '|' | append: promedio | append: '|manual'
+    else
+      echo '0|0|none'
+    endif
+  endif
+-%}

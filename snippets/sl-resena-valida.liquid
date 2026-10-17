@@ -1,0 +1,21 @@
+{%- comment -%}
+  ¿Esta reseña manual (metaobjeto skinland_resena) se puede mostrar en este producto?
+  Parámetros: resena, product. Imprime 1 si sí; vacío si no.
+  Condiciones: es de este producto, tiene permiso de uso, autora, texto y de 1 a 5 estrellas.
+  Con el ajuste "solo verificadas" (activo por defecto) también debe estar marcada como compra verificada.
+{%- endcomment -%}
+{%- liquid
+  assign valida = false
+  if resena.producto.value.id == product.id and resena.permiso_uso.value == true and resena.autora.value != blank and resena.texto.value != blank
+    assign estrellas = resena.estrellas.value | plus: 0
+    if estrellas >= 1 and estrellas <= 5
+      assign valida = true
+      if settings.sl_resenas_solo_verificadas and resena.compra_verificada.value != true
+        assign valida = false
+      endif
+    endif
+  endif
+  if valida
+    echo 1
+  endif
+-%}
