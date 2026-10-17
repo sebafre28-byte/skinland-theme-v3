@@ -1,0 +1,135 @@
+{{ 'sl-uso.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign componentes = product.metafields.custom.routine_products.value
+  assign modo_uso = product.metafields.custom.modo_uso.value
+
+  assign hay_uso = false
+  for c in componentes
+    if c.tags contains 'uso-am' or c.tags contains 'uso-pm' or c.tags contains 'uso-am-pm'
+      assign hay_uso = true
+    endif
+  endfor
+
+  assign momentos = 'am,pm' | split: ','
+-%}
+
+{%- if hay_uso or modo_uso != blank -%}
+  <section class="sl-uso sl-scope" aria-labelledby="sl-uso-{{ section.id }}">
+    <div class="sl-par__inner">
+      <h2 class="sl-h2" id="sl-uso-{{ section.id }}">{{ section.settings.titulo }}</h2>
+
+      {%- if hay_uso -%}
+        <div class="sl-uso__tarjetas">
+          {%- for momento in momentos -%}
+            {%- liquid
+              assign n = 0
+              assign hay_pasos = false
+              assign hay_local = false
+              for c in componentes
+                assign en_momento = false
+                if c.tags contains 'uso-am-pm'
+                  assign en_momento = true
+                endif
+                if momento == 'am' and c.tags contains 'uso-am'
+                  assign en_momento = true
+                endif
+                if momento == 'pm' and c.tags contains 'uso-pm'
+                  assign en_momento = true
+                endif
+                if en_momento
+                  if c.tags contains 'paso-tratamiento-local'
+                    assign hay_local = true
+                  else
+                    assign hay_pasos = true
+                  endif
+                endif
+              endfor
+            -%}
+            {%- if hay_pasos or hay_local -%}
+              <div class="sl-uso__tarjeta sl-uso__tarjeta--{{ momento }}">
+                <strong class="sl-uso__momento">{% if momento == 'am' %}{{ section.settings.manana }}{% else %}{{ section.settings.noche }}{% endif %}</strong>
+                {%- for c in componentes -%}
+                  {%- liquid
+                    assign en_momento = false
+                    if c.tags contains 'uso-am-pm'
+                      assign en_momento = true
+                    endif
+                    if momento == 'am' and c.tags contains 'uso-am'
+                      assign en_momento = true
+                    endif
+                    if momento == 'pm' and c.tags contains 'uso-pm'
+                      assign en_momento = true
+                    endif
+                    capture paso
+                      render 'sl-paso', componente: c
+                    endcapture
+                    assign paso = paso | strip
+                    assign nombre = c.metafields.custom.nombre_corto.value | default: c.title
+                    if paso == 'Protege' and momento == 'pm'
+                      assign en_momento = false
+                    endif
+                  -%}
+                  {%- if en_momento -%}
+                    {%- if c.tags contains 'paso-tratamiento-local' -%}
+                      <span class="sl-uso__paso sl-uso__paso--local"><strong>+ {{ section.settings.etiqueta_local }}</strong> · {{ section.settings.texto_local }}</span>
+                    {%- else -%}
+                      {%- assign n = n | plus: 1 -%}
+                      <span class="sl-uso__paso"><strong>{{ n }}{% if paso != blank %} {{ paso }}{% endif %}</strong> · {{ nombre }}</span>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="sl-uso__tarjetas sl-uso__tarjetas--texto">
+          <div class="sl-uso__tarjeta sl-uso__tarjeta--texto">
+            {{ modo_uso | newline_to_br }}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Cómo se usa",
+  "tag": "div",
+  "class": "sl-par sl-par--izq",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Cómo se usa"
+    },
+    {
+      "type": "text",
+      "id": "manana",
+      "label": "Tarjeta de la mañana",
+      "default": "Mañana"
+    },
+    {
+      "type": "text",
+      "id": "noche",
+      "label": "Tarjeta de la noche",
+      "default": "Noche"
+    },
+    {
+      "type": "text",
+      "id": "etiqueta_local",
+      "label": "Producto de tratamiento puntual",
+      "default": "Parche"
+    },
+    {
+      "type": "text",
+      "id": "texto_local",
+      "label": "Cuándo se usa el tratamiento puntual",
+      "default": "solo si aparece un granito"
+    }
+  ]
+}
+{% endschema %}

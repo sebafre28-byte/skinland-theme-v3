@@ -11,11 +11,15 @@
     },
     "incluye": {
       "type": "sl-incluye"
+    },
+    "uso": {
+      "type": "sl-uso"
     }
   },
   "order": [
     "hero",
     "videos",
-    "incluye"
+    "incluye",
+    "uso"
   ]
 }

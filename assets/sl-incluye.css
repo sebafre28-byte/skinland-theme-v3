@@ -38,7 +38,7 @@
 
 /* Sube al kit */
 .sl-upgrade {
-  display: flex; flex-direction: column; gap: 14px; margin: 30px 0; padding: 18px;
+  display: flex; flex-direction: column; gap: 14px; margin: 30px 0 0; padding: 18px;
   border: var(--sl-borde); border-radius: 22px; background: var(--sl-lima); box-shadow: 5px 5px 0 var(--sl-tinta);
 }
 .sl-upgrade__texto { display: flex; flex-direction: column; gap: 10px; }
@@ -70,7 +70,7 @@
   .sl-incluye__compra { margin-top: auto; padding-top: 6px; }
   .sl-incluye__precio { font-size: 20px; }
   .sl-incluye__form .sl-btn { font-size: 13px; }
-  .sl-upgrade { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 28px; margin: 48px 0; }
+  .sl-upgrade { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 28px; margin: 48px 0 0; }
   .sl-upgrade__titulo { font-size: 32px; }
   .sl-upgrade__boton { width: auto; min-width: 220px; }
 }

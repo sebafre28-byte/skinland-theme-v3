@@ -1,0 +1,22 @@
+/* sl-uso · "Cómo se usa": tarjetas de mañana y noche. Referencia: ExpressMovil.html, KitMovil.html */
+.sl-uso { padding: 30px 0; }
+.sl-uso .sl-par__inner { display: flex; flex-direction: column; gap: 12px; }
+.sl-uso__tarjetas { display: flex; flex-direction: column; gap: 12px; }
+.sl-uso__tarjeta {
+  display: flex; flex-direction: column; gap: 8px; padding: 16px;
+  border: var(--sl-borde); border-radius: 20px;
+}
+.sl-uso__tarjeta--am { background: var(--sl-amarillo); }
+.sl-uso__tarjeta--pm { background: var(--sl-lila); }
+.sl-uso__tarjeta--texto { background: var(--sl-blanco); font-size: 15px; line-height: 1.5; }
+.sl-uso__momento { font-family: var(--sl-font-display); font-size: 20px; font-weight: 800; }
+.sl-uso__paso { padding: 8px 12px; border: var(--sl-borde); border-radius: 12px; background: var(--sl-blanco); font-size: 14px; line-height: 1.35; }
+.sl-uso__paso strong { font-weight: 700; }
+.sl-uso__paso--local { border-style: dashed; }
+
+@media screen and (min-width: 990px) {
+  .sl-uso { padding: 56px 0; }
+  .sl-uso__tarjetas { flex-direction: row; align-items: flex-start; gap: 16px; }
+  .sl-uso__tarjeta { flex: 1 1 0; }
+  .sl-uso__tarjetas--texto .sl-uso__tarjeta { flex: 1 1 auto; }
+}

@@ -158,3 +158,20 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .sl-scope *, .sl-btn { animation: none !important; transition: none !important; }
 }
+
+/* Secciones en pareja en escritorio (Cómo se usa + ¿Es para ti?, etc.).
+   Cada sección declara en su schema "sl-par sl-par--izq" o "sl-par sl-par--der".
+   Si su pareja no existe, ocupa todo el ancho. */
+:root { --sl-margen: max(32px, calc((100vw - var(--sl-contenedor)) / 2)); }
+.sl-par__inner {
+  width: 100%; max-width: calc(var(--sl-contenedor) + var(--sl-gutter) * 2);
+  margin: 0 auto; padding-inline: var(--sl-gutter);
+}
+@media screen and (min-width: 990px) {
+  .content-for-layout:has(.sl-par) { display: flex; flex-wrap: wrap; }
+  .content-for-layout:has(.sl-par) > .shopify-section { flex: 0 0 100%; min-width: 0; }
+  .content-for-layout:has(.sl-par) > .shopify-section.sl-par--izq:has(+ .sl-par--der),
+  .content-for-layout:has(.sl-par) > .shopify-section.sl-par--izq + .sl-par--der { flex: 0 0 50%; }
+  .sl-par--izq:has(+ .sl-par--der) .sl-par__inner { max-width: none; margin: 0; padding-left: var(--sl-margen); padding-right: 24px; }
+  .sl-par--izq + .sl-par--der .sl-par__inner { max-width: none; margin: 0; padding-right: var(--sl-margen); padding-left: 24px; }
+}

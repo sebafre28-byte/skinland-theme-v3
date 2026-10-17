@@ -14,11 +14,15 @@
       "settings": {
         "titulo": "Qué trae tu caja"
       }
+    },
+    "uso": {
+      "type": "sl-uso"
     }
   },
   "order": [
     "hero",
     "videos",
-    "incluye"
+    "incluye",
+    "uso"
   ]
 }
