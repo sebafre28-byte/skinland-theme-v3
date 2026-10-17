@@ -46,6 +46,10 @@
     "faq": {
       "type": "sl-faq",
       "settings": {}
+    },
+    "cta_final": {
+      "type": "sl-cta-final",
+      "settings": {}
     }
   },
   "order": [
@@ -57,6 +61,7 @@
     "resultados",
     "ingredientes",
     "resenas",
-    "faq"
+    "faq",
+    "cta_final"
   ]
 }

@@ -1,0 +1,95 @@
+{{ 'sl-cta-final.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign mf = product.metafields.custom
+  assign variante = product.selected_or_first_available_variant
+  assign precio = variante.price
+  assign disponible = variante.available
+  assign form_id = 'sl-form-' | append: product.id
+
+  capture bs_raw
+    render 'sl-bundle-sum', product: product
+  endcapture
+  assign bs = bs_raw | strip | split: '|'
+  assign bs_ahorro = bs[1] | plus: 0
+
+  capture color_necesidad
+    render 'sl-color-necesidad', product: product
+  endcapture
+  assign color_necesidad = color_necesidad | strip
+
+  assign tipo_piel = mf.tipo_piel.value | first | downcase
+  assign titulo = section.settings.titulo
+  if titulo contains '[tipo de piel]'
+    if tipo_piel != blank
+      assign titulo = titulo | replace: '[tipo de piel]', tipo_piel
+    else
+      assign titulo = section.settings.titulo_alterno
+    endif
+  endif
+  assign titulo = titulo | replace: '[producto]', product.title
+
+  assign cta = mf.routine_cta_text.value | default: section.settings.cta_texto_defecto
+-%}
+
+<section class="sl-cta sl-scope" data-sl-color="{{ color_necesidad }}" aria-labelledby="sl-cta-{{ section.id }}">
+  <div class="sl-cta__tarjeta">
+    <div class="sl-cta__texto">
+      <h2 class="sl-cta__titulo" id="sl-cta-{{ section.id }}">{{ titulo }}</h2>
+      <div class="sl-cta__precio">
+        <span class="sl-cta__monto">{{ precio | money_without_trailing_zeros }}</span>
+        {%- if bs_ahorro > 0 -%}
+          <span class="sl-sticker">−{{ bs_ahorro | money_without_trailing_zeros }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+    <button
+      type="submit"
+      form="{{ form_id }}"
+      class="sl-btn sl-btn--compra sl-cta__boton"
+      data-sl-externo
+      {% unless disponible %}disabled{% endunless %}
+    >
+      <span>{% if disponible %}{{ cta }}{% else %}{{ section.settings.agotado_texto }}{% endif %}</span>
+      {%- render 'loading-spinner' -%}
+    </button>
+  </div>
+</section>
+<script src="{{ 'sl-form-externo.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Skinland · Cierre",
+  "tag": "div",
+  "class": "sl-cta-final-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "info": "Usa [tipo de piel] y [producto].",
+      "default": "Tu rutina para [tipo de piel], lista para empezar."
+    },
+    {
+      "type": "text",
+      "id": "titulo_alterno",
+      "label": "Título si el producto no tiene tipo de piel",
+      "info": "Usa [producto].",
+      "default": "Tu [producto], lista para empezar."
+    },
+    {
+      "type": "text",
+      "id": "cta_texto_defecto",
+      "label": "Texto del botón",
+      "info": "Se usa si el producto no tiene routine_cta_text.",
+      "default": "Comenzar mi rutina"
+    },
+    {
+      "type": "text",
+      "id": "agotado_texto",
+      "label": "Texto de agotado",
+      "default": "Agotado"
+    }
+  ]
+}
+{% endschema %}
