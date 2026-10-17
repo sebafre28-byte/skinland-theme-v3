@@ -54,6 +54,10 @@
       "settings": {
         "titulo": "Tu kit, todo en una caja."
       }
+    },
+    "sticky": {
+      "type": "sl-sticky-atc",
+      "settings": {}
     }
   },
   "order": [
@@ -66,6 +70,7 @@
     "ingredientes",
     "resenas",
     "faq",
-    "cta_final"
+    "cta_final",
+    "sticky"
   ]
 }

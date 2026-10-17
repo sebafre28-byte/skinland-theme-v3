@@ -1,0 +1,26 @@
+/* sl-sticky-atc · barra de compra fija, solo móvil. Referencia: KitMovil.html (barra inferior) */
+.sl-sticky {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+  background: var(--sl-blanco); border-top: var(--sl-borde);
+  padding-bottom: env(safe-area-inset-bottom);
+  transform: translateY(110%); visibility: hidden;
+  transition: transform .25s ease, visibility 0s linear .25s;
+}
+.sl-sticky.is-visible { transform: none; visibility: visible; transition: transform .25s ease, visibility 0s; }
+.sl-sticky__interior { display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+.sl-sticky__foto { flex: none; width: 44px; height: 44px; object-fit: contain; border: var(--sl-borde); border-radius: 12px; background: var(--sl-crema); padding: 2px; }
+.sl-sticky__texto { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.sl-sticky__titulo { font-size: 13px; font-weight: 700; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sl-sticky__precio { font-size: 12px; color: var(--sl-texto-2); white-space: nowrap; }
+.sl-sticky__boton { flex: none; min-height: 48px; padding: 0 16px; font-size: 15px; border-radius: 14px; }
+
+/* Reserva el alto de la barra para no tapar el footer */
+@media screen and (max-width: 989px) {
+  body.sl-tiene-sticky { padding-bottom: var(--sl-sticky-alto, 72px); }
+}
+@media screen and (min-width: 990px) {
+  .sl-sticky { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sl-sticky, .sl-sticky.is-visible { transition: none; }
+}

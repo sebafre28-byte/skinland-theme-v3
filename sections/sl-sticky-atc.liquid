@@ -1,0 +1,75 @@
+{{ 'sl-sticky-atc.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign mf = product.metafields.custom
+  assign variante = product.selected_or_first_available_variant
+  assign precio = variante.price
+  assign disponible = variante.available
+  assign form_id = 'sl-form-' | append: product.id
+  assign cta = mf.routine_cta_text.value | default: section.settings.cta_texto_defecto
+
+  capture bs_raw
+    render 'sl-bundle-sum', product: product
+  endcapture
+  assign bs = bs_raw | strip | split: '|'
+  assign bs_ahorro = bs[1] | plus: 0
+
+  assign foto = product.featured_image
+-%}
+
+<div class="sl-sticky sl-scope" data-sl-sticky role="region" aria-label="{{ section.settings.etiqueta_aria | escape }}">
+  <div class="sl-sticky__interior">
+    {%- if foto != blank -%}
+      <img class="sl-sticky__foto" src="{{ foto | image_url: width: 120 }}" alt="" width="44" height="44" loading="lazy">
+    {%- endif -%}
+    <div class="sl-sticky__texto">
+      <span class="sl-sticky__titulo">{{ product.title }}</span>
+      <span class="sl-sticky__precio">
+        {{ precio | money_without_trailing_zeros }}
+        {%- if bs_ahorro > 0 %} · −{{ bs_ahorro | money_without_trailing_zeros }}{% endif -%}
+      </span>
+    </div>
+    <button
+      type="submit"
+      form="{{ form_id }}"
+      class="sl-btn sl-btn--compra sl-sticky__boton"
+      data-sl-externo
+      data-texto-agotado="{{ section.settings.agotado_texto | escape }}"
+      {% unless disponible %}disabled{% endunless %}
+    >
+      <span>{% if disponible %}{{ cta }}{% else %}{{ section.settings.agotado_texto }}{% endif %}</span>
+      {%- render 'loading-spinner' -%}
+    </button>
+  </div>
+</div>
+<script src="{{ 'sl-form-externo.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'sl-sticky-atc.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Skinland · Compra fija",
+  "tag": "div",
+  "class": "sl-sticky-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "cta_texto_defecto",
+      "label": "Texto del botón",
+      "info": "Se usa si el producto no tiene routine_cta_text.",
+      "default": "Comenzar mi rutina"
+    },
+    {
+      "type": "text",
+      "id": "agotado_texto",
+      "label": "Texto de agotado",
+      "default": "Agotado"
+    },
+    {
+      "type": "text",
+      "id": "etiqueta_aria",
+      "label": "Etiqueta accesible",
+      "default": "Comprar"
+    }
+  ]
+}
+{% endschema %}

@@ -50,6 +50,10 @@
     "cta_final": {
       "type": "sl-cta-final",
       "settings": {}
+    },
+    "sticky": {
+      "type": "sl-sticky-atc",
+      "settings": {}
     }
   },
   "order": [
@@ -62,6 +66,7 @@
     "ingredientes",
     "resenas",
     "faq",
-    "cta_final"
+    "cta_final",
+    "sticky"
   ]
 }
