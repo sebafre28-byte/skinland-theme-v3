@@ -1,0 +1,99 @@
+{{ 'sl-para-ti.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign mf = product.metafields.custom
+  assign si_lista = mf.para_quien_es.value
+  assign no_lista = mf.para_quien_no_es.value
+  assign alternativas = mf.alternativas.value
+
+  assign n_alt = 0
+  for a in alternativas
+    if a.situacion.value != blank and a.producto.value != blank and a.producto.value.available
+      assign n_alt = n_alt | plus: 1
+    endif
+  endfor
+
+  capture color_necesidad
+    render 'sl-color-necesidad', product: product
+  endcapture
+  assign color_necesidad = color_necesidad | strip
+-%}
+
+{%- if si_lista.size > 0 or n_alt > 0 or no_lista.size > 0 -%}
+  <section class="sl-parati sl-scope" data-sl-color="{{ color_necesidad }}" aria-labelledby="sl-parati-{{ section.id }}">
+    <div class="sl-par__inner">
+      <h2 class="sl-h2" id="sl-parati-{{ section.id }}">{{ section.settings.titulo }}</h2>
+
+      <div class="sl-parati__tarjetas">
+        {%- if si_lista.size > 0 -%}
+          <div class="sl-parati__tarjeta sl-parati__tarjeta--si">
+            <strong class="sl-parati__encabezado">{{ section.settings.titulo_si }}</strong>
+            <ul class="sl-parati__lista sl-parati__lista--si" role="list">
+              {%- for item in si_lista limit: 3 -%}
+                <li>{{ item }}</li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        {%- if n_alt > 0 or no_lista.size > 0 -%}
+          <div class="sl-parati__tarjeta sl-parati__tarjeta--otra">
+            <strong class="sl-parati__encabezado">{{ section.settings.titulo_otra }}</strong>
+            <ul class="sl-parati__lista" role="list">
+              {%- if n_alt > 0 -%}
+                {%- for a in alternativas -%}
+                  {%- if a.situacion.value != blank and a.producto.value != blank and a.producto.value.available -%}
+                    <li>{{ a.situacion.value }} → <a href="{{ a.producto.value.url }}" data-sl-version>{{ a.producto.value.title }}</a></li>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- else -%}
+                {%- for item in no_lista limit: 2 -%}
+                  <li>{{ item }}</li>
+                {%- endfor -%}
+              {%- endif -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if settings.sl_aviso_dermatologo != blank -%}
+        <p class="sl-parati__aviso"><strong>{{ section.settings.aviso_prefijo }}</strong> {{ settings.sl_aviso_dermatologo }}</p>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · ¿Es para ti?",
+  "tag": "div",
+  "class": "sl-par sl-par--der",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "¿Es para ti?"
+    },
+    {
+      "type": "text",
+      "id": "titulo_si",
+      "label": "Tarjeta \"sí\"",
+      "default": "Sí, si…"
+    },
+    {
+      "type": "text",
+      "id": "titulo_otra",
+      "label": "Tarjeta \"otra opción\"",
+      "default": "Mejor otra opción, si…"
+    },
+    {
+      "type": "text",
+      "id": "aviso_prefijo",
+      "label": "Prefijo del aviso",
+      "info": "El texto del aviso al dermatólogo está en los ajustes del tema.",
+      "default": "Importante:"
+    }
+  ]
+}
+{% endschema %}

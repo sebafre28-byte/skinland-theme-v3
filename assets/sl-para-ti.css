@@ -1,0 +1,19 @@
+/* sl-para-ti · "¿Es para ti?". Referencia: ExpressMovil.html, KitMovil.html, FichaDesktop.html */
+.sl-parati { padding: 0 0 30px; }
+.sl-parati .sl-par__inner { display: flex; flex-direction: column; gap: 12px; }
+.sl-parati__tarjetas { display: flex; flex-direction: column; gap: 12px; }
+.sl-parati__tarjeta { display: flex; flex-direction: column; gap: 8px; padding: 16px; border: var(--sl-borde); border-radius: 20px; }
+.sl-parati__tarjeta--si { background: var(--sl-necesidad, var(--sl-menta)); }
+.sl-parati__tarjeta--otra { background: var(--sl-rosa); }
+.sl-parati__encabezado { font-family: var(--sl-font-display); font-size: 20px; font-weight: 800; }
+.sl-parati__lista { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 15px; line-height: 1.4; }
+.sl-parati__lista--si li { position: relative; padding-left: 22px; }
+.sl-parati__lista--si li::before { content: '✓' / ''; position: absolute; left: 0; top: 0; font-weight: 800; }
+.sl-parati__lista a { color: var(--sl-tinta); font-weight: 700; }
+.sl-parati__aviso { margin: 0; padding: 12px; border: 2px dashed var(--sl-tinta); border-radius: var(--sl-radio-m); font-size: 13px; line-height: 1.45; }
+
+@media screen and (min-width: 990px) {
+  .sl-parati { padding: 56px 0; }
+  .sl-parati__tarjetas { flex-direction: row; align-items: flex-start; gap: 16px; }
+  .sl-parati__tarjeta { flex: 1 1 0; }
+}

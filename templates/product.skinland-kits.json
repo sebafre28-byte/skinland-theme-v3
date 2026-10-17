@@ -17,12 +17,16 @@
     },
     "uso": {
       "type": "sl-uso"
+    },
+    "para_ti": {
+      "type": "sl-para-ti"
     }
   },
   "order": [
     "hero",
     "videos",
     "incluye",
-    "uso"
+    "uso",
+    "para_ti"
   ]
 }
