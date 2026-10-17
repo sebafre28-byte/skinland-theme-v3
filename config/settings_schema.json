@@ -207,6 +207,111 @@
         "id": "sl_color_rosa",
         "label": "Rosa · líneas",
         "default": "#FFA3C8"
+      },
+      {
+        "type": "header",
+        "content": "Carrito lateral"
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_titulo",
+        "label": "Título",
+        "default": "Tu carrito"
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_envio_ok",
+        "label": "Envío gratis alcanzado",
+        "default": "Tu envío es gratis"
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_envio_falta",
+        "label": "Falta para envío gratis",
+        "default": "Te faltan [falta] para envío gratis",
+        "info": "Usa [falta] donde va el monto."
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_incluye",
+        "label": "Etiqueta de componentes",
+        "default": "Incluye"
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_ahorras",
+        "label": "Ahorro por línea",
+        "default": "Ahorras [ahorro]",
+        "info": "Usa [ahorro]."
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_quitar",
+        "label": "Botón quitar",
+        "default": "Quitar"
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_comp",
+        "label": "Tarjeta de complemento",
+        "default": "Suma [producto] por [precio] y llega al envío gratis",
+        "info": "Usa [producto] y [precio]."
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_agregar",
+        "label": "Botón agregar",
+        "default": "Agregar"
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_upgrade",
+        "label": "Botón de subir al kit",
+        "default": "Cámbiate a [titulo] por +[diferencia] →",
+        "info": "Usa [titulo] y [diferencia]."
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_cambio_ok",
+        "label": "Aviso tras el cambio",
+        "default": "Listo: cambiaste tu rutina por el kit."
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_subtotal",
+        "label": "Subtotal",
+        "default": "Subtotal"
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_ahorro_rutina",
+        "label": "Ahorro por rutina",
+        "default": "Ahorro por rutina",
+        "info": "Se muestra solo si hay ahorro calculado."
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_envio_linea",
+        "label": "Línea de envío",
+        "default": "Envío"
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_envio_calc",
+        "label": "Texto del envío",
+        "default": "Se calcula al pagar"
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_pagar",
+        "label": "Botón de pago",
+        "default": "Ir a pagar"
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_pie",
+        "label": "Pie de seguridad",
+        "default": "Pago seguro con Mercado Pago, crédito y débito · 100% originales"
       }
     ]
   },
