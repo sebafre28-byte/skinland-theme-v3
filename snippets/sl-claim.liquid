@@ -1,0 +1,10 @@
+{%- comment -%}
+  Detecta claims no permitidos en un texto (lenguaje cosmético, ISP/Meta/SERNAC).
+  Parámetro: texto. Imprime 1 si lo tiene, vacío si no.
+{%- endcomment -%}
+{%- liquid
+  assign bajo = texto | downcase
+  if bajo contains '%' or bajo contains 'clínic' or bajo contains 'clinic' or bajo contains 'combate' or bajo contains 'previene' or bajo contains 'elimina' or bajo contains 'bacteria' or bajo contains 'dermatológicamente'
+    echo 1
+  endif
+-%}

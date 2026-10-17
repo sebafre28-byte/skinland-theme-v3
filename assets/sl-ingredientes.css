@@ -1,0 +1,36 @@
+/* sl-ingredientes · "Ingredientes clave" + ventana INCI. Referencia: ExpressMovil.html, KitMovil.html, FichaDesktop.html */
+.sl-ingredientes { padding: 30px 0; background: var(--sl-blanco); border-block: var(--sl-borde); }
+.sl-ingredientes .sl-par__inner { display: flex; flex-direction: column; gap: 14px; }
+.sl-ingredientes__lista { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+.sl-ingredientes__item { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; min-width: 0; }
+.sl-ingredientes__circulo {
+  width: 96px; height: 96px; padding: 4px 6px; display: flex; align-items: center; justify-content: center;
+  border: var(--sl-borde); border-radius: 999px; font-family: var(--sl-font-display); font-size: 12px; font-weight: 800; line-height: 1.1; letter-spacing: -.01em; overflow-wrap: break-word;
+}
+.sl-ingredientes__circulo--1 { background: var(--sl-menta); }
+.sl-ingredientes__circulo--2 { background: var(--sl-celeste); }
+.sl-ingredientes__circulo--0 { background: var(--sl-amarillo); }
+.sl-ingredientes__desc { font-size: 12px; line-height: 1.35; }
+.sl-ingredientes__inci-boton {
+  align-self: flex-start; min-height: 44px; padding: 0; border: 0; background: none;
+  color: var(--sl-tinta); font: inherit; font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+}
+
+.sl-inci { width: min(640px, 100%); max-height: 85vh; padding: 0; border: var(--sl-borde); border-radius: 20px; background: var(--sl-blanco); color: var(--sl-tinta); }
+.sl-inci::backdrop { background: rgba(23, 38, 31, .6); }
+.sl-inci__panel { display: flex; flex-direction: column; max-height: 85vh; }
+.sl-inci__cabecera { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 16px 12px 20px; border-bottom: var(--sl-borde); }
+.sl-inci__titulo { margin: 0; font-family: var(--sl-font-display); font-size: 20px; font-weight: 800; }
+.sl-inci__cerrar {
+  flex: none; width: 44px; height: 44px; padding: 0; display: flex; align-items: center; justify-content: center;
+  border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); color: var(--sl-tinta); cursor: pointer;
+}
+.sl-inci__cuerpo { overflow-y: auto; padding: 8px 20px 20px; }
+.sl-inci__producto { margin: 16px 0 4px; font-size: 14px; font-weight: 700; }
+.sl-inci__texto { margin: 0; font-size: 13px; line-height: 1.5; color: var(--sl-texto-2); }
+
+@media screen and (min-width: 990px) {
+  .sl-ingredientes { padding: 64px 0; }
+  .sl-ingredientes__lista { gap: 16px; }
+  .sl-ingredientes__desc { font-size: 13px; }
+}

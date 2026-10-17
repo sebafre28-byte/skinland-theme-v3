@@ -1,0 +1,158 @@
+{{ 'sl-ingredientes.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign mf = product.metafields.custom
+  assign componentes = mf.routine_products.value
+  assign acumulado = ''
+  assign vistos = '|'
+  assign total = 0
+  assign omitidos = 0
+
+  for i in (1..3)
+    assign kn = 'ing' | append: i | append: '_nombre'
+    assign kd = 'ing' | append: i | append: '_desc'
+    assign nombre = mf[kn].value | strip
+    assign desc = mf[kd].value | strip
+    if nombre != blank
+      assign texto = nombre | append: ' ' | append: desc
+      capture claim
+        render 'sl-claim', texto: texto
+      endcapture
+      if claim contains '1'
+        assign omitidos = omitidos | plus: 1
+      else
+        if total > 0
+          assign acumulado = acumulado | append: '||'
+        endif
+        assign acumulado = acumulado | append: nombre | append: '::' | append: desc
+        assign total = total | plus: 1
+      endif
+    endif
+  endfor
+
+  if total == 0
+    for c in componentes
+      if total < 3
+        assign nombre = c.metafields.custom.ing1_nombre.value | strip
+        assign desc = c.metafields.custom.ing1_desc.value | strip
+        assign clave = nombre | downcase | prepend: '|' | append: '|'
+        assign repetido = false
+        if vistos contains clave
+          assign repetido = true
+        endif
+        if nombre != blank and repetido == false
+          assign texto = nombre | append: ' ' | append: desc
+          capture claim
+            render 'sl-claim', texto: texto
+          endcapture
+          if claim contains '1'
+            assign omitidos = omitidos | plus: 1
+          else
+            if total > 0
+              assign acumulado = acumulado | append: '||'
+            endif
+            assign acumulado = acumulado | append: nombre | append: '::' | append: desc
+            assign vistos = vistos | append: clave
+            assign total = total | plus: 1
+          endif
+        endif
+      endif
+    endfor
+  endif
+
+  assign items = acumulado | split: '||'
+
+  assign hay_inci = false
+  for c in componentes
+    if c.metafields.custom.ingredientes_inci.value != blank
+      assign hay_inci = true
+    endif
+  endfor
+  if hay_inci == false and mf.ingredientes_inci.value != blank
+    assign hay_inci = true
+  endif
+-%}
+
+{%- if total > 0 -%}
+  <section class="sl-ingredientes sl-scope" aria-labelledby="sl-ingredientes-{{ section.id }}" data-sl-ingredientes data-sl-omitidos="{{ omitidos }}">
+    <div class="sl-par__inner">
+      <h2 class="sl-h2" id="sl-ingredientes-{{ section.id }}">{{ section.settings.titulo }}</h2>
+      <ul class="sl-ingredientes__lista" role="list">
+        {%- for item in items -%}
+          {%- assign partes = item | split: '::' -%}
+          {%- assign ciclo = forloop.index | modulo: 3 -%}
+          <li class="sl-ingredientes__item">
+            <span class="sl-ingredientes__circulo sl-ingredientes__circulo--{{ ciclo }}">{{ partes[0] | escape }}</span>
+            {%- if partes[1] != blank -%}
+              <span class="sl-ingredientes__desc">{{ partes[1] | escape }}</span>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if hay_inci -%}
+        <button type="button" class="sl-ingredientes__inci-boton" data-sl-inci-abrir aria-haspopup="dialog">{{ section.settings.texto_inci }}</button>
+        <dialog class="sl-inci" data-sl-inci aria-labelledby="sl-inci-titulo-{{ section.id }}">
+          <div class="sl-inci__panel">
+            <div class="sl-inci__cabecera">
+              <h3 class="sl-inci__titulo" id="sl-inci-titulo-{{ section.id }}">{{ section.settings.titulo_inci }}</h3>
+              <button type="button" class="sl-inci__cerrar" data-sl-inci-cerrar autofocus aria-label="{{ section.settings.cerrar_aria }}">
+                {% render 'sl-icon', name: 'close', size: 20 %}
+              </button>
+            </div>
+            <div class="sl-inci__cuerpo">
+              {%- assign hubo_componente = false -%}
+              {%- for c in componentes -%}
+                {%- assign inci = c.metafields.custom.ingredientes_inci.value -%}
+                {%- if inci != blank -%}
+                  {%- assign hubo_componente = true -%}
+                  <h4 class="sl-inci__producto">{{ c.title }}</h4>
+                  <p class="sl-inci__texto">{{ inci | escape | newline_to_br }}</p>
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if hubo_componente == false -%}
+                <h4 class="sl-inci__producto">{{ product.title }}</h4>
+                <p class="sl-inci__texto">{{ mf.ingredientes_inci.value | escape | newline_to_br }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        </dialog>
+      {%- endif -%}
+    </div>
+  </section>
+  <script src="{{ 'sl-ingredientes.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Ingredientes",
+  "tag": "div",
+  "class": "sl-par sl-par--der",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Ingredientes clave"
+    },
+    {
+      "type": "text",
+      "id": "texto_inci",
+      "label": "Link a la lista completa",
+      "default": "Ver ingredientes completos (INCI)"
+    },
+    {
+      "type": "text",
+      "id": "titulo_inci",
+      "label": "Título de la ventana",
+      "default": "Ingredientes completos (INCI)"
+    },
+    {
+      "type": "text",
+      "id": "cerrar_aria",
+      "label": "Cerrar (accesible)",
+      "default": "Cerrar"
+    }
+  ]
+}
+{% endschema %}

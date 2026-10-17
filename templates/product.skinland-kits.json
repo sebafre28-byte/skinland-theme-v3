@@ -32,6 +32,14 @@
     "para_ti": {
       "type": "sl-para-ti",
       "settings": {}
+    },
+    "resultados": {
+      "type": "sl-resultados",
+      "settings": {}
+    },
+    "ingredientes": {
+      "type": "sl-ingredientes",
+      "settings": {}
     }
   },
   "order": [
@@ -39,6 +47,8 @@
     "videos",
     "incluye",
     "uso",
-    "para_ti"
+    "para_ti",
+    "resultados",
+    "ingredientes"
   ]
 }
