@@ -290,7 +290,9 @@
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'sl-pdp-hero.js' | asset_url }}" defer="defer"></script>
 
-{{ product | structured_data }}
+<script type="application/ld+json">
+  {{ product | structured_data }}
+</script>
 
 {% schema %}
 {

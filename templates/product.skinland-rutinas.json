@@ -8,10 +8,14 @@
       "settings": {
         "titulo": "Mírala en acción"
       }
+    },
+    "incluye": {
+      "type": "sl-incluye"
     }
   },
   "order": [
     "hero",
-    "videos"
+    "videos",
+    "incluye"
   ]
 }

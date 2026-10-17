@@ -8,10 +8,17 @@
       "settings": {
         "titulo": "Míralo en acción"
       }
+    },
+    "incluye": {
+      "type": "sl-incluye",
+      "settings": {
+        "titulo": "Qué trae tu caja"
+      }
     }
   },
   "order": [
     "hero",
-    "videos"
+    "videos",
+    "incluye"
   ]
 }

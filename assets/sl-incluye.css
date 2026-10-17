@@ -1,0 +1,76 @@
+/* sl-incluye · "Qué incluye" / "Qué trae tu caja" + tarjeta "sube al kit". Referencia: ExpressMovil.html, KitMovil.html, FichaDesktop.html */
+.sl-incluye { padding: 0; }
+.sl-incluye__banda { background: var(--sl-blanco); border-top: var(--sl-borde); border-bottom: var(--sl-borde); padding: 30px 0; }
+.sl-incluye__cabecera { display: flex; flex-direction: column; gap: 12px; }
+.sl-incluye__titulos { display: flex; flex-direction: column; gap: 12px; }
+.sl-incluye__bajada { margin: 0; font-size: 14px; }
+
+.sl-incluye__lista { display: flex; flex-direction: column; gap: 12px; margin: 12px 0 0; padding: 0; list-style: none; }
+.sl-incluye__item { position: relative; display: flex; gap: 12px; align-items: center; padding: 12px; border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); }
+.sl-incluye__foto {
+  flex: 0 0 72px; height: 84px; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  border: var(--sl-borde); border-radius: 12px; background: var(--sl-necesidad, var(--sl-menta));
+}
+.sl-incluye__foto img { width: 100%; height: 100%; object-fit: contain; padding: 4px; display: block; }
+.sl-incluye__banda--fusion .sl-incluye__foto img { mix-blend-mode: multiply; }
+.sl-incluye__cuerpo { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.sl-incluye__paso {
+  align-self: flex-start; padding: 2px 7px; border: var(--sl-borde); border-radius: 7px;
+  font-size: 10px; font-weight: 800; letter-spacing: .02em; text-transform: uppercase; line-height: 1.4; background: var(--sl-lima);
+}
+.sl-incluye__paso--2 { background: var(--sl-celeste); }
+.sl-incluye__paso--3 { background: var(--sl-durazno); }
+.sl-incluye__paso--4 { background: var(--sl-lila); }
+.sl-incluye__paso--0 { background: var(--sl-rosa); }
+.sl-incluye__nombre { font-size: 13px; font-weight: 700; line-height: 1.25; }
+.sl-incluye__beneficio { font-size: 12px; line-height: 1.35; }
+.sl-incluye__compra { display: flex; justify-content: space-between; align-items: center; gap: 6px; margin-top: 2px; }
+.sl-incluye__precio { font-family: var(--sl-font-display); font-weight: 800; font-size: 15px; }
+.sl-incluye__form .form { margin: 0; }
+.sl-incluye__form .sl-btn { min-height: 44px; font-size: 12px; padding: 0 10px; }
+
+.sl-incluye__resumen {
+  margin: 12px 0 0; padding: 14px 16px; border: var(--sl-borde); border-radius: 16px; background: var(--sl-tinta); color: #fff;
+  display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px;
+}
+.sl-incluye__resumen strong { font-family: var(--sl-font-display); font-size: 20px; font-weight: 800; }
+.sl-incluye__resumen--arriba { display: none; }
+
+/* Sube al kit */
+.sl-upgrade {
+  display: flex; flex-direction: column; gap: 14px; margin: 30px 0; padding: 18px;
+  border: var(--sl-borde); border-radius: 22px; background: var(--sl-lima); box-shadow: 5px 5px 0 var(--sl-tinta);
+}
+.sl-upgrade__texto { display: flex; flex-direction: column; gap: 10px; }
+.sl-upgrade__pregunta {
+  align-self: flex-start; transform: rotate(-2deg); padding: 5px 10px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco);
+  font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+}
+.sl-upgrade__titulo { margin: 0; font-family: var(--sl-font-display); font-size: 26px; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
+.sl-upgrade__frase { margin: 0; font-size: 14px; line-height: 1.45; }
+.sl-upgrade__precio { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.sl-upgrade__monto { font-family: var(--sl-font-display); font-size: 26px; font-weight: 800; }
+.sl-upgrade__chip { padding: 4px 9px; border: var(--sl-borde); border-radius: 9px; background: var(--sl-blanco); font-size: 13px; font-weight: 700; }
+.sl-upgrade__boton { width: 100%; }
+
+@media screen and (min-width: 990px) {
+  .sl-incluye__banda { padding: 56px 0; }
+  .sl-incluye__cabecera { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+  .sl-incluye__resumen--arriba { display: block; margin: 0; padding: 10px 16px; border-radius: 999px; font-size: 13px; }
+  .sl-incluye__resumen--arriba strong { font-size: 13px; font-family: var(--sl-font-body); }
+  .sl-incluye__resumen--pie { display: none; }
+  .sl-incluye__lista { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 24px; }
+  .sl-incluye__item { flex-direction: column; align-items: stretch; gap: 0; padding: 0; overflow: hidden; border-radius: 20px; }
+  .sl-incluye__foto { flex: none; width: 100%; height: 220px; border: 0; border-bottom: var(--sl-borde); border-radius: 0; }
+  .sl-incluye__foto img { padding: 18px; }
+  .sl-incluye__paso { position: absolute; top: 12px; left: 12px; z-index: 1; }
+  .sl-incluye__cuerpo { padding: 14px 16px 16px; gap: 6px; flex: 1; }
+  .sl-incluye__nombre { font-size: 15px; }
+  .sl-incluye__beneficio { font-size: 13px; }
+  .sl-incluye__compra { margin-top: auto; padding-top: 6px; }
+  .sl-incluye__precio { font-size: 20px; }
+  .sl-incluye__form .sl-btn { font-size: 13px; }
+  .sl-upgrade { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 28px; margin: 48px 0; }
+  .sl-upgrade__titulo { font-size: 32px; }
+  .sl-upgrade__boton { width: auto; min-width: 220px; }
+}

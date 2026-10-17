@@ -1,0 +1,252 @@
+{{ 'sl-incluye.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign componentes = product.metafields.custom.routine_products.value
+  assign precio = product.selected_or_first_available_variant.price
+
+  capture bs_raw
+    render 'sl-bundle-sum', product: product
+  endcapture
+  assign bs = bs_raw | strip | split: '|'
+  assign bs_suma = bs[0] | plus: 0
+  assign bs_ahorro = bs[1] | plus: 0
+  assign pasos = bs[3] | plus: 0
+  assign form_solo = ''
+
+  capture color_necesidad
+    render 'sl-color-necesidad', product: product
+  endcapture
+  assign color_necesidad = color_necesidad | strip
+
+  assign upgrade = product.metafields.custom.upgrade.value
+  assign mostrar_upgrade = false
+  if upgrade != blank and upgrade.available
+    assign mostrar_upgrade = true
+  endif
+-%}
+
+{%- if pasos > 0 -%}
+  <section class="sl-incluye sl-scope" data-sl-color="{{ color_necesidad }}" aria-labelledby="sl-incluye-{{ section.id }}">
+    <div class="sl-incluye__banda{% if section.settings.fusionar_fondo %} sl-incluye__banda--fusion{% endif %}">
+      <div class="sl-container">
+        <div class="sl-incluye__cabecera">
+          <div class="sl-incluye__titulos">
+            <h2 class="sl-h2" id="sl-incluye-{{ section.id }}">{{ section.settings.titulo }}</h2>
+            <p class="sl-incluye__bajada">{{ section.settings.bajada | replace: '[n]', pasos }}</p>
+          </div>
+          {%- if bs_ahorro > 0 -%}
+            <p class="sl-incluye__resumen sl-incluye__resumen--arriba">
+              {{ section.settings.texto_por_separado }} <s>{{ bs_suma | money_without_trailing_zeros }}</s> ·
+              <strong>{{ section.settings.texto_en_rutina }} {{ precio | money_without_trailing_zeros }}</strong>
+            </p>
+          {%- endif -%}
+        </div>
+
+        <ul class="sl-incluye__lista" role="list">
+          {%- for c in componentes -%}
+            {%- liquid
+              assign v = c.variants | where: 'available' | first
+              assign c_disponible = true
+              if v == blank
+                assign c_disponible = false
+                assign v = c.variants | first
+              endif
+              capture paso
+                render 'sl-paso', componente: c
+              endcapture
+              assign paso = paso | strip
+              assign beneficio = c.metafields.custom.beneficio_corto.value
+              assign foto = c.featured_image
+              assign chip_n = forloop.index | modulo: 5
+              assign form_solo = 'sl-solo-' | append: c.id
+            -%}
+            <li class="sl-incluye__item">
+              <div class="sl-incluye__foto">
+                {%- if foto != blank -%}
+                  <img src="{{ foto | image_url: width: 400 }}" srcset="{{ foto | image_url: width: 200 }} 200w, {{ foto | image_url: width: 400 }} 400w, {{ foto | image_url: width: 600 }} 600w" sizes="(min-width: 990px) 360px, 72px" alt="{{ foto.alt | default: c.title | escape }}" width="{{ foto.width }}" height="{{ foto.height }}" loading="lazy">
+                {%- endif -%}
+              </div>
+              <div class="sl-incluye__cuerpo">
+                <span class="sl-incluye__paso sl-incluye__paso--{{ chip_n }}">{{ forloop.index }}{% if paso != blank %} · {{ paso }}{% endif %}</span>
+                <strong class="sl-incluye__nombre">{{ c.title }}</strong>
+                {%- if beneficio != blank -%}
+                  <span class="sl-incluye__beneficio">{{ beneficio }}</span>
+                {%- endif -%}
+                <div class="sl-incluye__compra">
+                  <span class="sl-incluye__precio">{{ v.price | money_without_trailing_zeros }}</span>
+                  <product-form class="sl-incluye__form" data-hide-errors="true">
+                    {%- form 'product', c, id: form_solo, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                      <input type="hidden" name="id" value="{{ v.id }}" class="product-variant-id" {% unless c_disponible %}disabled{% endunless %}>
+                      <button type="submit" name="add" class="sl-btn sl-btn--sm" {% unless c_disponible %}disabled{% endunless %}>
+                        <span>{% if c_disponible %}{{ section.settings.boton_solo }}{% else %}{{ section.settings.agotado_texto }}{% endif %}</span>
+                        {%- render 'loading-spinner' -%}
+                      </button>
+                    {%- endform -%}
+                  </product-form>
+                </div>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        {%- if bs_ahorro > 0 -%}
+          <p class="sl-incluye__resumen sl-incluye__resumen--pie">
+            <span>{{ section.settings.texto_por_separado }} <s>{{ bs_suma | money_without_trailing_zeros }}</s></span>
+            <strong>{{ section.settings.texto_en_rutina }} {{ precio | money_without_trailing_zeros }}</strong>
+          </p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if mostrar_upgrade -%}
+      {%- liquid
+        assign up_precio = upgrade.selected_or_first_available_variant.price
+        assign diferencia = up_precio | minus: precio
+
+        capture up_bs_raw
+          render 'sl-bundle-sum', product: upgrade
+        endcapture
+        assign up_bs = up_bs_raw | strip | split: '|'
+        assign up_suma = up_bs[0] | plus: 0
+        assign up_completo = up_bs[2]
+        assign actual_completo = bs[2]
+
+        assign en_productos = 0
+        if up_completo == 'true' and actual_completo == 'true' and up_suma > bs_suma
+          assign en_productos = up_suma | minus: bs_suma
+        endif
+
+        assign extras = ''
+        for uc in upgrade.metafields.custom.routine_products.value
+          assign esta = false
+          for c in componentes
+            if c.id == uc.id
+              assign esta = true
+            endif
+          endfor
+          unless esta
+            assign nombre = uc.metafields.custom.nombre_corto.value | default: uc.title
+            if extras == ''
+              assign extras = nombre
+            else
+              assign extras = extras | append: ' + ' | append: nombre
+            endif
+          endunless
+        endfor
+
+        assign diferencia_texto = diferencia | money_without_trailing_zeros
+        assign en_productos_texto = en_productos | money_without_trailing_zeros
+        assign chip_upgrade = section.settings.upgrade_chip_corto | replace: '[diferencia]', diferencia_texto
+        if en_productos > 0
+          assign chip_upgrade = section.settings.upgrade_chip | replace: '[diferencia]', diferencia_texto | replace: '[productos]', en_productos_texto
+        endif
+      -%}
+      {%- if diferencia > 0 -%}
+        <div class="sl-container">
+          <div class="sl-upgrade">
+            <div class="sl-upgrade__texto">
+              {%- if product.metafields.custom.upgrade_texto.value != blank -%}
+                <span class="sl-upgrade__pregunta">{{ product.metafields.custom.upgrade_texto.value }}</span>
+              {%- endif -%}
+              <h3 class="sl-upgrade__titulo">{{ upgrade.title }}</h3>
+              {%- if extras != blank -%}
+                <p class="sl-upgrade__frase">{{ section.settings.upgrade_frase | replace: '[extras]', extras }}</p>
+              {%- endif -%}
+              <div class="sl-upgrade__precio">
+                <span class="sl-upgrade__monto">{{ up_precio | money_without_trailing_zeros }}</span>
+                <span class="sl-upgrade__chip">{{ chip_upgrade }}</span>
+              </div>
+            </div>
+            <a class="sl-btn sl-btn--lg sl-upgrade__boton" href="{{ upgrade.url }}" data-sl-version>{{ section.settings.upgrade_boton | replace: '[titulo]', upgrade.title }}</a>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </section>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Qué incluye",
+  "tag": "div",
+  "class": "sl-incluye-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Qué incluye"
+    },
+    {
+      "type": "text",
+      "id": "bajada",
+      "label": "Bajada",
+      "info": "Usa [n] para la cantidad de productos.",
+      "default": "¿No quieres los [n]? Puedes llevar cualquiera por separado."
+    },
+    {
+      "type": "checkbox",
+      "id": "fusionar_fondo",
+      "label": "Fusionar el fondo blanco de las fotos con el color",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "boton_solo",
+      "label": "Botón de cada producto",
+      "default": "+ Solo este"
+    },
+    {
+      "type": "text",
+      "id": "agotado_texto",
+      "label": "Texto de agotado",
+      "default": "Agotado"
+    },
+    {
+      "type": "text",
+      "id": "texto_por_separado",
+      "label": "Texto de \"por separado\"",
+      "default": "Por separado"
+    },
+    {
+      "type": "text",
+      "id": "texto_en_rutina",
+      "label": "Texto de \"en rutina\"",
+      "default": "En rutina"
+    },
+    {
+      "type": "header",
+      "content": "Tarjeta \"sube al kit\""
+    },
+    {
+      "type": "text",
+      "id": "upgrade_frase",
+      "label": "Frase",
+      "info": "Usa [extras] para los productos que suma.",
+      "default": "Es esta misma rutina + [extras]."
+    },
+    {
+      "type": "text",
+      "id": "upgrade_chip",
+      "label": "Chip con diferencia y productos",
+      "info": "Usa [diferencia] y [productos].",
+      "default": "+[diferencia] · sumas [productos] en productos"
+    },
+    {
+      "type": "text",
+      "id": "upgrade_chip_corto",
+      "label": "Chip solo con diferencia",
+      "info": "Se usa si no se puede calcular el valor en productos. Usa [diferencia].",
+      "default": "+[diferencia]"
+    },
+    {
+      "type": "text",
+      "id": "upgrade_boton",
+      "label": "Botón",
+      "info": "Usa [titulo].",
+      "default": "Ver [titulo] →"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,19 @@
+{%- comment -%}
+  Rol del paso de un componente, desde sus etiquetas paso-*. Parámetro: componente (producto).
+  Si tiene dos etiquetas de paso, gana la primera según este orden: limpieza, serum, crema, spf, tratamiento local.
+  Imprime solo el texto (vacío si no tiene etiqueta de paso).
+{%- endcomment -%}
+{%- liquid
+  assign etiquetas = componente.tags
+  if etiquetas contains 'paso-limpieza'
+    echo 'Limpia'
+  elsif etiquetas contains 'paso-serum'
+    echo 'Trata'
+  elsif etiquetas contains 'paso-crema'
+    echo 'Hidrata'
+  elsif etiquetas contains 'paso-spf' or etiquetas contains 'paso-proteccion-solar'
+    echo 'Protege'
+  elsif etiquetas contains 'paso-tratamiento-local'
+    echo 'Granito puntual'
+  endif
+-%}
