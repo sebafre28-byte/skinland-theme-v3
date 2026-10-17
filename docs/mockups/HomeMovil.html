@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skinland V3 · Home móvil</title>
+<!-- Mockup Skinland V3. Especificación visual: ver docs/SPECS-V3.md. Los [corchetes] son datos que faltan o bloques condicionales. -->
+<style>
+@font-face{font-family:'Funnel Display';font-weight:500;font-style:normal;font-display:swap;src:url('../fuentes/funnel-display-latin-500-normal.woff2') format('woff2')}
+@font-face{font-family:'Funnel Display';font-weight:600;font-style:normal;font-display:swap;src:url('../fuentes/funnel-display-latin-600-normal.woff2') format('woff2')}
+@font-face{font-family:'Funnel Display';font-weight:700;font-style:normal;font-display:swap;src:url('../fuentes/funnel-display-latin-700-normal.woff2') format('woff2')}
+@font-face{font-family:'Funnel Display';font-weight:800;font-style:normal;font-display:swap;src:url('../fuentes/funnel-display-latin-800-normal.woff2') format('woff2')}
+@font-face{font-family:'Funnel Sans';font-weight:400;font-style:normal;font-display:swap;src:url('../fuentes/funnel-sans-latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'Funnel Sans';font-weight:500;font-style:normal;font-display:swap;src:url('../fuentes/funnel-sans-latin-500-normal.woff2') format('woff2')}
+@font-face{font-family:'Funnel Sans';font-weight:600;font-style:normal;font-display:swap;src:url('../fuentes/funnel-sans-latin-600-normal.woff2') format('woff2')}
+@font-face{font-family:'Funnel Sans';font-weight:700;font-style:normal;font-display:swap;src:url('../fuentes/funnel-sans-latin-700-normal.woff2') format('woff2')}
+@font-face{font-family:'Cormorant Garamond';font-weight:600;font-style:normal;font-display:swap;src:url('_solo-mockup/cormorant-garamond-latin-600-normal.woff2') format('woff2')}
+</style>
+<style>
+body{margin:0}
+a{color:#17261f}a:hover{color:#3d5a4f}
+.shot{display:flex;flex-direction:column;align-items:center}
+.tube{width:40px;height:104px;background:#fff;border:2px solid #17261f;box-sizing:border-box;border-radius:14px 14px 5px 5px;display:flex;align-items:center;justify-content:center}
+.tube-cap{width:30px;height:18px;background:#17261f;border-radius:3px 3px 8px 8px}
+.jar-lid{width:80px;height:18px;background:#17261f;border-radius:8px 8px 3px 3px}
+.jar{width:74px;height:52px;background:#fff;border:2px solid #17261f;box-sizing:border-box;border-radius:6px 6px 14px 14px;display:flex;align-items:center;justify-content:center}
+.drop-bulb{width:16px;height:22px;background:#17261f;border-radius:8px 8px 4px 4px}
+.drop-neck{width:22px;height:12px;background:#ffffff;border:2px solid #17261f;box-sizing:border-box}
+.drop{width:48px;height:80px;background:#fff;border:2px solid #17261f;box-sizing:border-box;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.patch{width:66px;height:48px;background:#fff;border:2px solid #17261f;box-sizing:border-box;border-radius:8px;display:flex;align-items:center;justify-content:center}
+.lbl{font-family:'Funnel Sans',sans-serif;font-weight:700;font-size:8px;letter-spacing:.06em;text-transform:uppercase;text-align:center;line-height:1.1;padding:0 3px;color:#17261f}
+.lbl-v{writing-mode:vertical-rl;transform:rotate(180deg)}
+</style>
+</head>
+<body>
+<div style="width: 390px; height: 4920px; overflow: hidden; background: #f0ece6; font-family: 'Funnel Sans', sans-serif; color: #17261f; display: flex; flex-direction: column">
+
+  <div style="background: #dcf56c; border-bottom: 2px solid #17261f; padding: 9px 0; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; overflow: hidden; text-align: center; height: 27px; width: 425px">Envío gratis sobre $64.990 ✦ 100% originales ✦ Asesoría con Aly</div>
+
+  <header style="height: 71px; padding: 0 12px; display: flex; align-items: center; justify-content: space-between">
+    <button type="button" aria-label="Abrir menú" style="width: 44px; height: 44px; border: 0; background: transparent; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#17261f" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h11M4 17h16"></path></svg></button>
+    <a href="#" style="font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: #12221c; text-decoration: none">skinland.</a>
+    <button type="button" aria-label="Carrito, 0 productos" style="width: 44px; height: 44px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#17261f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2L5 8z"></path><path d="M9 8V6a3 3 0 0 1 6 0v2"></path></svg></button>
+  </header>
+
+  <section style="padding: 12px 20px 26px; display: flex; flex-direction: column; gap: 18px">
+    <span style="align-self: flex-start; transform: rotate(-2deg); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 7px 12px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff">K-beauty sin complicaciones</span>
+    <h1 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-weight: 800; font-size: 46px; line-height: .95; letter-spacing: -.035em">No necesitas más skincare. Necesitas saber <span style="display: inline-block; transform: rotate(-1.5deg); background: #dcf56c; border: 2px solid #17261f; border-radius: 12px; padding: 0 8px; margin-top: 6px">qué usar.</span></h1>
+    <p style="margin: 0; font-size: 16px; line-height: 1.5">Rutinas armadas por tipo de piel y kits por objetivo, con productos coreanos 100% originales.</p>
+    <div style="position: relative; height: 260px; border: 2px solid #17261f; border-radius: 26px; background: #8ee3b8; box-shadow: 6px 6px 0 #17261f; overflow: hidden">
+      <div style="position: absolute; left: 0; right: 0; bottom: 30px; display: flex; justify-content: center; align-items: flex-end; gap: 14px; transform: scale(1.12); transform-origin: bottom center">
+        <div class="shot"><div class="tube"><span class="lbl lbl-v">Limpia</span></div><div class="tube-cap"></div></div>
+        <div class="shot"><div class="drop-bulb"></div><div class="drop-neck"></div><div class="drop"><span class="lbl">Trata</span></div></div>
+        <div class="shot"><div class="jar-lid"></div><div class="jar"><span class="lbl">Hidrata</span></div></div>
+        <div class="shot"><div class="tube" style="height: 92px"><span class="lbl lbl-v">SPF50+</span></div><div class="tube-cap"></div></div>
+      </div>
+      <span style="position: absolute; top: 14px; right: 14px; width: 94px; height: 94px; border-radius: 999px; background: #ffb38a; border: 2px solid #17261f; transform: rotate(12deg); display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Funnel Display', sans-serif; font-size: 13px; font-weight: 800; line-height: 1.05">Ahorra<br>hasta<br>$21.960</span>
+      <span style="position: absolute; top: 20px; left: 16px; transform: rotate(-6deg); font-size: 12px; font-weight: 700; padding: 6px 10px; border: 2px solid #17261f; border-radius: 10px; background: #ffffff">Rutinas en 3 o 4 pasos</span>
+      <span style="position: absolute; left: 14px; bottom: 8px; font-size: 10px; font-weight: 500">[Foto real de productos]</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 6px">
+      <a href="#" style="height: 58px; border: 2px solid #17261f; border-radius: 16px; background: #17261f; box-shadow: 4px 4px 0 #dcf56c; color: #ffffff; font-family: 'Funnel Display', sans-serif; font-size: 18px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px">Encuentra tu rutina <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      <a href="#" style="height: 54px; border: 2px solid #17261f; border-radius: 16px; background: #ffffff; font-size: 16px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center">Haz el test de piel · 1 min</a>
+    </div>
+    <div style="display: flex; justify-content: space-between; gap: 6px; padding-top: 4px">
+      <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#17261f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"></path><path d="M9 12l2 2 4-4"></path></svg>100% originales</span>
+      <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#17261f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"></path></svg>Envío a todo Chile</span>
+      <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#17261f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>Pago seguro</span>
+    </div>
+  </section>
+
+  <section style="padding: 8px 20px 34px; display: flex; flex-direction: column; gap: 16px">
+    <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-weight: 800; font-size: 32px; line-height: 1; letter-spacing: -.03em">¿Qué te molesta hoy?</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px">
+      <a href="#" style="text-decoration: none; padding: 12px 18px; border: 2px solid #17261f; border-radius: 999px; background: #8ee3b8; font-size: 17px; font-weight: 700">Brillo</a>
+      <a href="#" style="text-decoration: none; padding: 12px 18px; border: 2px solid #17261f; border-radius: 999px; background: #dcf56c; font-size: 17px; font-weight: 700">Granitos</a>
+      <a href="#" style="text-decoration: none; padding: 12px 18px; border: 2px solid #17261f; border-radius: 999px; background: #ffe58a; font-size: 17px; font-weight: 700">Manchas</a>
+      <a href="#" style="text-decoration: none; padding: 12px 18px; border: 2px solid #17261f; border-radius: 999px; background: #ffb38a; font-size: 17px; font-weight: 700">Piel tirante</a>
+      <a href="#" style="text-decoration: none; padding: 12px 18px; border: 2px solid #17261f; border-radius: 999px; background: #a9d8ff; font-size: 17px; font-weight: 700">Zona T</a>
+      <a href="#" style="text-decoration: none; padding: 12px 18px; border: 2px solid #17261f; border-radius: 999px; background: #cbb8ff; font-size: 17px; font-weight: 700">Rojeces</a>
+      <a href="#" style="text-decoration: none; padding: 12px 18px; border: 2px solid #17261f; border-radius: 999px; background: #ffa3c8; font-size: 17px; font-weight: 700">Líneas</a>
+      <a href="#" style="text-decoration: none; padding: 12px 18px; border: 2px dashed #17261f; border-radius: 999px; background: #ffffff; font-size: 17px; font-weight: 700">No sé → test</a>
+    </div>
+  </section>
+
+  <section style="padding: 32px 20px 34px; background: #ffffff; border-top: 2px solid #17261f; border-bottom: 2px solid #17261f; display: flex; flex-direction: column; gap: 14px">
+    <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-weight: 800; font-size: 32px; line-height: 1; letter-spacing: -.03em">Tu rutina según tu piel</h2>
+    <div style="display: flex; gap: 8px">
+      <button type="button" aria-pressed="true" style="height: 42px; padding: 0 16px; border: 2px solid #17261f; border-radius: 999px; background: #17261f; color: #ffffff; font-family: 'Funnel Sans', sans-serif; font-size: 14px; font-weight: 700">Express · 3 pasos</button>
+      <button type="button" aria-pressed="false" style="height: 42px; padding: 0 16px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff; font-family: 'Funnel Sans', sans-serif; font-size: 14px; font-weight: 700">Esencial · 4 pasos</button>
+    </div>
+    <div style="border: 2px solid #17261f; border-radius: 22px; background: #8ee3b8; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: center"><strong style="font-family: 'Funnel Display', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: -.02em">Piel grasa</strong><span style="font-size: 12px; font-weight: 700; padding: 5px 10px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff">3 productos</span></div>
+      <div style="height: 150px; border: 2px solid #17261f; border-radius: 16px; background: #ffffff; display: flex; align-items: flex-end; justify-content: center; gap: 14px; padding-bottom: 16px; box-sizing: border-box">
+        <div class="shot"><div class="tube"><span class="lbl lbl-v">Mixsoon</span></div><div class="tube-cap"></div></div>
+        <div class="shot"><div class="jar-lid"></div><div class="jar"><span class="lbl">Skin1004</span></div></div>
+        <div class="shot"><div class="tube" style="height: 92px"><span class="lbl lbl-v">BoJ SPF</span></div><div class="tube-cap"></div></div>
+      </div>
+      <p style="margin: 0; font-size: 15px; font-weight: 500">Menos brillo y poros que se ven más finos.</p>
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap"><span style="font-family: 'Funnel Display', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -.02em">$59.990</span><span style="font-size: 13px">Por separado <s>$65.970</s></span><span style="transform: rotate(-3deg); font-family: 'Funnel Display', sans-serif; font-size: 12px; font-weight: 800; padding: 5px 10px; border: 2px solid #17261f; border-radius: 10px; background: #dcf56c">−$5.980</span></div>
+      <a href="#" style="height: 50px; border: 2px solid #17261f; border-radius: 14px; background: #ffffff; font-size: 16px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center">Ver Rutina Express Piel Grasa →</a>
+    </div>
+    <a href="#" style="text-decoration: none; border: 2px solid #17261f; border-radius: 18px; background: #ffb38a; padding: 18px; display: flex; justify-content: space-between; align-items: center"><strong style="font-family: 'Funnel Display', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -.02em">Piel seca</strong><span style="font-size: 14px; font-weight: 700">desde $62.990 →</span></a>
+    <a href="#" style="text-decoration: none; border: 2px solid #17261f; border-radius: 18px; background: #a9d8ff; padding: 18px; display: flex; justify-content: space-between; align-items: center"><strong style="font-family: 'Funnel Display', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -.02em">Piel mixta</strong><span style="font-size: 14px; font-weight: 700">desde $59.990 →</span></a>
+    <a href="#" style="text-decoration: none; border: 2px solid #17261f; border-radius: 18px; background: #cbb8ff; padding: 18px; display: flex; justify-content: space-between; align-items: center"><strong style="font-family: 'Funnel Display', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -.02em">Piel sensible</strong><span style="font-size: 14px; font-weight: 700">desde $54.990 →</span></a>
+  </section>
+
+  <section style="padding: 34px 20px; background: #dcf56c; border-bottom: 2px solid #17261f; display: flex; flex-direction: column; gap: 14px">
+    <span style="align-self: flex-start; transform: rotate(-2deg); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 6px 11px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff">Para granitos · 5 productos</span>
+    <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-weight: 800; font-size: 44px; line-height: .95; letter-spacing: -.035em">Kit Anti Acné</h2>
+    <div style="position: relative; height: 180px; border: 2px solid #17261f; border-radius: 20px; background: #ffffff; box-shadow: 5px 5px 0 #17261f; display: flex; align-items: flex-end; justify-content: center; gap: 8px; padding-bottom: 16px; box-sizing: border-box">
+      <div class="shot" style="transform: scale(.85); transform-origin: bottom center"><div class="tube"><span class="lbl lbl-v">Mixsoon</span></div><div class="tube-cap"></div></div>
+      <div class="shot" style="transform: scale(.85); transform-origin: bottom center"><div class="drop-bulb"></div><div class="drop-neck"></div><div class="drop"><span class="lbl">Tea-Trica</span></div></div>
+      <div class="shot" style="transform: scale(.85); transform-origin: bottom center"><div class="jar-lid"></div><div class="jar"><span class="lbl">Skin1004</span></div></div>
+      <div class="shot" style="transform: scale(.85); transform-origin: bottom center"><div class="tube" style="height: 92px"><span class="lbl lbl-v">BoJ</span></div><div class="tube-cap"></div></div>
+      <div class="patch" style="position: absolute; top: 14px; right: 14px; transform: rotate(10deg)"><span class="lbl">Parches</span></div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap"><span style="font-family: 'Funnel Display', sans-serif; font-size: 34px; font-weight: 800; letter-spacing: -.02em">$79.990</span><s style="font-size: 15px">$101.950</s></div>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap"><span style="font-family: 'Funnel Display', sans-serif; font-size: 13px; font-weight: 800; padding: 6px 11px; border: 2px solid #17261f; border-radius: 10px; background: #ffb38a">Ahorras $21.960</span><span style="font-size: 13px; font-weight: 700; padding: 6px 11px; border: 2px solid #17261f; border-radius: 10px; background: #ffffff">Envío gratis incluido</span></div>
+    <a href="#" style="height: 56px; border: 2px solid #17261f; border-radius: 16px; background: #17261f; box-shadow: 4px 4px 0 #ffffff; color: #ffffff; font-family: 'Funnel Display', sans-serif; font-size: 18px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center">Ver Kit Anti Acné →</a>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding-top: 6px">
+      <a href="#" style="text-decoration: none; border: 2px solid #17261f; border-radius: 14px; background: #ffe58a; padding: 12px; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 14px; font-weight: 700">Kit Anti Manchas</strong><span style="font-size: 12px">Agotado · Avísame</span></a>
+      <a href="#" style="text-decoration: none; border: 2px solid #17261f; border-radius: 14px; background: #ffa3c8; padding: 12px; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 14px; font-weight: 700">Kit Anti Edad</strong><span style="font-size: 12px">Agotado · Avísame</span></a>
+    </div>
+  </section>
+
+  <section style="padding: 34px 20px 10px">
+    <div style="border: 2px solid #17261f; border-radius: 24px; background: #cbb8ff; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; gap: 10px; align-items: center"><span style="width: 44px; height: 44px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-family: 'Funnel Display', sans-serif; font-weight: 800">Aly</span><div style="display: flex; flex-direction: column"><strong style="font-size: 15px; font-weight: 700">¿No sabes qué elegir?</strong><span style="font-size: 13px">Test de 3 preguntas o pregúntale a Aly</span></div></div>
+      <p style="margin: 0; align-self: flex-start; max-width: 86%; background: #ffffff; border: 2px solid #17261f; border-radius: 18px 18px 18px 4px; padding: 12px 14px; font-size: 15px; line-height: 1.4">¿Cómo sientes tu piel a mediodía?</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end">
+        <button type="button" style="height: 40px; padding: 0 14px; border: 2px solid #17261f; border-radius: 999px; background: #8ee3b8; font-family: 'Funnel Sans', sans-serif; font-size: 14px; font-weight: 700">Brillante</button>
+        <button type="button" style="height: 40px; padding: 0 14px; border: 2px solid #17261f; border-radius: 999px; background: #ffb38a; font-family: 'Funnel Sans', sans-serif; font-size: 14px; font-weight: 700">Tirante</button>
+        <button type="button" style="height: 40px; padding: 0 14px; border: 2px solid #17261f; border-radius: 999px; background: #dcf56c; font-family: 'Funnel Sans', sans-serif; font-size: 14px; font-weight: 700">Con granitos</button>
+      </div>
+      <a href="#" style="height: 50px; border: 2px solid #17261f; border-radius: 14px; background: #17261f; color: #ffffff; font-size: 15px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center">Hacer el test completo</a>
+    </div>
+  </section>
+
+  <section style="padding: 26px 20px 34px; display: flex; flex-direction: column; gap: 14px">
+    <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-weight: 800; font-size: 32px; line-height: 1; letter-spacing: -.03em">Favoritos de la casa</h2>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+      <article style="border: 2px solid #17261f; border-radius: 18px; background: #ffffff; overflow: hidden; display: flex; flex-direction: column">
+        <div style="height: 136px; background: #8ee3b8; border-bottom: 2px solid #17261f; position: relative; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 14px; box-sizing: border-box"><span style="position: absolute; top: 8px; left: 8px; font-size: 10px; font-weight: 700; padding: 3px 8px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff">Piel grasa</span><div class="shot"><div class="jar-lid"></div><div class="jar"><span class="lbl">Skin1004</span></div></div></div>
+        <div style="padding: 10px; display: flex; flex-direction: column; gap: 5px; flex: 1"><h3 style="margin: 0; font-size: 13px; font-weight: 700; line-height: 1.25">SKIN1004 Poremizing Light Gel Cream 75 ml</h3><span style="font-size: 12px">Hidrata sin brillo.</span><span style="font-family: 'Funnel Display', sans-serif; font-size: 19px; font-weight: 800; margin-top: auto">$23.990</span><button type="button" style="height: 40px; border: 2px solid #17261f; border-radius: 10px; background: #3d5a4f; color: #ffffff; font-family: 'Funnel Sans', sans-serif; font-size: 13px; font-weight: 700">Agregar</button></div>
+      </article>
+      <article style="border: 2px solid #17261f; border-radius: 18px; background: #ffffff; overflow: hidden; display: flex; flex-direction: column">
+        <div style="height: 136px; background: #a9d8ff; border-bottom: 2px solid #17261f; position: relative; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 14px; box-sizing: border-box"><span style="position: absolute; top: 8px; left: 8px; font-size: 10px; font-weight: 700; padding: 3px 8px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff">Piel mixta</span><div class="shot"><div class="tube" style="height: 92px"><span class="lbl lbl-v">BoJ SPF</span></div><div class="tube-cap"></div></div></div>
+        <div style="padding: 10px; display: flex; flex-direction: column; gap: 5px; flex: 1"><h3 style="margin: 0; font-size: 13px; font-weight: 700; line-height: 1.25">Beauty of Joseon Relief Sun Aqua-Fresh SPF50+</h3><span style="font-size: 12px">Protector liviano diario.</span><span style="font-family: 'Funnel Display', sans-serif; font-size: 19px; font-weight: 800; margin-top: auto">$21.990</span><button type="button" style="height: 40px; border: 2px solid #17261f; border-radius: 10px; background: #3d5a4f; color: #ffffff; font-family: 'Funnel Sans', sans-serif; font-size: 13px; font-weight: 700">Agregar</button></div>
+      </article>
+      <article style="border: 2px solid #17261f; border-radius: 18px; background: #ffffff; overflow: hidden; display: flex; flex-direction: column">
+        <div style="height: 136px; background: #cbb8ff; border-bottom: 2px solid #17261f; position: relative; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 14px; box-sizing: border-box"><span style="position: absolute; top: 8px; left: 8px; font-size: 10px; font-weight: 700; padding: 3px 8px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff">Sensible</span><div class="shot"><div class="jar-lid"></div><div class="jar"><span class="lbl">Dr.Althea</span></div></div></div>
+        <div style="padding: 10px; display: flex; flex-direction: column; gap: 5px; flex: 1"><h3 style="margin: 0; font-size: 13px; font-weight: 700; line-height: 1.25">Dr.Althea 345 Relief Cream 50 ml</h3><span style="font-size: 12px">Ayuda a calmar la piel reactiva.</span><span style="font-family: 'Funnel Display', sans-serif; font-size: 19px; font-weight: 800; margin-top: auto">$33.990</span><button type="button" style="height: 40px; border: 2px solid #17261f; border-radius: 10px; background: #3d5a4f; color: #ffffff; font-family: 'Funnel Sans', sans-serif; font-size: 13px; font-weight: 700">Agregar</button></div>
+      </article>
+      <article style="border: 2px solid #17261f; border-radius: 18px; background: #ffffff; overflow: hidden; display: flex; flex-direction: column">
+        <div style="height: 136px; background: #dcf56c; border-bottom: 2px solid #17261f; position: relative; display: flex; align-items: center; justify-content: center"><span style="position: absolute; top: 8px; left: 8px; font-size: 10px; font-weight: 700; padding: 3px 8px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff">Granitos</span><div class="patch" style="transform: rotate(-6deg); margin-top: 16px"><span class="lbl">The Saem</span></div></div>
+        <div style="padding: 10px; display: flex; flex-direction: column; gap: 5px; flex: 1"><h3 style="margin: 0; font-size: 13px; font-weight: 700; line-height: 1.25">The Saem Clear Spot Patch · 24 u</h3><span style="font-size: 12px">Para el granito puntual.</span><span style="font-family: 'Funnel Display', sans-serif; font-size: 19px; font-weight: 800; margin-top: auto">$5.990</span><button type="button" style="height: 40px; border: 2px solid #17261f; border-radius: 10px; background: #3d5a4f; color: #ffffff; font-family: 'Funnel Sans', sans-serif; font-size: 13px; font-weight: 700">Agregar</button></div>
+      </article>
+    </div>
+    <a href="#" style="height: 50px; border: 2px solid #17261f; border-radius: 14px; background: #ffffff; font-size: 15px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center">Ver todos los productos</a>
+  </section>
+
+  <section style="padding: 0 0 34px; display: flex; flex-direction: column; gap: 14px">
+    <h2 style="margin: 0; padding: 0 20px; font-family: 'Funnel Display', sans-serif; font-weight: 800; font-size: 32px; line-height: 1; letter-spacing: -.03em">Mira cómo se usa</h2>
+    <div style="display: flex; gap: 12px; padding: 0 20px; overflow: hidden">
+      <a href="#" style="flex: 0 0 170px; text-decoration: none; display: flex; flex-direction: column; gap: 8px"><span style="height: 290px; border: 2px solid #17261f; border-radius: 18px; background: #8ee3b8; position: relative; display: flex; align-items: center; justify-content: center"><span style="width: 52px; height: 52px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#17261f" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><span style="position: absolute; left: 10px; right: 10px; bottom: 10px; font-size: 11px">[Video UGC · piel grasa]</span></span><span style="font-size: 13px; font-weight: 700">Rutina Express Piel Grasa · $59.990</span></a>
+      <a href="#" style="flex: 0 0 170px; text-decoration: none; display: flex; flex-direction: column; gap: 8px"><span style="height: 290px; border: 2px solid #17261f; border-radius: 18px; background: #dcf56c; position: relative; display: flex; align-items: center; justify-content: center"><span style="width: 52px; height: 52px; border: 2px solid #17261f; border-radius: 999px; background: #ffffff; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#17261f" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span><span style="position: absolute; left: 10px; right: 10px; bottom: 10px; font-size: 11px">[Video UGC · kit anti acné]</span></span><span style="font-size: 13px; font-weight: 700">Kit Anti Acné · $79.990</span></a>
+      <span style="flex: 0 0 170px; height: 290px; border: 2px solid #17261f; border-radius: 18px; background: #ffb38a"></span>
+    </div>
+  </section>
+
+  <section style="padding: 0 20px 34px; display: flex; flex-direction: column; gap: 10px">
+    <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-weight: 800; font-size: 28px; line-height: 1; letter-spacing: -.02em">Lo que dicen nuestras clientas</h2>
+    <div style="border: 2px dashed #17261f; border-radius: 18px; background: #ffffff; padding: 16px; display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700">Compra verificada</span><p style="margin: 0; font-size: 15px">[Reseña real de compradora]</p><span style="font-size: 12px">[Nombre] · [tipo de piel] · [producto]</span></div>
+    <span style="font-size: 12px">[Visible solo con reseñas verificadas]</span>
+  </section>
+
+  <section style="margin: 0 20px 34px; border: 2px solid #17261f; border-radius: 24px; background: #8ee3b8; padding: 22px; display: flex; flex-direction: column; gap: 12px">
+    <h2 style="margin: 0; font-family: 'Funnel Display', sans-serif; font-weight: 800; font-size: 28px; line-height: 1; letter-spacing: -.02em">Tips para tu piel, sin spam</h2>
+    <label for="h-email" style="font-size: 13px; font-weight: 700">Tu correo</label>
+    <input id="h-email" type="email" placeholder="nombre@correo.cl" style="height: 50px; border: 2px solid #17261f; border-radius: 12px; padding: 0 14px; font-family: 'Funnel Sans', sans-serif; font-size: 15px; background: #ffffff">
+    <button type="button" style="height: 50px; border: 2px solid #17261f; border-radius: 12px; background: #17261f; color: #ffffff; font-family: 'Funnel Sans', sans-serif; font-size: 15px; font-weight: 700">Suscribirme</button>
+    <span style="font-size: 12px">[Beneficio de bienvenida por definir]</span>
+  </section>
+
+  <footer style="flex: 1; background: #17261f; color: #f0ece6; padding: 32px 20px; display: flex; flex-direction: column; gap: 14px; height: 43px">
+    <span style="font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; color: #a5afa0; height: 56px">skinland.</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px 18px; font-size: 14px"><a href="#" style="color: #f0ece6">Rutinas</a><a href="#" style="color: #f0ece6">Kits</a><a href="#" style="color: #f0ece6">Productos</a><a href="#" style="color: #f0ece6">Test de piel</a><a href="#" style="color: #f0ece6">Despacho</a><a href="#" style="color: #f0ece6">Cambios</a></div>
+    <span style="font-size: 12px; color: #c9c3b8">hola@skinland.cl · © 2026 Skinland</span>
+  </footer>
+
+</div>
+</body>
+</html>
