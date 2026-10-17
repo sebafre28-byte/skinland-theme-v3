@@ -1,0 +1,47 @@
+{%- comment -%}
+  Tarjeta 9:16 de un metaobjeto skinland_video. Solo muestra la portada: el video se carga al abrir el modal.
+  Parámetros: video (metaobjeto), posicion (1..n), tipo_piel (opcional, para "autora · tipo de piel"),
+  texto_reproducir (usa [titulo]), clase_color (c1..c4).
+{%- endcomment -%}
+{%- liquid
+  assign v_titulo = video.titulo.value
+  assign v_tipo = video.tipo.value
+  assign v_autora = video.autora.value
+  assign v_portada = video.portada.value
+  if v_portada == blank
+    assign v_portada = video.video.value.preview_image
+  endif
+  assign rotulo = v_titulo
+  if v_tipo == 'Clienta real' and v_autora != blank
+    assign rotulo = v_autora
+    if tipo_piel != blank
+      assign tipo_piel_min = tipo_piel | downcase
+      assign rotulo = v_autora | append: ' · ' | append: tipo_piel_min
+    endif
+  endif
+  assign aria = texto_reproducir | replace: '[titulo]', v_titulo
+-%}
+<li class="sl-video-card sl-video-card--{{ clase_color }}">
+  <button
+    type="button"
+    class="sl-video-card__boton"
+    data-sl-video-open
+    data-titulo="{{ v_titulo | escape }}"
+    data-colab="{{ video.colaboracion_pagada.value }}"
+    aria-label="{{ aria | escape }}"
+  >
+    <span class="sl-video-card__marco">
+      {%- if v_portada != blank -%}
+        <img class="sl-video-card__portada" src="{{ v_portada | image_url: width: 400 }}" alt="" width="150" height="266" loading="lazy">
+      {%- endif -%}
+      {%- if v_tipo != blank -%}
+        <span class="sl-video-card__tipo">{{ v_tipo }}</span>
+      {%- endif -%}
+      <span class="sl-video-card__play">{% render 'sl-icon', name: 'play', size: 18 %}</span>
+    </span>
+    <span class="sl-video-card__titulo">{{ rotulo }}</span>
+  </button>
+  <template data-sl-video-fuente>
+    {{- video.video.value | video_tag: image_size: '540x', controls: true, preload: 'none', playsinline: true, class: 'sl-video-modal__video' -}}
+  </template>
+</li>

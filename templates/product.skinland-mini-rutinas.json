@@ -2,9 +2,16 @@
   "sections": {
     "hero": {
       "type": "sl-pdp-hero"
+    },
+    "videos": {
+      "type": "sl-videos",
+      "settings": {
+        "titulo": "Mírala en acción"
+      }
     }
   },
   "order": [
-    "hero"
+    "hero",
+    "videos"
   ]
 }

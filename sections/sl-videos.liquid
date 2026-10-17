@@ -1,0 +1,165 @@
+{{ 'sl-videos.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign lista = section.settings.videos
+  if lista == blank
+    assign lista = product.metafields.custom.videos.value
+  endif
+  assign tipo_piel = product.metafields.custom.tipo_piel.value | first
+  assign hay = false
+  for v in lista
+    if v.permiso_uso.value and v.video.value != blank
+      assign hay = true
+      break
+    endif
+  endfor
+
+  assign form_id = ''
+  assign disponible = false
+  if product != blank
+    assign form_id = 'sl-form-' | append: product.id
+    assign disponible = product.selected_or_first_available_variant.available
+    assign cta = product.metafields.custom.routine_cta_text.value | default: section.settings.cta_texto_defecto
+    assign precio_texto = product.selected_or_first_available_variant.price | money_without_trailing_zeros
+  endif
+-%}
+
+{%- if hay -%}
+  <section class="sl-videos sl-videos--{{ section.settings.fondo }} sl-scope" aria-labelledby="sl-videos-{{ section.id }}" data-sl-videos>
+    <div class="sl-container">
+      <div class="sl-videos__cabecera">
+        <h2 class="sl-h2" id="sl-videos-{{ section.id }}">{{ section.settings.titulo }}</h2>
+        {%- if section.settings.bajada != blank -%}
+          <p class="sl-videos__bajada">{{ section.settings.bajada }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <ul class="sl-videos__lista" role="list">
+      {%- assign n = 0 -%}
+      {%- for v in lista -%}
+        {%- if v.permiso_uso.value and v.video.value != blank and n < 8 -%}
+          {%- assign n = n | plus: 1 -%}
+          {%- assign ciclo = n | modulo: 4 -%}
+          {% render 'sl-video-card',
+            video: v,
+            posicion: n,
+            tipo_piel: tipo_piel,
+            texto_reproducir: section.settings.reproducir_aria,
+            clase_color: ciclo
+          %}
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+    {%- if settings.sl_nota_videos != blank -%}
+      <div class="sl-container">
+        <p class="sl-videos__nota">{{ settings.sl_nota_videos }}</p>
+      </div>
+    {%- endif -%}
+
+    <dialog class="sl-video-modal" data-sl-video-modal aria-label="{{ section.settings.titulo | escape }}">
+      <div class="sl-video-modal__panel">
+        <button type="button" class="sl-video-modal__cerrar" data-sl-video-close autofocus aria-label="{{ section.settings.cerrar_aria }}">
+          {% render 'sl-icon', name: 'close', size: 22 %}
+        </button>
+        <div class="sl-video-modal__escena" data-sl-video-escena></div>
+        <div class="sl-video-modal__pie">
+          <span class="sl-chip sl-video-modal__colab" data-sl-video-colab hidden>{{ section.settings.chip_colab }}</span>
+          <p class="sl-video-modal__titulo" data-sl-video-titulo></p>
+          {%- if form_id != blank -%}
+            <button
+              type="submit"
+              form="{{ form_id }}"
+              class="sl-btn sl-btn--compra sl-btn--block"
+              data-sl-video-comprar
+              {% unless disponible %}disabled{% endunless %}
+            >
+              {%- if disponible -%}
+                {{ cta }} · {{ precio_texto }}
+              {%- else -%}
+                {{ section.settings.agotado_texto }}
+              {%- endif -%}
+            </button>
+          {%- endif -%}
+        </div>
+      </div>
+    </dialog>
+  </section>
+  <script src="{{ 'sl-videos.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Videos",
+  "tag": "div",
+  "class": "sl-videos-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Mírala en acción"
+    },
+    {
+      "type": "text",
+      "id": "bajada",
+      "label": "Bajada",
+      "default": "Qué trae, cómo se siente y cómo se usa. Videos reales."
+    },
+    {
+      "type": "select",
+      "id": "fondo",
+      "label": "Fondo",
+      "options": [
+        { "value": "lila", "label": "Banda lila" },
+        { "value": "ninguno", "label": "Sin banda" }
+      ],
+      "default": "lila"
+    },
+    {
+      "type": "metaobject_list",
+      "id": "videos",
+      "label": "Lista de videos",
+      "metaobject_type": "skinland_video",
+      "info": "Opcional. Si está vacío, se usan los videos del producto (custom.videos). Solo se muestran los que tienen permiso de uso."
+    },
+    {
+      "type": "header",
+      "content": "Textos"
+    },
+    {
+      "type": "text",
+      "id": "chip_colab",
+      "label": "Chip de colaboración pagada",
+      "default": "Colaboración pagada"
+    },
+    {
+      "type": "text",
+      "id": "cta_texto_defecto",
+      "label": "Botón de compra del modal",
+      "info": "Se usa si el producto no tiene routine_cta_text.",
+      "default": "Comenzar mi rutina"
+    },
+    {
+      "type": "text",
+      "id": "agotado_texto",
+      "label": "Texto de agotado",
+      "default": "Agotado"
+    },
+    {
+      "type": "text",
+      "id": "reproducir_aria",
+      "label": "Reproducir (accesible)",
+      "info": "Usa [titulo].",
+      "default": "Reproducir video: [titulo]"
+    },
+    {
+      "type": "text",
+      "id": "cerrar_aria",
+      "label": "Cerrar (accesible)",
+      "default": "Cerrar video"
+    }
+  ]
+}
+{% endschema %}

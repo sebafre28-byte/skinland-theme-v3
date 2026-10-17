@@ -13,3 +13,9 @@ Se reescribieron `custom.routine_results` y `custom.routine_why_it_works` del Ki
 ```
 Este kit trabaja el acné desde distintos frentes: limpia con Centella Asiática de Jeju y Ácido Salicílico (BHA) sin agredir la barrera, calma la piel y combate las bacterias del acné con el Pine Tree Complex (Árbol de Té + Pino + Ciprés) del sérum, minimiza poros y controla el sebo a largo plazo con la Sal Rosa del Himalaya y Niacinamida de la crema gel, protege durante el día con un SPF ultraligero no comedogénico de Agua de Arroz y Ceramide NP, mientras los parches hidrocoloides actúan de forma localizada sobre imperfecciones activas, absorbiendo el exudado y previniendo cicatrices por manipulación.
 ```
+
+## routine_savings_text (original, corregido el 17-oct-2026)
+```
+Ahorra $22.429 comprando el kit completo.
+```
+Ahora dice "Ahorra $21.960 comprando el kit completo." Es un monto escrito a mano: si cambian los precios, hay que actualizarlo (V3 no lo usa: calcula el ahorro).
