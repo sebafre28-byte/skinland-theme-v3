@@ -38,12 +38,12 @@
 /* Menú móvil (dialog nativo) */
 .sl-menu {
   position: fixed; inset: 0 auto 0 0;
-  width: min(360px, 92vw); height: 100%; max-height: none; margin: 0; padding: 0;
+  width: min(360px, 92vw); height: 100%; height: 100dvh; max-height: none; margin: 0; padding: 0;
   border: 0; border-right: var(--sl-borde);
   background: var(--sl-crema); color: var(--sl-tinta);
 }
 .sl-menu::backdrop { background: rgba(23, 38, 31, .55); }
-.sl-menu__panel { display: flex; flex-direction: column; gap: 18px; height: 100%; overflow-y: auto; padding: 12px 20px 28px; }
+.sl-menu__panel { display: flex; flex-direction: column; gap: 16px; height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: 12px 20px calc(96px + env(safe-area-inset-bottom)); }
 .sl-menu__cabecera { display: flex; align-items: center; justify-content: space-between; min-height: 56px; }
 .sl-menu__cerrar {
   width: 44px; height: 44px; padding: 0;
