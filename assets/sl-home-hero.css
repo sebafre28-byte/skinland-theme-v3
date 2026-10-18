@@ -42,11 +42,17 @@
   .sl-home-hero .sl-h1 { font-size: 38px; }
   .sl-home-hero__bajada { font-size: 15px; line-height: 1.4; }
   .sl-home-hero__acciones { gap: 8px; padding-top: 0; }
-  .sl-home-hero__escena:has(.sl-escena) .sl-home-hero__sticker { width: 62px; height: 62px; font-size: 9.5px; top: 6px; right: 8px; }
 }
 /* La cápsula de la lámina sale por arriba de la tarjeta */
 .sl-home-hero__escena:has(.sl-escena) { overflow: visible; }
 .sl-home-hero__escena:has(.sl-escena) .sl-escena { margin-top: 44px; }
 @media screen and (max-width: 989px) {
   .sl-home-hero__grid { row-gap: 20px; }
+}
+/* Sello de ahorro grande, asomando por la esquina de la tarjeta */
+.sl-home-hero__escena:has(.sl-escena) .sl-home-hero__sticker { width: 88px; height: 88px; padding: 6px; font-size: 12.5px; top: -22px; right: -6px; z-index: 4; box-shadow: 3px 3px 0 var(--sl-tinta); }
+.sl-home-hero__escena:has(.sl-escena) .sl-escena { margin-top: 58px; }
+@media screen and (min-width: 990px) {
+  .sl-home-hero__escena:has(.sl-escena) .sl-home-hero__sticker { width: 118px; height: 118px; font-size: 16px; top: -28px; right: -14px; }
+  .sl-home-hero__escena:has(.sl-escena) .sl-escena { margin-top: 96px; }
 }

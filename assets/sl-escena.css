@@ -25,11 +25,11 @@
 @media screen and (min-width: 990px) {
   .sl-escena { margin-top: 80px; margin-bottom: 18px; }
   .sl-escena__lista { gap: 14px; padding: 18px 16px 12px; }
-  .sl-escena__prod { max-width: 120px; }
-  .sl-escena__dibujo { max-width: 76px; }
+  .sl-escena__prod { max-width: 160px; }
+  .sl-escena__dibujo { max-width: 112px; }
   .sl-escena__num { width: 24px; height: 24px; font-size: 13px; }
   .sl-escena__lista { padding: 18px 16px 12px; }
-  .sl-escena__paso { font-size: 12px; }
+  .sl-escena__paso { font-size: 14px; padding: 3px 10px; }
   .sl-escena__cap { font-size: 14px; padding: 6px 14px; }
 }
 
