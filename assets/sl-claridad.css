@@ -26,6 +26,5 @@ body .sl-acordeon__fila { cursor: pointer; }
 /* 4) Las tarjetas son un contenedor; la acción es su botón oscuro de abajo */
 body .sl-tarjeta__boton { box-shadow: 3px 3px 0 var(--sl-lima); }
 
-/* Precio "Por separado": se lee entero y bien marcado; la misma marca en Home, fichas y landings */
-.sl-scope s { position: relative; text-decoration: none; font-weight: 700; padding: 0 3px; }
-.sl-scope s::after { content: ''; position: absolute; left: -2px; right: -2px; top: 50%; height: 3px; background: currentColor; transform: translateY(-50%) rotate(-7deg); border-radius: 2px; }
+/* Precio "Por separado": el monto se lee completo; la marca es una línea fina que no tapa los dígitos. Igual en Home, fichas y landings */
+.sl-scope s { text-decoration: line-through; text-decoration-thickness: 1.5px; text-decoration-skip-ink: none; font-weight: 600; opacity: .8; }
