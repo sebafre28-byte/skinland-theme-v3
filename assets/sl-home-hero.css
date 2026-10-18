@@ -35,3 +35,7 @@
   .sl-home-hero__productos--n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .sl-home-hero__paso { font-size: 13px; }
 }
+.sl-home-hero__asesora { position: absolute; left: 12px; bottom: 12px; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); box-shadow: var(--sl-sombra-chica, none); }
+.sl-home-hero__asesora-foto { width: 48px; height: 48px; border: var(--sl-borde); border-radius: 50%; object-fit: cover; }
+.sl-home-hero__asesora-texto { font-size: 12px; font-weight: 700; line-height: 1.15; max-width: 150px; }
+.sl-home-hero__escena:has(.sl-home-hero__asesora) .sl-home-hero__productos { margin-bottom: 76px; }

@@ -53,6 +53,12 @@
           {%- endfor -%}
         </div>
       {%- endif -%}
+      {%- if section.settings.foto_asesora != blank -%}
+        <span class="sl-home-hero__asesora">
+          {{ section.settings.foto_asesora | image_url: width: 160 | image_tag: loading: 'eager', widths: '80, 160', sizes: '56px', class: 'sl-home-hero__asesora-foto', alt: section.settings.texto_asesora }}
+          {%- if section.settings.texto_asesora != blank -%}<span class="sl-home-hero__asesora-texto">{{ section.settings.texto_asesora }}</span>{%- endif -%}
+        </span>
+      {%- endif -%}
       {%- if section.settings.chip_pasos != blank -%}
         <span class="sl-home-hero__chip">{{ section.settings.chip_pasos }}</span>
       {%- endif -%}
@@ -81,6 +87,18 @@
   "name": "Skinland · Hero inicio",
   "tag": "div",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "foto_asesora",
+      "label": "Foto de quien asesora",
+      "info": "Opcional. Foto real y con permiso: aparece como sello redondo en la escena. Si está vacía no se muestra."
+    },
+    {
+      "type": "text",
+      "id": "texto_asesora",
+      "label": "Texto junto a la foto",
+      "info": "Por ejemplo, el nombre y qué hace. Lo escribes tú."
+    },
     {
       "type": "text",
       "id": "eyebrow",

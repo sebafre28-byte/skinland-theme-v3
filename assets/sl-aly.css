@@ -13,3 +13,4 @@
   .sl-aly__caja { max-width: 720px; margin: 0 auto; }
 }
 .sl-aly__aviso { margin: 16px; padding: 12px; border: 2px dashed var(--sl-tinta); border-radius: var(--sl-radio-m); font-size: 13px; }
+.sl-aly__foto { flex: 0 0 72px; width: 72px; height: 72px; border: var(--sl-borde); border-radius: 50%; object-fit: cover; background: var(--sl-blanco); }
