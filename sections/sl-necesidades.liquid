@@ -1,0 +1,57 @@
+{{ 'sl-necesidades.css' | asset_url | stylesheet_tag }}
+
+{%- if section.blocks.size > 0 -%}
+  <section class="sl-necesidades sl-scope" aria-labelledby="sl-necesidades-{{ section.id }}">
+    <div class="sl-container">
+      <h2 class="sl-h2" id="sl-necesidades-{{ section.id }}">{{ section.settings.titulo }}</h2>
+      <ul class="sl-necesidades__lista" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign destino = block.settings.coleccion.url
+            if block.type == 'no_se'
+              assign destino = settings.sl_test_url
+            endif
+          -%}
+          {%- if destino != blank and block.settings.texto != blank -%}
+            <li {{ block.shopify_attributes }}>
+              <a class="sl-necesidades__pildora{% if block.type == 'no_se' %} sl-necesidades__pildora--punteada{% endif %}" href="{{ destino }}"{% if block.type != 'no_se' %} data-sl-color="{{ block.settings.color }}"{% endif %}>{{ block.settings.texto }}</a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Necesidades",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "titulo", "label": "Título", "default": "¿Qué te molesta hoy?" }
+  ],
+  "blocks": [
+    {
+      "type": "necesidad",
+      "name": "Necesidad",
+      "settings": [
+        { "type": "text", "id": "texto", "label": "Texto", "default": "Brillo" },
+        { "type": "collection", "id": "coleccion", "label": "Colección", "info": "Sin colección, la píldora no se muestra." },
+        { "type": "select", "id": "color", "label": "Color", "default": "menta", "options": [
+          { "value": "menta", "label": "Menta" }, { "value": "lima", "label": "Lima" }, { "value": "amarillo", "label": "Amarillo" },
+          { "value": "durazno", "label": "Durazno" }, { "value": "celeste", "label": "Celeste" }, { "value": "lila", "label": "Lila" }, { "value": "rosa", "label": "Rosa" }
+        ] }
+      ]
+    },
+    {
+      "type": "no_se",
+      "name": "No sé → test",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "texto", "label": "Texto", "default": "No sé → test", "info": "Lleva al test de piel de los ajustes del tema; sin enlace no se muestra." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Skinland · Necesidades" }]
+}
+{% endschema %}

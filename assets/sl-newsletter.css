@@ -1,0 +1,11 @@
+/* sl-newsletter */
+.sl-newsletter { padding: 34px 0; }
+.sl-newsletter__caja { display: flex; flex-direction: column; gap: 14px; padding: 22px 18px; border: var(--sl-borde); border-radius: 22px; background: var(--sl-menta); }
+.sl-newsletter__form { display: flex; flex-direction: column; gap: 10px; }
+.sl-newsletter__label { font-size: 13px; font-weight: 700; }
+.sl-newsletter__input { min-height: 52px; padding: 0 14px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); color: var(--sl-tinta); font: inherit; font-size: 16px; }
+.sl-newsletter__ok, .sl-newsletter__error, .sl-newsletter__beneficio { margin: 0; font-size: 13px; font-weight: 600; }
+@media screen and (min-width: 990px) {
+  .sl-newsletter { padding: 56px 0; }
+  .sl-newsletter__caja { max-width: 640px; margin: 0 auto; }
+}

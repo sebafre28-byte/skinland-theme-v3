@@ -1,0 +1,14 @@
+/* sl-aly · bloque de chat hacia el test */
+.sl-aly { padding: 34px 0; }
+.sl-aly__caja { display: flex; flex-direction: column; gap: 14px; padding: 18px; border: var(--sl-borde); border-radius: 22px; background: var(--sl-lila); }
+.sl-aly__cab { display: flex; align-items: center; gap: 12px; }
+.sl-aly__avatar { flex: 0 0 48px; width: 48px; height: 48px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-blanco); font-family: var(--sl-font-display); font-weight: 800; }
+.sl-aly__titulo { margin: 0; font-family: var(--sl-font-display); font-size: 20px; font-weight: 800; line-height: 1.1; }
+.sl-aly__bajada { margin: 2px 0 0; font-size: 13px; }
+.sl-aly__pregunta { margin: 0; padding: 12px 14px; border: var(--sl-borde); border-radius: 16px 16px 16px 4px; background: var(--sl-blanco); font-size: 15px; }
+.sl-aly__respuestas { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.sl-aly__resp { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-necesidad, var(--sl-menta)); color: var(--sl-tinta); font-size: 14px; font-weight: 700; text-decoration: none; }
+@media screen and (min-width: 990px) {
+  .sl-aly { padding: 56px 0; }
+  .sl-aly__caja { max-width: 720px; margin: 0 auto; }
+}

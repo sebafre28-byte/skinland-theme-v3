@@ -1,0 +1,71 @@
+{{ 'sl-aly.css' | asset_url | stylesheet_tag }}
+
+{%- if settings.sl_test_url != blank -%}
+  {%- liquid
+    assign base = settings.sl_test_url
+    assign sep = '?'
+    if base contains '?'
+      assign sep = '&'
+    endif
+  -%}
+  <section class="sl-aly sl-scope" aria-labelledby="sl-aly-{{ section.id }}">
+    <div class="sl-container">
+      <div class="sl-aly__caja">
+        <div class="sl-aly__cab">
+          <span class="sl-aly__avatar" aria-hidden="true">{{ section.settings.nombre | slice: 0, 3 }}</span>
+          <div>
+            <h2 class="sl-aly__titulo" id="sl-aly-{{ section.id }}">{{ section.settings.titulo }}</h2>
+            {%- if section.settings.bajada != blank -%}
+              <p class="sl-aly__bajada">{{ section.settings.bajada }}</p>
+            {%- endif -%}
+          </div>
+        </div>
+        {%- if section.settings.pregunta != blank -%}
+          <p class="sl-aly__pregunta">{{ section.settings.pregunta }}</p>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <ul class="sl-aly__respuestas" role="list">
+            {%- for block in section.blocks -%}
+              {%- if block.settings.texto != blank -%}
+                <li {{ block.shopify_attributes }}>
+                  <a class="sl-aly__resp" data-sl-color="{{ block.settings.color }}" href="{{ base }}{% if block.settings.parametro != blank %}{{ sep }}{{ block.settings.parametro | strip }}{% endif %}">{{ block.settings.texto }}</a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        <a class="sl-btn sl-btn--tinta sl-btn--block" href="{{ base }}">{{ section.settings.boton }}</a>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Aly",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "nombre", "label": "Nombre del asistente", "default": "Aly" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "¿No sabes qué elegir?" },
+    { "type": "text", "id": "bajada", "label": "Bajada", "default": "Test de 3 preguntas o pregúntale a Aly" },
+    { "type": "text", "id": "pregunta", "label": "Pregunta", "default": "¿Cómo sientes tu piel a mediodía?" },
+    { "type": "text", "id": "boton", "label": "Botón", "default": "Hacer el test completo" }
+  ],
+  "blocks": [
+    {
+      "type": "respuesta",
+      "name": "Respuesta rápida",
+      "settings": [
+        { "type": "text", "id": "texto", "label": "Texto", "default": "Brillante" },
+        { "type": "text", "id": "parametro", "label": "Parámetro del test", "info": "Ej.: piel=grasa. Se agrega al enlace del test de los ajustes. Debe existir en el test." },
+        { "type": "select", "id": "color", "label": "Color", "default": "menta", "options": [
+          { "value": "menta", "label": "Menta" }, { "value": "lima", "label": "Lima" }, { "value": "amarillo", "label": "Amarillo" },
+          { "value": "durazno", "label": "Durazno" }, { "value": "celeste", "label": "Celeste" }, { "value": "lila", "label": "Lila" }, { "value": "rosa", "label": "Rosa" }
+        ] }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [{ "name": "Skinland · Aly" }]
+}
+{% endschema %}

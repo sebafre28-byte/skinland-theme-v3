@@ -1,0 +1,24 @@
+/* sl-home-hero · referencia: docs/mockups/HomeMovil.html */
+.sl-home-hero { padding: 12px 0 26px; }
+.sl-home-hero__grid { display: flex; flex-direction: column; gap: 18px; }
+.sl-home-hero__texto { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+.sl-home-hero__eyebrow { transform: rotate(-2deg); padding: 7px 12px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.sl-home-hero__bajada { margin: 0; font-size: 16px; line-height: 1.5; }
+.sl-home-hero__escena { position: relative; min-height: 220px; border: var(--sl-borde); border-radius: var(--sl-radio-galeria); background: var(--sl-menta); box-shadow: var(--sl-sombra-destacada); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.sl-home-hero__foto { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sl-home-hero__collage { display: flex; align-items: flex-end; justify-content: center; gap: 8px; padding: 44px 16px 16px; width: 100%; }
+.sl-home-hero__collage img { width: 31%; max-height: 190px; object-fit: contain; }
+.sl-home-hero__chip { position: absolute; top: 18px; left: 14px; transform: rotate(-6deg); padding: 6px 10px; border: var(--sl-borde); border-radius: var(--sl-radio-s); background: var(--sl-blanco); font-size: 12px; font-weight: 700; }
+.sl-home-hero__sticker { position: absolute; top: 12px; right: 12px; width: 94px; height: 94px; display: grid; place-items: center; padding: 8px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-durazno); transform: rotate(12deg); text-align: center; font-family: var(--sl-font-display); font-size: 13px; font-weight: 800; line-height: 1.05; }
+.sl-home-hero__acciones { display: flex; flex-direction: column; gap: 12px; padding-top: 6px; }
+.sl-home-hero__confianza .sl-confianza { justify-content: space-between; }
+@media screen and (min-width: 990px) {
+  .sl-home-hero { padding: 32px 0 48px; }
+  .sl-home-hero__grid { display: grid; grid-template-columns: 1.05fr .95fr; grid-template-areas: 'texto escena' 'acciones escena' 'confianza escena'; column-gap: 48px; row-gap: 20px; align-content: center; }
+  .sl-home-hero__texto { grid-area: texto; align-self: end; }
+  .sl-home-hero__escena { grid-area: escena; min-height: 460px; }
+  .sl-home-hero__acciones { grid-area: acciones; flex-direction: row; }
+  .sl-home-hero__acciones .sl-btn { width: auto; flex: 1; }
+  .sl-home-hero__confianza { grid-area: confianza; }
+  .sl-home-hero .sl-h1 { font-size: 64px; }
+}

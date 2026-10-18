@@ -1,0 +1,43 @@
+{{ 'sl-favoritos.css' | asset_url | stylesheet_tag }}
+
+{%- assign col = section.settings.coleccion -%}
+{%- if col != blank and col.products.size > 0 -%}
+  <section class="sl-favoritos sl-scope" aria-labelledby="sl-favoritos-{{ section.id }}">
+    <div class="sl-container">
+      <h2 class="sl-h2" id="sl-favoritos-{{ section.id }}">{{ section.settings.titulo }}</h2>
+      <ul class="sl-favoritos__grid" role="list">
+        {%- for p in col.products limit: section.settings.cantidad -%}
+          {%- assign form_id = 'sl-fav-' | append: section.id | append: '-' | append: p.id -%}
+          <li>
+            {% render 'sl-tarjeta-producto',
+              product: p,
+              form_id: form_id,
+              texto_agregar: section.settings.texto_agregar,
+              texto_agotado: section.settings.texto_agotado,
+              texto_ver: section.settings.texto_ver
+            %}
+          </li>
+        {%- endfor -%}
+      </ul>
+      <a class="sl-btn sl-btn--block sl-favoritos__todos" href="{{ col.url }}">{{ section.settings.texto_todos }}</a>
+    </div>
+  </section>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Favoritos",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Favoritos de la casa" },
+    { "type": "collection", "id": "coleccion", "label": "Colección", "info": "Sin colección, la sección no se muestra." },
+    { "type": "range", "id": "cantidad", "label": "Productos", "min": 2, "max": 8, "step": 2, "default": 4 },
+    { "type": "text", "id": "texto_agregar", "label": "Botón agregar", "default": "Agregar" },
+    { "type": "text", "id": "texto_ver", "label": "Botón de productos con variantes", "default": "Ver opciones" },
+    { "type": "text", "id": "texto_agotado", "label": "Texto de agotado", "default": "Agotado" },
+    { "type": "text", "id": "texto_todos", "label": "Enlace a la colección", "default": "Ver todos los productos" }
+  ],
+  "presets": [{ "name": "Skinland · Favoritos" }]
+}
+{% endschema %}

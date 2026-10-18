@@ -1,0 +1,20 @@
+/* sl-favoritos + sl-tarjeta-producto */
+.sl-favoritos { padding: 34px 0; }
+.sl-favoritos .sl-container { display: flex; flex-direction: column; gap: 16px; }
+.sl-favoritos__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.sl-tarjeta { display: flex; flex-direction: column; gap: 10px; height: 100%; padding: 10px; border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-necesidad, var(--sl-menta)); }
+.sl-tarjeta__enlace { display: flex; flex-direction: column; gap: 6px; flex: 1; color: var(--sl-tinta); text-decoration: none; }
+.sl-tarjeta__foto { position: relative; display: grid; place-items: center; aspect-ratio: 1; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); overflow: hidden; }
+.sl-tarjeta__foto img { width: 100%; height: 100%; object-fit: contain; padding: 8%; }
+.sl-tarjeta__chip { position: absolute; top: 8px; left: 8px; z-index: 1; padding: 3px 8px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); font-size: 11px; font-weight: 700; }
+.sl-tarjeta__titulo { margin: 0; font-size: 14px; font-weight: 700; line-height: 1.25; }
+.sl-tarjeta__beneficio { margin: 0; font-size: 12px; line-height: 1.35; }
+.sl-tarjeta__precio { margin: 0; font-family: var(--sl-font-display); font-size: 18px; font-weight: 800; }
+.sl-tarjeta__boton, .sl-tarjeta__agotado { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 44px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-tinta); color: var(--sl-blanco); font: inherit; font-size: 14px; font-weight: 700; text-decoration: none; cursor: pointer; }
+.sl-tarjeta__agotado { background: var(--sl-blanco); color: var(--sl-tinta); opacity: .7; cursor: default; }
+.sl-tarjeta__form .form { margin: 0; }
+@media screen and (min-width: 990px) {
+  .sl-favoritos { padding: 56px 0; }
+  .sl-favoritos__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+  .sl-favoritos__todos { width: auto; align-self: center; padding-inline: 28px; }
+}

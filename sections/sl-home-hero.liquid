@@ -1,0 +1,86 @@
+{{ 'sl-home-hero.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  capture am_raw
+    render 'sl-ahorro-max', col_a: section.settings.coleccion_ahorro_1, col_b: section.settings.coleccion_ahorro_2
+  endcapture
+  assign ahorro_max = am_raw | strip | plus: 0
+  assign ahorro_texto = ahorro_max | money_without_trailing_zeros
+
+  assign foto = section.settings.imagen
+  assign respaldo = section.settings.coleccion_ahorro_1.products
+-%}
+
+<section class="sl-home-hero sl-scope" aria-labelledby="sl-home-hero-{{ section.id }}">
+  <div class="sl-container sl-home-hero__grid">
+    <div class="sl-home-hero__texto">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="sl-home-hero__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h1 class="sl-h1 sl-home-hero__titulo" id="sl-home-hero-{{ section.id }}">
+        {{- section.settings.titulo }}
+        {% if section.settings.marcado != blank %}<span class="sl-marcador">{{ section.settings.marcado }}</span>{% endif -%}
+      </h1>
+      {%- if section.settings.bajada != blank -%}
+        <p class="sl-home-hero__bajada">{{ section.settings.bajada }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="sl-home-hero__escena">
+      {%- if foto != blank -%}
+        {{ foto | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 750px) 560px, 90vw', widths: '400, 600, 900', class: 'sl-home-hero__foto', alt: foto.alt }}
+      {%- elsif respaldo.size > 0 -%}
+        <div class="sl-home-hero__collage">
+          {%- for p in respaldo limit: 3 -%}
+            {%- if p.featured_image -%}
+              {{ p.featured_image | image_url: width: 400 | image_tag: loading: 'eager', widths: '200, 400', sizes: '30vw', alt: p.featured_image.alt | default: '' }}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      {%- if section.settings.chip_pasos != blank -%}
+        <span class="sl-home-hero__chip">{{ section.settings.chip_pasos }}</span>
+      {%- endif -%}
+      {%- if ahorro_max > 0 and section.settings.sticker != blank -%}
+        <span class="sl-home-hero__sticker">{{ section.settings.sticker | replace: '[ahorro]', ahorro_texto }}</span>
+      {%- endif -%}
+    </div>
+
+    <div class="sl-home-hero__acciones">
+      {%- if section.settings.boton_coleccion != blank -%}
+        <a class="sl-btn sl-btn--tinta sl-btn--block" href="{{ section.settings.boton_coleccion.url }}">
+          {{ section.settings.boton_texto }} {% render 'sl-icon', name: 'arrow', size: 20 %}
+        </a>
+      {%- endif -%}
+      {%- if settings.sl_test_url != blank and section.settings.test_texto != blank -%}
+        <a class="sl-btn sl-btn--block sl-btn--lg" href="{{ settings.sl_test_url }}">{{ section.settings.test_texto }}</a>
+      {%- endif -%}
+    </div>
+
+    <div class="sl-home-hero__confianza">{% render 'sl-confianza' %}</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Skinland · Hero inicio",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "K-beauty sin complicaciones" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "No necesitas más skincare. Necesitas saber" },
+    { "type": "text", "id": "marcado", "label": "Palabras con marcador lima", "default": "qué usar." },
+    { "type": "textarea", "id": "bajada", "label": "Bajada", "default": "Rutinas armadas por tipo de piel y kits por objetivo, con productos coreanos 100% originales." },
+    { "type": "header", "content": "Foto" },
+    { "type": "image_picker", "id": "imagen", "label": "Foto real de productos", "info": "Si está vacía se usan las fotos de los primeros productos de la primera colección de ahorro." },
+    { "type": "text", "id": "chip_pasos", "label": "Etiqueta sobre la foto", "default": "Rutinas en 3 o 4 pasos" },
+    { "type": "text", "id": "sticker", "label": "Sticker de ahorro", "default": "Ahorra hasta [ahorro]", "info": "Usa [ahorro]. El monto se calcula: es el mayor ahorro entre los productos de las colecciones de abajo. Sin ahorro real no se muestra." },
+    { "type": "collection", "id": "coleccion_ahorro_1", "label": "Colección para el ahorro (rutinas)" },
+    { "type": "collection", "id": "coleccion_ahorro_2", "label": "Colección para el ahorro (kits)" },
+    { "type": "header", "content": "Botones" },
+    { "type": "text", "id": "boton_texto", "label": "Botón principal", "default": "Encuentra tu rutina" },
+    { "type": "collection", "id": "boton_coleccion", "label": "Colección del botón principal", "info": "Si está vacía, el botón no se muestra." },
+    { "type": "text", "id": "test_texto", "label": "Botón del test", "default": "Haz el test de piel · 1 min", "info": "Usa el enlace del test de los ajustes del tema; sin enlace no se muestra." }
+  ],
+  "presets": [{ "name": "Skinland · Hero inicio" }]
+}
+{% endschema %}

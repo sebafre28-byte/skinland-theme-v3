@@ -1,0 +1,114 @@
+{{ 'sl-kit-destacado.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign p = section.settings.kit
+-%}
+
+{%- if p != blank -%}
+  {%- liquid
+    capture bs_raw
+      render 'sl-bundle-sum', product: p
+    endcapture
+    assign bs = bs_raw | strip | split: '|'
+    assign suma = bs[0] | plus: 0
+    assign ahorro = bs[1] | plus: 0
+    assign completo = bs[2]
+    assign pasos = bs[3] | plus: 0
+    assign precio = p.selected_or_first_available_variant.price
+    assign umbral = settings.sl_envio_gratis_umbral | times: 100
+    assign badge = p.metafields.custom.routine_badge.value
+    assign rotulo = badge
+    if pasos > 0
+      assign rotulo_n = section.settings.texto_productos | replace: '[n]', pasos
+      if badge != blank
+        assign rotulo = badge | append: ' · ' | append: rotulo_n
+      else
+        assign rotulo = rotulo_n
+      endif
+    endif
+  -%}
+  <section class="sl-kit-destacado sl-scope" aria-labelledby="sl-kit-destacado-{{ section.id }}">
+    <div class="sl-container sl-kit-destacado__grid">
+      <div class="sl-kit-destacado__texto">
+        {%- if rotulo != blank -%}
+          <span class="sl-kit-destacado__chip">{{ rotulo }}</span>
+        {%- endif -%}
+        <h2 class="sl-h1 sl-kit-destacado__titulo" id="sl-kit-destacado-{{ section.id }}">{{ p.title }}</h2>
+        <div class="sl-kit-destacado__precio">
+          <span class="sl-precio">{{ precio | money_without_trailing_zeros }}</span>
+          {%- if completo == 'true' and ahorro > 0 -%}
+            <span class="sl-texto-chico">{{ section.settings.texto_por_separado }} <s>{{ suma | money_without_trailing_zeros }}</s></span>
+          {%- endif -%}
+        </div>
+        <div class="sl-kit-destacado__etiquetas">
+          {%- if completo == 'true' and ahorro > 0 -%}
+            {%- assign ahorro_t = ahorro | money_without_trailing_zeros -%}
+            <span class="sl-kit-destacado__ahorro">{{ section.settings.texto_ahorras | replace: '[ahorro]', ahorro_t }}</span>
+          {%- endif -%}
+          {%- if umbral > 0 and precio >= umbral and section.settings.texto_envio != blank -%}
+            <span class="sl-kit-destacado__envio">{{ section.settings.texto_envio }}</span>
+          {%- endif -%}
+        </div>
+        {%- if p.available -%}
+          <a class="sl-btn sl-btn--tinta sl-btn--block" href="{{ p.url }}">{{ section.settings.boton | replace: '[titulo]', p.title }}</a>
+        {%- else -%}
+          <p class="sl-kit-destacado__agotado">{{ section.settings.texto_agotado }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="sl-kit-destacado__escena">
+        {%- for c in p.metafields.custom.routine_products.value -%}
+          {%- if c.featured_image -%}
+            {{ c.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 240', sizes: '80px', alt: c.title }}
+          {%- endif -%}
+        {%- else -%}
+          {%- if p.featured_image -%}
+            {{ p.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 600', sizes: '300px', alt: p.title }}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.coleccion != blank -%}
+        <ul class="sl-kit-destacado__otros" role="list">
+          {%- assign n = 0 -%}
+          {%- for o in section.settings.coleccion.products -%}
+            {%- if o.id != p.id and n < 4 -%}
+              {%- assign n = n | plus: 1 -%}
+              {%- capture oc_raw -%}{% render 'sl-color-necesidad', product: o %}{%- endcapture -%}
+              <li>
+                <a class="sl-kit-destacado__otro" href="{% if o.available == false and section.settings.url_aviso != blank %}{{ section.settings.url_aviso }}{% else %}{{ o.url }}{% endif %}" data-sl-color="{{ oc_raw | strip }}">
+                  <strong>{{ o.title }}</strong>
+                  {%- if o.available -%}
+                    <span>{{ o.selected_or_first_available_variant.price | money_without_trailing_zeros }}</span>
+                  {%- else -%}
+                    <span>{{ section.settings.texto_agotado }}{% if section.settings.url_aviso != blank %} · {{ section.settings.texto_avisame }}{% endif %}</span>
+                  {%- endif -%}
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Kit destacado",
+  "tag": "div",
+  "settings": [
+    { "type": "product", "id": "kit", "label": "Kit destacado", "info": "Sin producto, la sección no se muestra." },
+    { "type": "collection", "id": "coleccion", "label": "Colección de kits", "info": "De aquí salen los otros kits (hasta 4)." },
+    { "type": "url", "id": "url_aviso", "label": "Enlace de aviso de stock", "info": "Formulario o Klaviyo back-in-stock. Si está vacío, los kits agotados solo dicen Agotado." },
+    { "type": "text", "id": "texto_productos", "label": "Etiqueta de productos", "default": "[n] productos", "info": "Usa [n]." },
+    { "type": "text", "id": "texto_por_separado", "label": "Texto del tachado", "default": "Por separado" },
+    { "type": "text", "id": "texto_ahorras", "label": "Etiqueta de ahorro", "default": "Ahorras [ahorro]", "info": "Usa [ahorro]." },
+    { "type": "text", "id": "texto_envio", "label": "Etiqueta de envío gratis", "default": "Envío gratis incluido", "info": "Solo aparece si el precio del kit llega al umbral de envío gratis." },
+    { "type": "text", "id": "boton", "label": "Botón", "default": "Ver [titulo] →", "info": "Usa [titulo]." },
+    { "type": "text", "id": "texto_agotado", "label": "Texto de agotado", "default": "Agotado" },
+    { "type": "text", "id": "texto_avisame", "label": "Texto de aviso", "default": "Avísame" }
+  ],
+  "presets": [{ "name": "Skinland · Kit destacado" }]
+}
+{% endschema %}

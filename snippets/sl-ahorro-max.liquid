@@ -1,0 +1,32 @@
+{%- comment -%}
+  Mayor ahorro calculado (centavos) entre los productos de una o dos colecciones que tienen routine_products.
+  Solo cuenta productos disponibles con ahorro completo (misma regla que sl-bundle-sum). Nada escrito a mano.
+  Uso:
+    {%- capture am_raw -%}{% render 'sl-ahorro-max', col_a: colA, col_b: colB %}{%- endcapture -%}
+    {%- assign ahorro_max = am_raw | strip | plus: 0 -%}
+{%- endcomment -%}
+{%- liquid
+  assign maximo = 0
+  for col in (1..2)
+    if col == 1
+      assign actual = col_a
+    else
+      assign actual = col_b
+    endif
+    if actual != blank
+      for p in actual.products
+        if p.available and p.metafields.custom.routine_products.value != blank
+          capture bs_raw
+            render 'sl-bundle-sum', product: p
+          endcapture
+          assign bs = bs_raw | strip | split: '|'
+          assign a = bs[1] | plus: 0
+          if a > maximo
+            assign maximo = a
+          endif
+        endif
+      endfor
+    endif
+  endfor
+-%}
+{{ maximo }}

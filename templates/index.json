@@ -1,75 +1,179 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "hero": {
+      "type": "sl-home-hero",
+      "settings": {
+        "coleccion_ahorro_1": "rutinas",
+        "coleccion_ahorro_2": "kits",
+        "boton_coleccion": "rutinas"
+      }
+    },
+    "necesidades": {
+      "type": "sl-necesidades",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "n1": {
+          "type": "necesidad",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "texto": "Brillo",
+            "coleccion": "piel-grasa",
+            "color": "menta"
           }
         },
-        "button": {
-          "type": "buttons",
+        "n2": {
+          "type": "necesidad",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "texto": "Granitos",
+            "coleccion": "anti-acne",
+            "color": "lima"
+          }
+        },
+        "n3": {
+          "type": "necesidad",
+          "settings": {
+            "texto": "Manchas",
+            "coleccion": "anti-manchas",
+            "color": "amarillo"
+          }
+        },
+        "n4": {
+          "type": "necesidad",
+          "settings": {
+            "texto": "Piel tirante",
+            "coleccion": "piel-seca",
+            "color": "durazno"
+          }
+        },
+        "n5": {
+          "type": "necesidad",
+          "settings": {
+            "texto": "Zona T",
+            "coleccion": "piel-mixta",
+            "color": "celeste"
+          }
+        },
+        "n6": {
+          "type": "necesidad",
+          "settings": {
+            "texto": "Rojeces",
+            "coleccion": "piel-sensible",
+            "color": "lila"
+          }
+        },
+        "n7": {
+          "type": "necesidad",
+          "settings": {
+            "texto": "Líneas",
+            "coleccion": "anti-edad",
+            "color": "rosa"
+          }
+        },
+        "no_se": {
+          "type": "no_se",
+          "settings": {
+            "texto": "No sé → test"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5",
+        "n6",
+        "n7",
+        "no_se"
       ],
+      "settings": {}
+    },
+    "rutinas": {
+      "type": "sl-rutinas",
+      "blocks": {
+        "express": {
+          "type": "version",
+          "settings": {
+            "etiqueta": "Express · 3 pasos",
+            "destacada": "rutina-express-piel-grasa",
+            "coleccion": "rutinas"
+          }
+        },
+        "esencial": {
+          "type": "version",
+          "settings": {
+            "etiqueta": "Esencial · 4 pasos",
+            "destacada": "rutina-piel-grasa",
+            "coleccion": "rutinas"
+          }
+        }
+      },
+      "block_order": [
+        "express",
+        "esencial"
+      ],
+      "settings": {}
+    },
+    "kit": {
+      "type": "sl-kit-destacado",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "kit": "kit-anti-acne",
+        "coleccion": "kits"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "aly": {
+      "type": "sl-aly",
+      "blocks": {
+        "a1": {
+          "type": "respuesta",
+          "settings": {
+            "texto": "Brillante",
+            "color": "menta"
+          }
+        },
+        "a2": {
+          "type": "respuesta",
+          "settings": {
+            "texto": "Tirante",
+            "color": "durazno"
+          }
+        },
+        "a3": {
+          "type": "respuesta",
+          "settings": {
+            "texto": "Con granitos",
+            "color": "lima"
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "settings": {}
+    },
+    "favoritos": {
+      "type": "sl-favoritos",
+      "settings": {}
+    },
+    "videos": {
+      "type": "sl-videos",
       "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "titulo": "Mira cómo se usa"
       }
+    },
+    "newsletter": {
+      "type": "sl-newsletter",
+      "settings": {}
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "hero",
+    "necesidades",
+    "rutinas",
+    "kit",
+    "aly",
+    "favoritos",
+    "videos",
+    "newsletter"
   ]
 }

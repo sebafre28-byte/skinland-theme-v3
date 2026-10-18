@@ -1,0 +1,42 @@
+{%- comment -%}
+  Tarjeta de producto suelto con botón agregar que respeta el stock.
+  Parámetros: product, form_id (único en la página), texto_agregar, texto_agotado, texto_ver.
+  Agrega con un <product-form> nativo de Dawn; si el producto tiene varias variantes, lleva a su ficha.
+{%- endcomment -%}
+{%- liquid
+  assign variante = product.selected_or_first_available_variant
+  assign tipo = product.metafields.custom.tipo_piel.value | first
+  capture color_raw
+    render 'sl-color-necesidad', product: product
+  endcapture
+  assign color = color_raw | strip
+  assign beneficio = product.metafields.custom.beneficio_corto.value
+-%}
+<article class="sl-tarjeta" data-sl-color="{{ color }}">
+  <a class="sl-tarjeta__enlace" href="{{ product.url }}">
+    <span class="sl-tarjeta__foto">
+      {%- if tipo != blank -%}<span class="sl-tarjeta__chip">{{ tipo }}</span>{%- endif -%}
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 480 | image_tag: loading: 'lazy', widths: '240, 360, 480', sizes: '(min-width: 990px) 260px, 45vw', alt: product.featured_image.alt | default: product.title }}
+      {%- endif -%}
+    </span>
+    <h3 class="sl-tarjeta__titulo">{{ product.title }}</h3>
+    {%- if beneficio != blank -%}<p class="sl-tarjeta__beneficio">{{ beneficio }}</p>{%- endif -%}
+    <p class="sl-tarjeta__precio">{{ variante.price | money_without_trailing_zeros }}</p>
+  </a>
+  {%- if product.available == false -%}
+    <span class="sl-tarjeta__agotado">{{ texto_agotado }}</span>
+  {%- elsif product.variants.size > 1 -%}
+    <a class="sl-tarjeta__boton" href="{{ product.url }}">{{ texto_ver }}</a>
+  {%- else -%}
+    <product-form class="sl-tarjeta__form" data-hide-errors="true">
+      {%- form 'product', product, id: form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+        <input type="hidden" name="id" value="{{ variante.id }}" class="product-variant-id">
+        <button type="submit" name="add" class="sl-tarjeta__boton">
+          <span>{{ texto_agregar }}</span>
+          {%- render 'loading-spinner' -%}
+        </button>
+      {%- endform -%}
+    </product-form>
+  {%- endif -%}
+</article>

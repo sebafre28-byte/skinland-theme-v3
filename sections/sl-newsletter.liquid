@@ -1,0 +1,52 @@
+{{ 'sl-newsletter.css' | asset_url | stylesheet_tag }}
+
+{%- assign tiene_app = false -%}
+{%- for block in section.blocks -%}
+  {%- if block.type == '@app' -%}{%- assign tiene_app = true -%}{%- endif -%}
+{%- endfor -%}
+
+<section class="sl-newsletter sl-scope" aria-labelledby="sl-newsletter-{{ section.id }}">
+  <div class="sl-container">
+    <div class="sl-newsletter__caja">
+      <h2 class="sl-h2" id="sl-newsletter-{{ section.id }}">{{ section.settings.titulo }}</h2>
+      {%- if tiene_app -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == '@app' -%}{% render block %}{%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- form 'customer', id: 'sl-newsletter-form', class: 'sl-newsletter__form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <label class="sl-newsletter__label" for="sl-newsletter-correo">{{ section.settings.etiqueta_correo }}</label>
+          <input id="sl-newsletter-correo" class="sl-newsletter__input" type="email" name="contact[email]" required autocomplete="email" placeholder="{{ section.settings.placeholder | escape }}">
+          <button type="submit" class="sl-btn sl-btn--tinta sl-btn--block">{{ section.settings.boton }}</button>
+          {%- if form.posted_successfully? -%}
+            <p class="sl-newsletter__ok" role="status">{{ section.settings.mensaje_ok }}</p>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <p class="sl-newsletter__error" role="alert">{{ form.errors | default_errors }}</p>
+          {%- endif -%}
+        {%- endform -%}
+      {%- endif -%}
+      {%- if section.settings.beneficio != blank -%}
+        <p class="sl-newsletter__beneficio">{{ section.settings.beneficio }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Skinland · Newsletter",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Tips para tu piel, sin spam" },
+    { "type": "text", "id": "etiqueta_correo", "label": "Etiqueta del campo", "default": "Tu correo" },
+    { "type": "text", "id": "placeholder", "label": "Texto de ayuda del campo", "default": "nombre@correo.cl" },
+    { "type": "text", "id": "boton", "label": "Botón", "default": "Suscribirme" },
+    { "type": "text", "id": "mensaje_ok", "label": "Mensaje de éxito", "default": "Listo, ya estás suscrita." },
+    { "type": "text", "id": "beneficio", "label": "Beneficio de bienvenida", "info": "Déjalo vacío si no existe un cupón real: solo se muestra si escribes algo." }
+  ],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "Skinland · Newsletter" }]
+}
+{% endschema %}

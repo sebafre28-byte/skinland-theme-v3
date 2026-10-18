@@ -346,7 +346,6 @@
 
             # Subir al kit: primera línea cuyo producto tiene custom.upgrade disponible y que aún no está en el carrito.
             assign up = null
-            assign up_linea_variante = null
             for item in cart.items
               if up == null
                 assign cand = item.product.metafields.custom.upgrade.value

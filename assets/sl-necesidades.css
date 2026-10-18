@@ -1,0 +1,8 @@
+/* sl-necesidades · "¿Qué te molesta hoy?" */
+.sl-necesidades { padding: 8px 0 34px; }
+.sl-necesidades .sl-container { display: flex; flex-direction: column; gap: 16px; }
+.sl-necesidades__lista { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.sl-necesidades__pildora { display: inline-flex; align-items: center; min-height: 48px; padding: 12px 18px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-necesidad, var(--sl-menta)); color: var(--sl-tinta); font-size: 17px; font-weight: 700; text-decoration: none; }
+.sl-necesidades__pildora--punteada { border-style: dashed; background: var(--sl-blanco); }
+.sl-necesidades__pildora:focus-visible { outline: 3px solid var(--sl-tinta); outline-offset: 2px; box-shadow: 0 0 0 6px var(--sl-lima); }
+@media (hover: hover) { .sl-necesidades__pildora:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--sl-tinta); } }
