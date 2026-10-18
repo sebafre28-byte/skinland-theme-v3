@@ -106,14 +106,14 @@ body {
   padding: 0 22px;
   border-radius: 16px;
   background: var(--sl-compra);
-  color: #fff;
+  color: var(--sl-blanco);
   font-family: var(--sl-font-display);
   font-size: 18px;
   font-weight: 700;
   box-shadow: var(--sl-sombra);
 }
 .sl-btn--compra:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--sl-tinta); }
-.sl-btn--tinta { background: var(--sl-tinta); color: #fff; box-shadow: 4px 4px 0 var(--sl-lima); border-radius: 16px; min-height: 58px; font-family: var(--sl-font-display); font-size: 18px; }
+.sl-btn--tinta { background: var(--sl-tinta); color: var(--sl-blanco); box-shadow: 4px 4px 0 var(--sl-lima); border-radius: 16px; min-height: 58px; font-family: var(--sl-font-display); font-size: 18px; }
 .sl-btn[disabled], .sl-btn[aria-disabled='true'] { opacity: .55; cursor: not-allowed; box-shadow: none; }
 .sl-btn--block { width: 100%; }
 

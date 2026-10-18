@@ -17,7 +17,7 @@
 
 /* Carrito (página) */
 .cart__contents, .cart__footer { color: var(--sl-tinta); font-family: var(--sl-font-body); }
-.cart-items .cart-item { border-bottom: 2px dashed rgba(0, 0, 0, .15); }
+.cart-items .cart-item { border-bottom: 2px dashed color-mix(in srgb, var(--sl-tinta) 15%, transparent); }
 .cart-item__name { font-family: var(--sl-font-display); font-weight: 800; letter-spacing: -.01em; color: var(--sl-tinta); text-decoration: none; }
 .cart .quantity { border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); overflow: hidden; }
 .cart .quantity::before, .cart .quantity::after { display: none; }

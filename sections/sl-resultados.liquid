@@ -1,5 +1,7 @@
 {{ 'sl-resultados.css' | asset_url | stylesheet_tag }}
 
+{%- capture color_nec -%}{% render 'sl-color-necesidad', product: product %}{%- endcapture -%}
+{%- assign color_nec = color_nec | strip -%}
 {%- liquid
   assign crudo = product.metafields.custom.routine_results.value
   assign lineas = crudo | newline_to_br | split: '<br />'
@@ -22,7 +24,7 @@
 -%}
 
 {%- if n_ok > 0 -%}
-  <section class="sl-resultados sl-scope" aria-labelledby="sl-resultados-{{ section.id }}" data-sl-resultados data-sl-omitidas="{{ n_omitidas }}">
+  <section class="sl-resultados sl-scope" data-sl-color="{{ color_nec }}" aria-labelledby="sl-resultados-{{ section.id }}" data-sl-resultados data-sl-omitidas="{{ n_omitidas }}">
     <div class="sl-par__inner">
       <h2 class="sl-h2" id="sl-resultados-{{ section.id }}">{{ section.settings.titulo }}</h2>
       <ol class="sl-resultados__lista" role="list">

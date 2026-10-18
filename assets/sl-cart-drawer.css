@@ -48,7 +48,7 @@
   align-items: start;
   margin: 0;
   padding: 16px 0;
-  border-bottom: 2px dashed rgba(0, 0, 0, .15);
+  border-bottom: 2px dashed color-mix(in srgb, var(--sl-tinta) 15%, transparent);
 }
 .sl-cart .sl-cart-item:last-child { margin-bottom: 0; border-bottom: 0; }
 .sl-cart-item__foto { width: 80px; height: 80px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 14px; background: var(--sl-blanco); overflow: hidden; }

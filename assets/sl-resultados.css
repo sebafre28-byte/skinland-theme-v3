@@ -8,9 +8,7 @@
   border-right: var(--sl-borde); text-align: center;
   font-family: var(--sl-font-display); font-size: 15px; font-weight: 800; line-height: 1.1;
 }
-.sl-resultados__etiqueta--1 { background: var(--sl-lima); }
-.sl-resultados__etiqueta--2 { background: var(--sl-durazno); }
-.sl-resultados__etiqueta--0 { background: var(--sl-lila); }
+.sl-resultados__etiqueta { background: var(--sl-necesidad, var(--sl-menta)); }
 .sl-resultados__cuerpo { padding: 14px 12px; font-size: 14px; line-height: 1.4; min-width: 0; }
 .sl-resultados__titulo { margin: 0; }
 .sl-resultados__mas { margin-top: 6px; font-size: 13px; }

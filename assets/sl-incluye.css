@@ -30,7 +30,7 @@
 .sl-incluye__form .sl-btn { min-height: 44px; font-size: 12px; padding: 0 10px; }
 
 .sl-incluye__resumen {
-  margin: 12px 0 0; padding: 14px 16px; border: var(--sl-borde); border-radius: 16px; background: var(--sl-tinta); color: #fff;
+  margin: 12px 0 0; padding: 14px 16px; border: var(--sl-borde); border-radius: 16px; background: var(--sl-tinta); color: var(--sl-blanco);
   display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 13px;
 }
 .sl-incluye__resumen strong { font-family: var(--sl-font-display); font-size: 20px; font-weight: 800; }

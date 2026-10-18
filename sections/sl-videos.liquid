@@ -1,5 +1,6 @@
 {{ 'sl-videos.css' | asset_url | stylesheet_tag }}
 
+{%- if product != blank -%}{%- capture color_nec -%}{% render 'sl-color-necesidad', product: product %}{%- endcapture -%}{%- assign color_nec = color_nec | strip -%}{%- endif -%}
 {%- liquid
   assign lista = section.settings.videos
   if lista == blank and product != blank
@@ -31,7 +32,7 @@
 -%}
 
 {%- if hay -%}
-  <section class="sl-videos sl-videos--{{ section.settings.fondo }} sl-scope" aria-labelledby="sl-videos-{{ section.id }}" data-sl-videos>
+  <section class="sl-videos sl-videos--{{ section.settings.fondo }} sl-scope"{% if product != blank %} data-sl-color="{{ color_nec }}"{% endif %} aria-labelledby="sl-videos-{{ section.id }}" data-sl-videos>
     <div class="sl-container">
       <div class="sl-videos__cabecera">
         <h2 class="sl-h2" id="sl-videos-{{ section.id }}">{{ section.settings.titulo }}</h2>

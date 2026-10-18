@@ -7,9 +7,7 @@
   width: 96px; height: 96px; padding: 4px 6px; display: flex; align-items: center; justify-content: center;
   border: var(--sl-borde); border-radius: 999px; font-family: var(--sl-font-display); font-size: 12px; font-weight: 800; line-height: 1.1; letter-spacing: -.01em; overflow-wrap: break-word;
 }
-.sl-ingredientes__circulo--1 { background: var(--sl-menta); }
-.sl-ingredientes__circulo--2 { background: var(--sl-celeste); }
-.sl-ingredientes__circulo--0 { background: var(--sl-amarillo); }
+.sl-ingredientes__circulo { background: var(--sl-necesidad, var(--sl-menta)); }
 .sl-ingredientes__desc { font-size: 12px; line-height: 1.35; }
 .sl-ingredientes__inci-boton {
   align-self: flex-start; min-height: 44px; padding: 0; border: 0; background: none;

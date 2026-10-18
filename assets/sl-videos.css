@@ -17,9 +17,7 @@
   position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;
   aspect-ratio: 9 / 16; border: var(--sl-borde); border-radius: var(--sl-radio-l);
 }
-.sl-video-card--1 .sl-video-card__marco { background: var(--sl-menta); }
-.sl-video-card--2 .sl-video-card__marco { background: var(--sl-lima); }
-.sl-video-card--3 .sl-video-card__marco { background: var(--sl-durazno); }
+.sl-video-card__marco { background: var(--sl-necesidad, var(--sl-blanco)); }
 .sl-video-card--0 .sl-video-card__marco { background: var(--sl-blanco); }
 .sl-video-card__portada { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .sl-video-card__tipo {
@@ -48,7 +46,7 @@
 /* Modal a pantalla completa */
 .sl-video-modal {
   width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 0;
-  border: 0; background: var(--sl-tinta); color: #fff;
+  border: 0; background: var(--sl-tinta); color: var(--sl-blanco);
 }
 .sl-video-modal::backdrop { background: var(--sl-tinta); }
 .sl-video-modal__panel { position: relative; display: flex; flex-direction: column; height: 100%; max-width: 560px; margin: 0 auto; }

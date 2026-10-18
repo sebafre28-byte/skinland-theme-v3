@@ -1,5 +1,7 @@
 {{ 'sl-ingredientes.css' | asset_url | stylesheet_tag }}
 
+{%- capture color_nec -%}{% render 'sl-color-necesidad', product: product %}{%- endcapture -%}
+{%- assign color_nec = color_nec | strip -%}
 {%- liquid
   assign mf = product.metafields.custom
   assign componentes = mf.routine_products.value
@@ -74,7 +76,7 @@
 -%}
 
 {%- if total > 0 -%}
-  <section class="sl-ingredientes sl-scope" aria-labelledby="sl-ingredientes-{{ section.id }}" data-sl-ingredientes data-sl-omitidos="{{ omitidos }}">
+  <section class="sl-ingredientes sl-scope" data-sl-color="{{ color_nec }}" aria-labelledby="sl-ingredientes-{{ section.id }}" data-sl-ingredientes data-sl-omitidos="{{ omitidos }}">
     <div class="sl-par__inner">
       <h2 class="sl-h2" id="sl-ingredientes-{{ section.id }}">{{ section.settings.titulo }}</h2>
       <ul class="sl-ingredientes__lista" role="list">
