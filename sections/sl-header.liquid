@@ -3,6 +3,10 @@
 {%- liquid
   assign menu_links = linklists[section.settings.menu].links
   assign test_url = settings.sl_test_url
+  capture wa_raw
+    render 'sl-whatsapp-url'
+  endcapture
+  assign wa_url = wa_raw | strip
 -%}
 
 <header class="sl-header sl-scope" data-sl-header>
@@ -83,9 +87,6 @@
           {% render 'sl-icon', name: 'close', size: 22 %}
         </button>
       </div>
-      {%- if test_url != blank -%}
-        <a href="{{ test_url }}" class="sl-menu__test">{{ section.settings.test_texto }}</a>
-      {%- endif -%}
       <ul class="sl-menu__lista">
         {%- for link in menu_links -%}
           <li>
@@ -118,6 +119,19 @@
         {% render 'sl-icon', name: 'search', size: 18 %}
         {{ section.settings.buscar_aria }}
       </a>
+      {%- if test_url != blank or wa_url != blank -%}
+        <div class="sl-menu__acciones">
+          {%- if wa_url != blank and section.settings.aly_texto != blank -%}
+            <a href="{{ wa_url }}" class="sl-menu__aly" target="_blank" rel="noopener">
+              {% render 'sl-icon', name: 'chat', size: 20 %}
+              {{ section.settings.aly_texto }}
+            </a>
+          {%- endif -%}
+          {%- if test_url != blank -%}
+            <a href="{{ test_url }}" class="sl-menu__test">{{ section.settings.test_texto }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
     </div>
   </dialog>
 </header>
@@ -135,6 +149,13 @@
       "id": "menu",
       "label": "Menú principal",
       "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "aly_texto",
+      "label": "Texto del botón de Aly",
+      "info": "Abre WhatsApp con Aly. Se muestra solo si hay un WhatsApp configurado en el tema.",
+      "default": "Conversa con Aly"
     },
     {
       "type": "text",

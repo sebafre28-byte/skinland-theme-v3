@@ -50,12 +50,14 @@
   display: flex; align-items: center; justify-content: center;
   border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); color: var(--sl-tinta); cursor: pointer;
 }
-.sl-menu__test {
-  align-self: flex-start;
-  padding: 10px 16px; border: var(--sl-borde); border-radius: 999px;
-  background: var(--sl-lila); color: var(--sl-tinta);
-  font-size: 14px; font-weight: 700; text-decoration: none;
+.sl-menu__acciones { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.sl-menu__test, .sl-menu__aly {
+  display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 18px;
+  border: var(--sl-borde); border-radius: 999px; box-shadow: 3px 3px 0 var(--sl-tinta);
+  color: var(--sl-tinta); font-family: var(--sl-font-display); font-size: 16px; font-weight: 800; text-decoration: none;
 }
+.sl-menu__test { background: var(--sl-lila); }
+.sl-menu__aly { background: var(--sl-lima); }
 .sl-menu__lista, .sl-menu__sub { margin: 0; padding: 0; list-style: none; }
 .sl-menu__lista { display: flex; flex-direction: column; gap: 6px; }
 .sl-menu__link {
