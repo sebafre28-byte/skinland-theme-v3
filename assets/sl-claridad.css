@@ -5,15 +5,22 @@
 /* 1) Etiquetas e info: esquinas rectas y planas (no se tocan) */
 body .sl-chip, body .sl-home-hero__eyebrow, body .sl-combina__eyebrow, body .sl-marcas__eyebrow, body .sl-kit-destacado__chip,
 body .sl-acordeon__chip, body .sl-tarjeta__chip, body .slq-cab__eyebrow, body .slq-kit-tag, body .slq-prod-badge,
-body .sl-galeria__chip, body .sl-sticker, body .sl-cart-item__ahorro {
+body .sl-galeria__chip, body .sl-sticker, body .sl-cart-item__ahorro,
+body .sl-escena__cap, body .sl-escena__paso, body .sl-incluye__paso, body .sl-combina__este, body .sl-resena__chip, body .sl-sticky__ahorro {
   border-radius: var(--sl-radio-s); box-shadow: none;
+}
+/* Lo que no se toca lleva borde fino; el borde grueso queda para lo que sí se toca */
+body .sl-chip, body .sl-home-hero__eyebrow, body .sl-combina__eyebrow, body .sl-marcas__eyebrow, body .sl-kit-destacado__chip,
+body .sl-acordeon__chip, body .sl-tarjeta__chip, body .slq-cab__eyebrow, body .slq-kit-tag, body .sl-galeria__chip,
+body .sl-escena__cap, body .sl-escena__paso, body .sl-incluye__paso, body .sl-combina__este {
+  border-width: 1.5px;
 }
 
 /* 2) Lo que se toca: píldoras, pestañas y respuestas con sombra dura y flecha */
 body .sl-necesidades__pildora, body .sl-marcas__tab, body .sl-rutinas__tab, body .sl-aly__resp {
   box-shadow: 3px 3px 0 var(--sl-tinta);
 }
-body .sl-necesidades__pildora::after, body .sl-aly__resp::after { content: '→'; margin-left: 8px; font-weight: 800; }
+body .sl-necesidades__pildora::after, body .sl-aly__resp::after, body .sl-menu__aly::after, body .sl-menu__test::after, body .sl-header__test::after { content: '→'; margin-left: 8px; font-weight: 800; }
 body .sl-necesidades__pildora--punteada { box-shadow: none; }
 body .sl-necesidades__pildora--punteada::after { content: none; }
 body .sl-marcas__tab[aria-pressed='true'], body .sl-rutinas__tab[aria-pressed='true'] { box-shadow: none; transform: translate(2px, 2px); }

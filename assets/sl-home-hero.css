@@ -22,7 +22,7 @@
   .sl-home-hero .sl-h1 { font-size: 64px; }
 }
 
-.sl-home-hero__asesora { position: absolute; left: 12px; bottom: 12px; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); box-shadow: var(--sl-sombra-chica, none); }
+.sl-home-hero__asesora { position: absolute; left: 12px; bottom: 12px; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); }
 .sl-home-hero__asesora-foto { width: 48px; height: 48px; border: var(--sl-borde); border-radius: 50%; object-fit: cover; }
 .sl-home-hero__asesora-texto { font-size: 12px; font-weight: 700; line-height: 1.15; max-width: 150px; }
 .sl-home-hero__escena:has(.sl-home-hero__asesora) .sl-home-hero__productos { margin-bottom: 76px; }
@@ -50,7 +50,7 @@
   .sl-home-hero__grid { row-gap: 20px; }
 }
 /* Sello de ahorro grande, asomando por la esquina de la tarjeta */
-.sl-home-hero__escena:has(.sl-escena) .sl-home-hero__sticker { width: 88px; height: 88px; padding: 6px; font-size: 12.5px; top: -22px; right: -6px; z-index: 4; box-shadow: 3px 3px 0 var(--sl-tinta); }
+.sl-home-hero__escena:has(.sl-escena) .sl-home-hero__sticker { width: 88px; height: 88px; padding: 6px; font-size: 12.5px; top: -22px; right: -6px; z-index: 4; }
 .sl-home-hero__escena:has(.sl-escena) .sl-escena { margin-top: 58px; }
 @media screen and (min-width: 990px) {
   .sl-home-hero__escena:has(.sl-escena) .sl-home-hero__sticker { width: 118px; height: 118px; font-size: 16px; top: -28px; right: -14px; }
