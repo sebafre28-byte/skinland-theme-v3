@@ -10,7 +10,6 @@
   assign foto = section.settings.imagen
   assign respaldo = section.settings.coleccion_ahorro_1.products
   assign n_escena = 0
-  assign activa_1 = false
   if section.settings.producto.metafields.custom.routine_products.value.size > 0
     assign n_escena = n_escena | plus: 1
   endif
