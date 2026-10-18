@@ -9,7 +9,7 @@
 .sl-incluye__item { position: relative; display: flex; gap: 12px; align-items: center; padding: 12px; border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); }
 .sl-incluye__foto {
   flex: 0 0 96px; height: 108px; display: flex; align-items: center; justify-content: center; overflow: hidden;
-  border: var(--sl-borde); border-radius: 12px; background: radial-gradient(ellipse 62% 56% at 50% 56%, rgba(255, 255, 255, .9) 0 55%, rgba(255, 255, 255, 0) 100%), var(--sl-necesidad, var(--sl-menta));
+  border: var(--sl-borde); border-radius: 12px; background: var(--sl-blanco); box-shadow: inset 0 0 0 5px var(--sl-necesidad, var(--sl-menta));
 }
 .sl-incluye__foto img { width: 100%; height: 100%; object-fit: contain; padding: 4px; display: block; }
 .sl-incluye__foto img { mix-blend-mode: multiply; filter: brightness(1.04) contrast(1.02); }
