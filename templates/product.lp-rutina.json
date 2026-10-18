@@ -24,28 +24,8 @@
       "type": "sl-incluye",
       "settings": {}
     },
-    "uso": {
-      "type": "sl-uso",
-      "settings": {}
-    },
-    "para_ti": {
-      "type": "sl-para-ti",
-      "settings": {}
-    },
-    "resultados": {
-      "type": "sl-resultados",
-      "settings": {}
-    },
-    "ingredientes": {
-      "type": "sl-ingredientes",
-      "settings": {}
-    },
     "resenas": {
       "type": "sl-resenas",
-      "settings": {}
-    },
-    "faq": {
-      "type": "sl-faq",
       "settings": {}
     },
     "cta_final": {
@@ -61,12 +41,7 @@
     "hero",
     "videos",
     "incluye",
-    "uso",
-    "para_ti",
-    "resultados",
-    "ingredientes",
     "resenas",
-    "faq",
     "cta_final",
     "sticky"
   ]

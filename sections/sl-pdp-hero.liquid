@@ -27,6 +27,15 @@
     render 'sl-paso', componente: product, nombre: true
   endcapture
   assign paso_nombre = paso_raw | strip
+  assign momento = ''
+  if product.tags contains 'uso-am-pm'
+    assign momento = section.settings.ficha_ampm
+  elsif product.tags contains 'uso-am'
+    assign momento = section.settings.ficha_am
+  elsif product.tags contains 'uso-pm'
+    assign momento = section.settings.ficha_pm
+  endif
+  assign ficha_paso = paso_nombre
   if pasos > 0
     assign paso_nombre = ''
   endif
@@ -186,6 +195,7 @@
           {%- endif -%}
 
           {%- assign bajada = mf.routine_subtitle.value | default: mf.beneficio_corto.value -%}
+          {%- if pasos == 0 and mf.cro_hook.value != blank -%}{%- assign bajada = '' -%}{%- endif -%}
           {%- if bajada != blank -%}
             <p class="sl-buybox__bajada">{{ bajada }}</p>
           {%- endif -%}
@@ -263,6 +273,18 @@
             </ol>
           {%- endif -%}
 
+          {%- if ficha_paso != blank and pasos == 0 -%}
+            <dl class="sl-ficha">
+              <div class="sl-ficha__item"><dt>{{ section.settings.ficha_paso }}</dt><dd>{{ ficha_paso }}</dd></div>
+              {%- if momento != blank -%}
+                <div class="sl-ficha__item"><dt>{{ section.settings.ficha_cuando }}</dt><dd>{{ momento }}</dd></div>
+              {%- endif -%}
+              {%- if dias > 0 -%}
+                <div class="sl-ficha__item"><dt>{{ section.settings.ficha_rinde }}</dt><dd>{{ section.settings.ficha_dias | replace: '[dias]', dias }}</dd></div>
+              {%- endif -%}
+            </dl>
+          {%- endif -%}
+
           <product-form class="sl-form" data-section-id="{{ section.id }}">
             <div class="product-form__error-message-wrapper sl-form__error" role="alert" hidden>
               <span class="product-form__error-message"></span>
@@ -338,8 +360,14 @@
       "id": "imagen_ajuste",
       "label": "Ajuste de la foto",
       "options": [
-        { "value": "contain", "label": "Completa, sobre el color" },
-        { "value": "cover", "label": "Rellena todo el recuadro" }
+        {
+          "value": "contain",
+          "label": "Completa, sobre el color"
+        },
+        {
+          "value": "cover",
+          "label": "Rellena todo el recuadro"
+        }
       ],
       "default": "contain"
     },
@@ -518,6 +546,53 @@
       "id": "video_etiqueta",
       "label": "Etiqueta de la miniatura del video",
       "default": "Video"
+    },
+    {
+      "type": "header",
+      "content": "Ficha rápida (productos sueltos)"
+    },
+    {
+      "type": "text",
+      "id": "ficha_paso",
+      "label": "Etiqueta: tipo de producto",
+      "default": "Es un"
+    },
+    {
+      "type": "text",
+      "id": "ficha_cuando",
+      "label": "Etiqueta: cuándo usarlo",
+      "default": "Úsalo"
+    },
+    {
+      "type": "text",
+      "id": "ficha_rinde",
+      "label": "Etiqueta: duración",
+      "default": "Rinde"
+    },
+    {
+      "type": "text",
+      "id": "ficha_am",
+      "label": "Valor: solo de día",
+      "default": "En la mañana"
+    },
+    {
+      "type": "text",
+      "id": "ficha_pm",
+      "label": "Valor: solo de noche",
+      "default": "En la noche"
+    },
+    {
+      "type": "text",
+      "id": "ficha_ampm",
+      "label": "Valor: mañana y noche",
+      "default": "Mañana y noche"
+    },
+    {
+      "type": "text",
+      "id": "ficha_dias",
+      "label": "Valor: duración",
+      "default": "~[dias] días",
+      "info": "Usa [dias]. Sale de la duración del producto."
     }
   ]
 }
