@@ -27,7 +27,7 @@ Advertencias de `theme check` (todas heredadas de Dawn o de tamaño, ninguna rom
 3. **Sin stock hoy (0 unidades)**: Kit Anti Edad, Kit Anti Manchas, Glow Deep Serum, Revive Serum y Centellian24 Madeca Cream. El resto tiene 1 unidad (stock 1 con DENY en rutinas, kits y componentes). Hay que decidir inventario antes de lanzar.
 
 ## C. Lenguaje cosmético (ISP, Meta y SERNAC)
-Revisión de los metacampos de texto de los productos activos: **ver sección al final** (se actualiza cuando termina la lectura).
+Revisé los 41 productos activos. **Hay claims que no cumplen tus reglas**: bacterias, "previene brotes", estudios clínicos con cifras, "regenera" y plazos de resultado. Detalle completo en `docs/CLAIMS-A-REVISAR.md`. No se borró ni cambió nada; esperan tu OK.
 
 ## D. Lo que solo puedes hacer tú (pasos numerados)
 1. **Cuentas de clientes nuevas (Dawn v16):** Configuración → Cuentas de clientes → activar "Cuentas de cliente nuevas". Hay que hacerlo antes de publicar este tema.
