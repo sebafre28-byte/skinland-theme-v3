@@ -9,8 +9,6 @@
 .sl-acordeon[open] .sl-acordeon__flecha { transform: rotate(180deg); }
 .sl-acordeon__cuerpo { display: flex; flex-direction: column; gap: 12px; padding: 0 16px 16px; }
 .sl-acordeon__chip { align-self: flex-start; padding: 5px 10px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); font-size: 12px; font-weight: 700; }
-.sl-acordeon__fotos { display: flex; align-items: flex-end; justify-content: center; gap: 10px; height: 150px; padding: 12px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); }
-.sl-acordeon__fotos img { flex: 1 1 0; min-width: 0; max-width: 90px; height: 100%; object-fit: contain; }
 .sl-acordeon__bajada { margin: 0; font-size: 15px; font-weight: 500; }
 .sl-acordeon__precio { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 .sl-acordeon__precio .sl-precio { font-size: 30px; }
@@ -23,3 +21,14 @@
 /* Sin color definido en el producto: neutro. En la banda lima del kit, el lima también va neutro para que la fila se distinga. */
 .sl-acordeon[data-sl-color='blanco'] { --sl-necesidad: var(--sl-blanco); }
 .sl-kit-destacado .sl-acordeon[data-sl-color='lima'] { --sl-necesidad: var(--sl-blanco); }
+
+/* Cada producto de la rutina: número, foto sin fondo (multiply), paso y nombre */
+.sl-acordeon__fotos { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 8px; margin: 0; padding: 12px 10px; list-style: none; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); }
+.sl-acordeon__prod { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; min-width: 0; }
+.sl-acordeon__num { position: absolute; top: 0; left: 4px; z-index: 1; width: 22px; height: 22px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-lima); font-family: var(--sl-font-display); font-size: 12px; font-weight: 800; }
+.sl-acordeon__img { width: 100%; aspect-ratio: 1; display: grid; place-items: center; }
+.sl-acordeon__img img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; filter: brightness(1.04) contrast(1.02); }
+.sl-acordeon__prod--solo { grid-column: 1 / -1; }
+.sl-acordeon__prod--solo .sl-acordeon__img { max-width: 260px; }
+.sl-acordeon__paso { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; opacity: .75; }
+.sl-acordeon__nombre-c { font-size: 12px; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }

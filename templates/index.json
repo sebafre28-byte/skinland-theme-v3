@@ -5,7 +5,8 @@
       "settings": {
         "coleccion_ahorro_1": "rutinas",
         "coleccion_ahorro_2": "kits",
-        "boton_coleccion": "rutinas"
+        "boton_coleccion": "rutinas",
+        "producto": "rutina-express-piel-grasa"
       }
     },
     "necesidades": {

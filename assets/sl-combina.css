@@ -26,3 +26,4 @@
   .sl-combina { padding: 56px 0; }
   .sl-combina__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: start; }
 }
+.sl-combina__foto img { mix-blend-mode: multiply; filter: brightness(1.04) contrast(1.02); }

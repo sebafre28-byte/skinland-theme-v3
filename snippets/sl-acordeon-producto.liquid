@@ -51,17 +51,28 @@
     {%- if pasos > 0 -%}
       <span class="sl-acordeon__chip">{{ texto_productos | replace: '[n]', pasos }}</span>
     {%- endif -%}
-    <div class="sl-acordeon__fotos">
+    <ol class="sl-acordeon__fotos" role="list">
       {%- for c in product.metafields.custom.routine_products.value -%}
-        {%- if c.featured_image -%}
-          {{ c.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 240', sizes: '80px', alt: c.title }}
-        {%- endif -%}
+        {%- capture paso_c -%}{% render 'sl-paso', componente: c, nombre: true %}{%- endcapture -%}
+        {%- assign nombre_c = c.metafields.custom.nombre_corto.value | default: c.title -%}
+        <li class="sl-acordeon__prod">
+          <span class="sl-acordeon__num" aria-hidden="true">{{ forloop.index }}</span>
+          <span class="sl-acordeon__img">
+            {%- if c.featured_image -%}
+              {{ c.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 240', sizes: '90px', alt: '' }}
+            {%- endif -%}
+          </span>
+          <span class="sl-acordeon__paso">{{ paso_c | strip }}</span>
+          <span class="sl-acordeon__nombre-c">{{ nombre_c }}</span>
+        </li>
       {%- else -%}
         {%- if product.featured_image -%}
-          {{ product.featured_image | image_url: width: 480 | image_tag: loading: 'lazy', widths: '240, 480', sizes: '240px', alt: product.title }}
+          <li class="sl-acordeon__prod sl-acordeon__prod--solo"><span class="sl-acordeon__img">
+            {{ product.featured_image | image_url: width: 480 | image_tag: loading: 'lazy', widths: '240, 480', sizes: '240px', alt: product.title }}
+          </span></li>
         {%- endif -%}
       {%- endfor -%}
-    </div>
+    </ol>
     {%- if product.metafields.custom.routine_subtitle.value != blank -%}
       <p class="sl-acordeon__bajada">{{ product.metafields.custom.routine_subtitle.value }}</p>
     {%- endif -%}

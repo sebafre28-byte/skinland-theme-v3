@@ -14,3 +14,4 @@
 .sl-tarjeta[data-sl-color='blanco'] { --sl-necesidad: var(--sl-blanco); }
 .sl-tarjeta__ahorro { margin: 0; }
 .sl-tarjeta__precio { margin-top: auto; }
+.sl-tarjeta__foto img { mix-blend-mode: multiply; filter: brightness(1.04) contrast(1.02); }

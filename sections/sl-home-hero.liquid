@@ -9,6 +9,8 @@
 
   assign foto = section.settings.imagen
   assign respaldo = section.settings.coleccion_ahorro_1.products
+  assign prod_hero = section.settings.producto
+  assign comps_hero = prod_hero.metafields.custom.routine_products.value
 -%}
 
 <section class="sl-home-hero sl-scope" aria-labelledby="sl-home-hero-{{ section.id }}">
@@ -29,6 +31,19 @@
     <div class="sl-home-hero__escena">
       {%- if foto != blank -%}
         {{ foto | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 750px) 560px, 90vw', widths: '400, 600, 900', class: 'sl-home-hero__foto', alt: foto.alt }}
+      {%- elsif comps_hero.size > 0 -%}
+        <ol class="sl-home-hero__productos" role="list">
+          {%- for c in comps_hero -%}
+            {%- capture paso_c -%}{% render 'sl-paso', componente: c, nombre: true %}{%- endcapture -%}
+            <li class="sl-home-hero__prod">
+              <span class="sl-home-hero__num" aria-hidden="true">{{ forloop.index }}</span>
+              {%- if c.featured_image -%}
+                {{ c.featured_image | image_url: width: 400 | image_tag: loading: 'eager', widths: '200, 400', sizes: '(min-width: 990px) 150px, 28vw', alt: c.title }}
+              {%- endif -%}
+              <span class="sl-home-hero__paso">{{ paso_c | strip }}</span>
+            </li>
+          {%- endfor -%}
+        </ol>
       {%- elsif respaldo.size > 0 -%}
         <div class="sl-home-hero__collage">
           {%- for p in respaldo limit: 3 -%}
@@ -66,21 +81,97 @@
   "name": "Skinland · Hero inicio",
   "tag": "div",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "K-beauty sin complicaciones" },
-    { "type": "text", "id": "titulo", "label": "Título", "default": "No necesitas más skincare. Necesitas saber" },
-    { "type": "text", "id": "marcado", "label": "Palabras con marcador lima", "default": "qué usar." },
-    { "type": "textarea", "id": "bajada", "label": "Bajada", "default": "Rutinas armadas por tipo de piel y kits por objetivo, con productos coreanos 100% originales." },
-    { "type": "header", "content": "Foto" },
-    { "type": "image_picker", "id": "imagen", "label": "Foto real de productos", "info": "Si está vacía se usan las fotos de los primeros productos de la primera colección de ahorro." },
-    { "type": "text", "id": "chip_pasos", "label": "Etiqueta sobre la foto", "default": "Rutinas en 3 o 4 pasos" },
-    { "type": "text", "id": "sticker", "label": "Sticker de ahorro", "default": "Ahorra hasta [ahorro]", "info": "Usa [ahorro]. El monto se calcula: es el mayor ahorro entre los productos de las colecciones de abajo. Sin ahorro real no se muestra." },
-    { "type": "collection", "id": "coleccion_ahorro_1", "label": "Colección para el ahorro (rutinas)" },
-    { "type": "collection", "id": "coleccion_ahorro_2", "label": "Colección para el ahorro (kits)" },
-    { "type": "header", "content": "Botones" },
-    { "type": "text", "id": "boton_texto", "label": "Botón principal", "default": "Encuentra tu rutina" },
-    { "type": "collection", "id": "boton_coleccion", "label": "Colección del botón principal", "info": "Si está vacía, el botón no se muestra." },
-    { "type": "text", "id": "test_texto", "label": "Botón del test", "default": "Haz el test de piel · 1 min", "info": "Usa el enlace del test de los ajustes del tema; sin enlace no se muestra." }
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Etiqueta superior",
+      "default": "K-beauty sin complicaciones"
+    },
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "No necesitas más skincare. Necesitas saber"
+    },
+    {
+      "type": "text",
+      "id": "marcado",
+      "label": "Palabras con marcador lima",
+      "default": "qué usar."
+    },
+    {
+      "type": "textarea",
+      "id": "bajada",
+      "label": "Bajada",
+      "default": "Rutinas armadas por tipo de piel y kits por objetivo, con productos coreanos 100% originales."
+    },
+    {
+      "type": "header",
+      "content": "Foto"
+    },
+    {
+      "type": "image_picker",
+      "id": "imagen",
+      "label": "Foto real de productos",
+      "info": "Si está vacía se usan las fotos de los primeros productos de la primera colección de ahorro."
+    },
+    {
+      "type": "product",
+      "id": "producto",
+      "label": "Rutina para la foto",
+      "info": "Si no hay foto subida, la escena muestra los productos de esta rutina, cada uno con su número y su paso."
+    },
+    {
+      "type": "text",
+      "id": "chip_pasos",
+      "label": "Etiqueta sobre la foto",
+      "default": "Rutinas en 3 o 4 pasos"
+    },
+    {
+      "type": "text",
+      "id": "sticker",
+      "label": "Sticker de ahorro",
+      "default": "Ahorra hasta [ahorro]",
+      "info": "Usa [ahorro]. El monto se calcula: es el mayor ahorro entre los productos de las colecciones de abajo. Sin ahorro real no se muestra."
+    },
+    {
+      "type": "collection",
+      "id": "coleccion_ahorro_1",
+      "label": "Colección para el ahorro (rutinas)"
+    },
+    {
+      "type": "collection",
+      "id": "coleccion_ahorro_2",
+      "label": "Colección para el ahorro (kits)"
+    },
+    {
+      "type": "header",
+      "content": "Botones"
+    },
+    {
+      "type": "text",
+      "id": "boton_texto",
+      "label": "Botón principal",
+      "default": "Encuentra tu rutina"
+    },
+    {
+      "type": "collection",
+      "id": "boton_coleccion",
+      "label": "Colección del botón principal",
+      "info": "Si está vacía, el botón no se muestra."
+    },
+    {
+      "type": "text",
+      "id": "test_texto",
+      "label": "Botón del test",
+      "default": "Haz el test de piel · 1 min",
+      "info": "Usa el enlace del test de los ajustes del tema; sin enlace no se muestra."
+    }
   ],
-  "presets": [{ "name": "Skinland · Hero inicio" }]
+  "presets": [
+    {
+      "name": "Skinland · Hero inicio"
+    }
+  ]
 }
 {% endschema %}

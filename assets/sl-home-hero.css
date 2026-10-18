@@ -21,3 +21,10 @@
   .sl-home-hero__confianza { grid-area: confianza; }
   .sl-home-hero .sl-h1 { font-size: 64px; }
 }
+
+/* Escena con los productos de una rutina sobre un estante blanco (así el fondo crema de las fotos se funde), con su número y su paso */
+.sl-home-hero__productos { display: flex; align-items: flex-end; justify-content: center; gap: 6px; margin: 56px 14px 16px; padding: 18px 8px 12px; list-style: none; width: calc(100% - 28px); border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); }
+.sl-home-hero__prod { position: relative; flex: 1 1 0; max-width: 150px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+.sl-home-hero__prod img { width: 100%; aspect-ratio: 1; object-fit: contain; mix-blend-mode: multiply; filter: brightness(1.04) contrast(1.02); }
+.sl-home-hero__num { position: absolute; top: 0; left: 6px; z-index: 1; width: 26px; height: 26px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-lima); font-family: var(--sl-font-display); font-size: 14px; font-weight: 800; }
+.sl-home-hero__paso { padding: 3px 8px; border: var(--sl-borde); border-radius: var(--sl-radio-s); background: var(--sl-blanco); font-size: 11px; font-weight: 700; }
