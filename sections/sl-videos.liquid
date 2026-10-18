@@ -2,8 +2,11 @@
 
 {%- liquid
   assign lista = section.settings.videos
-  if lista == blank
+  if lista == blank and product != blank
     assign lista = product.metafields.custom.videos.value
+  endif
+  if lista == blank and product == blank
+    assign lista = shop.metaobjects.skinland_video.values
   endif
   assign tipo_piel = product.metafields.custom.tipo_piel.value | first
   assign hay = false
@@ -125,7 +128,7 @@
       "id": "videos",
       "label": "Lista de videos",
       "metaobject_type": "skinland_video",
-      "info": "Opcional. Si está vacío, se usan los videos del producto (custom.videos). Solo se muestran los que tienen permiso de uso."
+      "info": "Opcional. Si está vacío, en la ficha se usan los videos del producto (custom.videos) y en otras páginas todos los videos cargados. Solo se muestran los que tienen permiso de uso."
     },
     {
       "type": "header",

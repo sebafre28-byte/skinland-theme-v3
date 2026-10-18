@@ -1,0 +1,21 @@
+{%- comment -%}
+  Enlace de WhatsApp de Skinland (Aly). Orden: ajuste "Aly" (sl_aly_url) → ajuste "WhatsApp" (sl_whatsapp_url)
+  → el teléfono de la tienda (shop.phone), igual que el popup del tema actual. Imprime vacío si no hay ninguno.
+  Parámetro: mensaje (opcional; usa [pagina] y [url]). Si falta, se usa el ajuste sl_whatsapp_mensaje.
+  Los enlaces propios de los ajustes se imprimen tal cual (sin mensaje).
+{%- endcomment -%}
+{%- liquid
+  if settings.sl_aly_url != blank
+    echo settings.sl_aly_url
+  elsif settings.sl_whatsapp_url != blank
+    echo settings.sl_whatsapp_url
+  else
+    assign numero = shop.phone | remove: '+' | remove: ' ' | remove: '-' | remove: '(' | remove: ')' | remove: '.' | strip
+    if numero != blank
+      assign texto = mensaje | default: settings.sl_whatsapp_mensaje
+      assign pagina = page_title | default: shop.name
+      assign texto = texto | replace: '[pagina]', pagina | replace: '[url]', canonical_url
+      echo 'https://wa.me/' | append: numero | append: '?text=' | append: texto | strip | url_encode
+    endif
+  endif
+-%}

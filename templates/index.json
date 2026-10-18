@@ -126,21 +126,24 @@
           "type": "respuesta",
           "settings": {
             "texto": "Brillante",
-            "color": "menta"
+            "color": "menta",
+            "mensaje": "Hola Skinland 👋 Mi piel se ve brillante a mediodía. ¿Qué rutina me recomiendan?"
           }
         },
         "a2": {
           "type": "respuesta",
           "settings": {
             "texto": "Tirante",
-            "color": "durazno"
+            "color": "durazno",
+            "mensaje": "Hola Skinland 👋 Mi piel se siente tirante o seca. ¿Qué rutina me recomiendan?"
           }
         },
         "a3": {
           "type": "respuesta",
           "settings": {
             "texto": "Con granitos",
-            "color": "lima"
+            "color": "lima",
+            "mensaje": "Hola Skinland 👋 Me salen granitos seguido. ¿Qué rutina o kit me recomiendan?"
           }
         }
       },

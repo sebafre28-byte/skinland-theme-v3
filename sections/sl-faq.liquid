@@ -97,14 +97,13 @@
 
   assign items = lista | split: sep
 
-  assign enlace_ayuda = ''
+  capture enlace_raw
+    render 'sl-whatsapp-url'
+  endcapture
+  assign enlace_ayuda = enlace_raw | strip
   assign texto_ayuda = ''
-  if settings.sl_aly_url != blank
-    assign enlace_ayuda = settings.sl_aly_url
+  if enlace_ayuda != blank
     assign texto_ayuda = section.settings.texto_aly
-  elsif settings.sl_whatsapp_url != blank
-    assign enlace_ayuda = settings.sl_whatsapp_url
-    assign texto_ayuda = section.settings.texto_whatsapp
   endif
 -%}
 

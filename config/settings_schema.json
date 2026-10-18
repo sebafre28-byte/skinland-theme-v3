@@ -62,12 +62,20 @@
         "type": "url",
         "id": "sl_aly_url",
         "label": "Aly, la asesora IA",
-        "info": "Vacío = se oculta."
+        "info": "Opcional. Si lo dejas vacío, Aly usa WhatsApp con el teléfono de la tienda."
       },
       {
         "type": "url",
         "id": "sl_whatsapp_url",
-        "label": "WhatsApp"
+        "label": "WhatsApp",
+        "info": "Opcional. Si está vacío se usa el teléfono de la tienda (Configuración → Tienda)."
+      },
+      {
+        "type": "text",
+        "id": "sl_whatsapp_mensaje",
+        "label": "Mensaje de WhatsApp por defecto",
+        "default": "Hola Skinland 👋 Tengo una consulta sobre [pagina]. [url]",
+        "info": "Usa [pagina] y [url]."
       },
       {
         "type": "header",

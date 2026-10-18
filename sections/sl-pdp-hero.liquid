@@ -274,12 +274,14 @@
             {%- endform -%}
           </product-form>
 
-          {%- if settings.sl_test_url != blank or settings.sl_aly_url != blank -%}
+          {%- capture aly_raw -%}{% render 'sl-whatsapp-url' %}{%- endcapture -%}
+          {%- assign aly_enlace = aly_raw | strip -%}
+          {%- if settings.sl_test_url != blank or aly_enlace != blank -%}
             <p class="sl-ayuda">
               {{ section.settings.ayuda_intro }}
               {%- if settings.sl_test_url != blank %} <a href="{{ settings.sl_test_url }}">{{ section.settings.ayuda_test }}</a>{% endif -%}
-              {%- if settings.sl_test_url != blank and settings.sl_aly_url != blank %} · {% endif -%}
-              {%- if settings.sl_aly_url != blank %}<a href="{{ settings.sl_aly_url }}">{{ section.settings.ayuda_aly }}</a>{% endif -%}
+              {%- if settings.sl_test_url != blank and aly_enlace != blank %} · {% endif -%}
+              {%- if aly_enlace != blank %}<a href="{{ aly_enlace }}" rel="noopener">{{ section.settings.ayuda_aly }}</a>{% endif -%}
             </p>
           {%- endif -%}
 

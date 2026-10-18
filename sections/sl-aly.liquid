@@ -1,13 +1,14 @@
 {{ 'sl-aly.css' | asset_url | stylesheet_tag }}
 
-{%- if settings.sl_test_url != blank or settings.sl_aly_url != blank -%}
-  {%- liquid
-    assign base = settings.sl_test_url
-    assign sep = '?'
-    if base contains '?'
-      assign sep = '&'
-    endif
-  -%}
+{%- liquid
+  capture wa_raw
+    render 'sl-whatsapp-url'
+  endcapture
+  assign wa = wa_raw | strip
+  assign test = settings.sl_test_url
+-%}
+
+{%- if test != blank or wa != blank -%}
   <section class="sl-aly sl-scope" aria-labelledby="sl-aly-{{ section.id }}">
     <div class="sl-container">
       <div class="sl-aly__caja">
@@ -23,22 +24,31 @@
         {%- if section.settings.pregunta != blank -%}
           <p class="sl-aly__pregunta">{{ section.settings.pregunta }}</p>
         {%- endif -%}
-        {%- if section.blocks.size > 0 and settings.sl_test_url != blank -%}
+        {%- if section.blocks.size > 0 -%}
           <ul class="sl-aly__respuestas" role="list">
             {%- for block in section.blocks -%}
-              {%- if block.settings.texto != blank -%}
+              {%- liquid
+                assign destino = ''
+                if block.settings.mensaje != blank and wa != blank
+                  capture destino_raw
+                    render 'sl-whatsapp-url', mensaje: block.settings.mensaje
+                  endcapture
+                  assign destino = destino_raw | strip
+                endif
+              -%}
+              {%- if block.settings.texto != blank and destino != blank -%}
                 <li {{ block.shopify_attributes }}>
-                  <a class="sl-aly__resp" data-sl-color="{{ block.settings.color }}" href="{{ base }}{% if block.settings.parametro != blank %}{{ sep }}{{ block.settings.parametro | strip }}{% endif %}">{{ block.settings.texto }}</a>
+                  <a class="sl-aly__resp" data-sl-color="{{ block.settings.color }}" href="{{ destino }}" target="_blank" rel="noopener">{{ block.settings.texto }}</a>
                 </li>
               {%- endif -%}
             {%- endfor -%}
           </ul>
         {%- endif -%}
-        {%- if settings.sl_test_url != blank -%}
-          <a class="sl-btn sl-btn--tinta sl-btn--block" href="{{ base }}">{{ section.settings.boton }}</a>
+        {%- if wa != blank -%}
+          <a class="sl-btn sl-btn--tinta sl-btn--block" href="{{ wa }}" target="_blank" rel="noopener">{{ section.settings.boton_aly }}</a>
         {%- endif -%}
-        {%- if settings.sl_aly_url != blank -%}
-          <a class="sl-btn sl-btn--block" href="{{ settings.sl_aly_url }}" rel="noopener">{{ section.settings.boton_aly }}</a>
+        {%- if test != blank -%}
+          <a class="sl-btn sl-btn--block" href="{{ test }}">{{ section.settings.boton }}</a>
         {%- endif -%}
       </div>
     </div>
@@ -55,11 +65,11 @@
   "settings": [
     { "type": "text", "id": "nombre", "label": "Nombre del asistente", "default": "Aly" },
     { "type": "text", "id": "titulo", "label": "Título", "default": "¿No sabes qué elegir?" },
-    { "type": "text", "id": "bajada", "label": "Bajada", "default": "Test de 3 preguntas o pregúntale a Aly" },
+    { "type": "text", "id": "bajada", "label": "Bajada", "default": "Haz el test o escríbele a Aly por WhatsApp" },
     { "type": "text", "id": "pregunta", "label": "Pregunta", "default": "¿Cómo sientes tu piel a mediodía?" },
+    { "type": "text", "id": "boton_aly", "label": "Botón de WhatsApp", "default": "Hablar con Aly por WhatsApp", "info": "Usa el enlace de WhatsApp o, si no hay, el teléfono de la tienda." },
     { "type": "text", "id": "boton", "label": "Botón del test", "default": "Hacer el test completo", "info": "Solo se muestra si hay enlace del test en los ajustes del tema." },
-    { "type": "text", "id": "boton_aly", "label": "Botón para hablar con Aly", "default": "Hablar con Aly", "info": "Solo se muestra si hay enlace de Aly en los ajustes del tema." },
-    { "type": "text", "id": "aviso_editor", "label": "Aviso en el editor", "info": "Solo se ve dentro del editor del tema, no en la tienda.", "default": "Aly oculta: agrega el enlace del test o el de Aly en Ajustes del tema → Skinland · Sistema." }
+    { "type": "text", "id": "aviso_editor", "label": "Aviso en el editor", "info": "Solo se ve dentro del editor del tema, no en la tienda.", "default": "Aly oculta: agrega el enlace del test, un enlace de WhatsApp o el teléfono de la tienda." }
   ],
   "blocks": [
     {
@@ -67,7 +77,7 @@
       "name": "Respuesta rápida",
       "settings": [
         { "type": "text", "id": "texto", "label": "Texto", "default": "Brillante" },
-        { "type": "text", "id": "parametro", "label": "Parámetro del test", "info": "Ej.: piel=grasa. Se agrega al enlace del test de los ajustes. Debe existir en el test." },
+        { "type": "textarea", "id": "mensaje", "label": "Mensaje de WhatsApp", "info": "Mensaje que se abre en WhatsApp al tocar la respuesta. Sin mensaje, la respuesta no se muestra." },
         { "type": "select", "id": "color", "label": "Color", "default": "menta", "options": [
           { "value": "menta", "label": "Menta" }, { "value": "lima", "label": "Lima" }, { "value": "amarillo", "label": "Amarillo" },
           { "value": "durazno", "label": "Durazno" }, { "value": "celeste", "label": "Celeste" }, { "value": "lila", "label": "Lila" }, { "value": "rosa", "label": "Rosa" }

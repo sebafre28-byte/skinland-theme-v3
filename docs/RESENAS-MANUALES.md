@@ -32,3 +32,6 @@ Admin → Contenido → Metaobjetos → **Skinland · Reseña** → Agregar entr
 
 ## Deshacer
 `node scripts/fase3/resenas.mjs --undo --apply` borra la definición y todas las reseñas cargadas (pide token). También puedes borrar entradas una a una en el admin.
+
+## Reseñas en el Home
+La sección **Skinland · Reseñas inicio** muestra las reseñas válidas de **cualquier producto** (hasta 6, ajustable), con enlace al producto reseñado. Misma regla: sin permiso de uso o sin compra verificada, no se muestra. Sin reseñas, la sección no aparece (en el editor del tema se ve un aviso).
