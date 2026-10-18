@@ -26,3 +26,4 @@
 .sl-home-hero__asesora-foto { width: 48px; height: 48px; border: var(--sl-borde); border-radius: 50%; object-fit: cover; }
 .sl-home-hero__asesora-texto { font-size: 12px; font-weight: 700; line-height: 1.15; max-width: 150px; }
 .sl-home-hero__escena:has(.sl-home-hero__asesora) .sl-home-hero__productos { margin-bottom: 76px; }
+.sl-home-hero__video { width: 100%; height: 100%; object-fit: cover; display: block; }
