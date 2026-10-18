@@ -33,7 +33,21 @@
               </button>
               <ul class="sl-header__sub">
                 {%- for sub in link.links -%}
-                  <li><a href="{{ sub.url }}" {% if sub.current %}aria-current="page"{% endif %}>{{ sub.title }}</a></li>
+                  <li>
+                    {%- if sub.links.size > 0 -%}
+                      <button type="button" class="sl-menu__sub-btn" aria-expanded="false" aria-controls="sl-menu-sub-{{ link.title | handleize }}-{{ forloop.index }}" data-sl-menu-sub>
+                        <span>{{ sub.title }}</span>
+                        <svg class="sl-menu__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg>
+                      </button>
+                      <ul class="sl-menu__sub3" id="sl-menu-sub-{{ link.title | handleize }}-{{ forloop.index }}" hidden>
+                        {%- for sub3 in sub.links -%}
+                          <li><a href="{{ sub3.url }}" {% if sub3.current %}aria-current="page"{% endif %}>{{ sub3.title }}</a></li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- else -%}
+                      <a href="{{ sub.url }}" {% if sub.current %}aria-current="page"{% endif %}>{{ sub.title }}</a>
+                    {%- endif -%}
+                  </li>
                 {%- endfor -%}
               </ul>
             {%- else -%}
@@ -79,7 +93,21 @@
             {%- if link.links.size > 0 -%}
               <ul class="sl-menu__sub">
                 {%- for sub in link.links -%}
-                  <li><a href="{{ sub.url }}" {% if sub.current %}aria-current="page"{% endif %}>{{ sub.title }}</a></li>
+                  <li>
+                    {%- if sub.links.size > 0 -%}
+                      <button type="button" class="sl-menu__sub-btn" aria-expanded="false" aria-controls="sl-menu-sub-{{ link.title | handleize }}-{{ forloop.index }}" data-sl-menu-sub>
+                        <span>{{ sub.title }}</span>
+                        <svg class="sl-menu__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg>
+                      </button>
+                      <ul class="sl-menu__sub3" id="sl-menu-sub-{{ link.title | handleize }}-{{ forloop.index }}" hidden>
+                        {%- for sub3 in sub.links -%}
+                          <li><a href="{{ sub3.url }}" {% if sub3.current %}aria-current="page"{% endif %}>{{ sub3.title }}</a></li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- else -%}
+                      <a href="{{ sub.url }}" {% if sub.current %}aria-current="page"{% endif %}>{{ sub.title }}</a>
+                    {%- endif -%}
+                  </li>
                 {%- endfor -%}
               </ul>
             {%- endif -%}
