@@ -83,24 +83,6 @@
       },
       {
         "type": "text",
-        "id": "sl_confianza_1",
-        "label": "Sello de confianza 1",
-        "default": "100% originales"
-      },
-      {
-        "type": "text",
-        "id": "sl_confianza_2",
-        "label": "Sello de confianza 2",
-        "default": "Despacho a todo Chile"
-      },
-      {
-        "type": "text",
-        "id": "sl_confianza_3",
-        "label": "Sello de confianza 3",
-        "default": "Pago seguro Mercado Pago"
-      },
-      {
-        "type": "text",
         "id": "sl_aviso_dermatologo",
         "label": "Aviso al dermatólogo",
         "default": "Si tu acné es severo, doloroso o persistente, consulta a un dermatólogo."
@@ -403,6 +385,72 @@
         "id": "sl_aviso_stock_url",
         "label": "Enlace propio (opcional)",
         "info": "Si pones un formulario (p. ej. de Klaviyo), se usa en vez de WhatsApp."
+      },
+      {
+        "type": "header",
+        "content": "Por qué confiar (bloque con íconos)"
+      },
+      {
+        "type": "text",
+        "id": "sl_conf_1_titulo",
+        "label": "Original: título",
+        "default": "100% originales"
+      },
+      {
+        "type": "text",
+        "id": "sl_conf_1_texto",
+        "label": "Original: texto",
+        "default": "Marcas coreanas verificadas"
+      },
+      {
+        "type": "text",
+        "id": "sl_conf_2_titulo",
+        "label": "Envío: título",
+        "default": "Envío gratis sobre [umbral]",
+        "info": "Usa [umbral]: sale del monto de envío gratis de arriba."
+      },
+      {
+        "type": "text",
+        "id": "sl_conf_2_texto",
+        "label": "Envío: texto",
+        "default": "Despacho a todo Chile"
+      },
+      {
+        "type": "text",
+        "id": "sl_conf_3_titulo",
+        "label": "Asesoría: título",
+        "default": "Asesoría con Aly",
+        "info": "Solo se muestra si hay WhatsApp (teléfono de la tienda o enlace)."
+      },
+      {
+        "type": "text",
+        "id": "sl_conf_3_texto",
+        "label": "Asesoría: texto",
+        "default": "Te ayudamos a elegir por WhatsApp"
+      },
+      {
+        "type": "text",
+        "id": "sl_conf_4_titulo",
+        "label": "Pago: título",
+        "default": "Pago seguro"
+      },
+      {
+        "type": "text",
+        "id": "sl_conf_4_texto",
+        "label": "Pago: texto",
+        "default": "Mercado Pago, crédito y débito"
+      },
+      {
+        "type": "text",
+        "id": "sl_conf_pagos_titulo",
+        "label": "Título de medios de pago",
+        "default": "Medios de pago"
+      },
+      {
+        "type": "textarea",
+        "id": "sl_conf_pagos_extra",
+        "label": "Otros medios de pago (texto)",
+        "info": "Opcional. Se suma a los íconos de los medios activos en Shopify. Ej.: Webpay, transferencia."
       }
     ]
   },

@@ -1,0 +1,16 @@
+/* Por qué confiar: 4 puntos con ícono, sin cajas con borde, y la franja de medios de pago. */
+.sl-confianza { display: flex; flex-direction: column; gap: 14px; }
+.sl-confianza__lista { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 12px; margin: 0; padding: 0; list-style: none; }
+.sl-confianza__item { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.sl-confianza__icono { flex: 0 0 40px; width: 40px; height: 40px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-necesidad, var(--sl-menta)); color: var(--sl-tinta); }
+.sl-confianza__texto { display: flex; flex-direction: column; min-width: 0; line-height: 1.2; }
+.sl-confianza__texto strong { font-size: 13px; font-weight: 700; }
+.sl-confianza__texto small { font-size: 12px; opacity: .75; }
+.sl-pagos { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 10px; padding-top: 12px; border-top: 2px dashed rgba(0, 0, 0, .15); }
+.sl-pagos__titulo { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .75; }
+.sl-pagos__lista { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.sl-pagos__icono { width: 38px; height: 24px; display: block; }
+.sl-pagos__extra { font-size: 12px; font-weight: 700; }
+@media screen and (min-width: 750px) {
+  .sl-home-hero .sl-confianza__lista { grid-template-columns: repeat(4, 1fr); }
+}

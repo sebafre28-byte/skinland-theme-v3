@@ -1,9 +1,63 @@
-{%- comment -%} Sellos de confianza desde los ajustes del tema. {%- endcomment -%}
-{%- assign sellos = settings.sl_confianza_1 | append: '|' | append: settings.sl_confianza_2 | append: '|' | append: settings.sl_confianza_3 | split: '|' -%}
-<ul class="sl-confianza" role="list">
-  {%- for sello in sellos -%}
-    {%- if sello != blank -%}
-      <li class="sl-chip">{{ sello }}</li>
+{%- comment -%}
+  Por qué confiar: 4 puntos con ícono (originales, envío gratis, asesoría, pago seguro) y los medios de pago.
+  Textos en Ajustes del tema → Skinland · Sistema. El monto de envío gratis sale del mismo ajuste que la barra de envío;
+  la asesoría solo aparece si hay WhatsApp; los íconos de pago son los medios activos de Shopify.
+  Parámetro: pagos (false para ocultar la franja de medios de pago).
+{%- endcomment -%}
+{%- liquid
+  capture wa_raw
+    render 'sl-whatsapp-url'
+  endcapture
+  assign wa = wa_raw | strip
+  assign umbral = settings.sl_envio_gratis_umbral | times: 100 | money_without_trailing_zeros
+  assign envio_titulo = settings.sl_conf_2_titulo | replace: '[umbral]', umbral
+  assign mostrar_envio = false
+  if settings.sl_envio_gratis_umbral > 0
+    assign mostrar_envio = true
+  endif
+-%}
+<div class="sl-confianza">
+  <ul class="sl-confianza__lista" role="list">
+    {%- if settings.sl_conf_1_titulo != blank -%}
+      <li class="sl-confianza__item" data-sl-color="menta">
+        <span class="sl-confianza__icono">{% render 'sl-icon', name: 'shield', size: 20 %}</span>
+        <span class="sl-confianza__texto"><strong>{{ settings.sl_conf_1_titulo }}</strong><small>{{ settings.sl_conf_1_texto }}</small></span>
+      </li>
     {%- endif -%}
-  {%- endfor -%}
-</ul>
+    {%- if mostrar_envio and settings.sl_conf_2_titulo != blank -%}
+      <li class="sl-confianza__item" data-sl-color="lima">
+        <span class="sl-confianza__icono">{% render 'sl-icon', name: 'truck', size: 20 %}</span>
+        <span class="sl-confianza__texto"><strong>{{ envio_titulo }}</strong><small>{{ settings.sl_conf_2_texto }}</small></span>
+      </li>
+    {%- endif -%}
+    {%- if wa != blank and settings.sl_conf_3_titulo != blank -%}
+      <li class="sl-confianza__item" data-sl-color="lila">
+        <span class="sl-confianza__icono">{% render 'sl-icon', name: 'chat', size: 20 %}</span>
+        <span class="sl-confianza__texto"><strong>{{ settings.sl_conf_3_titulo }}</strong><small>{{ settings.sl_conf_3_texto }}</small></span>
+      </li>
+    {%- endif -%}
+    {%- if settings.sl_conf_4_titulo != blank -%}
+      <li class="sl-confianza__item" data-sl-color="durazno">
+        <span class="sl-confianza__icono">{% render 'sl-icon', name: 'card', size: 20 %}</span>
+        <span class="sl-confianza__texto"><strong>{{ settings.sl_conf_4_titulo }}</strong><small>{{ settings.sl_conf_4_texto }}</small></span>
+      </li>
+    {%- endif -%}
+  </ul>
+  {%- assign hay_pagos = false -%}
+  {%- if shop.enabled_payment_types.size > 0 or settings.sl_conf_pagos_extra != blank -%}{%- assign hay_pagos = true -%}{%- endif -%}
+  {%- if hay_pagos and pagos != false -%}
+    <div class="sl-pagos">
+      <span class="sl-pagos__titulo">{{ settings.sl_conf_pagos_titulo }}</span>
+      {%- if shop.enabled_payment_types.size > 0 -%}
+        <ul class="sl-pagos__lista" role="list">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag: class: 'sl-pagos__icono' }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      {%- if settings.sl_conf_pagos_extra != blank -%}
+        <span class="sl-pagos__extra">{{ settings.sl_conf_pagos_extra }}</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>

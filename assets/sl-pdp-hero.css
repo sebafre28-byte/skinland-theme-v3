@@ -118,8 +118,6 @@
 .sl-envio__texto { flex: 1; margin: 0; font-size: 13px; line-height: 1.35; }
 .sl-envio__form .form { margin: 0; }
 
-.sl-confianza { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.sl-confianza .sl-chip { padding: 6px 10px; }
 
 @media screen and (min-width: 990px) {
   .sl-hero { padding-top: 20px; }
