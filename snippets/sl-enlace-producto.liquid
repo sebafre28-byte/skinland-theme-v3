@@ -1,0 +1,15 @@
+{%- comment -%}
+  URL de un producto. En las landing de anuncios (plantilla product.lp-*) conserva la vista de landing:
+  kits → ?view=lp-kit, el resto → ?view=lp-rutina. Fuera de la landing imprime la URL normal.
+  Parámetro: producto.
+{%- endcomment -%}
+{%- liquid
+  echo producto.url
+  if template.suffix contains 'lp-'
+    if producto.tags contains 'producto-kit' or producto.tags contains 'quiz-kit'
+      echo '?view=lp-kit'
+    else
+      echo '?view=lp-rutina'
+    endif
+  endif
+-%}

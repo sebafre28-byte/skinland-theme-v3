@@ -1,0 +1,77 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "layout": "landing",
+  "sections": {
+    "hero": {
+      "type": "sl-pdp-hero",
+      "settings": {}
+    },
+    "videos": {
+      "type": "sl-videos",
+      "settings": {
+        "titulo": "Míralo en acción"
+      }
+    },
+    "incluye": {
+      "type": "sl-incluye",
+      "settings": {
+        "titulo": "Qué trae tu caja"
+      }
+    },
+    "uso": {
+      "type": "sl-uso",
+      "settings": {}
+    },
+    "para_ti": {
+      "type": "sl-para-ti",
+      "settings": {}
+    },
+    "resultados": {
+      "type": "sl-resultados",
+      "settings": {}
+    },
+    "ingredientes": {
+      "type": "sl-ingredientes",
+      "settings": {}
+    },
+    "resenas": {
+      "type": "sl-resenas",
+      "settings": {}
+    },
+    "faq": {
+      "type": "sl-faq",
+      "settings": {}
+    },
+    "cta_final": {
+      "type": "sl-cta-final",
+      "settings": {
+        "titulo": "Tu kit, todo en una caja."
+      }
+    },
+    "sticky": {
+      "type": "sl-sticky-atc",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero",
+    "videos",
+    "incluye",
+    "uso",
+    "para_ti",
+    "resultados",
+    "ingredientes",
+    "resenas",
+    "faq",
+    "cta_final",
+    "sticky"
+  ]
+}

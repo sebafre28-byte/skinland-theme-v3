@@ -1,0 +1,43 @@
+{{ 'sl-footer.css' | asset_url | stylesheet_tag }}
+{{ 'sl-lp.css' | asset_url | stylesheet_tag }}
+
+{%- assign correo = section.settings.email | default: shop.email -%}
+
+<footer class="sl-footer sl-lp-footer sl-scope">
+  <div class="sl-footer__inner sl-lp-footer__inner">
+    <a href="{{ routes.root_url }}" class="sl-footer__logo" aria-label="{{ shop.name | escape }}">
+      {% render 'sl-logo', oscuro: true, class: 'sl-footer__logo-img' %}
+    </a>
+    {%- if correo != blank -%}
+      <p class="sl-footer__contacto"><a href="mailto:{{ correo }}">{{ correo }}</a></p>
+    {%- endif -%}
+    {%- if shop.policies.size > 0 -%}
+      <nav aria-label="{{ section.settings.politicas_titulo | escape }}">
+        <ul class="sl-footer__lista sl-lp-footer__politicas">
+          {%- for policy in shop.policies -%}
+            <li><a href="{{ policy.url }}">{{ policy.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+  </div>
+  <div class="sl-footer__base">
+    <p class="sl-footer__copy">© {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+    {%- if section.settings.texto_pagos != blank -%}
+      <p class="sl-footer__pagos">{{ section.settings.texto_pagos }}</p>
+    {%- endif -%}
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Skinland · Footer landing",
+  "tag": "div",
+  "class": "sl-lp-footer-section",
+  "settings": [
+    { "type": "text", "id": "email", "label": "Correo de contacto", "info": "Si está vacío se usa el correo de la tienda." },
+    { "type": "text", "id": "politicas_titulo", "label": "Políticas (accesible)", "default": "Políticas" },
+    { "type": "text", "id": "texto_pagos", "label": "Texto de pagos", "default": "Pago seguro con Mercado Pago, crédito y débito" }
+  ]
+}
+{% endschema %}

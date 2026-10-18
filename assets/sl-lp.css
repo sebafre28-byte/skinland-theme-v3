@@ -1,0 +1,9 @@
+/* Landing de anuncios: header con solo logo y carrito, footer reducido. */
+.sl-lp-header { border-bottom: var(--sl-borde); }
+.sl-lp-header__inner { grid-template-columns: 1fr auto; }
+.sl-lp-header .sl-header__logo { justify-self: start; }
+.sl-lp-footer__inner { align-items: flex-start; }
+.sl-lp-footer__politicas { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0; padding: 0; list-style: none; }
+@media screen and (min-width: 990px) {
+  .sl-lp-header__inner { grid-template-columns: 1fr auto; }
+}

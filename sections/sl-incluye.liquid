@@ -157,7 +157,7 @@
                 <span class="sl-upgrade__chip">{{ chip_upgrade }}</span>
               </div>
             </div>
-            <a class="sl-btn sl-btn--lg sl-upgrade__boton" href="{{ upgrade.url }}" data-sl-version>{{ section.settings.upgrade_boton | replace: '[titulo]', upgrade.title }}</a>
+            <a class="sl-btn sl-btn--lg sl-upgrade__boton" href="{% render 'sl-enlace-producto', producto: upgrade %}" data-sl-version>{{ section.settings.upgrade_boton | replace: '[titulo]', upgrade.title }}</a>
           </div>
         </div>
       {%- endif -%}

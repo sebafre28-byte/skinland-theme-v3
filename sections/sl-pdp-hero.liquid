@@ -208,7 +208,7 @@
                     assign v_color = v_color | strip
                   -%}
                   <a
-                    href="{{ v.url }}"
+                    href="{% render 'sl-enlace-producto', producto: v %}"
                     class="sl-version{% if v_actual %} sl-version--actual{% endif %}"
                     data-sl-version
                     {% if v_actual %}aria-current="page" data-sl-color="{{ v_color }}"{% endif %}

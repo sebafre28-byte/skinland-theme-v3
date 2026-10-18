@@ -1,0 +1,24 @@
+{{ 'sl-header.css' | asset_url | stylesheet_tag }}
+{{ 'sl-lp.css' | asset_url | stylesheet_tag }}
+
+<header class="sl-header sl-lp-header sl-scope">
+  <div class="sl-header__inner sl-lp-header__inner">
+    <a class="sl-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      {% render 'sl-logo', class: 'sl-header__logo-img' %}
+    </a>
+    <div class="sl-header__acciones">
+      <a href="{{ routes.cart_url }}" class="sl-header__icon sl-header__icon--carrito" id="cart-icon-bubble">
+        {% render 'sl-cart-bubble' %}
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Skinland · Header landing",
+  "tag": "div",
+  "class": "sl-lp-header-section",
+  "settings": []
+}
+{% endschema %}
