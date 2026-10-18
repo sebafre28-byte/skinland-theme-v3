@@ -145,13 +145,3 @@
 .sl-galeria__beneficio { position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); font-size: 13px; font-weight: 700; line-height: 1.25; }
 .sl-galeria__beneficio svg { flex: none; padding: 2px; border: var(--sl-borde); border-radius: 50%; background: var(--sl-lima); }
 .sl-galeria__beneficio span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-
-/* Para quién es: claridad al tiro, antes de elegir versión */
-.sl-paraquien { display: flex; flex-direction: column; gap: 8px; }
-.sl-paraquien__col { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border: var(--sl-borde); border-radius: var(--sl-radio-m); }
-.sl-paraquien__col--si { background: var(--sl-necesidad, var(--sl-menta)); }
-.sl-paraquien__col--no { background: var(--sl-blanco); border-style: dashed; }
-.sl-paraquien__titulo { font-family: var(--sl-font-display); font-size: 14px; font-weight: 800; letter-spacing: -.01em; }
-.sl-paraquien__lista { display: flex; flex-direction: column; gap: 4px; margin: 0; padding: 0; list-style: none; }
-.sl-paraquien__lista li { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; line-height: 1.3; }
-.sl-paraquien__lista svg { flex: none; margin-top: 1px; padding: 2px; border: var(--sl-borde); border-radius: 50%; background: var(--sl-blanco); }

@@ -206,29 +206,6 @@
             <p class="sl-buybox__bajada">{{ bajada }}</p>
           {%- endif -%}
 
-          {%- assign hero_si = mf.para_quien_es.value -%}
-          {%- assign hero_no = mf.para_quien_no_es.value -%}
-          {%- if hero_si.size > 0 -%}
-            <div class="sl-paraquien">
-              <div class="sl-paraquien__col sl-paraquien__col--si">
-                <strong class="sl-paraquien__titulo">{{ section.settings.texto_para_si }}</strong>
-                <ul class="sl-paraquien__lista" role="list">
-                  {%- for item in hero_si limit: 2 -%}
-                    <li>{% render 'sl-icon', name: 'check', size: 16 %}<span>{{ item | strip }}</span></li>
-                  {%- endfor -%}
-                </ul>
-              </div>
-              {%- if hero_no.size > 0 -%}
-                <div class="sl-paraquien__col sl-paraquien__col--no">
-                  <strong class="sl-paraquien__titulo">{{ section.settings.texto_para_no }}</strong>
-                  <ul class="sl-paraquien__lista" role="list">
-                    <li>{% render 'sl-icon', name: 'close', size: 16 %}<span>{{ hero_no.first | strip }}</span></li>
-                  </ul>
-                </div>
-              {%- endif -%}
-            </div>
-          {%- endif -%}
-
           {%- if versiones.size > 1 -%}
             <div class="sl-versiones">
               <span class="sl-etiqueta">{{ section.settings.texto_versiones }}</span>
@@ -434,18 +411,6 @@
     {
       "type": "header",
       "content": "Caja de compra"
-    },
-    {
-      "type": "text",
-      "id": "texto_para_si",
-      "label": "Título de \"es para ti si\"",
-      "default": "Es para ti si…"
-    },
-    {
-      "type": "text",
-      "id": "texto_para_no",
-      "label": "Título de \"quizá no es para ti\"",
-      "default": "Quizá no es para ti si…"
     },
     {
       "type": "text",
