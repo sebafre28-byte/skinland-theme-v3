@@ -253,7 +253,9 @@
               {%- endif -%}
             </div>
             {%- if bs_ahorro > 0 -%}
-              <span class="sl-sticker">−{{ bs_ahorro | money_without_trailing_zeros }}</span>
+              {%- assign ahorro_monto = bs_ahorro | money_without_trailing_zeros -%}
+          {%- assign ahorro_menos = '−' | append: ahorro_monto -%}
+              <span class="sl-sticker">{{ section.settings.texto_ahorras | default: '[ahorro]' | replace: '[ahorro]', ahorro_menos }}</span>
             {%- endif -%}
             {%- render 'sl-costo-dia', precio: precio, dias: dias, texto_costo: section.settings.texto_costo_dia, texto_dura: section.settings.texto_dura -%}
             {%- if settings.sl_texto_cuotas != blank -%}
@@ -422,6 +424,13 @@
       "id": "texto_por_separado",
       "label": "Texto de \"por separado\"",
       "default": "Por separado"
+    },
+    {
+      "type": "text",
+      "id": "texto_ahorras",
+      "label": "Etiqueta de ahorro",
+      "info": "Usa [ahorro]; el monto se calcula y lleva signo menos.",
+      "default": "Ahorras [ahorro]"
     },
     {
       "type": "text",

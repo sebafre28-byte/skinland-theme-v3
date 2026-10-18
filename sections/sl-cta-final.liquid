@@ -42,7 +42,9 @@
       <div class="sl-cta__precio">
         <span class="sl-cta__monto">{{ precio | money_without_trailing_zeros }}</span>
         {%- if bs_ahorro > 0 -%}
-          <span class="sl-sticker">−{{ bs_ahorro | money_without_trailing_zeros }}</span>
+          {%- assign ahorro_monto = bs_ahorro | money_without_trailing_zeros -%}
+          {%- assign ahorro_menos = '−' | append: ahorro_monto -%}
+          <span class="sl-sticker">{{ section.settings.texto_ahorras | default: '[ahorro]' | replace: '[ahorro]', ahorro_menos }}</span>
         {%- endif -%}
       </div>
     </div>
@@ -66,6 +68,13 @@
   "tag": "div",
   "class": "sl-cta-final-section",
   "settings": [
+    {
+      "type": "text",
+      "id": "texto_ahorras",
+      "label": "Etiqueta de ahorro",
+      "info": "Usa [ahorro]; el monto se calcula y lleva signo menos.",
+      "default": "Ahorras [ahorro]"
+    },
     {
       "type": "text",
       "id": "titulo",
