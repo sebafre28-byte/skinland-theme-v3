@@ -1,0 +1,9 @@
+/* sl-cinta · segunda franja en movimiento (comparte la mecánica de sl-anuncio) */
+.sl-cinta { border-top: 0; border-bottom: 2px solid var(--sl-tinta); background: var(--sl-necesidad, var(--sl-menta)); font-size: 13px; letter-spacing: .06em; }
+.sl-cinta[data-sl-color='tinta'] { background: var(--sl-tinta); color: var(--sl-lima); }
+.sl-cinta .sl-anuncio__item { padding: 12px 0; }
+.sl-cinta.is-scrolling[data-sl-sentido='inverso'] .sl-anuncio__track { animation-direction: reverse; }
+@media screen and (min-width: 750px) {
+  .sl-cinta { font-size: 15px; }
+  .sl-cinta .sl-anuncio__item { padding: 14px 0; }
+}

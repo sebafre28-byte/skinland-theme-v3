@@ -44,10 +44,48 @@
     "sticky": {
       "type": "sl-sticky-atc",
       "settings": {}
+    },
+    "cinta": {
+      "type": "sl-cinta",
+      "blocks": {
+        "c1": {
+          "type": "texto",
+          "settings": {
+            "texto": "Productos coreanos 100% originales"
+          }
+        },
+        "c2": {
+          "type": "texto",
+          "settings": {
+            "texto": "Rutinas y kits armados para ti"
+          }
+        },
+        "c3": {
+          "type": "texto",
+          "settings": {
+            "texto": "Asesoría por WhatsApp"
+          }
+        },
+        "envio": {
+          "type": "envio_gratis",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "envio"
+      ],
+      "settings": {
+        "color": "menta",
+        "sentido": "inverso"
+      }
     }
   },
   "order": [
     "hero",
+    "cinta",
     "combina",
     "para_ti",
     "uso",

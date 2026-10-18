@@ -232,10 +232,62 @@
         "m7"
       ],
       "settings": {}
+    },
+    "cinta": {
+      "type": "sl-cinta",
+      "blocks": {
+        "c1": {
+          "type": "texto",
+          "settings": {
+            "texto": "Rutinas armadas por tipo de piel"
+          }
+        },
+        "c2": {
+          "type": "texto",
+          "settings": {
+            "texto": "Kits por objetivo"
+          }
+        },
+        "c3": {
+          "type": "texto",
+          "settings": {
+            "texto": "Productos coreanos 100% originales"
+          }
+        },
+        "c4": {
+          "type": "texto",
+          "settings": {
+            "texto": "Test de piel en 1 minuto"
+          }
+        },
+        "c5": {
+          "type": "texto",
+          "settings": {
+            "texto": "Asesoría por WhatsApp"
+          }
+        },
+        "envio": {
+          "type": "envio_gratis",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "envio"
+      ],
+      "settings": {
+        "color": "tinta",
+        "sentido": "inverso"
+      }
     }
   },
   "order": [
     "hero",
+    "cinta",
     "necesidades",
     "rutinas",
     "kit",

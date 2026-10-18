@@ -1,0 +1,81 @@
+{{ 'sl-anuncio.css' | asset_url | stylesheet_tag }}
+{{ 'sl-cinta.css' | asset_url | stylesheet_tag }}
+
+{%- if section.blocks.size > 0 -%}
+  <div class="sl-anuncio sl-cinta" data-sl-anuncio data-sl-color="{{ section.settings.color }}" data-sl-sentido="{{ section.settings.sentido }}" role="region" aria-label="{{ section.settings.etiqueta_aria }}">
+    <div class="sl-anuncio__track">
+      <ul class="sl-anuncio__lista">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign texto = block.settings.texto
+            if block.type == 'envio_gratis'
+              assign umbral = settings.sl_envio_gratis_umbral | times: 100 | money_without_trailing_zeros
+              assign texto = block.settings.texto | append: ' ' | append: umbral
+            endif
+          -%}
+          {%- if texto != blank -%}
+            <li class="sl-anuncio__item" {{ block.shopify_attributes }}>
+              {%- if block.settings.enlace != blank -%}
+                <a href="{{ block.settings.enlace }}">{{ texto | strip }}</a>
+              {%- else -%}
+                {{ texto | strip }}
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+  <script src="{{ 'sl-anuncio.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Cinta",
+  "tag": "section",
+  "class": "sl-cinta-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "etiqueta_aria", "label": "Etiqueta accesible", "default": "Lo que hace Skinland" },
+    { "type": "select", "id": "color", "label": "Color de la cinta", "default": "tinta", "options": [
+      { "value": "tinta", "label": "Oscuro" }, { "value": "menta", "label": "Menta" }, { "value": "durazno", "label": "Durazno" },
+      { "value": "celeste", "label": "Celeste" }, { "value": "lila", "label": "Lila" }, { "value": "amarillo", "label": "Amarillo" },
+      { "value": "rosa", "label": "Rosa" }, { "value": "lima", "label": "Lima" }
+    ] },
+    { "type": "select", "id": "sentido", "label": "Sentido del movimiento", "default": "inverso", "options": [
+      { "value": "normal", "label": "Igual que la barra de arriba" }, { "value": "inverso", "label": "Contrario a la barra de arriba" }
+    ], "info": "Contrario se ve más vivo cuando las dos cintas están juntas." }
+  ],
+  "blocks": [
+    {
+      "type": "texto",
+      "name": "Texto",
+      "settings": [
+        { "type": "text", "id": "texto", "label": "Texto", "info": "Solo cosas reales y que se puedan comprobar." },
+        { "type": "url", "id": "enlace", "label": "Enlace" }
+      ]
+    },
+    {
+      "type": "envio_gratis",
+      "name": "Envío gratis",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "texto", "label": "Texto antes del monto", "info": "El monto sale del ajuste \"Envío gratis desde\" del tema.", "default": "Envío gratis sobre" },
+        { "type": "url", "id": "enlace", "label": "Enlace" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Skinland · Cinta",
+      "blocks": [
+        { "type": "texto", "settings": { "texto": "Rutinas armadas por tipo de piel" } },
+        { "type": "texto", "settings": { "texto": "Productos coreanos 100% originales" } },
+        { "type": "texto", "settings": { "texto": "Test de piel en 1 minuto" } },
+        { "type": "texto", "settings": { "texto": "Asesoría por WhatsApp" } },
+        { "type": "envio_gratis" }
+      ]
+    }
+  ]
+}
+{% endschema %}
