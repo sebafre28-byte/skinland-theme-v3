@@ -83,7 +83,8 @@
             {%- if block.settings.coleccion != blank -%}
               <ul class="sl-rutinas__otras" role="list">
                 {%- for o in block.settings.coleccion.products -%}
-                  {%- if o.id != p.id and o.metafields.custom.version_nombre.value == p.metafields.custom.version_nombre.value -%}
+                  {%- assign o_pasos = o.metafields.custom.routine_products.value.size | plus: 0 -%}
+                  {%- if o.id != p.id and o_pasos == pasos -%}
                     {%- liquid
                       capture oc_raw
                         render 'sl-color-necesidad', product: o
@@ -124,7 +125,7 @@
       "settings": [
         { "type": "text", "id": "etiqueta", "label": "Texto del selector", "default": "Express · 3 pasos" },
         { "type": "product", "id": "destacada", "label": "Rutina destacada", "info": "Sin producto, la versión no se muestra." },
-        { "type": "collection", "id": "coleccion", "label": "Colección de rutinas", "info": "De aquí salen las otras rutinas de esta misma versión (mismo custom.version_nombre)." },
+        { "type": "collection", "id": "coleccion", "label": "Colección de rutinas", "info": "De aquí salen las otras rutinas con la misma cantidad de pasos que la destacada (calculada desde sus productos)." },
         { "type": "text", "id": "texto_productos", "label": "Etiqueta de pasos", "default": "[n] productos", "info": "Usa [n]." },
         { "type": "text", "id": "texto_por_separado", "label": "Texto del tachado", "default": "Por separado" },
         { "type": "text", "id": "boton", "label": "Botón", "default": "Ver [titulo] →", "info": "Usa [titulo]." },
