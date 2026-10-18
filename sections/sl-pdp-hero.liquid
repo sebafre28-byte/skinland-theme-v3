@@ -120,6 +120,12 @@
                 {%- if dias > 0 %} · {{ section.settings.texto_dura | replace: '[dias]', dias }}{% endif -%}
               </span>
             {%- endif -%}
+            {%- if pasos == 0 -%}
+              {%- assign beneficio_chip = mf.beneficio_corto.value | default: mf.beneficios_clave.value.first -%}
+              {%- if beneficio_chip != blank -%}
+                <span class="sl-galeria__beneficio">{% render 'sl-icon', name: 'check', size: 16 %}<span>{{ beneficio_chip }}</span></span>
+              {%- endif -%}
+            {%- endif -%}
             {%- if bs_ahorro > 0 -%}
               <span class="sl-galeria__ahorro">{{ section.settings.sticker_ahorro }}<br>{{ bs_ahorro | money_without_trailing_zeros }}</span>
             {%- endif -%}
