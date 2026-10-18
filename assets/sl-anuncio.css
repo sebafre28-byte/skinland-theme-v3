@@ -19,9 +19,9 @@
 }
 .sl-anuncio__item a { color: inherit; text-decoration: none; }
 .sl-anuncio__item a:hover { text-decoration: underline; }
-.sl-anuncio.is-scrolling .sl-anuncio__track { justify-content: flex-start; animation: sl-anuncio-scroll var(--sl-anuncio-duracion, 24s) linear infinite; }
-.sl-anuncio.is-scrolling:hover .sl-anuncio__track { animation-play-state: paused; }
-@keyframes sl-anuncio-scroll { to { transform: translateX(-50%); } }
+.sl-anuncio.is-scrolling .sl-anuncio__track { justify-content: flex-start; animation: sl-anuncio-scroll var(--sl-anuncio-duracion, 24s) linear infinite; will-change: transform; }
+.sl-anuncio.is-scrolling:hover .sl-anuncio__track, .sl-anuncio.is-scrolling:focus-within .sl-anuncio__track { animation-play-state: paused; }
+@keyframes sl-anuncio-scroll { to { transform: translateX(calc(-100% / var(--sl-anuncio-copias, 2))); } }
 
 @media screen and (min-width: 750px) {
   .sl-anuncio { font-size: 12px; }

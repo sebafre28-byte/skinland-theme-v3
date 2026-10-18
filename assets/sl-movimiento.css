@@ -1,0 +1,33 @@
+/* Movimiento liviano: solo transform y opacity (se anima en la GPU, sin cambiar el layout). Todo se apaga con "reducir movimiento". */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+
+  /* Las secciones de más abajo entran con un fade corto al aparecer en pantalla (sl-movimiento.js) */
+  .sl-rv { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; will-change: opacity, transform; }
+  .sl-rv--on { opacity: 1; transform: none; will-change: auto; }
+
+  /* Pegatinas del hero: flotan suave (propiedad translate: se suma a su rotación sin pisarla) */
+  .sl-home-hero__sticker, .sl-galeria__ahorro { animation: sl-flota 4.5s ease-in-out infinite; }
+  .sl-home-hero__chip, .sl-galeria__chip { animation: sl-flota 5.5s ease-in-out infinite reverse; }
+  @keyframes sl-flota { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+
+  /* Tarjetas, filas y botones responden al tocar o pasar el cursor */
+  .sl-tarjeta, .sl-acordeon, .sl-combina__tarjeta, .sl-necesidades__pildora, .sl-btn { transition: transform .18s ease, box-shadow .18s ease; }
+  @media (hover: hover) {
+    .sl-tarjeta:hover, .sl-combina__tarjeta:hover { transform: translateY(-4px); box-shadow: 4px 4px 0 var(--sl-tinta); }
+    .sl-acordeon:hover { transform: translateY(-2px); }
+    .sl-necesidades__pildora:hover { transform: rotate(-2deg) translateY(-2px); box-shadow: 3px 3px 0 var(--sl-tinta); }
+  }
+  .sl-btn:active, .sl-tarjeta__boton:active, .sl-cart__upgrade-boton:active { transform: translate(2px, 2px); }
+
+  /* Las filas desplegables se abren con un fade corto */
+  .sl-acordeon[open] .sl-acordeon__cuerpo { animation: sl-abre .28s ease both; }
+  @keyframes sl-abre { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+  /* El contador del carrito rebota cuando cambia (el carrito vuelve a pintarlo al agregar) */
+  .sl-header__contador { animation: sl-rebote .45s cubic-bezier(.3, 1.6, .5, 1) both; }
+  @keyframes sl-rebote { from { transform: scale(.4); } to { transform: scale(1); } }
+
+  /* Sale una línea del carrito con un pequeño aparecer */
+  .sl-cart-item { animation: sl-abre .3s ease both; }
+}
