@@ -22,19 +22,6 @@
   .sl-home-hero .sl-h1 { font-size: 64px; }
 }
 
-/* Escena con los productos de una rutina sobre un estante blanco (así el fondo crema de las fotos se funde), con su número y su paso */
-.sl-home-hero__productos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 96px 14px 18px; padding: 12px 8px 14px; list-style: none; width: calc(100% - 28px); border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); }
-.sl-home-hero__productos--n1 { grid-template-columns: 1fr; }
-.sl-home-hero__productos--n2, .sl-home-hero__productos--n4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.sl-home-hero__prod { position: relative; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 6px; text-align: center; }
-.sl-home-hero__prod img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; mix-blend-mode: multiply; filter: brightness(1.04) contrast(1.02); }
-.sl-home-hero__num { position: absolute; top: 0; left: 4px; z-index: 1; width: 26px; height: 26px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-lima); font-family: var(--sl-font-display); font-size: 14px; font-weight: 800; }
-.sl-home-hero__paso { padding: 3px 8px; border: var(--sl-borde); border-radius: var(--sl-radio-s); background: var(--sl-blanco); font-size: 11px; font-weight: 700; }
-@media screen and (min-width: 990px) {
-  .sl-home-hero__productos { margin-top: 100px; padding: 18px 16px 18px; gap: 14px; }
-  .sl-home-hero__productos--n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .sl-home-hero__paso { font-size: 13px; }
-}
 .sl-home-hero__asesora { position: absolute; left: 12px; bottom: 12px; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 4px 12px 4px 4px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); box-shadow: var(--sl-sombra-chica, none); }
 .sl-home-hero__asesora-foto { width: 48px; height: 48px; border: var(--sl-borde); border-radius: 50%; object-fit: cover; }
 .sl-home-hero__asesora-texto { font-size: 12px; font-weight: 700; line-height: 1.15; max-width: 150px; }

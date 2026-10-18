@@ -9,8 +9,17 @@
 
   assign foto = section.settings.imagen
   assign respaldo = section.settings.coleccion_ahorro_1.products
-  assign prod_hero = section.settings.producto
-  assign comps_hero = prod_hero.metafields.custom.routine_products.value
+  assign n_escena = 0
+  assign activa_1 = false
+  if section.settings.producto.metafields.custom.routine_products.value.size > 0
+    assign n_escena = n_escena | plus: 1
+  endif
+  if section.settings.producto_2.metafields.custom.routine_products.value.size > 0
+    assign n_escena = n_escena | plus: 1
+  endif
+  if section.settings.producto_3.metafields.custom.routine_products.value.size > 0
+    assign n_escena = n_escena | plus: 1
+  endif
 -%}
 
 <section class="sl-home-hero sl-scope" aria-labelledby="sl-home-hero-{{ section.id }}">
@@ -31,19 +40,22 @@
     <div class="sl-home-hero__escena">
       {%- if foto != blank -%}
         {{ foto | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 750px) 560px, 90vw', widths: '400, 600, 900', class: 'sl-home-hero__foto', alt: foto.alt }}
-      {%- elsif comps_hero.size > 0 -%}
-        <ol class="sl-home-hero__productos sl-home-hero__productos--n{{ comps_hero.size }}" role="list">
-          {%- for c in comps_hero -%}
-            {%- capture paso_c -%}{% render 'sl-paso', componente: c, nombre: true %}{%- endcapture -%}
-            <li class="sl-home-hero__prod">
-              <span class="sl-home-hero__num" aria-hidden="true">{{ forloop.index }}</span>
-              {%- if c.featured_image -%}
-                {{ c.featured_image | image_url: width: 400 | image_tag: loading: 'eager', widths: '200, 400', sizes: '(min-width: 990px) 150px, 28vw', alt: c.title }}
-              {%- endif -%}
-              <span class="sl-home-hero__paso">{{ paso_c | strip }}</span>
-            </li>
-          {%- endfor -%}
-        </ol>
+      {%- elsif n_escena > 0 -%}
+        {{ 'sl-escena.css' | asset_url | stylesheet_tag }}
+        <div class="sl-escena sl-escena--n{{ n_escena }}">
+          {%- assign primera = true -%}
+          {%- if section.settings.producto.metafields.custom.routine_products.value.size > 0 -%}
+            {% render 'sl-hero-slide', producto: section.settings.producto, texto: section.settings.escena_texto_1, indice: 1, activa: primera %}
+            {%- assign primera = false -%}
+          {%- endif -%}
+          {%- if section.settings.producto_2.metafields.custom.routine_products.value.size > 0 -%}
+            {% render 'sl-hero-slide', producto: section.settings.producto_2, texto: section.settings.escena_texto_2, indice: 2, activa: primera %}
+            {%- assign primera = false -%}
+          {%- endif -%}
+          {%- if section.settings.producto_3.metafields.custom.routine_products.value.size > 0 -%}
+            {% render 'sl-hero-slide', producto: section.settings.producto_3, texto: section.settings.escena_texto_3, indice: 3, activa: primera %}
+          {%- endif -%}
+        </div>
       {%- elsif respaldo.size > 0 -%}
         <div class="sl-home-hero__collage">
           {%- for p in respaldo limit: 3 -%}
@@ -59,7 +71,7 @@
           {%- if section.settings.texto_asesora != blank -%}<span class="sl-home-hero__asesora-texto">{{ section.settings.texto_asesora }}</span>{%- endif -%}
         </span>
       {%- endif -%}
-      {%- if section.settings.chip_pasos != blank -%}
+      {%- if section.settings.chip_pasos != blank and n_escena == 0 -%}
         <span class="sl-home-hero__chip">{{ section.settings.chip_pasos }}</span>
       {%- endif -%}
       {%- if ahorro_max > 0 and section.settings.sticker != blank -%}
@@ -139,6 +151,21 @@
       "label": "Rutina para la foto",
       "info": "Si no hay foto subida, la escena muestra los productos de esta rutina, cada uno con su número y su paso."
     },
+    {
+      "type": "product",
+      "id": "producto_2",
+      "label": "Segunda rutina o kit de la escena",
+      "info": "Opcional. La escena alterna entre las láminas con producto, cada una con sus productos numerados."
+    },
+    {
+      "type": "product",
+      "id": "producto_3",
+      "label": "Tercera rutina o kit de la escena",
+      "info": "Opcional. Por ejemplo, un kit."
+    },
+    { "type": "text", "id": "escena_texto_1", "label": "Etiqueta de la lámina 1", "info": "Usa [pasos] (cantidad de productos, calculada).", "default": "Express · [pasos] pasos" },
+    { "type": "text", "id": "escena_texto_2", "label": "Etiqueta de la lámina 2", "info": "Usa [pasos].", "default": "Esencial · [pasos] pasos" },
+    { "type": "text", "id": "escena_texto_3", "label": "Etiqueta de la lámina 3", "info": "Usa [pasos].", "default": "Kit · [pasos] productos" },
     {
       "type": "text",
       "id": "chip_pasos",

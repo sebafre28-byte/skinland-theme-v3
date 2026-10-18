@@ -6,7 +6,9 @@
         "coleccion_ahorro_1": "rutinas",
         "coleccion_ahorro_2": "kits",
         "boton_coleccion": "rutinas",
-        "producto": "rutina-express-piel-grasa"
+        "producto": "rutina-express-piel-grasa",
+        "producto_2": "rutina-piel-grasa",
+        "producto_3": "kit-anti-acne"
       }
     },
     "necesidades": {

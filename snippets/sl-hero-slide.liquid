@@ -1,0 +1,24 @@
+{%- comment -%}
+  Una lámina de la escena animada del hero: los productos de una rutina o kit, numerados y con su paso.
+  Parámetros: producto, texto (etiqueta; [pasos] = cantidad de productos), indice (1, 2 o 3), activa (true solo en la primera).
+{%- endcomment -%}
+{%- assign comps = producto.metafields.custom.routine_products.value -%}
+{%- if comps.size > 0 -%}
+  <div class="sl-escena__lamina sl-escena__lamina--{{ indice }}"{% unless activa %} aria-hidden="true"{% endunless %}>
+    {%- if texto != blank -%}
+      <span class="sl-escena__etiqueta">{{ texto | replace: '[pasos]', comps.size }}</span>
+    {%- endif -%}
+    <ol class="sl-escena__lista sl-escena__lista--n{{ comps.size }}" role="list">
+      {%- for c in comps -%}
+        {%- capture paso_c -%}{% render 'sl-paso', componente: c, nombre: true %}{%- endcapture -%}
+        <li class="sl-escena__prod">
+          <span class="sl-escena__num" aria-hidden="true">{{ forloop.index }}</span>
+          {%- if c.featured_image -%}
+            {{ c.featured_image | image_url: width: 400 | image_tag: loading: 'eager', widths: '200, 400', sizes: '(min-width: 990px) 140px, 28vw', alt: '' }}
+          {%- endif -%}
+          <span class="sl-escena__paso">{{ paso_c | strip }}</span>
+        </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+{%- endif -%}
