@@ -120,7 +120,10 @@
                     <strong>{{ settings.sl_cart_envio_falta | replace: '[falta]', falta_t }}</strong>
                   {%- endif -%}
                 </p>
-                <div class="sl-cart__barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progreso }}"><span style="width: {{ progreso }}%"></span></div>
+                <div class="sl-cart__ruta">
+                  <div class="sl-cart__barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progreso }}"><span style="width: {{ progreso }}%"></span></div>
+                  <span class="sl-cart__camion" style="--sl-p: {{ progreso }}%" aria-hidden="true">{% render 'sl-icon', name: 'truck', size: 26 %}</span>
+                </div>
               </div>
             {%- endif -%}
           {%- endif -%}
