@@ -19,3 +19,7 @@
 .sl-acordeon__ver { align-self: center; padding: 8px; color: var(--sl-tinta); font-size: 14px; font-weight: 700; text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) { .sl-acordeon__flecha { transition: none; } }
 @media screen and (min-width: 990px) { .sl-acordeon__cuerpo { padding: 0 20px 20px; } }
+
+/* Sin color definido en el producto: neutro. En la banda lima del kit, el lima también va neutro para que la fila se distinga. */
+.sl-acordeon[data-sl-color='blanco'] { --sl-necesidad: var(--sl-blanco); }
+.sl-kit-destacado .sl-acordeon[data-sl-color='lima'] { --sl-necesidad: var(--sl-blanco); }

@@ -19,6 +19,13 @@
     render 'sl-color-necesidad', product: product
   endcapture
   assign color = color_raw | strip
+  assign tiene_color = false
+  if product.metafields.custom.color.value != blank or product.metafields.custom.tipo_piel.value != blank
+    assign tiene_color = true
+  endif
+  if tiene_color == false
+    assign color = 'blanco'
+  endif
   assign precio = product.selected_or_first_available_variant.price
   assign nombre = product.title
   if nombre_tipo
