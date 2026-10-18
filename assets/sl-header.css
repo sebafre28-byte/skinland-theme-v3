@@ -8,7 +8,7 @@
   gap: 8px;
 }
 .sl-header__menu-btn {
-  width: 44px; height: 44px; padding: 0;
+  width: 40px; height: 40px; padding: 0;
   display: flex; align-items: center; justify-content: center;
   border: 0; background: transparent; color: var(--sl-tinta); cursor: pointer;
 }
@@ -43,38 +43,38 @@
   background: var(--sl-crema); color: var(--sl-tinta);
 }
 .sl-menu::backdrop { background: rgba(23, 38, 31, .55); }
-.sl-menu__panel { display: flex; flex-direction: column; gap: 16px; height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: 12px 20px calc(96px + env(safe-area-inset-bottom)); }
-.sl-menu__cabecera { display: flex; align-items: center; justify-content: space-between; min-height: 56px; }
+.sl-menu__panel { display: flex; flex-direction: column; gap: 10px; height: 100%; overflow-y: auto; overscroll-behavior: contain; padding: 8px 20px calc(18px + env(safe-area-inset-bottom)); }
+.sl-menu__cabecera { display: flex; align-items: center; justify-content: space-between; min-height: 46px; }
 .sl-menu__cerrar {
   width: 44px; height: 44px; padding: 0;
   display: flex; align-items: center; justify-content: center;
   border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); color: var(--sl-tinta); cursor: pointer;
 }
-.sl-menu__acciones { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+.sl-menu__acciones { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; }
 .sl-menu__test, .sl-menu__aly {
-  display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 18px;
+  display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; padding: 0 18px;
   border: var(--sl-borde); border-radius: 999px; box-shadow: 3px 3px 0 var(--sl-tinta);
   color: var(--sl-tinta); font-family: var(--sl-font-display); font-size: 16px; font-weight: 800; text-decoration: none;
 }
 .sl-menu__test { background: var(--sl-lila); }
 .sl-menu__aly { background: var(--sl-lima); }
 .sl-menu__lista, .sl-menu__sub { margin: 0; padding: 0; list-style: none; }
-.sl-menu__lista { display: flex; flex-direction: column; gap: 6px; }
+.sl-menu__lista { display: flex; flex-direction: column; gap: 2px; }
 .sl-menu__link {
-  display: block; padding: 8px 0;
-  font-family: var(--sl-font-display); font-size: 28px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1;
+  display: block; padding: 5px 0;
+  font-family: var(--sl-font-display); font-size: 25px; font-weight: 800; letter-spacing: -.03em; line-height: 1.1;
   color: var(--sl-tinta); text-decoration: none;
 }
-.sl-menu__sub { display: flex; flex-direction: column; margin: 0 0 8px; padding-left: 14px; border-left: 3px solid var(--sl-lima); }
-.sl-menu__sub a { display: block; padding: 9px 0; font-size: 15px; font-weight: 600; color: var(--sl-tinta); text-decoration: none; }
-.sl-menu__sub-btn { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 0; border: 0; background: none; color: var(--sl-tinta); font: inherit; font-size: 15px; font-weight: 600; text-align: left; cursor: pointer; }
+.sl-menu__sub { display: flex; flex-direction: column; margin: 0 0 4px; padding-left: 14px; border-left: 3px solid var(--sl-lima); }
+.sl-menu__sub a { display: block; padding: 6px 0; font-size: 14px; font-weight: 600; color: var(--sl-tinta); text-decoration: none; }
+.sl-menu__sub-btn { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 0; border: 0; background: none; color: var(--sl-tinta); font: inherit; font-size: 14px; font-weight: 600; text-align: left; cursor: pointer; }
 .sl-menu__sub-btn[aria-expanded='true'] .sl-menu__chevron { transform: rotate(180deg); }
 .sl-menu__chevron { flex: none; }
 .sl-menu__sub3 { display: flex; flex-direction: column; margin: 0 0 6px; padding: 0 0 0 14px; list-style: none; border-left: 3px solid var(--sl-menta); }
 .sl-menu__sub3[hidden] { display: none; }
-.sl-menu__sub3 a { padding: 7px 0; font-size: 14px; font-weight: 600; }
+.sl-menu__sub3 a { padding: 5px 0; font-size: 14px; font-weight: 600; }
 .sl-menu__buscar {
-  margin-top: auto; display: inline-flex; align-items: center; gap: 8px; min-height: 44px;
+  margin-top: auto; display: inline-flex; align-items: center; gap: 8px; min-height: 36px;
   font-size: 15px; font-weight: 700; color: var(--sl-tinta); text-decoration: none;
 }
 .sl-header a[aria-current='page'] { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 5px; text-decoration-color: var(--sl-lima); }
