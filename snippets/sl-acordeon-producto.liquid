@@ -39,7 +39,7 @@
     assign hay_ahorro = true
   endif
 -%}
-<details class="sl-acordeon" name="{{ grupo }}" data-sl-color="{{ color }}"{% if abierto %} open{% endif %}>
+<details class="sl-acordeon" name="{{ grupo }}" data-sl-color="{{ color }}" data-sl-colecciones="{% for c in product.collections %}{{ c.handle }} {% endfor %}"{% if abierto %} open{% endif %}>
   <summary class="sl-acordeon__fila">
     <strong class="sl-acordeon__nombre">{{ nombre }}</strong>
     <span class="sl-acordeon__lado">

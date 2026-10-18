@@ -38,3 +38,6 @@
 @media screen and (min-width: 750px) {
   .sl-acordeon__fotos--n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
+.sl-acordeon--pulso { animation: sl-acordeon-pulso 1.1s ease-out 1; }
+@keyframes sl-acordeon-pulso { 0% { outline: 4px solid var(--sl-tinta); outline-offset: 0; } 100% { outline: 4px solid transparent; outline-offset: 10px; } }
+@media (prefers-reduced-motion: reduce) { .sl-acordeon--pulso { animation: none; outline: 3px solid var(--sl-tinta); outline-offset: 4px; } }

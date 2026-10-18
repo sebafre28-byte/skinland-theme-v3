@@ -1,4 +1,5 @@
 {{ 'sl-necesidades.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'sl-necesidades.js' | asset_url }}" defer></script>
 
 {%- if section.blocks.size > 0 -%}
   <section class="sl-necesidades sl-scope" aria-labelledby="sl-necesidades-{{ section.id }}">
@@ -14,7 +15,7 @@
           -%}
           {%- if destino != blank and block.settings.texto != blank -%}
             <li {{ block.shopify_attributes }}>
-              <a class="sl-necesidades__pildora{% if block.type == 'no_se' %} sl-necesidades__pildora--punteada{% endif %}" href="{{ destino }}"{% if block.type != 'no_se' %} data-sl-color="{{ block.settings.color }}"{% endif %}>{{ block.settings.texto }}</a>
+              <a class="sl-necesidades__pildora{% if block.type == 'no_se' %} sl-necesidades__pildora--punteada{% endif %}" href="{{ destino }}"{% if block.type != 'no_se' %} data-sl-color="{{ block.settings.color }}" data-sl-ir="{{ block.settings.coleccion.handle }}"{% endif %}>{{ block.settings.texto }}</a>
             </li>
           {%- endif -%}
         {%- endfor -%}
@@ -36,7 +37,7 @@
       "name": "Necesidad",
       "settings": [
         { "type": "text", "id": "texto", "label": "Texto", "default": "Brillo" },
-        { "type": "collection", "id": "coleccion", "label": "Colección", "info": "Sin colección, la píldora no se muestra." },
+        { "type": "collection", "id": "coleccion", "label": "Colección", "info": "Sin colección, la píldora no se muestra. Al tocarla, el Home baja a la rutina o kit de esta colección; si no hay ninguno en el Home, abre la colección." },
         { "type": "select", "id": "color", "label": "Color", "default": "menta", "options": [
           { "value": "menta", "label": "Menta" }, { "value": "lima", "label": "Lima" }, { "value": "amarillo", "label": "Amarillo" },
           { "value": "durazno", "label": "Durazno" }, { "value": "celeste", "label": "Celeste" }, { "value": "lila", "label": "Lila" }, { "value": "rosa", "label": "Rosa" }
