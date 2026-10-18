@@ -21,16 +21,18 @@
 -%}
 
 <div class="sl-sticky sl-scope" data-sl-sticky role="region" aria-label="{{ section.settings.etiqueta_aria | escape }}">
+  {%- if bs_ahorro > 0 -%}
+    {%- assign ahorro_monto = bs_ahorro | money_without_trailing_zeros -%}
+    {%- assign ahorro_menos = '−' | append: ahorro_monto -%}
+    <span class="sl-sticky__ahorro">{{ section.settings.texto_ahorras | default: '[ahorro]' | replace: '[ahorro]', ahorro_menos }}</span>
+  {%- endif -%}
   <div class="sl-sticky__interior">
     {%- if foto != blank -%}
       <img class="sl-sticky__foto" src="{{ foto | image_url: width: 120 }}" alt="" width="44" height="44" loading="lazy">
     {%- endif -%}
     <div class="sl-sticky__texto">
       <span class="sl-sticky__titulo">{{ product.title }}</span>
-      <span class="sl-sticky__precio">
-        {{ precio | money_without_trailing_zeros }}
-        {%- if bs_ahorro > 0 %} · −{{ bs_ahorro | money_without_trailing_zeros }}{% endif -%}
-      </span>
+      <span class="sl-sticky__precio">{{ precio | money_without_trailing_zeros }}</span>
     </div>
     <button
       type="submit"
@@ -54,6 +56,13 @@
   "tag": "div",
   "class": "sl-sticky-section",
   "settings": [
+    {
+      "type": "text",
+      "id": "texto_ahorras",
+      "label": "Etiqueta de ahorro",
+      "info": "Usa [ahorro]; el monto se calcula y lleva signo menos.",
+      "default": "Ahorras [ahorro]"
+    },
     {
       "type": "text",
       "id": "cta_texto_defecto",
