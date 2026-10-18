@@ -1,53 +1,71 @@
-/* sl-escena · escena animada del hero: láminas que alternan (rutina de 3 pasos, de 4 pasos, kit).
-   En cada lámina los productos suben uno a uno con su número. Solo transform y opacity; sin JS.
-   Con "reducir movimiento" queda la primera lámina, quieta. */
-.sl-escena { display: grid; width: calc(100% - 28px); margin: 72px 14px 16px; }
+/* sl-escena · escena animada del hero con dibujos genéricos (no son productos reales).
+   Cada lámina muestra los pasos de una rutina o kit y, abajo, cápsulas (tipos de piel u objetivos) que se iluminan una a una.
+   Las láminas alternan solas. Solo CSS y colores del sistema; con "reducir movimiento" queda la primera, quieta. */
+.sl-escena { display: grid; width: calc(100% - 28px); margin: 66px 14px 16px; }
+.sl-escena__envoltorio { display: contents; }
 .sl-escena__lamina { grid-area: 1 / 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
-.sl-escena__etiqueta { position: absolute; top: 18px; left: 14px; z-index: 2; transform: rotate(-6deg); padding: 6px 10px; border: var(--sl-borde); border-radius: var(--sl-radio-s); background: var(--sl-blanco); font-size: 12px; font-weight: 700; }
-.sl-escena__lista { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 8px; margin: 0; padding: 12px 10px 14px; list-style: none; border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); }
-.sl-escena__prod { position: relative; flex: 0 0 calc((100% - 16px) / 3); min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; padding-top: 6px; text-align: center; }
-.sl-escena__lista--n1 .sl-escena__prod { flex-basis: 60%; }
-.sl-escena__lista--n2 .sl-escena__prod { flex-basis: calc((100% - 8px) / 2); }
-.sl-escena__lista--n4 .sl-escena__prod { flex-basis: calc((100% - 24px) / 4); }
-.sl-escena__lista--n5 .sl-escena__prod, .sl-escena__lista--n6 .sl-escena__prod { flex-basis: calc((100% - 32px) / 5); }
-.sl-escena__lista--n5 .sl-escena__paso, .sl-escena__lista--n6 .sl-escena__paso { font-size: 9px; padding: 2px 3px; }
-.sl-escena__lista--n5 .sl-escena__num, .sl-escena__lista--n6 .sl-escena__num, .sl-escena__lista--n4 .sl-escena__num { width: 22px; height: 22px; font-size: 12px; }
-.sl-escena__prod img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; mix-blend-mode: multiply; filter: brightness(1.04) contrast(1.02); }
-.sl-escena__num { position: absolute; top: 0; left: 2px; z-index: 1; width: 26px; height: 26px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-lima); font-family: var(--sl-font-display); font-size: 14px; font-weight: 800; }
-.sl-escena__paso { padding: 3px 7px; border: var(--sl-borde); border-radius: var(--sl-radio-s); background: var(--sl-blanco); font-size: 11px; font-weight: 700; line-height: 1.15; }
-.sl-escena__lista--n4 .sl-escena__paso { font-size: 10px; padding: 3px 5px; }
-.sl-escena__lamina:not(:first-child) { display: none; }
+.sl-escena__etiqueta { position: absolute; top: 16px; left: 14px; z-index: 2; transform: rotate(-6deg); padding: 6px 10px; border: var(--sl-borde); border-radius: var(--sl-radio-s); background: var(--sl-blanco); font-size: 12px; font-weight: 700; }
+.sl-escena__panel { border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); overflow: hidden; }
+.sl-escena__lista { display: flex; justify-content: center; gap: 8px; margin: 0; padding: 14px 10px 10px; list-style: none; }
+.sl-escena__prod { --sl-ac: var(--sl-lima); position: relative; flex: 1 1 0; max-width: 92px; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 5px; padding-top: 4px; text-align: center; }
+.sl-escena__prod[data-paso='serum'] { --sl-ac: var(--sl-celeste); }
+.sl-escena__prod[data-paso='crema'] { --sl-ac: var(--sl-durazno); }
+.sl-escena__prod[data-paso='spf'] { --sl-ac: var(--sl-lila); }
+.sl-escena__prod[data-paso='local'] { --sl-ac: var(--sl-rosa); }
+.sl-escena__dibujo { width: 100%; max-width: 58px; height: auto; color: var(--sl-tinta); }
+.sl-escena__num { position: absolute; top: -6px; left: 2px; z-index: 1; width: 24px; height: 24px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-lima); font-family: var(--sl-font-display); font-size: 13px; font-weight: 800; }
+.sl-escena__paso { padding: 2px 6px; border: var(--sl-borde); border-radius: var(--sl-radio-s); background: var(--sl-blanco); font-size: 10px; font-weight: 700; line-height: 1.15; }
+.sl-escena__lista--n5 .sl-escena__paso { font-size: 9px; padding: 2px 3px; }
+.sl-escena__capsulas { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin: 0; padding: 9px 8px; list-style: none; border-top: 2px dashed var(--sl-tinta); }
+.sl-escena__cap { padding: 4px 9px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); font-size: 11px; font-weight: 700; line-height: 1.2; }
+.sl-escena__envoltorio:not(:first-child) { display: none; }
 
 @media screen and (min-width: 990px) {
-  .sl-escena { margin-top: 84px; }
-  .sl-escena__lista { padding: 18px 16px 18px; gap: 14px 12px; }
-  .sl-escena__paso { font-size: 13px; }
-  .sl-escena__lista--n4 .sl-escena__paso { font-size: 12px; }
+  .sl-escena { margin-top: 80px; }
+  .sl-escena__lista { gap: 14px; padding: 18px 16px 12px; }
+  .sl-escena__prod { max-width: 120px; }
+  .sl-escena__dibujo { max-width: 76px; }
+  .sl-escena__paso { font-size: 12px; }
+  .sl-escena__cap { font-size: 14px; padding: 6px 14px; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .sl-escena--n2 .sl-escena__lamina:not(:first-child), .sl-escena--n3 .sl-escena__lamina:not(:first-child) { display: flex; }
-  .sl-escena__lamina { opacity: 0; --sl-base: 0s; }
-  .sl-escena__lamina:nth-child(2) { --sl-base: 5s; }
-  .sl-escena__lamina:nth-child(3) { --sl-base: 10s; }
+  .sl-escena--n2 .sl-escena__envoltorio:not(:first-child), .sl-escena--n3 .sl-escena__envoltorio:not(:first-child) { display: contents; }
+  .sl-escena__lamina { opacity: 0; }
+  .sl-escena__envoltorio { --sl-base: 0s; }
+  .sl-escena__envoltorio:nth-child(2) { --sl-base: 5s; }
+  .sl-escena__envoltorio:nth-child(3) { --sl-base: 10s; }
   .sl-escena--n2 .sl-escena__lamina { animation: sl-esc-lamina-2 10s ease-in-out infinite; animation-delay: var(--sl-base); }
   .sl-escena--n3 .sl-escena__lamina { animation: sl-esc-lamina-3 15s ease-in-out infinite; animation-delay: var(--sl-base); }
+  .sl-escena--n1 .sl-escena__lamina { opacity: 1; }
 
-  /* Cada producto sube y su número da un salto, uno detrás de otro */
+  /* Cada dibujo sube y su número da un salto, uno detrás de otro */
   .sl-escena--n2 .sl-escena__prod { animation: sl-esc-sube 10s cubic-bezier(.2, .9, .3, 1.2) infinite backwards; }
   .sl-escena--n3 .sl-escena__prod { animation: sl-esc-sube 15s cubic-bezier(.2, .9, .3, 1.2) infinite backwards; }
   .sl-escena--n2 .sl-escena__num { animation: sl-esc-salto 10s ease-out infinite backwards; }
   .sl-escena--n3 .sl-escena__num { animation: sl-esc-salto 15s ease-out infinite backwards; }
   .sl-escena__prod { --sl-k: 0s; }
-  .sl-escena .sl-escena__prod { animation-delay: calc(var(--sl-base) + var(--sl-k)); }
   .sl-escena__prod:nth-child(2) { --sl-k: .4s; }
   .sl-escena__prod:nth-child(3) { --sl-k: .8s; }
   .sl-escena__prod:nth-child(4) { --sl-k: 1.2s; }
   .sl-escena__prod:nth-child(5) { --sl-k: 1.6s; }
+  .sl-escena .sl-escena__prod { animation-delay: calc(var(--sl-base) + var(--sl-k)); }
   .sl-escena .sl-escena__num { animation-delay: calc(var(--sl-base) + var(--sl-k) + .25s); }
+
+  /* Las cápsulas se iluminan una a una mientras la lámina está a la vista */
+  .sl-escena__cap { --sl-c: 0s; }
+  .sl-escena__cap:nth-child(2) { --sl-c: 1.05s; }
+  .sl-escena__cap:nth-child(3) { --sl-c: 2.1s; }
+  .sl-escena__cap:nth-child(4) { --sl-c: 3.15s; }
+  .sl-escena__cap:nth-child(5) { --sl-c: 4.2s; }
+  .sl-escena--n2 .sl-escena__cap { animation: sl-esc-cap-2 10s ease-in-out infinite; }
+  .sl-escena--n3 .sl-escena__cap { animation: sl-esc-cap-3 15s ease-in-out infinite; }
+  .sl-escena .sl-escena__cap { animation-delay: calc(var(--sl-base) + 1.9s + var(--sl-c)); }
 
   @keyframes sl-esc-lamina-2 { 0% { opacity: 0; } 3% { opacity: 1; } 47% { opacity: 1; } 50%, 100% { opacity: 0; } }
   @keyframes sl-esc-lamina-3 { 0% { opacity: 0; } 2% { opacity: 1; } 30% { opacity: 1; } 33%, 100% { opacity: 0; } }
   @keyframes sl-esc-sube { 0% { opacity: 0; translate: 0 26px; scale: .85; } 5%, 100% { opacity: 1; translate: 0 0; scale: 1; } }
   @keyframes sl-esc-salto { 0% { scale: 0; } 4% { scale: 1.3; } 7%, 100% { scale: 1; } }
+  @keyframes sl-esc-cap-2 { 0%, 100% { background: var(--sl-blanco); color: var(--sl-tinta); } 1%, 10% { background: var(--sl-tinta); color: var(--sl-blanco); } 11% { background: var(--sl-blanco); color: var(--sl-tinta); } }
+  @keyframes sl-esc-cap-3 { 0%, 100% { background: var(--sl-blanco); color: var(--sl-tinta); } 1%, 6.5% { background: var(--sl-tinta); color: var(--sl-blanco); } 7.5% { background: var(--sl-blanco); color: var(--sl-tinta); } }
 }

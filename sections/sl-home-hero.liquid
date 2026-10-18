@@ -9,16 +9,7 @@
 
   assign foto = section.settings.imagen
   assign respaldo = section.settings.coleccion_ahorro_1.products
-  assign n_escena = 0
-  if section.settings.producto.metafields.custom.routine_products.value.size > 0
-    assign n_escena = n_escena | plus: 1
-  endif
-  if section.settings.producto_2.metafields.custom.routine_products.value.size > 0
-    assign n_escena = n_escena | plus: 1
-  endif
-  if section.settings.producto_3.metafields.custom.routine_products.value.size > 0
-    assign n_escena = n_escena | plus: 1
-  endif
+  assign n_escena = section.blocks.size
 -%}
 
 <section class="sl-home-hero sl-scope" aria-labelledby="sl-home-hero-{{ section.id }}">
@@ -44,18 +35,11 @@
       {%- elsif n_escena > 0 -%}
         {{ 'sl-escena.css' | asset_url | stylesheet_tag }}
         <div class="sl-escena sl-escena--n{{ n_escena }}">
-          {%- assign primera = true -%}
-          {%- if section.settings.producto.metafields.custom.routine_products.value.size > 0 -%}
-            {% render 'sl-hero-slide', producto: section.settings.producto, texto: section.settings.escena_texto_1, indice: 1, activa: primera %}
-            {%- assign primera = false -%}
-          {%- endif -%}
-          {%- if section.settings.producto_2.metafields.custom.routine_products.value.size > 0 -%}
-            {% render 'sl-hero-slide', producto: section.settings.producto_2, texto: section.settings.escena_texto_2, indice: 2, activa: primera %}
-            {%- assign primera = false -%}
-          {%- endif -%}
-          {%- if section.settings.producto_3.metafields.custom.routine_products.value.size > 0 -%}
-            {% render 'sl-hero-slide', producto: section.settings.producto_3, texto: section.settings.escena_texto_3, indice: 3, activa: primera %}
-          {%- endif -%}
+          {%- for block in section.blocks -%}
+            <div {{ block.shopify_attributes }} class="sl-escena__envoltorio">
+              {% render 'sl-hero-slide', etiqueta: block.settings.etiqueta, pasos: block.settings.pasos, capsulas: block.settings.capsulas, activa: forloop.first %}
+            </div>
+          {%- endfor -%}
         </div>
       {%- elsif respaldo.size > 0 -%}
         <div class="sl-home-hero__collage">
@@ -153,27 +137,6 @@
       "info": "Si está vacía se usan las fotos de los primeros productos de la primera colección de ahorro."
     },
     {
-      "type": "product",
-      "id": "producto",
-      "label": "Rutina para la foto",
-      "info": "Si no hay foto subida, la escena muestra los productos de esta rutina, cada uno con su número y su paso."
-    },
-    {
-      "type": "product",
-      "id": "producto_2",
-      "label": "Segunda rutina o kit de la escena",
-      "info": "Opcional. La escena alterna entre las láminas con producto, cada una con sus productos numerados."
-    },
-    {
-      "type": "product",
-      "id": "producto_3",
-      "label": "Tercera rutina o kit de la escena",
-      "info": "Opcional. Por ejemplo, un kit."
-    },
-    { "type": "text", "id": "escena_texto_1", "label": "Etiqueta de la lámina 1", "info": "Usa [pasos] (cantidad de productos, calculada).", "default": "Express · [pasos] pasos" },
-    { "type": "text", "id": "escena_texto_2", "label": "Etiqueta de la lámina 2", "info": "Usa [pasos].", "default": "Esencial · [pasos] pasos" },
-    { "type": "text", "id": "escena_texto_3", "label": "Etiqueta de la lámina 3", "info": "Usa [pasos].", "default": "Kit · [pasos] productos" },
-    {
       "type": "text",
       "id": "chip_pasos",
       "label": "Etiqueta sobre la foto",
@@ -218,6 +181,22 @@
       "label": "Botón del test",
       "default": "Haz el test de piel · 1 min",
       "info": "Usa el enlace del test de los ajustes del tema; sin enlace no se muestra."
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "lamina",
+      "name": "Lámina animada",
+      "settings": [
+        { "type": "text", "id": "etiqueta", "label": "Etiqueta", "default": "Rutina Express · 3 pasos" },
+        { "type": "select", "id": "pasos", "label": "Cantidad de pasos del dibujo", "default": "3", "options": [
+          { "value": "3", "label": "3 pasos (limpiar, hidratar, proteger)" },
+          { "value": "4", "label": "4 pasos (suma tratar)" },
+          { "value": "5", "label": "5 pasos (suma granito puntual, para kits)" }
+        ] },
+        { "type": "textarea", "id": "capsulas", "label": "Cápsulas (una por línea)", "info": "Por ejemplo, tipos de piel u objetivos. Se iluminan una a una.", "default": "Piel grasa\nPiel seca\nPiel mixta\nPiel sensible" }
+      ]
     }
   ],
   "presets": [

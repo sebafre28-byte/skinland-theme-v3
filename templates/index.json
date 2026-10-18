@@ -5,11 +5,39 @@
       "settings": {
         "coleccion_ahorro_1": "rutinas",
         "coleccion_ahorro_2": "kits",
-        "boton_coleccion": "rutinas",
-        "producto": "rutina-express-piel-grasa",
-        "producto_2": "rutina-piel-grasa",
-        "producto_3": "kit-anti-acne"
-      }
+        "boton_coleccion": "rutinas"
+      },
+      "blocks": {
+        "l1": {
+          "type": "lamina",
+          "settings": {
+            "etiqueta": "Rutina Express · 3 pasos",
+            "pasos": "3",
+            "capsulas": "Piel grasa\nPiel seca\nPiel mixta\nPiel sensible"
+          }
+        },
+        "l2": {
+          "type": "lamina",
+          "settings": {
+            "etiqueta": "Rutina Esencial · 4 pasos",
+            "pasos": "4",
+            "capsulas": "Piel grasa\nPiel seca\nPiel mixta\nPiel sensible"
+          }
+        },
+        "l3": {
+          "type": "lamina",
+          "settings": {
+            "etiqueta": "Kits por objetivo",
+            "pasos": "5",
+            "capsulas": "Anti acné\nAnti manchas\nAnti edad"
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3"
+      ]
     },
     "necesidades": {
       "type": "sl-necesidades",

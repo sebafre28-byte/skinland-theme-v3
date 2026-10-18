@@ -1,24 +1,55 @@
 {%- comment -%}
-  Una lámina de la escena animada del hero: los productos de una rutina o kit, numerados y con su paso.
-  Parámetros: producto, texto (etiqueta; [pasos] = cantidad de productos), indice (1, 2 o 3), activa (true solo en la primera).
+  Una lámina de la escena animada del hero: dibujo genérico de los pasos de una rutina o kit y, abajo, cápsulas (tipos de piel u objetivos).
+  Parámetros: etiqueta, pasos (3, 4 o 5), capsulas (una por línea), indice, activa (true solo en la primera).
+  No usa productos reales: son dibujos del tipo de paso. Los nombres de los pasos salen de los ajustes del tema.
 {%- endcomment -%}
-{%- assign comps = producto.metafields.custom.routine_products.value -%}
-{%- if comps.size > 0 -%}
-  <div class="sl-escena__lamina sl-escena__lamina--{{ indice }}"{% unless activa %} aria-hidden="true"{% endunless %}>
-    {%- if texto != blank -%}
-      <span class="sl-escena__etiqueta">{{ texto | replace: '[pasos]', comps.size }}</span>
-    {%- endif -%}
-    <ol class="sl-escena__lista sl-escena__lista--n{{ comps.size }}" role="list">
-      {%- for c in comps -%}
-        {%- capture paso_c -%}{% render 'sl-paso', componente: c, nombre: true %}{%- endcapture -%}
-        <li class="sl-escena__prod">
+{%- liquid
+  case pasos
+    when '3'
+      assign secuencia = 'limpieza,crema,spf'
+    when '4'
+      assign secuencia = 'limpieza,serum,crema,spf'
+    else
+      assign secuencia = 'limpieza,serum,crema,spf,local'
+  endcase
+  assign tipos = secuencia | split: ','
+  assign lineas = capsulas | newline_to_br | split: '<br />'
+-%}
+<div class="sl-escena__lamina"{% unless activa %} aria-hidden="true"{% endunless %}>
+  {%- if etiqueta != blank -%}
+    <span class="sl-escena__etiqueta">{{ etiqueta }}</span>
+  {%- endif -%}
+  <div class="sl-escena__panel">
+    <ol class="sl-escena__lista sl-escena__lista--n{{ tipos.size }}" role="list">
+      {%- for t in tipos -%}
+        {%- liquid
+          case t
+            when 'limpieza'
+              assign nombre_paso = settings.sl_paso_n_limpieza
+            when 'serum'
+              assign nombre_paso = settings.sl_paso_n_serum
+            when 'crema'
+              assign nombre_paso = settings.sl_paso_n_crema
+            when 'spf'
+              assign nombre_paso = settings.sl_paso_n_spf
+            else
+              assign nombre_paso = settings.sl_paso_n_local
+          endcase
+        -%}
+        <li class="sl-escena__prod" data-paso="{{ t }}">
           <span class="sl-escena__num" aria-hidden="true">{{ forloop.index }}</span>
-          {%- if c.featured_image -%}
-            {{ c.featured_image | image_url: width: 400 | image_tag: loading: 'eager', widths: '200, 400', sizes: '(min-width: 990px) 140px, 28vw', alt: '' }}
-          {%- endif -%}
-          <span class="sl-escena__paso">{{ paso_c | strip }}</span>
+          {% render 'sl-escena-icono', tipo: t %}
+          <span class="sl-escena__paso">{{ nombre_paso }}</span>
         </li>
       {%- endfor -%}
     </ol>
+    {%- if lineas.size > 0 -%}
+      <ul class="sl-escena__capsulas" role="list">
+        {%- for l in lineas -%}
+          {%- assign l_limpia = l | strip -%}
+          {%- if l_limpia != blank -%}<li class="sl-escena__cap">{{ l_limpia }}</li>{%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
   </div>
-{%- endif -%}
+</div>
