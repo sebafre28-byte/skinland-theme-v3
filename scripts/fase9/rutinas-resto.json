@@ -1,0 +1,69 @@
+{
+  "_nota": "Fase 2 para el resto de rutinas y kits: cro_hook (≤120) y beneficios_clave (3 × ≤90). Redactado con datos de los componentes. Pendiente de OK.",
+  "productos": {
+    "rutina-express-piel-seca": {
+      "cro_hook": "Ayuda a que tu piel seca se sienta cómoda e hidratada durante el día, en solo 3 pasos.",
+      "beneficios_clave": [
+        "Limpiador en gel que se enjuaga fácil y no deja la piel con sensación tirante.",
+        "Crema con ectoína y ceramidas que ayuda a mantener la piel confortable.",
+        "Protector solar en emulsión acuosa, sin residuo blanco ni sensación grasosa."
+      ]
+    },
+    "rutina-piel-seca": {
+      "cro_hook": "Rutina de 4 pasos para ayudar a que tu piel seca se vea más hidratada y luminosa.",
+      "beneficios_clave": [
+        "Limpiador tipo mochi con rosa mosqueta que ayuda a limpiar sin resecar.",
+        "Sérum con 11 tipos de ácido hialurónico que ayuda a aportar hidratación.",
+        "Crema con ceramidas y protector solar ligero para cerrar la rutina con confort."
+      ]
+    },
+    "rutina-express-piel-mixta": {
+      "cro_hook": "Ayuda a equilibrar el brillo de la zona T y a mantener hidratadas las zonas secas, en 3 pasos.",
+      "beneficios_clave": [
+        "Espuma con BHA y pine cica que ayuda a limpiar sin resecar, con sensación fresca.",
+        "Gel-crema con vitamina B5 y niacinamida, ligero y sin sensación pegajosa.",
+        "Protector solar fluido de acabado natural, sin residuo blanco."
+      ]
+    },
+    "rutina-piel-mixta": {
+      "cro_hook": "Rutina de 4 pasos para ayudar a equilibrar la zona T y a que los poros se vean más finos.",
+      "beneficios_clave": [
+        "Espuma con BHA que ayuda a limpiar sin resecar, con sensación fresca.",
+        "Ampolla fresca con centella y sal rosa que ayuda a que los poros se vean más finos.",
+        "Gel-crema ligero y protector solar fluido, sin sensación pesada."
+      ]
+    },
+    "rutina-express-piel-sensible": {
+      "cro_hook": "Ayuda a calmar la apariencia de tu piel sensible y a mantenerla confortable, en solo 3 pasos.",
+      "beneficios_clave": [
+        "Gel limpiador con arroz negro fermentado, sin dejar la piel tirante.",
+        "Crema con pantenol y ceramida que deja la piel confortable, sin sensación grasa.",
+        "Protector solar ligero con ceramida, de acabado natural y sin efecto blanquecino."
+      ]
+    },
+    "rutina-piel-sensible": {
+      "cro_hook": "Rutina de 4 pasos para ayudar a calmar la apariencia de la piel sensible y reactiva.",
+      "beneficios_clave": [
+        "Gel limpiador suave con arroz negro fermentado, sin sensación tirante.",
+        "Ampolla de gel acuoso con cica y pino, sin fragancia, que ayuda a calmar la apariencia.",
+        "Crema con pantenol y ceramida y protector solar ligero para el día."
+      ]
+    },
+    "kit-anti-edad": {
+      "cro_hook": "Kit de 4 pasos para ayudar a que tu piel madura se vea más hidratada y descansada.",
+      "beneficios_clave": [
+        "Sérum con ginseng y mucina de caracol que ayuda a aportar hidratación.",
+        "Crema con ceramida y pantenol que deja la piel confortable, sin sensación pesada.",
+        "Limpiador en gel y protector solar con péptidos, sin efecto blanquecino."
+      ]
+    },
+    "kit-anti-manchas": {
+      "cro_hook": "Kit de 4 pasos para ayudar a que la piel se vea más pareja y luminosa, con protección solar.",
+      "beneficios_clave": [
+        "Sérum con alpha-arbutin y niacinamida que ayuda a unificar la apariencia del tono.",
+        "Gel-crema con cápsulas y niacinamida, sin sensación pegajosa y con acabado luminoso.",
+        "Protector solar SPF50+ PA++++ ultraligero y sin white cast."
+      ]
+    }
+  }
+}
