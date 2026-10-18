@@ -17,7 +17,8 @@
           "settings": {
             "texto": "Brillo",
             "coleccion": "piel-grasa",
-            "color": "menta"
+            "color": "menta",
+            "producto": "rutina-express-piel-grasa"
           }
         },
         "n2": {
@@ -25,7 +26,8 @@
           "settings": {
             "texto": "Granitos",
             "coleccion": "anti-acne",
-            "color": "lima"
+            "color": "lima",
+            "producto": "kit-anti-acne"
           }
         },
         "n3": {
@@ -33,7 +35,8 @@
           "settings": {
             "texto": "Manchas",
             "coleccion": "anti-manchas",
-            "color": "amarillo"
+            "color": "amarillo",
+            "producto": "kit-anti-manchas"
           }
         },
         "n4": {
@@ -41,7 +44,8 @@
           "settings": {
             "texto": "Piel tirante",
             "coleccion": "piel-seca",
-            "color": "durazno"
+            "color": "durazno",
+            "producto": "rutina-express-piel-seca"
           }
         },
         "n5": {
@@ -49,7 +53,8 @@
           "settings": {
             "texto": "Zona T",
             "coleccion": "piel-mixta",
-            "color": "celeste"
+            "color": "celeste",
+            "producto": "rutina-express-piel-mixta"
           }
         },
         "n6": {
@@ -57,7 +62,8 @@
           "settings": {
             "texto": "Rojeces",
             "coleccion": "piel-sensible",
-            "color": "lila"
+            "color": "lila",
+            "producto": "rutina-express-piel-sensible"
           }
         },
         "n7": {
@@ -65,7 +71,8 @@
           "settings": {
             "texto": "Líneas",
             "coleccion": "anti-edad",
-            "color": "rosa"
+            "color": "rosa",
+            "producto": "kit-anti-edad"
           }
         },
         "no_se": {

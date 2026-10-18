@@ -1,10 +1,9 @@
-/* sl-necesidades: la píldora baja a la rutina o kit del Home que pertenece a su colección; si no hay, sigue al enlace de la colección. */
+/* sl-necesidades: la píldora baja a la rutina o kit del Home que eligió (producto); si no está en el Home, sigue al enlace de la colección. */
 document.querySelectorAll('[data-sl-ir]').forEach((enlace) => {
   enlace.addEventListener('click', (e) => {
     const handle = enlace.dataset.slIr;
     if (!handle) return;
-    const destino = [...document.querySelectorAll('details.sl-acordeon[data-sl-colecciones]')]
-      .find((d) => d.dataset.slColecciones.split(/\s+/).includes(handle));
+    const destino = document.querySelector(`details.sl-acordeon[data-sl-handle="${handle}"]`);
     if (!destino) return;
     e.preventDefault();
     const panel = destino.closest('[data-sl-panel]');

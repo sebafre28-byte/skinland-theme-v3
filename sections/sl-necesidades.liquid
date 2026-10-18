@@ -15,7 +15,7 @@
           -%}
           {%- if destino != blank and block.settings.texto != blank -%}
             <li {{ block.shopify_attributes }}>
-              <a class="sl-necesidades__pildora{% if block.type == 'no_se' %} sl-necesidades__pildora--punteada{% endif %}" href="{{ destino }}"{% if block.type != 'no_se' %} data-sl-color="{{ block.settings.color }}" data-sl-ir="{{ block.settings.coleccion.handle }}"{% endif %}>{{ block.settings.texto }}</a>
+              <a class="sl-necesidades__pildora{% if block.type == 'no_se' %} sl-necesidades__pildora--punteada{% endif %}" href="{{ destino }}"{% if block.type != 'no_se' %} data-sl-color="{{ block.settings.color }}" data-sl-ir="{{ block.settings.producto.handle }}"{% endif %}>{{ block.settings.texto }}</a>
             </li>
           {%- endif -%}
         {%- endfor -%}
@@ -37,7 +37,8 @@
       "name": "Necesidad",
       "settings": [
         { "type": "text", "id": "texto", "label": "Texto", "default": "Brillo" },
-        { "type": "collection", "id": "coleccion", "label": "Colección", "info": "Sin colección, la píldora no se muestra. Al tocarla, el Home baja a la rutina o kit de esta colección; si no hay ninguno en el Home, abre la colección." },
+        { "type": "collection", "id": "coleccion", "label": "Colección", "info": "Sin colección, la píldora no se muestra. Es el destino si no hay una rutina o kit elegido abajo." },
+        { "type": "product", "id": "producto", "label": "Rutina o kit al que baja", "info": "Al tocar la píldora, el Home baja a esta rutina o kit y la abre. Debe estar en la sección de rutinas o de kits del Home; si no, abre la colección." },
         { "type": "select", "id": "color", "label": "Color", "default": "menta", "options": [
           { "value": "menta", "label": "Menta" }, { "value": "lima", "label": "Lima" }, { "value": "amarillo", "label": "Amarillo" },
           { "value": "durazno", "label": "Durazno" }, { "value": "celeste", "label": "Celeste" }, { "value": "lila", "label": "Lila" }, { "value": "rosa", "label": "Rosa" }
