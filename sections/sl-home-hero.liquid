@@ -1,4 +1,5 @@
 {{ 'sl-home-hero.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'sl-scroll.js' | asset_url }}" defer></script>
 
 {%- liquid
   capture am_raw
@@ -66,7 +67,7 @@
 
     <div class="sl-home-hero__acciones">
       {%- if section.settings.boton_coleccion != blank -%}
-        <a class="sl-btn sl-btn--tinta sl-btn--block" href="{{ section.settings.boton_coleccion.url }}">
+        <a class="sl-btn sl-btn--tinta sl-btn--block" href="{{ section.settings.boton_coleccion.url }}" data-sl-scroll="sl-rutinas">
           {{ section.settings.boton_texto }} {% render 'sl-icon', name: 'arrow', size: 20 %}
         </a>
       {%- endif -%}
@@ -173,7 +174,7 @@
       "type": "collection",
       "id": "boton_coleccion",
       "label": "Colección del botón principal",
-      "info": "Si está vacía, el botón no se muestra."
+      "info": "Al tocar el botón, el Home baja a la sección de rutinas. Esta colección es el destino si esa sección no está en la página. Si está vacía, el botón no se muestra."
     },
     {
       "type": "text",

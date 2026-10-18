@@ -30,7 +30,6 @@
 /* Con la escena animada el sello es más chico y el conjunto queda bajo (no empuja el contenido) */
 .sl-home-hero__escena:has(.sl-escena) { min-height: 0; }
 .sl-home-hero__escena:has(.sl-escena) .sl-home-hero__sticker { width: 72px; height: 72px; padding: 5px; font-size: 11px; top: 8px; right: 10px; }
-.sl-home-hero__escena:has(.sl-escena) .sl-escena__etiqueta { top: 16px; }
 @media screen and (min-width: 990px) {
   .sl-home-hero__escena:has(.sl-escena) { min-height: 420px; }
   .sl-home-hero__escena:has(.sl-escena) .sl-home-hero__sticker { width: 94px; height: 94px; font-size: 13px; }
@@ -44,5 +43,10 @@
   .sl-home-hero__bajada { font-size: 15px; line-height: 1.4; }
   .sl-home-hero__acciones { gap: 8px; padding-top: 0; }
   .sl-home-hero__escena:has(.sl-escena) .sl-home-hero__sticker { width: 62px; height: 62px; font-size: 9.5px; top: 6px; right: 8px; }
-  .sl-home-hero__escena:has(.sl-escena) .sl-escena__etiqueta { top: 12px; font-size: 11px; padding: 4px 8px; }
+}
+/* La cápsula de la lámina sale por arriba de la tarjeta */
+.sl-home-hero__escena:has(.sl-escena) { overflow: visible; }
+.sl-home-hero__escena:has(.sl-escena) .sl-escena { margin-top: 44px; }
+@media screen and (max-width: 989px) {
+  .sl-home-hero__grid { row-gap: 20px; }
 }
