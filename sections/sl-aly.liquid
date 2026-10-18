@@ -1,6 +1,6 @@
 {{ 'sl-aly.css' | asset_url | stylesheet_tag }}
 
-{%- if settings.sl_test_url != blank -%}
+{%- if settings.sl_test_url != blank or settings.sl_aly_url != blank -%}
   {%- liquid
     assign base = settings.sl_test_url
     assign sep = '?'
@@ -23,7 +23,7 @@
         {%- if section.settings.pregunta != blank -%}
           <p class="sl-aly__pregunta">{{ section.settings.pregunta }}</p>
         {%- endif -%}
-        {%- if section.blocks.size > 0 -%}
+        {%- if section.blocks.size > 0 and settings.sl_test_url != blank -%}
           <ul class="sl-aly__respuestas" role="list">
             {%- for block in section.blocks -%}
               {%- if block.settings.texto != blank -%}
@@ -34,10 +34,18 @@
             {%- endfor -%}
           </ul>
         {%- endif -%}
-        <a class="sl-btn sl-btn--tinta sl-btn--block" href="{{ base }}">{{ section.settings.boton }}</a>
+        {%- if settings.sl_test_url != blank -%}
+          <a class="sl-btn sl-btn--tinta sl-btn--block" href="{{ base }}">{{ section.settings.boton }}</a>
+        {%- endif -%}
+        {%- if settings.sl_aly_url != blank -%}
+          <a class="sl-btn sl-btn--block" href="{{ settings.sl_aly_url }}" rel="noopener">{{ section.settings.boton_aly }}</a>
+        {%- endif -%}
       </div>
     </div>
   </section>
+{%- elsif request.design_mode -%}
+  {{ 'sl-aly.css' | asset_url | stylesheet_tag }}
+  <p class="sl-aly__aviso sl-scope">{{ section.settings.aviso_editor }}</p>
 {%- endif -%}
 
 {% schema %}
@@ -49,7 +57,9 @@
     { "type": "text", "id": "titulo", "label": "Título", "default": "¿No sabes qué elegir?" },
     { "type": "text", "id": "bajada", "label": "Bajada", "default": "Test de 3 preguntas o pregúntale a Aly" },
     { "type": "text", "id": "pregunta", "label": "Pregunta", "default": "¿Cómo sientes tu piel a mediodía?" },
-    { "type": "text", "id": "boton", "label": "Botón", "default": "Hacer el test completo" }
+    { "type": "text", "id": "boton", "label": "Botón del test", "default": "Hacer el test completo", "info": "Solo se muestra si hay enlace del test en los ajustes del tema." },
+    { "type": "text", "id": "boton_aly", "label": "Botón para hablar con Aly", "default": "Hablar con Aly", "info": "Solo se muestra si hay enlace de Aly en los ajustes del tema." },
+    { "type": "text", "id": "aviso_editor", "label": "Aviso en el editor", "info": "Solo se ve dentro del editor del tema, no en la tienda.", "default": "Aly oculta: agrega el enlace del test o el de Aly en Ajustes del tema → Skinland · Sistema." }
   ],
   "blocks": [
     {

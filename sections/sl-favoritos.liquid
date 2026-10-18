@@ -23,6 +23,9 @@
     </div>
   </section>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- elsif request.design_mode -%}
+  {{ 'sl-favoritos.css' | asset_url | stylesheet_tag }}
+  <p class="sl-favoritos__aviso sl-scope">{{ section.settings.aviso_editor }}</p>
 {%- endif -%}
 
 {% schema %}
@@ -36,6 +39,7 @@
     { "type": "text", "id": "texto_agregar", "label": "Botón agregar", "default": "Agregar" },
     { "type": "text", "id": "texto_ver", "label": "Botón de productos con variantes", "default": "Ver opciones" },
     { "type": "text", "id": "texto_agotado", "label": "Texto de agotado", "default": "Agotado" },
+    { "type": "text", "id": "aviso_editor", "label": "Aviso en el editor", "info": "Solo se ve dentro del editor del tema, no en la tienda.", "default": "Favoritos ocultos: elige una colección en esta sección." },
     { "type": "text", "id": "texto_todos", "label": "Enlace a la colección", "default": "Ver todos los productos" }
   ],
   "presets": [{ "name": "Skinland · Favoritos" }]

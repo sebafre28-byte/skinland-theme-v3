@@ -87,6 +87,9 @@
     </dialog>
   </section>
   <script src="{{ 'sl-videos.js' | asset_url }}" defer="defer"></script>
+{%- elsif request.design_mode -%}
+  {{ 'sl-videos.css' | asset_url | stylesheet_tag }}
+  <p class="sl-videos__aviso sl-scope">{{ section.settings.aviso_editor }}</p>
 {%- endif -%}
 
 {% schema %}
@@ -146,6 +149,13 @@
       "id": "agotado_texto",
       "label": "Texto de agotado",
       "default": "Agotado"
+    },
+    {
+      "type": "text",
+      "id": "aviso_editor",
+      "label": "Aviso en el editor",
+      "info": "Solo se ve dentro del editor del tema, no en la tienda.",
+      "default": "Videos ocultos: se muestran los videos con permiso de uso (metaobjeto Skinland · Video). Hoy no hay ninguno cargado."
     },
     {
       "type": "text",

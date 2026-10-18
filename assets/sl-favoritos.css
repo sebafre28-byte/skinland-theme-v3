@@ -18,3 +18,4 @@
   .sl-favoritos__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
   .sl-favoritos__todos { width: auto; align-self: center; padding-inline: 28px; }
 }
+.sl-favoritos__aviso { margin: 16px; padding: 12px; border: 2px dashed var(--sl-tinta); border-radius: var(--sl-radio-m); font-size: 13px; }

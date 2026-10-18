@@ -12,3 +12,4 @@
   .sl-aly { padding: 56px 0; }
   .sl-aly__caja { max-width: 720px; margin: 0 auto; }
 }
+.sl-aly__aviso { margin: 16px; padding: 12px; border: 2px dashed var(--sl-tinta); border-radius: var(--sl-radio-m); font-size: 13px; }

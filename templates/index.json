@@ -164,6 +164,10 @@
     "newsletter": {
       "type": "sl-newsletter",
       "settings": {}
+    },
+    "resenas": {
+      "type": "sl-resenas-home",
+      "settings": {}
     }
   },
   "order": [
@@ -174,6 +178,7 @@
     "aly",
     "favoritos",
     "videos",
+    "resenas",
     "newsletter"
   ]
 }

@@ -64,3 +64,4 @@
 .sl-video-modal__colab { align-self: flex-start; background: var(--sl-lima); }
 .sl-video-modal__colab[hidden] { display: none; }
 .sl-video-modal__pie .sl-btn--compra { box-shadow: 4px 4px 0 var(--sl-lima); }
+.sl-videos__aviso { margin: 16px; padding: 12px; border: 2px dashed var(--sl-tinta); border-radius: var(--sl-radio-m); font-size: 13px; }

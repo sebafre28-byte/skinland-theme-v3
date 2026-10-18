@@ -1,0 +1,75 @@
+{%- liquid
+  assign mostradas = 0
+  for r in shop.metaobjects.skinland_resena.values
+    capture ok
+      render 'sl-resena-valida', resena: r
+    endcapture
+    if ok contains '1'
+      assign mostradas = mostradas | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if mostradas > 0 -%}
+  {{ 'sl-resenas.css' | asset_url | stylesheet_tag }}
+  {{ 'sl-resenas-home.css' | asset_url | stylesheet_tag }}
+  <section class="sl-resenas sl-resenas-home sl-scope" aria-labelledby="sl-resenas-home-{{ section.id }}">
+    <div class="sl-container">
+      <h2 class="sl-h2" id="sl-resenas-home-{{ section.id }}">{{ section.settings.titulo }}</h2>
+      <ul class="sl-resenas__lista sl-resenas-home__lista" role="list">
+        {%- assign n = 0 -%}
+        {%- for r in shop.metaobjects.skinland_resena.values -%}
+          {%- capture ok -%}{% render 'sl-resena-valida', resena: r %}{%- endcapture -%}
+          {%- if ok contains '1' and n < section.settings.maximo -%}
+            {%- liquid
+              assign n = n | plus: 1
+              assign e = r.estrellas.value | plus: 0
+              assign pie = r.autora.value
+              if r.tipo_piel.value != blank
+                assign pie = pie | append: ' · ' | append: r.tipo_piel.value
+              endif
+              assign prod = r.producto.value
+            -%}
+            <li class="sl-resena">
+              <div class="sl-resena__cabecera">
+                <span class="sl-resena__estrellas" role="img" aria-label="{{ section.settings.estrellas_aria | replace: '[n]', e }}">
+                  {%- for i in (1..5) -%}{% if i <= e %}★{% else %}☆{% endif %}{%- endfor -%}
+                </span>
+                {%- if r.compra_verificada.value == true -%}
+                  <span class="sl-chip sl-resena__chip">{{ section.settings.chip_verificada }}</span>
+                {%- endif -%}
+              </div>
+              <p class="sl-resena__texto">{{ r.texto.value | escape | newline_to_br }}</p>
+              {%- if r.foto.value != blank -%}
+                <img class="sl-resena__foto" src="{{ r.foto.value | image_url: width: 500 }}" alt="{{ section.settings.foto_alt | replace: '[autora]', r.autora.value | escape }}" width="250" height="250" loading="lazy">
+              {%- endif -%}
+              <p class="sl-resena__autora">{{ pie | escape }}</p>
+              {%- if prod != blank -%}
+                <a class="sl-resenas-home__producto" href="{{ prod.url }}">{{ prod.title }}</a>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+{%- elsif request.design_mode -%}
+  {{ 'sl-resenas.css' | asset_url | stylesheet_tag }}
+  <p class="sl-resenas__aviso sl-scope">{{ section.settings.aviso_editor }}</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Reseñas inicio",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Lo que dicen nuestras clientas" },
+    { "type": "range", "id": "maximo", "label": "Máximo de reseñas", "min": 3, "max": 9, "step": 1, "default": 6 },
+    { "type": "text", "id": "chip_verificada", "label": "Chip de compra verificada", "default": "Compra verificada" },
+    { "type": "text", "id": "estrellas_aria", "label": "Estrellas (accesible)", "info": "Usa [n].", "default": "[n] de 5 estrellas" },
+    { "type": "text", "id": "foto_alt", "label": "Texto alternativo de la foto", "info": "Usa [autora].", "default": "Foto de [autora]" },
+    { "type": "text", "id": "aviso_editor", "label": "Aviso en el editor", "info": "Solo se ve dentro del editor del tema, no en la tienda.", "default": "Reseñas ocultas: se muestran las reseñas manuales válidas (metaobjeto Skinland · Reseña con compra verificada y permiso de uso). Hoy no hay ninguna cargada." }
+  ],
+  "presets": [{ "name": "Skinland · Reseñas inicio" }]
+}
+{% endschema %}
