@@ -3,11 +3,6 @@
 {%- liquid
   assign maximo = section.settings.maximo
   assign mostradas = 0
-  assign mi_paso = ''
-  capture paso_raw
-    render 'sl-paso', componente: product, nombre: true
-  endcapture
-  assign mi_paso = paso_raw | strip
 -%}
 
 {%- capture tarjetas -%}
