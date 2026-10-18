@@ -1,0 +1,138 @@
+{
+  "_nota": "Contenido propuesto de la fase 8 (pendiente de OK). nombre_corto ≤30, beneficio_corto ≤90.",
+  "nombres": {
+    "centella-tone-brightening-capsule-cream-75ml": {
+      "nombre_corto": "Centella Tone Cream",
+      "beneficio_corto": "Gel-crema con cápsulas y acabado luminoso."
+    },
+    "skin1004-centella-poremizing-fresh-ampoule-100ml": {
+      "nombre_corto": "Poremizing Ampoule",
+      "beneficio_corto": "Ampolla fresca que ayuda a que los poros se vean más finos."
+    },
+    "madagascar-centella-hyalu-cica-water-fit-sun-serum-spf50-50ml": {
+      "nombre_corto": "Water-Fit Sun Serum",
+      "beneficio_corto": "Protector SPF50+ en sérum acuoso, liviano."
+    },
+    "beauty-of-joseon-green-plum-refreshing-cleanser-100ml": {
+      "nombre_corto": "BoJ Green Plum",
+      "beneficio_corto": "Gel limpiador que no deja la piel con sensación tirante."
+    },
+    "glow-deep-serum-rice-alpha-arbutin-30ml": {
+      "nombre_corto": "Glow Deep Serum",
+      "beneficio_corto": "Sérum luminoso que ayuda a que el tono se vea más parejo."
+    },
+    "revive-serum-ginseng-snail-mucin-30ml": {
+      "nombre_corto": "Revive Serum",
+      "beneficio_corto": "Sérum hidratante con ginseng y mucina de caracol."
+    },
+    "relief-sun-rice-probiotics-spf50-pa-50ml": {
+      "nombre_corto": "Relief Sun Probiotics",
+      "beneficio_corto": "Protector SPF50+ cremoso y ultraligero, sin white cast."
+    },
+    "dr-althea-345-relief-cream-50ml": {
+      "nombre_corto": "Dr.Althea 345 Cream",
+      "beneficio_corto": "Gel-crema ligera con ceramida y niacinamida."
+    },
+    "round-lab-pine-calming-cica-ampoule-30ml": {
+      "nombre_corto": "Round Lab Cica Ampoule",
+      "beneficio_corto": "Ampolla de gel acuoso que ayuda a calmar la apariencia de la piel."
+    },
+    "centellian24-the-madeca-cream-time-reverse-50ml": {
+      "nombre_corto": "Madeca Cream Retinol",
+      "beneficio_corto": "Crema nutritiva con retinol para tu rutina de noche."
+    },
+    "tiam-ac-fighting-spot-rx-cream-30g": {
+      "nombre_corto": "TIAM Spot Cream",
+      "beneficio_corto": "Crema de aplicación puntual con niacinamida y zinc."
+    },
+    "eqqualberry-hyaltoin-flooding-serum-30ml": {
+      "nombre_corto": "EQQUALBERRY Hyaltoin",
+      "beneficio_corto": "Sérum de hidratación con 11 tipos de ácido hialurónico."
+    },
+    "asis-tobe-aqua-boosting-cream-50ml": {
+      "nombre_corto": "ASIS-TOBE Aqua Cream",
+      "beneficio_corto": "Crema ligera y sedosa para la hidratación diaria."
+    },
+    "dr-althea-aqua-glowing-sunscreen-45-ml": {
+      "nombre_corto": "Dr.Althea Aqua Sunscreen",
+      "beneficio_corto": "Protector solar en emulsión acuosa con brillo natural."
+    },
+    "dr-althea-147-barrier-cream-50-ml": {
+      "nombre_corto": "Dr.Althea 147 Cream",
+      "beneficio_corto": "Crema con ectoína y ceramidas que busca dar confort."
+    },
+    "nida-salmon-pdrn-peptide-serum-50ml": {
+      "nombre_corto": "NIDA PDRN Serum",
+      "beneficio_corto": "Sérum con PDRN de salmón y péptidos, de acabado suave."
+    },
+    "k-secret-seoul-1988-sun-pine-tree-ceramide-50ml": {
+      "nombre_corto": "K-Secret Sun Ceramide",
+      "beneficio_corto": "Protector solar con péptidos y ceramida, sin efecto blanquecino."
+    },
+    "k-secret-seoul-1988-cleansing-foam-pine-cica-1-probiotics-150-ml": {
+      "nombre_corto": "K-Secret Foam",
+      "beneficio_corto": "Espuma con pine cica y BHA que ayuda a limpiar sin resecar."
+    },
+    "arencia-rosehip-mild-ph-balancing-rice-cake-cleanser-150g": {
+      "nombre_corto": "Arencia Rice Cleanser",
+      "beneficio_corto": "Limpiador tipo mochi con rosa mosqueta y pH balanceado."
+    },
+    "numbuzin-no-1-pantothenic-b5-active-soothing-cream-80ml": {
+      "nombre_corto": "Numbuzin B5 Cream",
+      "beneficio_corto": "Gel-crema con vitamina B5, niacinamida y centella."
+    },
+    "nida-invisible-fit-sun-cream-50ml": {
+      "nombre_corto": "NIDA Invisible Sun",
+      "beneficio_corto": "Protector solar en crema fluida, de acabado natural."
+    },
+    "haruharu-wonder-black-rice-moisture-5-5-soft-cleansing-gel-100ml": {
+      "nombre_corto": "HaruHaru Black Rice Gel",
+      "beneficio_corto": "Gel limpiador con arroz negro fermentado, sin sensación tirante."
+    }
+  },
+  "productos": {
+    "rutina-express-piel-seca": {
+      "modo_uso": "Mañana: limpiador, crema y protector solar. Noche: limpiador y crema.",
+      "ingredientes_inci": "Ingredientes / activos destacados del kit: Agua de ciruela, Extracto de frijol mungo, Centella, Ectoína, Ceramide NP, Betulina, 7 tipos de ácido hialurónico, Alga verde, Niacinamida, Pantenol."
+    },
+    "rutina-piel-seca": {
+      "modo_uso": "Usar mañana y noche en orden: limpiador, sérum y crema. En la mañana finalizar con protector solar.",
+      "ingredientes_inci": "Ingredientes / activos destacados del kit: Rosa mosqueta, Ceramide NP, 5 tipos de ácido hialurónico, 11 tipos de ácido hialurónico, Agua glaciar, 5 ceramidas, Ectoína, Betulina, Alga verde, Niacinamida, Pantenol.",
+      "faq": "¿Esta rutina sirve si nunca he tenido una rutina de skincare? → Sí. Son 4 pasos ordenados (limpiador, sérum, crema y protector solar) pensados para piel seca o con sensación de tirantez.\n\n¿Puedo usarla todos los días? → Sí, está pensada para uso diario. Por la mañana usa los 4 pasos y por la noche limpiador, sérum y crema.\n\n¿Cuál es la diferencia con la Rutina Express? → La Express cubre 3 pasos: limpiador, crema y protector solar. La Esencial suma un sérum de hidratación con ácido hialurónico.\n\n¿Tengo que usar protector solar aunque mi piel sea seca? → Sí. Es el último paso de la mañana, todos los días. El de esta rutina es de textura ligera y acabado luminoso.\n\n¿Puedo comprar solo un producto? → Sí, cada producto se vende por separado en su página. Al llevar la rutina completa ahorras frente a comprarlos por separado."
+    },
+    "rutina-express-piel-mixta": {
+      "modo_uso": "Mañana: limpiador, crema y protector solar. Noche: limpiador y crema.",
+      "ingredientes_inci": "Ingredientes / activos destacados del kit: Pine Cica Complex 1%, Ácido salicílico, Probióticos, Ácido pantoténico (B5), Niacinamida 4%, Zinc PCA, Centella 1%, Adenosina, Aloe vera, Hialuronato de sodio."
+    },
+    "rutina-piel-mixta": {
+      "modo_uso": "Usar mañana y noche en orden: limpiador, ampolla y crema. En la mañana finalizar con protector solar.",
+      "ingredientes_inci": "Ingredientes / activos destacados del kit: Pine Cica Complex 1%, Ácido salicílico, Probióticos, Sal rosa del Himalaya, 9 péptidos, Centella asiática, Aloe vera, Ácido pantoténico (B5), Niacinamida, Zinc PCA, Adenosina, Hialuronato de sodio.",
+      "faq": "¿Esta rutina sirve si nunca he tenido una rutina de skincare? → Sí. Son 4 pasos ordenados (limpiador, ampolla, crema y protector solar) pensados para piel mixta, con brillo en la zona T y zonas más secas.\n\n¿Puedo usarla todos los días? → Sí, está pensada para uso diario. Por la mañana usa los 4 pasos y por la noche limpiador, ampolla y crema. Si tu piel es sensible al ácido salicílico del limpiador, empieza usándolo una vez al día.\n\n¿Cuál es la diferencia con la Rutina Express? → La Express cubre 3 pasos: limpiador, crema y protector solar. La Esencial suma una ampolla fresca con centella y sal rosa del Himalaya.\n\n¿Tengo que usar crema si mi piel tiene brillo? → Sí. La piel mixta también necesita hidratación. La crema de esta rutina es un gel-crema ligero, sin sensación pegajosa.\n\n¿Puedo comprar solo un producto? → Sí, cada producto se vende por separado en su página. Al llevar la rutina completa ahorras frente a comprarlos por separado."
+    },
+    "rutina-express-piel-sensible": {
+      "modo_uso": "Mañana: limpiador, crema y protector solar. Noche: limpiador y crema.",
+      "ingredientes_inci": "Ingredientes / activos destacados del kit: Arroz negro fermentado, Beta-glucano, Panax ginseng, Hongo chaga, Pantenol 3%, Ceramide NP, Madecassósido, 8 péptidos, Niacinamida, Extracto de pino silvestre."
+    },
+    "rutina-piel-sensible": {
+      "modo_uso": "Usar mañana y noche en orden: limpiador, ampolla y crema. En la mañana finalizar con protector solar.",
+      "ingredientes_inci": "Ingredientes / activos destacados del kit: Arroz negro fermentado, Beta-glucano, Panax ginseng, Pine Cica Activer (80,4%), Madecassósido, Ácido salicílico LHA, Hongo chaga, Pantenol 3%, Ceramide NP, 8 péptidos, Niacinamida, Extracto de pino silvestre.",
+      "faq": "¿Esta rutina sirve si nunca he tenido una rutina de skincare? → Sí. Son 4 pasos ordenados (limpiador, ampolla, crema y protector solar) con texturas suaves, pensados para piel sensible.\n\n¿Puedo usarla todos los días? → Sí, está pensada para uso diario. Por la mañana usa los 4 pasos y por la noche limpiador, ampolla y crema. Si tu piel es muy reactiva, incorpora un producto nuevo cada vez y observa cómo responde.\n\n¿Cuál es la diferencia con la Rutina Express? → La Express cubre 3 pasos: limpiador, crema y protector solar. La Esencial suma una ampolla de gel acuoso con cica y pino.\n\n¿Los productos tienen fragancia? → La ampolla de esta rutina es sin fragancia. Revisa la lista de ingredientes de cada producto antes de usarlo si tu piel es muy reactiva.\n\n¿Puedo comprar solo un producto? → Sí, cada producto se vende por separado en su página. Al llevar la rutina completa ahorras frente a comprarlos por separado."
+    },
+    "rutina-express-piel-grasa": {
+      "modo_uso": "Usar mañana y noche en orden: limpiador y crema. En la mañana finalizar con protector solar."
+    },
+    "kit-anti-acne": {
+      "modo_uso": "Mañana: limpiador, ampolla, crema y protector solar. Noche: limpiador, ampolla y crema. Aplica el parche solo sobre el granito puntual, con la piel limpia y seca."
+    },
+    "kit-anti-edad": {
+      "modo_uso": "Mañana: limpiador, sérum, crema y protector solar. Noche: limpiador, sérum y crema.",
+      "ingredientes_inci": "Ingredientes / activos destacados del kit: Agua de ciruela, Extracto de frijol mungo, Centella, Ginseng, Mucina de caracol, Triple ácido hialurónico, Hongo chaga, Pantenol 3%, Ceramide NP, Madecassósido, 8 péptidos, Niacinamida, Extracto de pino silvestre.",
+      "faq": "¿Qué incluye el Kit Anti Edad? → Un limpiador en gel (Beauty of Joseon Green Plum), un sérum con ginseng y mucina de caracol (Revive Serum), una crema con hongo chaga y ceramida (AROOM Chaga Comfort Cream) y un protector solar con péptidos (K-Secret Sun).\n\n¿Para quién es? → Para piel madura, seca o con signos de fatiga que busca hidratación y confort con una rutina ordenada de 4 pasos.\n\n¿Puedo usarlo todos los días? → Sí. Por la mañana usa los 4 pasos y por la noche limpiador, sérum y crema.\n\n¿Puedo comprar solo un producto del kit? → Sí, cada producto se vende por separado en su página. Al llevar el kit completo ahorras frente a comprarlos por separado.\n\n¿Cuánto dura el kit? → Con uso diario mañana y noche, el kit rinde alrededor de 60 días."
+    },
+    "kit-anti-manchas": {
+      "modo_uso": "Mañana: limpiador, crema y protector solar. Noche: limpiador, sérum y crema. El sérum se usa preferentemente de noche.",
+      "ingredientes_inci": "Ingredientes / activos destacados del kit: Agua de ciruela, Extracto de frijol mungo, Centella, Agua de arroz, Alpha-arbutin, Niacinamida, Ácido tranexámico, Madecassoside, Arroz 30%, Fermentados.",
+      "faq": "¿Qué incluye el Kit Anti Manchas? → Un limpiador en gel (Beauty of Joseon Green Plum), un sérum con alpha-arbutin y arroz (Glow Deep Serum), un gel-crema con cápsulas (Centella Tone Brightening Capsule Cream) y un protector solar SPF50+ (Relief Sun Rice + Probiotics).\n\n¿Para quién es? → Para quien busca una piel con apariencia más pareja y luminosa, con una rutina completa que incluye protección solar.\n\n¿Tengo que usar protector solar todos los días? → Sí. Es el último paso de la mañana y se usa a diario, incluso en días nublados.\n\n¿Puedo comprar solo un producto del kit? → Sí, cada producto se vende por separado en su página. Al llevar el kit completo ahorras frente a comprarlos por separado.\n\n¿Cuánto dura el kit? → Con el uso indicado, el kit rinde alrededor de 60 días."
+    }
+  }
+}
