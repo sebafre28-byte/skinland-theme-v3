@@ -194,7 +194,8 @@
                         <p class="sl-cart-item__descuento">{{ discount.discount_application.title }}</p>
                       {%- endfor -%}
                       {%- if ahorro_linea > 0 -%}
-                        {%- assign ahorro_t = ahorro_linea | money_without_trailing_zeros -%}
+                        {%- assign ahorro_monto = ahorro_linea | money_without_trailing_zeros -%}
+                        {%- assign ahorro_t = '−' | append: ahorro_monto -%}
                         <p class="sl-cart-item__ahorro">{{ settings.sl_cart_ahorras | replace: '[ahorro]', ahorro_t }}</p>
                       {%- endif -%}
 
@@ -427,7 +428,7 @@
               {%- if ahorro_total > 0 -%}
                 <div class="sl-cart__fila sl-cart__fila--ahorro">
                   <dt>{{ settings.sl_cart_ahorro_rutina }}</dt>
-                  <dd>{{ ahorro_total | money_without_trailing_zeros }}</dd>
+                  <dd>−{{ ahorro_total | money_without_trailing_zeros }}</dd>
                 </div>
               {%- endif -%}
               <div class="sl-cart__fila">
