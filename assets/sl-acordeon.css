@@ -1,0 +1,21 @@
+/* sl-acordeon · filas desplegables de rutinas y kits (snippet sl-acordeon-producto) */
+.sl-acordeon { border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-necesidad, var(--sl-menta)); color: var(--sl-tinta); }
+.sl-acordeon__fila { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 64px; padding: 16px 18px; list-style: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.sl-acordeon__fila::-webkit-details-marker { display: none; }
+.sl-acordeon__fila:focus-visible { outline: 3px solid var(--sl-tinta); outline-offset: 2px; box-shadow: 0 0 0 6px var(--sl-lima); border-radius: var(--sl-radio-l); }
+.sl-acordeon__nombre { font-family: var(--sl-font-display); font-size: 22px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.sl-acordeon__lado { display: inline-flex; align-items: center; gap: 8px; flex: 0 0 auto; font-size: 14px; font-weight: 700; }
+.sl-acordeon__flecha { transition: transform .2s ease; }
+.sl-acordeon[open] .sl-acordeon__flecha { transform: rotate(180deg); }
+.sl-acordeon__cuerpo { display: flex; flex-direction: column; gap: 12px; padding: 0 16px 16px; }
+.sl-acordeon__chip { align-self: flex-start; padding: 5px 10px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); font-size: 12px; font-weight: 700; }
+.sl-acordeon__fotos { display: flex; align-items: flex-end; justify-content: center; gap: 10px; height: 150px; padding: 12px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); }
+.sl-acordeon__fotos img { flex: 1 1 0; min-width: 0; max-width: 90px; height: 100%; object-fit: contain; }
+.sl-acordeon__bajada { margin: 0; font-size: 15px; font-weight: 500; }
+.sl-acordeon__precio { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.sl-acordeon__precio .sl-precio { font-size: 30px; }
+.sl-acordeon__ahorro { align-self: flex-start; padding: 6px 11px; border: var(--sl-borde); border-radius: var(--sl-radio-s); background: var(--sl-blanco); font-family: var(--sl-font-display); font-size: 13px; font-weight: 800; }
+.sl-acordeon__agotado { margin: 0; padding: 12px 16px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); font-weight: 700; }
+.sl-acordeon__ver { align-self: center; padding: 8px; color: var(--sl-tinta); font-size: 14px; font-weight: 700; text-decoration: underline; }
+@media (prefers-reduced-motion: reduce) { .sl-acordeon__flecha { transition: none; } }
+@media screen and (min-width: 990px) { .sl-acordeon__cuerpo { padding: 0 20px 20px; } }

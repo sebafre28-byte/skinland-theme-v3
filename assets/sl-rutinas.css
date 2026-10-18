@@ -1,26 +1,12 @@
-/* sl-rutinas · "Tu rutina según tu piel" */
+/* sl-rutinas · "Tu rutina según tu piel" (las filas son sl-acordeon) */
 .sl-rutinas { padding: 32px 0 34px; background: var(--sl-blanco); border-block: var(--sl-borde); }
 .sl-rutinas .sl-container { display: flex; flex-direction: column; gap: 14px; }
 .sl-rutinas__tabs { display: flex; flex-wrap: wrap; gap: 8px; }
 .sl-rutinas__tab { min-height: 44px; padding: 0 16px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); color: var(--sl-tinta); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
 .sl-rutinas__tab[aria-pressed='true'] { background: var(--sl-tinta); color: var(--sl-blanco); }
-.sl-rutinas__panel { display: flex; flex-direction: column; gap: 14px; }
+.sl-rutinas__panel { display: flex; flex-direction: column; gap: 12px; }
 .sl-rutinas__panel[hidden] { display: none; }
-.sl-rutinas__tarjeta { display: flex; flex-direction: column; gap: 12px; padding: 16px; border: var(--sl-borde); border-radius: 22px; background: var(--sl-necesidad, var(--sl-menta)); }
-.sl-rutinas__cab { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-.sl-rutinas__tipo { font-family: var(--sl-font-display); font-size: 26px; font-weight: 800; letter-spacing: -.02em; }
-.sl-rutinas__chip { padding: 5px 10px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); font-size: 12px; font-weight: 700; }
-.sl-rutinas__fotos { display: flex; align-items: flex-end; justify-content: center; gap: 10px; height: 150px; padding: 12px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); }
-.sl-rutinas__fotos img { flex: 1 1 0; min-width: 0; max-width: 90px; height: 100%; object-fit: contain; }
-.sl-rutinas__bajada { margin: 0; font-size: 15px; font-weight: 500; }
-.sl-rutinas__precio { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
-.sl-rutinas__precio .sl-precio { font-size: 30px; }
-.sl-rutinas__otras { display: flex; flex-direction: column; gap: 14px; margin: 0; padding: 0; list-style: none; }
-.sl-rutinas__otra { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 64px; padding: 18px; border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-necesidad, var(--sl-menta)); color: var(--sl-tinta); text-decoration: none; }
-.sl-rutinas__otra strong { font-family: var(--sl-font-display); font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
-.sl-rutinas__otra span { font-size: 14px; font-weight: 700; }
 @media screen and (min-width: 990px) {
   .sl-rutinas { padding: 56px 0; }
-  .sl-rutinas__panel { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: start; }
-  .sl-rutinas__otras { gap: 12px; }
+  .sl-rutinas__panel { max-width: 760px; }
 }

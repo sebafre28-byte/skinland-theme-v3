@@ -1,4 +1,5 @@
 {{ 'sl-rutinas.css' | asset_url | stylesheet_tag }}
+{{ 'sl-acordeon.css' | asset_url | stylesheet_tag }}
 
 {%- liquid
   assign bloques_ok = 0
@@ -30,77 +31,36 @@
       {%- for block in section.blocks -%}
         {%- assign p = block.settings.destacada -%}
         {%- if p != blank -%}
-          {%- liquid
-            capture bs_raw
-              render 'sl-bundle-sum', product: p
-            endcapture
-            assign bs = bs_raw | strip | split: '|'
-            assign suma = bs[0] | plus: 0
-            assign ahorro = bs[1] | plus: 0
-            assign completo = bs[2]
-            assign pasos = bs[3] | plus: 0
-            capture color_raw
-              render 'sl-color-necesidad', product: p
-            endcapture
-            assign color = color_raw | strip
-            assign precio = p.selected_or_first_available_variant.price
-            assign tipo = p.metafields.custom.tipo_piel.value | first | default: p.title
-          -%}
+          {%- assign pasos = p.metafields.custom.routine_products.value.size | plus: 0 -%}
           <div class="sl-rutinas__panel" data-sl-panel="{{ block.id }}" {% if n > 0 %}hidden{% endif %}>
-            <article class="sl-rutinas__tarjeta" data-sl-color="{{ color }}">
-              <div class="sl-rutinas__cab">
-                <strong class="sl-rutinas__tipo">{{ tipo }}</strong>
-                {%- if pasos > 0 -%}
-                  <span class="sl-rutinas__chip">{{ block.settings.texto_productos | replace: '[n]', pasos }}</span>
-                {%- endif -%}
-              </div>
-              <div class="sl-rutinas__fotos">
-                {%- for c in p.metafields.custom.routine_products.value -%}
-                  {%- if c.featured_image -%}
-                    {{ c.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 240', sizes: '80px', alt: c.title }}
-                  {%- endif -%}
-                {%- else -%}
-                  {%- if p.featured_image -%}
-                    {{ p.featured_image | image_url: width: 480 | image_tag: loading: 'lazy', widths: '240, 480', sizes: '240px', alt: p.title }}
-                  {%- endif -%}
-                {%- endfor -%}
-              </div>
-              {%- if p.metafields.custom.routine_subtitle.value != blank -%}
-                <p class="sl-rutinas__bajada">{{ p.metafields.custom.routine_subtitle.value }}</p>
-              {%- endif -%}
-              <div class="sl-rutinas__precio">
-                <span class="sl-precio">{{ precio | money_without_trailing_zeros }}</span>
-                {%- if completo == 'true' and ahorro > 0 -%}
-                  <span class="sl-texto-chico">{{ block.settings.texto_por_separado }} <s>{{ suma | money_without_trailing_zeros }}</s></span>
-                  <span class="sl-sticker">−{{ ahorro | money_without_trailing_zeros }}</span>
-                {%- endif -%}
-              </div>
-              <a class="sl-btn sl-btn--lg sl-btn--block" href="{{ p.url }}">
-                {%- if p.available -%}{{ block.settings.boton | replace: '[titulo]', p.title }}{%- else -%}{{ block.settings.texto_agotado }}{%- endif -%}
-              </a>
-            </article>
-
+            {% render 'sl-acordeon-producto',
+              product: p,
+              grupo: block.id,
+              abierto: true,
+              nombre_tipo: true,
+              texto_productos: block.settings.texto_productos,
+              texto_por_separado: block.settings.texto_por_separado,
+              boton: block.settings.boton,
+              texto_agotado: block.settings.texto_agotado,
+              texto_desde: block.settings.texto_desde
+            %}
             {%- if block.settings.coleccion != blank -%}
-              <ul class="sl-rutinas__otras" role="list">
-                {%- for o in block.settings.coleccion.products -%}
-                  {%- assign o_pasos = o.metafields.custom.routine_products.value.size | plus: 0 -%}
-                  {%- if o.id != p.id and o_pasos == pasos -%}
-                    {%- liquid
-                      capture oc_raw
-                        render 'sl-color-necesidad', product: o
-                      endcapture
-                      assign otipo = o.metafields.custom.tipo_piel.value | first | default: o.title
-                      assign o_precio = o.selected_or_first_available_variant.price | money_without_trailing_zeros
-                    -%}
-                    <li>
-                      <a class="sl-rutinas__otra" href="{{ o.url }}" data-sl-color="{{ oc_raw | strip }}">
-                        <strong>{{ otipo }}</strong>
-                        <span>{% if o.available %}{{ block.settings.texto_desde | replace: '[precio]', o_precio }}{% else %}{{ block.settings.texto_agotado }}{% endif %}</span>
-                      </a>
-                    </li>
-                  {%- endif -%}
-                {%- endfor -%}
-              </ul>
+              {%- for o in block.settings.coleccion.products -%}
+                {%- assign o_pasos = o.metafields.custom.routine_products.value.size | plus: 0 -%}
+                {%- if o.id != p.id and o_pasos == pasos -%}
+                  {% render 'sl-acordeon-producto',
+                    product: o,
+                    grupo: block.id,
+                    abierto: false,
+                    nombre_tipo: true,
+                    texto_productos: block.settings.texto_productos,
+                    texto_por_separado: block.settings.texto_por_separado,
+                    boton: block.settings.boton,
+                    texto_agotado: block.settings.texto_agotado,
+                    texto_desde: block.settings.texto_desde
+                  %}
+                {%- endif -%}
+              {%- endfor -%}
             {%- endif -%}
           </div>
           {%- assign n = n | plus: 1 -%}
@@ -109,6 +69,7 @@
     </div>
   </section>
   <script src="{{ 'sl-rutinas.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'sl-acordeon.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
 {% schema %}
@@ -129,7 +90,7 @@
         { "type": "text", "id": "texto_productos", "label": "Etiqueta de pasos", "default": "[n] productos", "info": "Usa [n]." },
         { "type": "text", "id": "texto_por_separado", "label": "Texto del tachado", "default": "Por separado" },
         { "type": "text", "id": "boton", "label": "Botón", "default": "Ver [titulo] →", "info": "Usa [titulo]." },
-        { "type": "text", "id": "texto_desde", "label": "Texto de las otras rutinas", "default": "desde [precio] →", "info": "Usa [precio]." },
+        { "type": "text", "id": "texto_desde", "label": "Texto de las otras rutinas", "default": "desde [precio]", "info": "Usa [precio]." },
         { "type": "text", "id": "texto_agotado", "label": "Texto de agotado", "default": "Agotado" }
       ]
     }

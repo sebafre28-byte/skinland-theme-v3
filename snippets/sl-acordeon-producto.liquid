@@ -1,0 +1,81 @@
+{%- comment -%}
+  Fila desplegable de una rutina o kit: cerrada muestra nombre y precio; abierta, fotos, precio, ahorro y botón.
+  Se abre una a la vez por grupo (atributo name + sl-acordeon.js).
+  Parámetros: product, grupo, abierto (true/false), etiqueta (texto de la fila, opcional: si falta usa tipo de piel o título),
+  texto_productos ([n]), texto_por_separado, texto_ahorras ([ahorro]), boton ([titulo]), texto_agotado, texto_avisame, url_aviso,
+  texto_desde ([precio]), nombre_tipo (true: usa custom.tipo_piel como nombre de la fila).
+  Todos los importes salen de sl-bundle-sum y de los precios de Shopify.
+{%- endcomment -%}
+{%- liquid
+  capture bs_raw
+    render 'sl-bundle-sum', product: product
+  endcapture
+  assign bs = bs_raw | strip | split: '|'
+  assign suma = bs[0] | plus: 0
+  assign ahorro = bs[1] | plus: 0
+  assign completo = bs[2]
+  assign pasos = bs[3] | plus: 0
+  capture color_raw
+    render 'sl-color-necesidad', product: product
+  endcapture
+  assign color = color_raw | strip
+  assign precio = product.selected_or_first_available_variant.price
+  assign nombre = product.title
+  if nombre_tipo
+    assign nombre = product.metafields.custom.tipo_piel.value | first | default: product.title
+  endif
+  assign precio_t = precio | money_without_trailing_zeros
+  assign desde_t = texto_desde | replace: '[precio]', precio_t
+  assign ahorro_t = ahorro | money_without_trailing_zeros
+  assign hay_ahorro = false
+  if completo == 'true' and ahorro > 0
+    assign hay_ahorro = true
+  endif
+-%}
+<details class="sl-acordeon" name="{{ grupo }}" data-sl-color="{{ color }}"{% if abierto %} open{% endif %}>
+  <summary class="sl-acordeon__fila">
+    <strong class="sl-acordeon__nombre">{{ nombre }}</strong>
+    <span class="sl-acordeon__lado">
+      {%- if product.available -%}{{ desde_t }}{%- else -%}{{ texto_agotado }}{%- endif -%}
+      <svg class="sl-acordeon__flecha" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6"/></svg>
+    </span>
+  </summary>
+  <div class="sl-acordeon__cuerpo">
+    {%- if pasos > 0 -%}
+      <span class="sl-acordeon__chip">{{ texto_productos | replace: '[n]', pasos }}</span>
+    {%- endif -%}
+    <div class="sl-acordeon__fotos">
+      {%- for c in product.metafields.custom.routine_products.value -%}
+        {%- if c.featured_image -%}
+          {{ c.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 240', sizes: '80px', alt: c.title }}
+        {%- endif -%}
+      {%- else -%}
+        {%- if product.featured_image -%}
+          {{ product.featured_image | image_url: width: 480 | image_tag: loading: 'lazy', widths: '240, 480', sizes: '240px', alt: product.title }}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    {%- if product.metafields.custom.routine_subtitle.value != blank -%}
+      <p class="sl-acordeon__bajada">{{ product.metafields.custom.routine_subtitle.value }}</p>
+    {%- endif -%}
+    <div class="sl-acordeon__precio">
+      <span class="sl-precio">{{ precio_t }}</span>
+      {%- if hay_ahorro -%}
+        <span class="sl-texto-chico">{{ texto_por_separado }} <s>{{ suma | money_without_trailing_zeros }}</s></span>
+        <span class="sl-sticker">−{{ ahorro_t }}</span>
+      {%- endif -%}
+    </div>
+    {%- if hay_ahorro and texto_ahorras != blank -%}
+      <span class="sl-acordeon__ahorro">{{ texto_ahorras | replace: '[ahorro]', ahorro_t }}</span>
+    {%- endif -%}
+    {%- if product.available -%}
+      <a class="sl-btn sl-btn--lg sl-btn--block" href="{{ product.url }}">{{ boton | replace: '[titulo]', product.title }}</a>
+    {%- else -%}
+      <p class="sl-acordeon__agotado">{{ texto_agotado }}</p>
+      {%- if url_aviso != blank -%}
+        <a class="sl-btn sl-btn--block" href="{{ url_aviso }}">{{ texto_avisame }}</a>
+      {%- endif -%}
+      <a class="sl-acordeon__ver" href="{{ product.url }}">{{ boton | replace: '[titulo]', product.title }}</a>
+    {%- endif -%}
+  </div>
+</details>
