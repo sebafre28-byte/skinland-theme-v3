@@ -35,3 +35,14 @@
   .sl-home-hero__escena:has(.sl-escena) { min-height: 420px; }
   .sl-home-hero__escena:has(.sl-escena) .sl-home-hero__sticker { width: 94px; height: 94px; font-size: 13px; }
 }
+/* Celular: el hero entero cabe en la primera pantalla (textos y espacios más ajustados) */
+@media screen and (max-width: 989px) {
+  .sl-home-hero { padding: 8px 0 16px; }
+  .sl-home-hero__grid { gap: 12px; }
+  .sl-home-hero__texto { gap: 10px; }
+  .sl-home-hero .sl-h1 { font-size: 38px; }
+  .sl-home-hero__bajada { font-size: 15px; line-height: 1.4; }
+  .sl-home-hero__acciones { gap: 8px; padding-top: 0; }
+  .sl-home-hero__escena:has(.sl-escena) .sl-home-hero__sticker { width: 62px; height: 62px; font-size: 9.5px; top: 6px; right: 8px; }
+  .sl-home-hero__escena:has(.sl-escena) .sl-escena__etiqueta { top: 12px; font-size: 11px; padding: 4px 8px; }
+}
