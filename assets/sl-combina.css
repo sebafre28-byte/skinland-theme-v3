@@ -1,0 +1,28 @@
+/* sl-combina · "este producto va en estas rutinas" */
+.sl-combina { padding: 34px 0; background: var(--sl-blanco); border-block: var(--sl-borde); }
+.sl-combina .sl-container { display: flex; flex-direction: column; gap: 18px; }
+.sl-combina__intro { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.sl-combina__eyebrow { transform: rotate(-2deg); padding: 6px 11px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-lima); font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.sl-combina__bajada { margin: 0; font-size: 15px; line-height: 1.5; }
+.sl-combina__grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.sl-combina__tarjeta { display: flex; flex-direction: column; gap: 14px; padding: 16px; border: var(--sl-borde); border-radius: 22px; background: var(--sl-necesidad, var(--sl-menta)); }
+.sl-combina__cab { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.sl-combina__titulo { margin: 0; font-family: var(--sl-font-display); font-size: 22px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.sl-combina__precio { font-family: var(--sl-font-display); font-size: 24px; font-weight: 800; letter-spacing: -.02em; white-space: nowrap; }
+.sl-combina__lista { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 8px; margin: 0; padding: 10px; list-style: none; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); }
+.sl-combina__item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 4px; border: 2px solid transparent; border-radius: var(--sl-radio-s); text-align: center; min-width: 0; }
+.sl-combina__item--actual { border-color: var(--sl-tinta); background: var(--sl-lima); }
+.sl-combina__foto { width: 72px; height: 72px; display: grid; place-items: center; }
+.sl-combina__foto img { width: 100%; height: 100%; object-fit: contain; }
+.sl-combina__nombre { font-size: 12px; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+.sl-combina__paso { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; opacity: .75; }
+.sl-combina__ahorro { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 0; }
+.sl-combina__acciones { display: flex; flex-direction: column; gap: 8px; }
+.sl-combina__form .form { margin: 0; }
+.sl-combina__agotado { margin: 0; padding: 12px 16px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); font-weight: 700; text-align: center; }
+.sl-combina__ver { align-self: center; padding: 8px; color: var(--sl-tinta); font-size: 14px; font-weight: 700; text-decoration: underline; }
+.sl-combina__aviso { margin: 16px; padding: 12px; border: 2px dashed var(--sl-tinta); border-radius: var(--sl-radio-m); font-size: 13px; }
+@media screen and (min-width: 990px) {
+  .sl-combina { padding: 56px 0; }
+  .sl-combina__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; align-items: start; }
+}

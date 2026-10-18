@@ -23,6 +23,13 @@
 
   assign dias = mf.duracion_dias.value | default: 0
   assign tipo_piel = mf.tipo_piel.value | first
+  capture paso_raw
+    render 'sl-paso', componente: product, nombre: true
+  endcapture
+  assign paso_nombre = paso_raw | strip
+  if pasos > 0
+    assign paso_nombre = ''
+  endif
   assign insignia = mf.routine_badge.value
   assign versiones = mf.versiones.value
   assign beneficios = mf.beneficios_clave.value
@@ -33,6 +40,9 @@
   assign rating_n = rs[0] | plus: 0
   assign rating_prom = rs[1] | times: 1.0
   assign cta = mf.routine_cta_text.value | default: section.settings.cta_texto_defecto
+  if mf.routine_products.value == blank and mf.routine_cta_text.value == blank
+    assign cta = settings.sl_cta_individual
+  endif
   assign precio_texto = precio | money_without_trailing_zeros
 
   assign tiene_video = false
@@ -140,13 +150,16 @@
 
         {%- comment -%} Caja de compra {%- endcomment -%}
         <div class="sl-buybox">
-          {%- if tipo_piel != blank or insignia != blank -%}
+          {%- if paso_nombre != blank or tipo_piel != blank or insignia != blank -%}
             <div class="sl-buybox__chips">
+              {%- if paso_nombre != blank -%}
+                <span class="sl-chip sl-chip--color">{{ paso_nombre }}</span>
+              {%- endif -%}
               {%- if tipo_piel != blank -%}
-                <span class="sl-chip sl-chip--color">{{ tipo_piel }}</span>
+                <span class="sl-chip{% if paso_nombre == blank %} sl-chip--color{% endif %}">{{ tipo_piel }}</span>
               {%- endif -%}
               {%- if insignia != blank -%}
-                <span class="sl-chip{% if tipo_piel == blank %} sl-chip--color{% endif %}">{{ insignia }}</span>
+                <span class="sl-chip{% if tipo_piel == blank and paso_nombre == blank %} sl-chip--color{% endif %}">{{ insignia }}</span>
               {%- endif -%}
             </div>
           {%- endif -%}
@@ -172,8 +185,9 @@
             </a>
           {%- endif -%}
 
-          {%- if mf.routine_subtitle.value != blank -%}
-            <p class="sl-buybox__bajada">{{ mf.routine_subtitle.value }}</p>
+          {%- assign bajada = mf.routine_subtitle.value | default: mf.beneficio_corto.value -%}
+          {%- if bajada != blank -%}
+            <p class="sl-buybox__bajada">{{ bajada }}</p>
           {%- endif -%}
 
           {%- if versiones.size > 1 -%}

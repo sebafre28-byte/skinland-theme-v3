@@ -5,7 +5,13 @@
 {%- endcomment -%}
 {%- liquid
   assign variante = product.selected_or_first_available_variant
-  assign tipo = product.metafields.custom.tipo_piel.value | first
+  capture paso_raw
+    render 'sl-paso', componente: product, nombre: true
+  endcapture
+  assign tipo = paso_raw | strip
+  if tipo == blank
+    assign tipo = product.metafields.custom.tipo_piel.value | first
+  endif
   capture color_raw
     render 'sl-color-necesidad', product: product
   endcapture

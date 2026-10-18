@@ -1,0 +1,70 @@
+{%- comment -%}
+  Tarjeta "este producto va en esta rutina o kit".
+  Parámetros: rutina (producto con routine_products), actual (producto que se está viendo), form_id, y los textos de la sección
+  (texto_incluye, texto_este, texto_por_separado, texto_ahorras [ahorro], texto_agregar, texto_ver [titulo], texto_agotado).
+  El precio, "Por separado" y el ahorro salen de sl-bundle-sum. Se agrega con el product-form nativo.
+{%- endcomment -%}
+{%- liquid
+  capture bs_raw
+    render 'sl-bundle-sum', product: rutina
+  endcapture
+  assign bs = bs_raw | strip | split: '|'
+  assign suma = bs[0] | plus: 0
+  assign ahorro = bs[1] | plus: 0
+  assign completo = bs[2]
+  assign variante = rutina.selected_or_first_available_variant
+  assign precio = variante.price
+  assign precio_t = precio | money_without_trailing_zeros
+  assign ahorro_t = ahorro | money_without_trailing_zeros
+  capture color_raw
+    render 'sl-color-necesidad', product: rutina
+  endcapture
+  assign color = color_raw | strip
+  assign hay_ahorro = false
+  if completo == 'true' and ahorro > 0
+    assign hay_ahorro = true
+  endif
+-%}
+<article class="sl-combina__tarjeta" data-sl-color="{{ color }}">
+  <div class="sl-combina__cab">
+    <h3 class="sl-combina__titulo">{{ rutina.title }}</h3>
+    <span class="sl-combina__precio">{{ precio_t }}</span>
+  </div>
+  <ul class="sl-combina__lista" role="list" aria-label="{{ texto_incluye | escape }}">
+    {%- for c in rutina.metafields.custom.routine_products.value -%}
+      {%- capture paso -%}{% render 'sl-paso', componente: c, nombre: true %}{%- endcapture -%}
+      {%- assign nombre_c = c.metafields.custom.nombre_corto.value | default: c.title -%}
+      <li class="sl-combina__item{% if c.id == actual.id %} sl-combina__item--actual{% endif %}">
+        <span class="sl-combina__foto">
+          {%- if c.featured_image -%}
+            {{ c.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', widths: '100, 200', sizes: '72px', alt: '' }}
+          {%- endif -%}
+        </span>
+        <span class="sl-combina__nombre">{{ nombre_c }}</span>
+        <span class="sl-combina__paso">{% if c.id == actual.id %}{{ texto_este }}{% else %}{{ paso | strip }}{% endif %}</span>
+      </li>
+    {%- endfor -%}
+  </ul>
+  {%- if hay_ahorro -%}
+    <p class="sl-combina__ahorro">
+      <span class="sl-texto-chico">{{ texto_por_separado }} <s>{{ suma | money_without_trailing_zeros }}</s></span>
+      <span class="sl-sticker">{{ texto_ahorras | replace: '[ahorro]', ahorro_t }}</span>
+    </p>
+  {%- endif -%}
+  <div class="sl-combina__acciones">
+    {%- if rutina.available -%}
+      <product-form class="sl-combina__form" data-hide-errors="true">
+        {%- form 'product', rutina, id: form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+          <input type="hidden" name="id" value="{{ variante.id }}" class="product-variant-id">
+          <button type="submit" name="add" class="sl-btn sl-btn--lg sl-btn--block sl-btn--tinta">
+            <span>{{ texto_agregar | replace: '[precio]', precio_t }}</span>
+            {%- render 'loading-spinner' -%}
+          </button>
+        {%- endform -%}
+      </product-form>
+    {%- else -%}
+      <p class="sl-combina__agotado">{{ texto_agotado }}</p>
+    {%- endif -%}
+    <a class="sl-combina__ver" href="{{ rutina.url }}">{{ texto_ver | replace: '[titulo]', rutina.title }}</a>
+  </div>
+</article>

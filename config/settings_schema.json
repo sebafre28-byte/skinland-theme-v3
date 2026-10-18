@@ -320,6 +320,48 @@
         "id": "sl_cart_pie",
         "label": "Pie de seguridad",
         "default": "Pago seguro con Mercado Pago, crédito y débito · 100% originales"
+      },
+      {
+        "type": "header",
+        "content": "Tipo de producto según su paso"
+      },
+      {
+        "type": "text",
+        "id": "sl_paso_n_limpieza",
+        "label": "Limpieza (etiqueta paso-limpieza)",
+        "default": "Limpiador",
+        "info": "Se muestra en las tarjetas y en la ficha de productos sueltos."
+      },
+      {
+        "type": "text",
+        "id": "sl_paso_n_serum",
+        "label": "Tratamiento (etiqueta paso-serum)",
+        "default": "Sérum"
+      },
+      {
+        "type": "text",
+        "id": "sl_paso_n_crema",
+        "label": "Hidratación (etiqueta paso-crema)",
+        "default": "Crema"
+      },
+      {
+        "type": "text",
+        "id": "sl_paso_n_spf",
+        "label": "Protección (etiquetas paso-spf / paso-proteccion-solar)",
+        "default": "Protector solar"
+      },
+      {
+        "type": "text",
+        "id": "sl_paso_n_local",
+        "label": "Tratamiento puntual (etiqueta paso-tratamiento-local)",
+        "default": "Tratamiento puntual"
+      },
+      {
+        "type": "text",
+        "id": "sl_cta_individual",
+        "label": "Botón de compra de un producto suelto",
+        "default": "Agregar al carrito",
+        "info": "Se usa en la ficha, la barra fija y el cierre de productos que no son rutina ni kit."
       }
     ]
   },

@@ -30,6 +30,9 @@
   assign titulo = titulo | replace: '[producto]', product.title
 
   assign cta = mf.routine_cta_text.value | default: section.settings.cta_texto_defecto
+  if mf.routine_products.value == blank and mf.routine_cta_text.value == blank
+    assign cta = settings.sl_cta_individual
+  endif
 -%}
 
 <section class="sl-cta sl-scope" data-sl-color="{{ color_necesidad }}" aria-labelledby="sl-cta-{{ section.id }}">

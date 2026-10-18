@@ -23,6 +23,9 @@
     assign form_id = 'sl-form-' | append: product.id
     assign disponible = product.selected_or_first_available_variant.available
     assign cta = product.metafields.custom.routine_cta_text.value | default: section.settings.cta_texto_defecto
+  if product.metafields.custom.routine_products.value == blank and product.metafields.custom.routine_cta_text.value == blank
+    assign cta = settings.sl_cta_individual
+  endif
     assign precio_texto = product.selected_or_first_available_variant.price | money_without_trailing_zeros
   endif
 -%}

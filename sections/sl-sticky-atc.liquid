@@ -7,6 +7,9 @@
   assign disponible = variante.available
   assign form_id = 'sl-form-' | append: product.id
   assign cta = mf.routine_cta_text.value | default: section.settings.cta_texto_defecto
+  if mf.routine_products.value == blank and mf.routine_cta_text.value == blank
+    assign cta = settings.sl_cta_individual
+  endif
 
   capture bs_raw
     render 'sl-bundle-sum', product: product

@@ -6,14 +6,34 @@
 {%- liquid
   assign etiquetas = componente.tags
   if etiquetas contains 'paso-limpieza'
-    echo 'Limpia'
+    if nombre
+      echo settings.sl_paso_n_limpieza
+    else
+      echo 'Limpia'
+    endif
   elsif etiquetas contains 'paso-serum'
-    echo 'Trata'
+    if nombre
+      echo settings.sl_paso_n_serum
+    else
+      echo 'Trata'
+    endif
   elsif etiquetas contains 'paso-crema'
-    echo 'Hidrata'
+    if nombre
+      echo settings.sl_paso_n_crema
+    else
+      echo 'Hidrata'
+    endif
   elsif etiquetas contains 'paso-spf' or etiquetas contains 'paso-proteccion-solar'
-    echo 'Protege'
+    if nombre
+      echo settings.sl_paso_n_spf
+    else
+      echo 'Protege'
+    endif
   elsif etiquetas contains 'paso-tratamiento-local'
-    echo 'Granito puntual'
+    if nombre
+      echo settings.sl_paso_n_local
+    else
+      echo 'Granito puntual'
+    endif
   endif
 -%}

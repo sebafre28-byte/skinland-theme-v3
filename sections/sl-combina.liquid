@@ -1,0 +1,90 @@
+{{ 'sl-combina.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign maximo = section.settings.maximo
+  assign mostradas = 0
+  assign mi_paso = ''
+  capture paso_raw
+    render 'sl-paso', componente: product, nombre: true
+  endcapture
+  assign mi_paso = paso_raw | strip
+-%}
+
+{%- capture tarjetas -%}
+  {%- for n in (1..2) -%}
+    {%- if n == 1 -%}
+      {%- assign fuente = section.settings.coleccion_rutinas -%}
+    {%- else -%}
+      {%- assign fuente = section.settings.coleccion_kits -%}
+    {%- endif -%}
+    {%- if fuente != blank -%}
+      {%- for pasos in (3..6) -%}
+        {%- for r in fuente.products -%}
+          {%- assign comps = r.metafields.custom.routine_products.value -%}
+          {%- if comps.size == pasos and mostradas < maximo -%}
+            {%- assign contiene = false -%}
+            {%- for c in comps -%}
+              {%- if c.id == product.id -%}{%- assign contiene = true -%}{%- endif -%}
+            {%- endfor -%}
+            {%- if contiene -%}
+              {%- assign mostradas = mostradas | plus: 1 -%}
+              {%- assign form_id = 'sl-combina-' | append: section.id | append: '-' | append: r.id -%}
+              {% render 'sl-combina-rutina',
+                rutina: r,
+                actual: product,
+                form_id: form_id,
+                texto_incluye: section.settings.texto_incluye,
+                texto_este: section.settings.texto_este,
+                texto_por_separado: section.settings.texto_por_separado,
+                texto_ahorras: section.settings.texto_ahorras,
+                texto_agregar: section.settings.texto_agregar,
+                texto_ver: section.settings.texto_ver,
+                texto_agotado: section.settings.texto_agotado
+              %}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if tarjetas contains 'sl-combina__tarjeta' -%}
+  <section class="sl-combina sl-scope" aria-labelledby="sl-combina-{{ section.id }}">
+    <div class="sl-container">
+      <div class="sl-combina__intro">
+        {%- if section.settings.eyebrow != blank -%}<span class="sl-combina__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+        <h2 class="sl-h2" id="sl-combina-{{ section.id }}">{{ section.settings.titulo }}</h2>
+        {%- if section.settings.bajada != blank -%}<p class="sl-combina__bajada">{{ section.settings.bajada }}</p>{%- endif -%}
+      </div>
+      <div class="sl-combina__grid">{{ tarjetas }}</div>
+    </div>
+  </section>
+{%- elsif request.design_mode -%}
+  {{ 'sl-combina.css' | asset_url | stylesheet_tag }}
+  <p class="sl-combina__aviso sl-scope">{{ section.settings.aviso_editor }}</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Va en rutina",
+  "tag": "div",
+  "settings": [
+    { "type": "collection", "id": "coleccion_rutinas", "label": "Colección de rutinas", "info": "Se buscan las rutinas que incluyen este producto, de menos a más pasos." },
+    { "type": "collection", "id": "coleccion_kits", "label": "Colección de kits", "info": "Los kits van después de las rutinas." },
+    { "type": "range", "id": "maximo", "label": "Máximo de tarjetas", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "Funciona mejor en rutina" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Combínalo con estos productos" },
+    { "type": "text", "id": "bajada", "label": "Bajada", "default": "Está pensado para usarse junto a otros pasos. Mira en qué rutinas y kits va y cuánto te ahorras llevándolos juntos." },
+    { "type": "text", "id": "texto_incluye", "label": "Lista de productos (accesible)", "default": "Productos incluidos" },
+    { "type": "text", "id": "texto_este", "label": "Marca del producto que estás viendo", "default": "Este producto" },
+    { "type": "text", "id": "texto_por_separado", "label": "Texto del tachado", "default": "Por separado" },
+    { "type": "text", "id": "texto_ahorras", "label": "Etiqueta de ahorro", "default": "Ahorras [ahorro]", "info": "Usa [ahorro]." },
+    { "type": "text", "id": "texto_agregar", "label": "Botón agregar", "default": "Agregar la rutina · [precio]", "info": "Usa [precio]." },
+    { "type": "text", "id": "texto_ver", "label": "Enlace a la ficha", "default": "Ver [titulo]", "info": "Usa [titulo]." },
+    { "type": "text", "id": "texto_agotado", "label": "Texto de agotado", "default": "Agotado" },
+    { "type": "text", "id": "aviso_editor", "label": "Aviso en el editor", "info": "Solo se ve dentro del editor del tema, no en la tienda.", "default": "Sección oculta: este producto no está en ninguna rutina o kit de las colecciones elegidas." }
+  ],
+  "presets": [{ "name": "Skinland · Va en rutina" }]
+}
+{% endschema %}
