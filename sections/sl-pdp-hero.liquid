@@ -309,6 +309,9 @@
               </button>
             {%- endform -%}
           </product-form>
+          {%- unless disponible -%}
+            <p class="sl-aviso">{% render 'sl-aviso-stock', producto: product, clase: 'sl-btn sl-btn--block' %}</p>
+          {%- endunless -%}
 
           {%- capture aly_raw -%}{% render 'sl-whatsapp-url' %}{%- endcapture -%}
           {%- assign aly_enlace = aly_raw | strip -%}

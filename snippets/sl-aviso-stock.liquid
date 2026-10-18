@@ -1,0 +1,19 @@
+{%- comment -%}
+  Enlace "Avísame cuando vuelva" para un producto agotado. Parámetros: producto, clase (opcional).
+  Orden: ajuste "Enlace de aviso de stock" (p. ej. un formulario) → WhatsApp de Skinland con un mensaje ya escrito.
+  Imprime el <a> completo o nada si no hay a dónde enviar. Textos en los ajustes del tema.
+{%- endcomment -%}
+{%- liquid
+  if settings.sl_aviso_stock_url != blank
+    assign destino = settings.sl_aviso_stock_url
+  else
+    assign mensaje = settings.sl_aviso_stock_mensaje | replace: '[producto]', producto.title
+    capture destino_raw
+      render 'sl-whatsapp-url', mensaje: mensaje
+    endcapture
+    assign destino = destino_raw | strip
+  endif
+-%}
+{%- if destino != blank -%}
+  <a class="{{ clase | default: 'sl-btn sl-btn--block' }}" href="{{ destino }}" target="_blank" rel="noopener">{{ settings.sl_aviso_stock_texto }}</a>
+{%- endif -%}

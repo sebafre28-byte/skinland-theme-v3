@@ -15,7 +15,8 @@
       assign texto = mensaje | default: settings.sl_whatsapp_mensaje
       assign pagina = page_title | default: shop.name
       assign texto = texto | replace: '[pagina]', pagina | replace: '[url]', canonical_url
-      echo 'https://wa.me/' | append: numero | append: '?text=' | append: texto | strip | url_encode
+      assign texto_url = texto | strip | url_encode | replace: '+', '%20'
+      echo 'https://wa.me/' | append: numero | append: '?text=' | append: texto_url
     endif
   endif
 -%}

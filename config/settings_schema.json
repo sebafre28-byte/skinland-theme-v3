@@ -380,6 +380,29 @@
         "label": "Ahorro calculado",
         "default": "Ahorras [ahorro]",
         "info": "Usa [ahorro]. Solo aparece si el ahorro es real."
+      },
+      {
+        "type": "header",
+        "content": "Aviso de stock"
+      },
+      {
+        "type": "text",
+        "id": "sl_aviso_stock_texto",
+        "label": "Texto del enlace",
+        "default": "Avísame cuando vuelva"
+      },
+      {
+        "type": "text",
+        "id": "sl_aviso_stock_mensaje",
+        "label": "Mensaje de WhatsApp",
+        "default": "Hola Skinland 👋 Avísenme cuando vuelva a estar disponible [producto]. [url]",
+        "info": "Usa [producto] y [url]."
+      },
+      {
+        "type": "url",
+        "id": "sl_aviso_stock_url",
+        "label": "Enlace propio (opcional)",
+        "info": "Si pones un formulario (p. ej. de Klaviyo), se usa en vez de WhatsApp."
       }
     ]
   },

@@ -143,3 +143,4 @@
 .sl-ficha__item { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); }
 .sl-ficha dt { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .7; }
 .sl-ficha dd { margin: 0; font-family: var(--sl-font-display); font-size: 16px; font-weight: 800; letter-spacing: -.01em; line-height: 1.15; }
+.sl-aviso { margin: 0; }

@@ -23,8 +23,6 @@
           texto_ahorras: section.settings.texto_ahorras,
           boton: section.settings.boton,
           texto_agotado: section.settings.texto_agotado,
-          texto_avisame: section.settings.texto_avisame,
-          url_aviso: section.settings.url_aviso,
           texto_desde: section.settings.texto_desde
         %}
         {%- if section.settings.coleccion != blank -%}
@@ -40,8 +38,6 @@
                 texto_ahorras: section.settings.texto_ahorras,
                 boton: section.settings.boton,
                 texto_agotado: section.settings.texto_agotado,
-                texto_avisame: section.settings.texto_avisame,
-                url_aviso: section.settings.url_aviso,
                 texto_desde: section.settings.texto_desde
               %}
             {%- endif -%}
@@ -62,14 +58,12 @@
     { "type": "collection", "id": "coleccion", "label": "Colección de kits", "info": "De aquí salen los otros kits, cerrados." },
     { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "Kits por objetivo" },
     { "type": "text", "id": "titulo", "label": "Título", "default": "Todo en una caja" },
-    { "type": "url", "id": "url_aviso", "label": "Enlace de aviso de stock", "info": "Formulario o Klaviyo back-in-stock. Si está vacío, los kits agotados solo dicen Agotado." },
     { "type": "text", "id": "texto_productos", "label": "Etiqueta de productos", "default": "[n] productos", "info": "Usa [n]." },
     { "type": "text", "id": "texto_por_separado", "label": "Texto del tachado", "default": "Por separado" },
     { "type": "text", "id": "texto_ahorras", "label": "Etiqueta de ahorro", "default": "Ahorras [ahorro]", "info": "Usa [ahorro]." },
     { "type": "text", "id": "texto_desde", "label": "Texto de la fila", "default": "[precio]", "info": "Usa [precio]." },
     { "type": "text", "id": "boton", "label": "Botón", "default": "Ver [titulo] →", "info": "Usa [titulo]." },
-    { "type": "text", "id": "texto_agotado", "label": "Texto de agotado", "default": "Agotado" },
-    { "type": "text", "id": "texto_avisame", "label": "Texto de aviso", "default": "Avísame" }
+    { "type": "text", "id": "texto_agotado", "label": "Texto de agotado", "default": "Agotado" }
   ],
   "presets": [{ "name": "Skinland · Kits" }]
 }

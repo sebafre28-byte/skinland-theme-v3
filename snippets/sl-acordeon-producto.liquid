@@ -2,7 +2,7 @@
   Fila desplegable de una rutina o kit: cerrada muestra nombre y precio; abierta, fotos, precio, ahorro y botón.
   Se abre una a la vez por grupo (atributo name + sl-acordeon.js).
   Parámetros: product, grupo, abierto (true/false), etiqueta (texto de la fila, opcional: si falta usa tipo de piel o título),
-  texto_productos ([n]), texto_por_separado, texto_ahorras ([ahorro]), boton ([titulo]), texto_agotado, texto_avisame, url_aviso,
+  texto_productos ([n]), texto_por_separado, texto_ahorras ([ahorro]), boton ([titulo]), texto_agotado,
   texto_desde ([precio]), nombre_tipo (true: usa custom.tipo_piel como nombre de la fila).
   Todos los importes salen de sl-bundle-sum y de los precios de Shopify.
 {%- endcomment -%}
@@ -79,9 +79,7 @@
       <a class="sl-btn sl-btn--lg sl-btn--block" href="{{ product.url }}">{{ boton | replace: '[titulo]', product.title }}</a>
     {%- else -%}
       <p class="sl-acordeon__agotado">{{ texto_agotado }}</p>
-      {%- if url_aviso != blank -%}
-        <a class="sl-btn sl-btn--block" href="{{ url_aviso }}">{{ texto_avisame }}</a>
-      {%- endif -%}
+      {% render 'sl-aviso-stock', producto: product %}
       <a class="sl-acordeon__ver" href="{{ product.url }}">{{ boton | replace: '[titulo]', product.title }}</a>
     {%- endif -%}
   </div>
