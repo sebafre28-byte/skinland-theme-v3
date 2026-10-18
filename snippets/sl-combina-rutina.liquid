@@ -16,6 +16,7 @@
   assign precio = variante.price
   assign precio_t = precio | money_without_trailing_zeros
   assign ahorro_t = ahorro | money_without_trailing_zeros
+  assign ahorro_menos = '−' | append: ahorro_t
   capture color_raw
     render 'sl-color-necesidad', product: rutina
   endcapture
@@ -50,7 +51,7 @@
   {%- if hay_ahorro -%}
     <p class="sl-combina__ahorro">
       <span class="sl-texto-chico">{{ texto_por_separado }} <s>{{ suma | money_without_trailing_zeros }}</s></span>
-      <span class="sl-sticker">{{ texto_ahorras | replace: '[ahorro]', ahorro_t }}</span>
+      <span class="sl-sticker">{{ texto_ahorras | replace: '[ahorro]', ahorro_menos }}</span>
     </p>
   {%- endif -%}
   <div class="sl-combina__acciones">

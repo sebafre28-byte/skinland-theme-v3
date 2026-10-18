@@ -34,6 +34,7 @@
   assign precio_t = precio | money_without_trailing_zeros
   assign desde_t = texto_desde | replace: '[precio]', precio_t
   assign ahorro_t = ahorro | money_without_trailing_zeros
+  assign ahorro_menos = '−' | append: ahorro_t
   assign hay_ahorro = false
   if completo == 'true' and ahorro > 0
     assign hay_ahorro = true
@@ -80,12 +81,9 @@
       <span class="sl-precio">{{ precio_t }}</span>
       {%- if hay_ahorro -%}
         <span class="sl-texto-chico">{{ texto_por_separado }} <s>{{ suma | money_without_trailing_zeros }}</s></span>
-        <span class="sl-sticker">−{{ ahorro_t }}</span>
+        <span class="sl-sticker">{{ texto_ahorras | default: '[ahorro]' | replace: '[ahorro]', ahorro_menos }}</span>
       {%- endif -%}
     </div>
-    {%- if hay_ahorro and texto_ahorras != blank -%}
-      <span class="sl-acordeon__ahorro">{{ texto_ahorras | replace: '[ahorro]', ahorro_t }}</span>
-    {%- endif -%}
     {%- if product.available -%}
       <a class="sl-btn sl-btn--lg sl-btn--block" href="{{ product.url }}">{{ boton | replace: '[titulo]', product.title }}</a>
     {%- else -%}
