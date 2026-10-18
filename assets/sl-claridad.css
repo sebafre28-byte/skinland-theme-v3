@@ -1,0 +1,27 @@
+/* Claridad de qué se toca y qué no (Color Pop tiene muchos bloques con color).
+   Regla: píldora redonda con sombra dura = se toca. Etiqueta de esquinas más rectas, sin sombra = solo informa.
+   Botón oscuro con sombra lima = comprar. Todo se apoya en los tokens; solo cambia forma, sombra y flechas. */
+
+/* 1) Etiquetas e info: esquinas rectas y planas (no se tocan) */
+body .sl-chip, body .sl-home-hero__eyebrow, body .sl-combina__eyebrow, body .sl-marcas__eyebrow, body .sl-kit-destacado__chip,
+body .sl-acordeon__chip, body .sl-tarjeta__chip, body .slq-cab__eyebrow, body .slq-kit-tag, body .slq-prod-badge,
+body .sl-galeria__chip, body .sl-sticker, body .sl-cart-item__ahorro {
+  border-radius: var(--sl-radio-s); box-shadow: none;
+}
+
+/* 2) Lo que se toca: píldoras, pestañas y respuestas con sombra dura y flecha */
+body .sl-necesidades__pildora, body .sl-marcas__tab, body .sl-rutinas__tab, body .sl-aly__resp {
+  box-shadow: 3px 3px 0 var(--sl-tinta);
+}
+body .sl-necesidades__pildora::after, body .sl-aly__resp::after { content: '→'; margin-left: 8px; font-weight: 800; }
+body .sl-necesidades__pildora--punteada { box-shadow: none; }
+body .sl-necesidades__pildora--punteada::after { content: none; }
+body .sl-marcas__tab[aria-pressed='true'], body .sl-rutinas__tab[aria-pressed='true'] { box-shadow: none; transform: translate(2px, 2px); }
+
+/* 3) Filas desplegables de rutinas y kits: parecen botones (sombra + flecha) */
+body .sl-acordeon { box-shadow: 3px 3px 0 var(--sl-tinta); }
+body .sl-acordeon[open] { box-shadow: none; }
+body .sl-acordeon__fila { cursor: pointer; }
+
+/* 4) Las tarjetas son un contenedor; la acción es su botón oscuro de abajo */
+body .sl-tarjeta__boton { box-shadow: 3px 3px 0 var(--sl-lima); }

@@ -30,4 +30,17 @@
 
   /* Sale una línea del carrito con un pequeño aparecer */
   .sl-cart-item { animation: sl-abre .3s ease both; }
+
+  /* Botones de compra: de vez en cuando un saltito corto para llamar la atención (7 s de ciclo, ~1 s de movimiento, 8 veces) */
+  .sl-btn--compra:not(:disabled):not([aria-disabled='true']), .sl-upgrade__boton, .slq-kit-btn {
+    animation: sl-llama 7s ease-in-out 4s 8;
+  }
+  .sl-btn--compra:hover, .sl-btn--compra:focus-visible, .sl-btn--compra:active { animation: none; }
+  @keyframes sl-llama {
+    0%, 82%, 100% { transform: none; }
+    86% { transform: translateY(-4px) scale(1.025); }
+    90% { transform: translateY(0) scale(1); }
+    94% { transform: translateY(-2px) scale(1.012); }
+    97% { transform: none; }
+  }
 }
