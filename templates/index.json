@@ -294,8 +294,8 @@
   },
   "order": [
     "hero",
-    "cinta",
     "necesidades",
+    "cinta",
     "rutinas",
     "kit",
     "aly",
