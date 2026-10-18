@@ -33,7 +33,8 @@
       assign ahorro_v = bs[1] | plus: 0
       if ahorro_v > 0
         assign ahorro_money = ahorro_v | money_without_trailing_zeros
-        assign ahorro_texto = settings.sl_tarjeta_ahorras | replace: '[ahorro]', ahorro_money
+        assign ahorro_menos = '−' | append: ahorro_money
+        assign ahorro_texto = settings.sl_tarjeta_ahorras | replace: '[ahorro]', ahorro_menos
       endif
     endif
     if product.metafields.custom.routine_badge.value != blank
