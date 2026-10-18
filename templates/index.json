@@ -151,10 +151,6 @@
       ],
       "settings": {}
     },
-    "favoritos": {
-      "type": "sl-favoritos",
-      "settings": {}
-    },
     "videos": {
       "type": "sl-videos",
       "settings": {
@@ -168,6 +164,70 @@
     "resenas": {
       "type": "sl-resenas-home",
       "settings": {}
+    },
+    "marcas": {
+      "type": "sl-marcas",
+      "blocks": {
+        "todo": {
+          "type": "todo",
+          "settings": {
+            "etiqueta": "Todo"
+          }
+        },
+        "m1": {
+          "type": "marca",
+          "settings": {
+            "proveedor": "SKIN1004"
+          }
+        },
+        "m2": {
+          "type": "marca",
+          "settings": {
+            "proveedor": "Beauty of Joseon"
+          }
+        },
+        "m3": {
+          "type": "marca",
+          "settings": {
+            "proveedor": "MIXSOON"
+          }
+        },
+        "m4": {
+          "type": "marca",
+          "settings": {
+            "proveedor": "Dr.Althea"
+          }
+        },
+        "m5": {
+          "type": "marca",
+          "settings": {
+            "proveedor": "Round Lab"
+          }
+        },
+        "m6": {
+          "type": "marca",
+          "settings": {
+            "proveedor": "EQQUALBERRY"
+          }
+        },
+        "m7": {
+          "type": "marca",
+          "settings": {
+            "proveedor": "Centellian24"
+          }
+        }
+      },
+      "block_order": [
+        "todo",
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5",
+        "m6",
+        "m7"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -176,7 +236,7 @@
     "rutinas",
     "kit",
     "aly",
-    "favoritos",
+    "marcas",
     "videos",
     "resenas",
     "newsletter"

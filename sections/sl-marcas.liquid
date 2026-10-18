@@ -1,0 +1,127 @@
+{{ 'sl-marcas.css' | asset_url | stylesheet_tag }}
+{{ 'sl-tarjeta.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign hay_tabs = false
+  for block in section.blocks
+    if block.type == 'todo' or block.settings.proveedor != blank
+      assign hay_tabs = true
+    endif
+  endfor
+-%}
+
+{%- if hay_tabs -%}
+  <section class="sl-marcas sl-scope" id="marcas" aria-labelledby="sl-marcas-{{ section.id }}" data-sl-marcas>
+    <div class="sl-container">
+      <div class="sl-marcas__cab">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="sl-marcas__eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        <h2 class="sl-h2" id="sl-marcas-{{ section.id }}">{{ section.settings.titulo }}</h2>
+        {%- if section.settings.bajada != blank -%}
+          <p class="sl-marcas__bajada">{{ section.settings.bajada }}</p>
+        {%- endif -%}
+      </div>
+
+      <div class="sl-marcas__tabs" role="group" aria-label="{{ section.settings.titulo | escape }}">
+        {%- assign n = 0 -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'todo' or block.settings.proveedor != blank -%}
+            {%- assign etiqueta = block.settings.etiqueta | default: block.settings.proveedor -%}
+            <button type="button" class="sl-marcas__tab" data-sl-tab="{{ block.id }}" aria-pressed="{% if n == 0 %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>{{ etiqueta }}</button>
+            {%- assign n = n | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- assign n = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'todo' or block.settings.proveedor != blank -%}
+          <div class="sl-marcas__panel" data-sl-panel="{{ block.id }}" {% if n > 0 %}hidden{% endif %}>
+            <ul class="sl-marcas__grid" role="list">
+              {%- assign mostrados = 0 -%}
+              {%- for p in collections.all.products -%}
+                {%- liquid
+                  assign es_rutina = false
+                  if p.metafields.custom.routine_products.value != blank
+                    assign es_rutina = true
+                  endif
+                  assign pasa = false
+                  if es_rutina == false
+                    if block.type == 'todo'
+                      assign pasa = true
+                    elsif p.vendor == block.settings.proveedor
+                      assign pasa = true
+                    endif
+                  endif
+                -%}
+                {%- if pasa and mostrados < section.settings.cantidad -%}
+                  {%- assign mostrados = mostrados | plus: 1 -%}
+                  {%- assign form_id = 'sl-marcas-' | append: block.id | append: '-' | append: p.id -%}
+                  <li class="sl-marcas__item">
+                    {% render 'sl-tarjeta-producto',
+                      product: p,
+                      form_id: form_id,
+                      texto_agregar: section.settings.texto_agregar,
+                      texto_agotado: section.settings.texto_agotado,
+                      texto_ver: section.settings.texto_ver,
+                      mostrar_marca: true
+                    %}
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+            {%- if mostrados == 0 -%}
+              <p class="sl-marcas__vacio">{{ section.settings.texto_vacio }}</p>
+            {%- endif -%}
+          </div>
+          {%- assign n = n | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+  <script src="{{ 'sl-marcas.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- elsif request.design_mode -%}
+  {{ 'sl-marcas.css' | asset_url | stylesheet_tag }}
+{{ 'sl-tarjeta.css' | asset_url | stylesheet_tag }}
+  <p class="sl-marcas__aviso sl-scope">{{ section.settings.aviso_editor }}</p>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Skinland · Marcas",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Etiqueta superior", "default": "Marcas seleccionadas" },
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Nuestras marcas favoritas" },
+    { "type": "text", "id": "bajada", "label": "Bajada", "default": "Productos originales de las marcas que forman nuestras rutinas." },
+    { "type": "range", "id": "cantidad", "label": "Productos por pestaña", "min": 4, "max": 24, "step": 1, "default": 8 },
+    { "type": "text", "id": "texto_agregar", "label": "Botón agregar", "default": "Agregar" },
+    { "type": "text", "id": "texto_ver", "label": "Botón de productos con variantes", "default": "Ver opciones" },
+    { "type": "text", "id": "texto_agotado", "label": "Texto de agotado", "default": "Agotado" },
+    { "type": "text", "id": "texto_vacio", "label": "Texto sin productos", "default": "No hay productos disponibles para esta marca." },
+    { "type": "text", "id": "aviso_editor", "label": "Aviso en el editor", "info": "Solo se ve dentro del editor del tema, no en la tienda.", "default": "Marcas ocultas: agrega al menos una pestaña." }
+  ],
+  "blocks": [
+    {
+      "type": "todo",
+      "name": "Pestaña: todos",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "etiqueta", "label": "Texto de la pestaña", "default": "Todo" }
+      ]
+    },
+    {
+      "type": "marca",
+      "name": "Pestaña: marca",
+      "settings": [
+        { "type": "text", "id": "proveedor", "label": "Proveedor del producto", "info": "Debe coincidir exactamente con el campo Proveedor del producto en Shopify." },
+        { "type": "text", "id": "etiqueta", "label": "Texto de la pestaña", "info": "Si está vacío se usa el nombre del proveedor." }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [{ "name": "Skinland · Marcas" }]
+}
+{% endschema %}

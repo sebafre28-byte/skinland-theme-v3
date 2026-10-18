@@ -1,6 +1,6 @@
 {%- comment -%}
   Tarjeta de producto suelto con botón agregar que respeta el stock.
-  Parámetros: product, form_id (único en la página), texto_agregar, texto_agotado, texto_ver.
+  Parámetros: product, form_id (único en la página), texto_agregar, texto_agotado, texto_ver, mostrar_marca (opcional: muestra el proveedor).
   Agrega con un <product-form> nativo de Dawn; si el producto tiene varias variantes, lleva a su ficha.
 {%- endcomment -%}
 {%- liquid
@@ -10,6 +10,9 @@
     render 'sl-color-necesidad', product: product
   endcapture
   assign color = color_raw | strip
+  if product.metafields.custom.color.value == blank and product.metafields.custom.tipo_piel.value == blank
+    assign color = 'blanco'
+  endif
   assign beneficio = product.metafields.custom.beneficio_corto.value
 -%}
 <article class="sl-tarjeta" data-sl-color="{{ color }}">
@@ -20,6 +23,7 @@
         {{ product.featured_image | image_url: width: 480 | image_tag: loading: 'lazy', widths: '240, 360, 480', sizes: '(min-width: 990px) 260px, 45vw', alt: product.featured_image.alt | default: product.title }}
       {%- endif -%}
     </span>
+    {%- if mostrar_marca and product.vendor != blank -%}<p class="sl-tarjeta__marca">{{ product.vendor }}</p>{%- endif -%}
     <h3 class="sl-tarjeta__titulo">{{ product.title }}</h3>
     {%- if beneficio != blank -%}<p class="sl-tarjeta__beneficio">{{ beneficio }}</p>{%- endif -%}
     <p class="sl-tarjeta__precio">{{ variante.price | money_without_trailing_zeros }}</p>
