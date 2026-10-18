@@ -1,0 +1,807 @@
+{%- comment -%}
+  Test de piel de Skinland V3 (motor v14 del tema anterior, con el diseño Color Pop).
+  Motor de recomendación en assets/sl-quiz.js; estilos en assets/sl-quiz.css.
+  Recomienda solo productos de la colección elegida con etiquetas quiz-rutina o quiz-kit (disponibles).
+  Precios con IVA y "por separado" y ahorro calculados (sl-bundle-sum); sin precio tachado de Shopify.
+  El registro del email usa el formulario nativo de clientes; Klaviyo solo si completas sus ajustes.
+{%- endcomment -%}
+
+{{ 'sl-quiz.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign qid = 'slq-' | append: section.id
+  assign ns = qid | replace: '-', '_'
+  assign customer_form_id = qid | append: '-shopify-customer-form'
+-%}
+
+<section class="slq-wrap sl-scope" id="{{ qid }}-wrap" data-sl-quiz data-qid="{{ qid }}" data-ns="{{ ns }}" data-section-id="{{ section.id }}" aria-labelledby="{{ qid }}-titulo">
+  <div class="sl-container slq-wrap__inner">
+    <header class="slq-cab">
+      {%- if section.settings.eyebrow != blank -%}<span class="slq-cab__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
+      <h1 class="sl-h2 slq-cab__titulo" id="{{ qid }}-titulo">{{ section.settings.titulo }}</h1>
+      {%- if section.settings.bajada != blank -%}<p class="slq-cab__bajada">{{ section.settings.bajada }}</p>{%- endif -%}
+    </header>
+    <div id="{{ qid }}-inline-content"></div>
+  </div>
+</section>
+
+{%- comment -%}
+  Formulario nativo Shopify para crear/actualizar un suscriptor.
+  Se mantiene fuera de la vista, pero presente en el DOM para hCaptcha.
+{%- endcomment -%}
+<div id="{{ qid }}-customer-form" class="slq-native-form" aria-hidden="true">
+  {%- form 'customer', id: customer_form_id, data-shopify-captcha: 'true' -%}
+    <input type="hidden" name="contact[first_name]" value="">
+    <input type="hidden" name="contact[email]" value="">
+    <input type="hidden" name="contact[tags]" value="">
+  {%- endform -%}
+</div>
+<iframe id="{{ qid }}-shopify-target" name="{{ qid }}-shopify-target" class="slq-native-frame" title="" aria-hidden="true" tabindex="-1"></iframe>
+
+{%- comment %} ── Datos JSON ── {% endcomment %}
+<script id="{{ qid }}-data" type="application/json">
+{
+  "steps": [
+    {%- assign step_count = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'question' -%}
+        {%- if step_count > 0 %},{%- endif -%}
+        {%- assign step_count = step_count | plus: 1 -%}
+        {
+          "id": {{ block.id | json }},
+          "role": {{ block.settings.question_role | default: 'otro' | json }},
+          "heading": {{ block.settings.question_heading | json }},
+          "sub": {{ block.settings.question_sub | json }},
+          "image": {% if block.settings.question_image != blank %}{{ block.settings.question_image | image_url: width: 800 | json }}{% else %}null{% endif %},
+          "image_alt": {{ block.settings.question_image.alt | default: '' | json }},
+          "video_url": "",
+          "video_label": "",
+          "options": [
+            {%- assign opt_count = 0 -%}
+            {%- for n in (1..6) -%}
+              {%- liquid
+                case n
+                  when 1
+                    assign opt_label = block.settings.opt1_label
+                    assign opt_tag   = block.settings.opt1_tag
+                    assign opt_img   = block.settings.opt1_image
+                    assign opt_desc  = block.settings.opt1_desc
+                  when 2
+                    assign opt_label = block.settings.opt2_label
+                    assign opt_tag   = block.settings.opt2_tag
+                    assign opt_img   = block.settings.opt2_image
+                    assign opt_desc  = block.settings.opt2_desc
+                  when 3
+                    assign opt_label = block.settings.opt3_label
+                    assign opt_tag   = block.settings.opt3_tag
+                    assign opt_img   = block.settings.opt3_image
+                    assign opt_desc  = block.settings.opt3_desc
+                  when 4
+                    assign opt_label = block.settings.opt4_label
+                    assign opt_tag   = block.settings.opt4_tag
+                    assign opt_img   = block.settings.opt4_image
+                    assign opt_desc  = block.settings.opt4_desc
+                  when 5
+                    assign opt_label = block.settings.opt5_label
+                    assign opt_tag   = block.settings.opt5_tag
+                    assign opt_img   = block.settings.opt5_image
+                    assign opt_desc  = block.settings.opt5_desc
+                  when 6
+                    assign opt_label = block.settings.opt6_label
+                    assign opt_tag   = block.settings.opt6_tag
+                    assign opt_img   = block.settings.opt6_image
+                    assign opt_desc  = block.settings.opt6_desc
+                endcase
+              -%}
+              {%- if opt_label != blank -%}
+                {%- if opt_count > 0 %},{%- endif -%}
+                {%- assign opt_count = opt_count | plus: 1 -%}
+                {
+                  "label": {{ opt_label | json }},
+                  "desc": {{ opt_desc | default: '' | json }},
+                  "tag": {{ opt_tag | default: opt_label | handleize | json }},
+                  "image": {% if opt_img != blank %}{{ opt_img | image_url: width: 500 | json }}{% else %}null{% endif %},
+                  "image_alt": {{ opt_img.alt | default: opt_label | json }}
+                }
+              {%- endif -%}
+            {%- endfor -%}
+          ]
+        }
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if section.settings.enable_routine_level_question -%}
+      {%- if step_count > 0 %},{%- endif -%}
+      {
+        "id": "routine-level-{{ section.id }}",
+        "role": "nivel_rutina",
+        "heading": {{ section.settings.routine_level_heading | json }},
+        "sub": {{ section.settings.routine_level_sub | json }},
+        "image": null,
+        "image_alt": "",
+        "video_url": "",
+        "video_label": "",
+        "options": [
+          {
+            "label": {{ section.settings.routine_level_3_label | json }},
+            "desc": {{ section.settings.routine_level_3_desc | json }},
+            "tag": "preferencia-rutina-3",
+            "image": null,
+            "image_alt": ""
+          },
+          {
+            "label": {{ section.settings.routine_level_4_label | json }},
+            "desc": {{ section.settings.routine_level_4_desc | json }},
+            "tag": "preferencia-rutina-4",
+            "image": null,
+            "image_alt": ""
+          },
+          {
+            "label": {{ section.settings.routine_level_kit_label | json }},
+            "desc": {{ section.settings.routine_level_kit_desc | json }},
+            "tag": "preferencia-kit",
+            "image": null,
+            "image_alt": ""
+          }
+        ]
+      }
+    {%- endif -%}
+  ],
+  "products": [
+    {%- assign quiz_collection = section.settings.quiz_collection -%}
+    {%- assign prod_count = 0 -%}
+
+    {%- if quiz_collection != blank -%}
+      {%- for p in quiz_collection.products -%}
+        {%- liquid
+          assign quiz_tipo = ''
+          assign routine_steps = 0
+          assign role_count = 0
+
+          if p.tags contains 'quiz-kit'
+            assign quiz_tipo = 'kit'
+            assign role_count = role_count | plus: 1
+          endif
+
+          if p.tags contains 'quiz-rutina'
+            assign quiz_tipo = 'rutina'
+            assign role_count = role_count | plus: 1
+          endif
+
+          if p.tags contains 'quiz-complemento'
+            assign quiz_tipo = 'complemento'
+            assign role_count = role_count | plus: 1
+          endif
+
+          assign suma_txt = ''
+          assign ahorro_txt = ''
+          if p.metafields.custom.routine_products.value != blank
+            capture bs_raw
+              render 'sl-bundle-sum', product: p
+            endcapture
+            assign bs = bs_raw | strip | split: '|'
+            if bs[2] == 'true'
+              assign bs_ahorro = bs[1] | plus: 0
+              if bs_ahorro > 0
+                assign suma_txt = bs[0] | plus: 0 | money_without_trailing_zeros
+                assign ahorro_txt = bs_ahorro | money_without_trailing_zeros
+              endif
+            endif
+          endif
+
+          if quiz_tipo == 'rutina'
+            if p.tags contains 'rutina-3-pasos'
+              assign routine_steps = 3
+            elsif p.tags contains 'rutina-4-pasos'
+              assign routine_steps = 4
+            else
+              assign routine_steps = 4
+            endif
+          endif
+        -%}
+
+        {%- if p.available and role_count == 1 -%}
+          {%- if prod_count > 0 %},{%- endif -%}
+          {%- assign prod_count = prod_count | plus: 1 -%}
+          {
+            "id": {{ p.id }},
+            "handle": {{ p.handle | json }},
+            "title": {{ p.title | json }},
+            "url": {{ p.url | json }},
+            "absolute_url": {{ shop.url | append: p.url | json }},
+            "price": {{ p.price | money_without_trailing_zeros | json }},
+            "compare_price": null,
+            "suma": {% if suma_txt != blank %}{{ suma_txt | json }}{% else %}null{% endif %},
+            "ahorro": {% if ahorro_txt != blank %}{{ ahorro_txt | json }}{% else %}null{% endif %},
+            "vendor": {{ p.vendor | json }},
+            "description": {{ p.description | strip_html | strip | truncate: 190 | json }},
+            "image": {% if p.featured_image != blank %}{{ p.featured_image | image_url: width: 700 | json }}{% else %}null{% endif %},
+            "alt": {{ p.featured_image.alt | default: p.title | json }},
+            "quiz_tipo": {{ quiz_tipo | json }},
+            "routine_steps": {{ routine_steps }},
+            "match_tags": {{ p.tags | join: ',' | downcase | json }},
+            "collection_order": {{ forloop.index0 }}
+          }
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  ],
+  "ui": {
+    "atras": {{ section.settings.ui_atras | json }},
+    "siguiente": {{ section.settings.ui_siguiente | json }},
+    "ver_rutina": {{ section.settings.ui_ver_rutina | json }},
+    "sin_datos": {{ section.settings.ui_sin_datos | json }},
+    "reiniciar": {{ section.settings.ui_reiniciar | json }},
+    "ver_recomendacion": {{ section.settings.ui_ver_recomendacion | json }},
+    "guardando": {{ section.settings.ui_guardando | json }},
+    "nombre": {{ section.settings.ui_nombre | json }},
+    "nombre_ph": {{ section.settings.ui_nombre_ph | json }},
+    "email": {{ section.settings.ui_email | json }},
+    "email_ph": {{ section.settings.ui_email_ph | json }},
+    "consent_error": {{ section.settings.ui_consent_error | json }},
+    "por_separado": {{ section.settings.ui_por_separado | json }},
+    "ahorras": {{ section.settings.ui_ahorras | json }}
+  },
+  "capture": {
+    "heading": {{ section.settings.capture_heading | json }},
+    "sub": {{ section.settings.capture_sub | json }},
+    "benefit_1": {{ section.settings.benefit_1 | json }},
+    "benefit_2": {{ section.settings.benefit_2 | json }},
+    "benefit_3": {{ section.settings.benefit_3 | json }},
+    "consent_text": {{ section.settings.consent_text | json }},
+    "klaviyo_public_key": {{ section.settings.klaviyo_public_key | default: '' | strip | json }},
+    "klaviyo_list_id": {{ section.settings.klaviyo_list_id | default: '' | strip | json }},
+    "klaviyo_event_name": {{ section.settings.klaviyo_event_name | default: 'Skin Quiz Completed' | strip | json }},
+    "email_flow_active": {{ section.settings.email_flow_active }},
+    "debug_mode": {{ section.settings.debug_mode }}
+  },
+  "results": {
+    "heading": {{ section.settings.results_heading | json }},
+    "sub": {{ section.settings.results_sub | json }},
+    "copy_fuerte": {{ section.settings.copy_fuerte | default: 'La elegimos porque está formulada exactamente para tu perfil.' | json }},
+    "copy_parcial": {{ section.settings.copy_parcial | default: 'Es lo más cercano a tu perfil dentro de lo que tenemos hoy.' | json }},
+    "copy_base": {{ section.settings.copy_base | default: 'No tenemos una rutina formulada para ese objetivo, pero esta es la base correcta para tu tipo de piel. Escríbenos y vemos qué sumarle.' | json }},
+    "no_match_heading": {{ section.settings.no_match_heading | default: 'Tu perfil necesita algo más específico' | json }},
+    "no_match_text": {{ section.settings.no_match_text | default: 'Con tus respuestas no encontramos una rutina o kit que calce del todo. Preferimos decírtelo antes que recomendarte algo a medias. Escríbenos y te armamos algo a tu medida.' | json }},
+    "no_match_url": {{ section.settings.no_match_url | default: routes.all_products_collection_url | json }},
+    "no_match_cta": {{ section.settings.no_match_cta | default: 'Explorar productos →' | json }}
+  }
+}
+</script>
+<script src="{{ 'sl-quiz.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Skinland · Test de piel",
+  "tag": "section",
+  "class": "sl-quiz-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Encabezado"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Etiqueta superior",
+      "default": "Test de piel · 2 minutos"
+    },
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Encuentra tu rutina ideal"
+    },
+    {
+      "type": "textarea",
+      "id": "bajada",
+      "label": "Bajada",
+      "default": "Responde unas preguntas sobre tu piel y te recomendamos una rutina simple, con productos seleccionados por Skinland y en el orden correcto."
+    },
+    {
+      "type": "header",
+      "content": "Paso de captura"
+    },
+    {
+      "type": "text",
+      "id": "capture_heading",
+      "label": "Título",
+      "default": "¡Casi listo! Recibe tu rutina"
+    },
+    {
+      "type": "text",
+      "id": "capture_sub",
+      "label": "Subtítulo",
+      "default": "Déjanos tu email para guardar y recibir tu recomendación."
+    },
+    {
+      "type": "text",
+      "id": "benefit_1",
+      "label": "Beneficio 1",
+      "default": "Recibe tu rutina personalizada al instante"
+    },
+    {
+      "type": "text",
+      "id": "benefit_2",
+      "label": "Beneficio 2",
+      "default": "Guarda tu recomendación para revisarla después"
+    },
+    {
+      "type": "text",
+      "id": "benefit_3",
+      "label": "Beneficio 3",
+      "default": "Consejos de Skinland según tu perfil"
+    },
+    {
+      "type": "text",
+      "id": "consent_text",
+      "label": "Texto de consentimiento",
+      "default": "Acepto recibir comunicaciones de Skinland. Me puedo dar de baja cuando quiera."
+    },
+    {
+      "type": "header",
+      "content": "Klaviyo — envío de recomendación"
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_public_key",
+      "label": "Public API Key / Site ID",
+      "info": "Opcional. Solo la clave pública (Site ID). Vacío = no se envía nada a Klaviyo."
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_list_id",
+      "label": "ID de la lista del quiz"
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_event_name",
+      "label": "Nombre del evento",
+      "default": "Skin Quiz Completed"
+    },
+    {
+      "type": "checkbox",
+      "id": "email_flow_active",
+      "label": "El flow de email está activo",
+      "default": false,
+      "info": "Actívalo únicamente después de publicar y probar el flow en Klaviyo."
+    },
+    {
+      "type": "checkbox",
+      "id": "debug_mode",
+      "label": "Mostrar diagnóstico del motor (solo pruebas)",
+      "default": false,
+      "info": "Muestra el score, el ranking y por qué ganó cada producto. Desactívalo antes de publicar."
+    },
+    {
+      "type": "header",
+      "content": "Nivel de rutina: 3 pasos, 4 pasos o kit"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_routine_level_question",
+      "label": "Activar pregunta de nivel",
+      "default": false,
+      "info": "Actívala solo cuando las rutinas de 3 pasos estén publicadas, etiquetadas y dentro de la colección del quiz."
+    },
+    {
+      "type": "text",
+      "id": "routine_level_heading",
+      "label": "Pregunta",
+      "default": "¿Qué se adapta mejor a ti hoy?"
+    },
+    {
+      "type": "text",
+      "id": "routine_level_sub",
+      "label": "Instrucción",
+      "default": "Elige según tu experiencia y el cuidado que quieres mantener."
+    },
+    {
+      "type": "text",
+      "id": "routine_level_3_label",
+      "label": "Opción 3 pasos",
+      "default": "Quiero empezar simple"
+    },
+    {
+      "type": "text",
+      "id": "routine_level_3_desc",
+      "label": "Descripción 3 pasos",
+      "default": "Estoy empezando o prefiero una rutina fácil de mantener"
+    },
+    {
+      "type": "text",
+      "id": "routine_level_4_label",
+      "label": "Opción 4 pasos",
+      "default": "Ya tengo experiencia con skincare"
+    },
+    {
+      "type": "text",
+      "id": "routine_level_4_desc",
+      "label": "Descripción 4 pasos",
+      "default": "Quiero trabajar mi piel con una rutina de 4 pasos"
+    },
+    {
+      "type": "text",
+      "id": "routine_level_kit_label",
+      "label": "Opción kit",
+      "default": "Quiero tratar algo puntual"
+    },
+    {
+      "type": "text",
+      "id": "routine_level_kit_desc",
+      "label": "Descripción kit",
+      "default": "Prefiero un kit enfocado en una necesidad específica"
+    },
+    {
+      "type": "header",
+      "content": "Resultados"
+    },
+    {
+      "type": "collection",
+      "id": "quiz_collection",
+      "label": "Colección base de recomendaciones"
+    },
+    {
+      "type": "text",
+      "id": "results_heading",
+      "label": "Título",
+      "default": "Tu rutina personalizada"
+    },
+    {
+      "type": "text",
+      "id": "results_sub",
+      "label": "Subtítulo",
+      "default": "Basada en tus respuestas, estas son nuestras recomendaciones."
+    },
+    {
+      "type": "text",
+      "id": "copy_fuerte",
+      "label": "Copy — match fuerte",
+      "default": "La elegimos porque calza con tu perfil."
+    },
+    {
+      "type": "text",
+      "id": "copy_parcial",
+      "label": "Copy — match parcial",
+      "default": "Es lo más cercano a tu perfil dentro de lo que tenemos hoy."
+    },
+    {
+      "type": "text",
+      "id": "copy_base",
+      "label": "Copy — rutina base (sin match de objetivo)",
+      "default": "No tenemos una rutina pensada para ese objetivo, pero esta es una buena base para tu tipo de piel. Escríbenos y vemos qué sumarle."
+    },
+    {
+      "type": "header",
+      "content": "Sin match"
+    },
+    {
+      "type": "text",
+      "id": "no_match_heading",
+      "label": "Título",
+      "default": "Tu perfil necesita algo más específico"
+    },
+    {
+      "type": "textarea",
+      "id": "no_match_text",
+      "label": "Texto",
+      "default": "Con tus respuestas no encontramos una rutina o kit que calce del todo. Preferimos decírtelo antes que recomendarte algo a medias. Escríbenos y te ayudamos."
+    },
+    {
+      "type": "url",
+      "id": "no_match_url",
+      "label": "URL del botón",
+      "info": "Si está vacío, lleva a todos los productos."
+    },
+    {
+      "type": "text",
+      "id": "no_match_cta",
+      "label": "Texto del botón",
+      "default": "Explorar productos →"
+    },
+    {
+      "type": "header",
+      "content": "Textos de botones y campos"
+    },
+    {
+      "type": "text",
+      "id": "ui_siguiente",
+      "label": "Siguiente",
+      "default": "Siguiente →"
+    },
+    {
+      "type": "text",
+      "id": "ui_atras",
+      "label": "Atrás",
+      "default": "← Atrás"
+    },
+    {
+      "type": "text",
+      "id": "ui_ver_rutina",
+      "label": "Enviar y ver mi rutina",
+      "default": "Ver mi rutina →"
+    },
+    {
+      "type": "text",
+      "id": "ui_guardando",
+      "label": "Mientras guarda",
+      "default": "Guardando..."
+    },
+    {
+      "type": "text",
+      "id": "ui_sin_datos",
+      "label": "Ver sin dejar datos",
+      "default": "Ver resultados sin dejar datos"
+    },
+    {
+      "type": "text",
+      "id": "ui_reiniciar",
+      "label": "Empezar de nuevo",
+      "default": "Empezar de nuevo"
+    },
+    {
+      "type": "text",
+      "id": "ui_ver_recomendacion",
+      "label": "Botón del resultado",
+      "default": "Ver recomendación →"
+    },
+    {
+      "type": "text",
+      "id": "ui_nombre",
+      "label": "Etiqueta nombre",
+      "default": "Nombre"
+    },
+    {
+      "type": "text",
+      "id": "ui_nombre_ph",
+      "label": "Ayuda nombre",
+      "default": "Tu nombre"
+    },
+    {
+      "type": "text",
+      "id": "ui_email",
+      "label": "Etiqueta email",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "ui_email_ph",
+      "label": "Ayuda email",
+      "default": "tu@email.cl"
+    },
+    {
+      "type": "text",
+      "id": "ui_consent_error",
+      "label": "Error de consentimiento",
+      "default": "Debes aceptar para continuar."
+    },
+    {
+      "type": "text",
+      "id": "ui_por_separado",
+      "label": "Texto del tachado",
+      "default": "Por separado"
+    },
+    {
+      "type": "text",
+      "id": "ui_ahorras",
+      "label": "Etiqueta de ahorro",
+      "default": "Ahorras [ahorro]",
+      "info": "Usa [ahorro]."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Pregunta",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Rol en el motor"
+        },
+        {
+          "type": "select",
+          "id": "question_role",
+          "label": "Rol de esta pregunta",
+          "options": [
+            {
+              "value": "tipo_piel",
+              "label": "Tipo de piel — filtro duro"
+            },
+            {
+              "value": "objetivo_principal",
+              "label": "Objetivo principal — peso máximo"
+            },
+            {
+              "value": "objetivo_secundario",
+              "label": "Objetivo secundario — formato automático"
+            },
+            {
+              "value": "sensibilidad",
+              "label": "Sensibilidad — modificador"
+            },
+            {
+              "value": "nivel_rutina",
+              "label": "Nivel — 3 pasos, 4 pasos o kit"
+            },
+            {
+              "value": "otro",
+              "label": "Otro — solo perfil, no afecta el score"
+            }
+          ],
+          "default": "otro",
+          "info": "Cada rol debe usarse una sola vez. El motor lee el rol, no el orden."
+        },
+        {
+          "type": "header",
+          "content": "Pregunta"
+        },
+        {
+          "type": "text",
+          "id": "question_heading",
+          "label": "Título",
+          "default": "¿Cómo luce tu piel al mediodía, sin productos?"
+        },
+        {
+          "type": "text",
+          "id": "question_sub",
+          "label": "Instrucción",
+          "default": "Elige la que más se parezca a tu día a día."
+        },
+        {
+          "type": "image_picker",
+          "id": "question_image",
+          "label": "Imagen decorativa (opcional)"
+        },
+        {
+          "type": "header",
+          "content": "Opción 1"
+        },
+        {
+          "type": "text",
+          "id": "opt1_label",
+          "label": "Etiqueta"
+        },
+        {
+          "type": "text",
+          "id": "opt1_desc",
+          "label": "Descripción (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "opt1_tag",
+          "label": "Tag interno"
+        },
+        {
+          "type": "image_picker",
+          "id": "opt1_image",
+          "label": "Imagen de fondo"
+        },
+        {
+          "type": "header",
+          "content": "Opción 2"
+        },
+        {
+          "type": "text",
+          "id": "opt2_label",
+          "label": "Etiqueta"
+        },
+        {
+          "type": "text",
+          "id": "opt2_desc",
+          "label": "Descripción (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "opt2_tag",
+          "label": "Tag interno"
+        },
+        {
+          "type": "image_picker",
+          "id": "opt2_image",
+          "label": "Imagen de fondo"
+        },
+        {
+          "type": "header",
+          "content": "Opción 3"
+        },
+        {
+          "type": "text",
+          "id": "opt3_label",
+          "label": "Etiqueta"
+        },
+        {
+          "type": "text",
+          "id": "opt3_desc",
+          "label": "Descripción (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "opt3_tag",
+          "label": "Tag interno"
+        },
+        {
+          "type": "image_picker",
+          "id": "opt3_image",
+          "label": "Imagen de fondo"
+        },
+        {
+          "type": "header",
+          "content": "Opción 4"
+        },
+        {
+          "type": "text",
+          "id": "opt4_label",
+          "label": "Etiqueta"
+        },
+        {
+          "type": "text",
+          "id": "opt4_desc",
+          "label": "Descripción (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "opt4_tag",
+          "label": "Tag interno"
+        },
+        {
+          "type": "image_picker",
+          "id": "opt4_image",
+          "label": "Imagen de fondo"
+        },
+        {
+          "type": "header",
+          "content": "Opción 5"
+        },
+        {
+          "type": "text",
+          "id": "opt5_label",
+          "label": "Etiqueta"
+        },
+        {
+          "type": "text",
+          "id": "opt5_desc",
+          "label": "Descripción (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "opt5_tag",
+          "label": "Tag interno"
+        },
+        {
+          "type": "image_picker",
+          "id": "opt5_image",
+          "label": "Imagen de fondo"
+        },
+        {
+          "type": "header",
+          "content": "Opción 6"
+        },
+        {
+          "type": "text",
+          "id": "opt6_label",
+          "label": "Etiqueta"
+        },
+        {
+          "type": "text",
+          "id": "opt6_desc",
+          "label": "Descripción (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "opt6_tag",
+          "label": "Tag interno"
+        },
+        {
+          "type": "image_picker",
+          "id": "opt6_image",
+          "label": "Imagen de fondo"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Skinland · Test de piel"
+    }
+  ]
+}
+{% endschema %}
