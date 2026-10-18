@@ -1,7 +1,7 @@
 /* sl-escena · escena animada del hero: láminas que alternan (rutina de 3 pasos, de 4 pasos, kit).
    En cada lámina los productos suben uno a uno con su número. Solo transform y opacity; sin JS.
    Con "reducir movimiento" queda la primera lámina, quieta. */
-.sl-escena { display: grid; width: calc(100% - 28px); margin: 96px 14px 18px; }
+.sl-escena { display: grid; width: calc(100% - 28px); margin: 72px 14px 16px; }
 .sl-escena__lamina { grid-area: 1 / 1; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
 .sl-escena__etiqueta { position: absolute; top: 18px; left: 14px; z-index: 2; transform: rotate(-6deg); padding: 6px 10px; border: var(--sl-borde); border-radius: var(--sl-radio-s); background: var(--sl-blanco); font-size: 12px; font-weight: 700; }
 .sl-escena__lista { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 8px; margin: 0; padding: 12px 10px 14px; list-style: none; border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); }
@@ -9,6 +9,9 @@
 .sl-escena__lista--n1 .sl-escena__prod { flex-basis: 60%; }
 .sl-escena__lista--n2 .sl-escena__prod { flex-basis: calc((100% - 8px) / 2); }
 .sl-escena__lista--n4 .sl-escena__prod { flex-basis: calc((100% - 24px) / 4); }
+.sl-escena__lista--n5 .sl-escena__prod, .sl-escena__lista--n6 .sl-escena__prod { flex-basis: calc((100% - 32px) / 5); }
+.sl-escena__lista--n5 .sl-escena__paso, .sl-escena__lista--n6 .sl-escena__paso { font-size: 9px; padding: 2px 3px; }
+.sl-escena__lista--n5 .sl-escena__num, .sl-escena__lista--n6 .sl-escena__num, .sl-escena__lista--n4 .sl-escena__num { width: 22px; height: 22px; font-size: 12px; }
 .sl-escena__prod img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; mix-blend-mode: multiply; filter: brightness(1.04) contrast(1.02); }
 .sl-escena__num { position: absolute; top: 0; left: 2px; z-index: 1; width: 26px; height: 26px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-lima); font-family: var(--sl-font-display); font-size: 14px; font-weight: 800; }
 .sl-escena__paso { padding: 3px 7px; border: var(--sl-borde); border-radius: var(--sl-radio-s); background: var(--sl-blanco); font-size: 11px; font-weight: 700; line-height: 1.15; }
@@ -16,7 +19,7 @@
 .sl-escena__lamina:not(:first-child) { display: none; }
 
 @media screen and (min-width: 990px) {
-  .sl-escena { margin-top: 100px; }
+  .sl-escena { margin-top: 84px; }
   .sl-escena__lista { padding: 18px 16px 18px; gap: 14px 12px; }
   .sl-escena__paso { font-size: 13px; }
   .sl-escena__lista--n4 .sl-escena__paso { font-size: 12px; }
