@@ -44,14 +44,14 @@ En total hay **53 elementos en forma de píldora con borde grueso**. Es demasiad
 1. Estructura: crema (fondo), blanco (tarjetas), tinta (texto, bordes, botón principal, pie).
 2. Lima: **solo** ahorro, oferta y la barra de arriba.
 3. Pasteles: **solo** tipo de piel u objetivo (grasa menta, seca durazno, mixta celeste, sensible lila, anti acné lima, anti manchas amarillo, anti edad rosa), en superficies grandes.
-4. Pasos de rutina: sin color propio. Número en círculo tinta y chip plano con el nombre del paso.
+4. Pasos de rutina: **mantienen su color** (decisión de Sebastián). Lima limpia, celeste trata, durazno hidrata, lila protege, rosa granito puntual. Solo se les aplica la regla de botones (chip plano, no se toca).
 5. Adornos rotativos: usan el color de la tarjeta o quedan neutros (blanco o tinta).
 6. Un color por acción: "Test de piel" y "Conversa con Aly" dejan de compartir lila. Aly pasa a blanco con sombra, y el test queda en el pastel de su tarjeta.
 7. Los 9 colores escritos a mano pasan a ajustes del tema.
 
 ## 4. Lo que haría con tu OK (por orden)
 1. Botones: aplicar la regla a los 17 elementos con sello. Es lo más visible y lo que pediste.
-2. Pasos y números: pasar a tinta y chips planos.
+2. Pasos: se quedan con su color (sin cambios).
 3. Adornos rotativos: mismo color de la tarjeta.
 4. Colores a mano a ajustes.
 5. Capturas antes y después a 390 y 1280 px de Home, ficha de rutina, ficha de kit, colección, carrito y menú.
