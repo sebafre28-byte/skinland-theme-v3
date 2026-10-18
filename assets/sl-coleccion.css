@@ -1,0 +1,33 @@
+/* sl-coleccion · colecciones y resultados de búsqueda con tarjetas Skinland. Filtros: los nativos de Shopify, con los tokens. */
+.sl-coleccion { padding: 20px 0 48px; }
+.sl-coleccion__cab { display: flex; flex-direction: column; gap: 10px; padding: 8px 0 18px; }
+.sl-coleccion__titulo { font-size: 38px; }
+.sl-coleccion__descripcion { max-width: 62ch; font-size: 15px; line-height: 1.5; color: var(--sl-tinta); }
+.sl-coleccion__descripcion p { margin: 0; }
+.sl-coleccion__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.sl-coleccion__vacio { margin: 0; padding: 32px 18px; border: 2px dashed var(--sl-tinta); border-radius: var(--sl-radio-l); text-align: center; font-size: 15px; font-weight: 700; }
+.sl-coleccion__limpiar { display: block; margin-top: 8px; color: var(--sl-tinta); text-decoration: underline; }
+.sl-coleccion .loading-overlay { display: none; }
+.sl-coleccion .loading-overlay.loading { display: block; }
+
+/* Filtros nativos de Dawn con los tokens de Color Pop */
+.sl-coleccion__filtros { padding-inline: var(--sl-gutter); max-width: calc(var(--sl-contenedor) + var(--sl-gutter) * 2); margin: 0 auto 18px; color: var(--sl-tinta); font-family: var(--sl-font-body); }
+.sl-coleccion .facets__summary, .sl-coleccion .facet-filters__field .select, .sl-coleccion .mobile-facets__open-wrapper button { border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); color: var(--sl-tinta); box-shadow: none; }
+.sl-coleccion .facets__summary { min-height: 44px; padding: 0 16px; font-weight: 700; }
+.sl-coleccion .facets__disclosure[open] .facets__summary, .sl-coleccion .active-facets__button-inner { background: var(--sl-lima); }
+.sl-coleccion .active-facets__button-inner { border: var(--sl-borde); border-radius: 999px; box-shadow: none; }
+.sl-coleccion .select__select { border-radius: 999px; color: var(--sl-tinta); font-weight: 700; }
+.sl-coleccion .facets__display { border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); }
+.sl-coleccion .product-count__text, .sl-coleccion .facets__label { color: var(--sl-tinta); font-weight: 700; }
+.sl-coleccion .pagination-wrapper { margin-top: 28px; }
+.sl-coleccion .pagination__item { border-radius: 999px; color: var(--sl-tinta); font-weight: 700; }
+.sl-coleccion .pagination__item--current::after { border: var(--sl-borde); border-radius: 999px; background: var(--sl-lima); opacity: .5; }
+
+@media screen and (min-width: 750px) {
+  .sl-coleccion__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+}
+@media screen and (min-width: 990px) {
+  .sl-coleccion { padding: 32px 0 72px; }
+  .sl-coleccion__titulo { font-size: 54px; }
+  .sl-coleccion__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+}

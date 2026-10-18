@@ -12,3 +12,5 @@
 .sl-tarjeta__form .form { margin: 0; }
 .sl-tarjeta__marca { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .7; }
 .sl-tarjeta[data-sl-color='blanco'] { --sl-necesidad: var(--sl-blanco); }
+.sl-tarjeta__ahorro { margin: 0; }
+.sl-tarjeta__precio { margin-top: auto; }

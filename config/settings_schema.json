@@ -362,6 +362,24 @@
         "label": "Botón de compra de un producto suelto",
         "default": "Agregar al carrito",
         "info": "Se usa en la ficha, la barra fija y el cierre de productos que no son rutina ni kit."
+      },
+      {
+        "type": "header",
+        "content": "Tarjeta de rutinas y kits"
+      },
+      {
+        "type": "text",
+        "id": "sl_tarjeta_productos",
+        "label": "Cantidad de productos",
+        "default": "[n] productos",
+        "info": "Usa [n]."
+      },
+      {
+        "type": "text",
+        "id": "sl_tarjeta_ahorras",
+        "label": "Ahorro calculado",
+        "default": "Ahorras [ahorro]",
+        "info": "Usa [ahorro]. Solo aparece si el ahorro es real."
       }
     ]
   },

@@ -1,0 +1,30 @@
+/* Páginas con las secciones de Dawn (carrito, 404, páginas de texto y políticas, lista de colecciones) con los tokens de Color Pop. */
+.template-404 .title, .main-page-title, .cart__empty-text, .main-cart-title, .title--primary, .template-list-collections .title {
+  font-family: var(--sl-font-display); font-weight: 800; letter-spacing: -.03em; line-height: 1; color: var(--sl-tinta);
+}
+.template-404 { padding-block: 64px 96px; }
+.template-404 .button, .cart__empty-text + .button, .cart .button:not(.button--tertiary):not(.cart__checkout-button) {
+  min-height: 52px; padding: 0 26px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-tinta); color: var(--sl-blanco);
+  font-family: var(--sl-font-body); font-weight: 700; box-shadow: 4px 4px 0 var(--sl-lima);
+}
+.template-404 .button::before, .template-404 .button::after, .cart .button::before, .cart .button::after { display: none; }
+
+/* Páginas de texto y políticas */
+.main-page-title { font-size: 38px; margin-bottom: 20px; }
+.page-width--narrow .rte { font-size: 16px; line-height: 1.65; color: var(--sl-tinta); }
+.page-width--narrow .rte h2, .page-width--narrow .rte h3 { font-family: var(--sl-font-display); font-weight: 800; letter-spacing: -.02em; color: var(--sl-tinta); }
+.page-width--narrow .rte a { color: var(--sl-tinta); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Carrito (página) */
+.cart__contents, .cart__footer { color: var(--sl-tinta); font-family: var(--sl-font-body); }
+.cart-items .cart-item { border-bottom: 2px dashed rgba(0, 0, 0, .15); }
+.cart-item__name { font-family: var(--sl-font-display); font-weight: 800; letter-spacing: -.01em; color: var(--sl-tinta); text-decoration: none; }
+.cart .quantity { border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); overflow: hidden; }
+.cart .quantity::before, .cart .quantity::after { display: none; }
+.cart .quantity__input { background: transparent; font-weight: 700; color: var(--sl-tinta); }
+.cart .totals__total, .cart .totals__total-value { font-family: var(--sl-font-display); font-weight: 800; color: var(--sl-tinta); }
+.cart__footer .cart__blocks { border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); padding: 16px; }
+.cart__checkout-button { min-height: 58px; border: var(--sl-borde); border-radius: 16px; background: var(--sl-tinta); color: var(--sl-blanco); font-family: var(--sl-font-display); font-size: 18px; font-weight: 700; box-shadow: 4px 4px 0 var(--sl-lima); }
+.cart__checkout-button::before, .cart__checkout-button::after { display: none; }
+.cart .field__input, .cart .text-area { border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); color: var(--sl-tinta); box-shadow: none; }
+@media screen and (min-width: 990px) { .main-page-title { font-size: 54px; } .template-404 { padding-block: 96px 120px; } }

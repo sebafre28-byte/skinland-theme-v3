@@ -20,6 +20,26 @@
     assign color = 'blanco'
   endif
   assign beneficio = product.metafields.custom.beneficio_corto.value
+  assign es_rutina = false
+  assign ahorro_texto = ''
+  if product.metafields.custom.routine_products.value != blank
+    assign es_rutina = true
+    capture bs_raw
+      render 'sl-bundle-sum', product: product
+    endcapture
+    assign bs = bs_raw | strip | split: '|'
+    assign tipo = settings.sl_tarjeta_productos | replace: '[n]', bs[3]
+    if bs[2] == 'true'
+      assign ahorro_v = bs[1] | plus: 0
+      if ahorro_v > 0
+        assign ahorro_money = ahorro_v | money_without_trailing_zeros
+        assign ahorro_texto = settings.sl_tarjeta_ahorras | replace: '[ahorro]', ahorro_money
+      endif
+    endif
+    if product.metafields.custom.routine_badge.value != blank
+      assign beneficio = product.metafields.custom.routine_badge.value
+    endif
+  endif
 -%}
 <article class="sl-tarjeta" data-sl-color="{{ color }}">
   <a class="sl-tarjeta__enlace" href="{{ product.url }}">
@@ -33,6 +53,7 @@
     <h3 class="sl-tarjeta__titulo">{{ product.title }}</h3>
     {%- if beneficio != blank -%}<p class="sl-tarjeta__beneficio">{{ beneficio }}</p>{%- endif -%}
     <p class="sl-tarjeta__precio">{{ variante.price | money_without_trailing_zeros }}</p>
+    {%- if ahorro_texto != blank -%}<p class="sl-tarjeta__ahorro"><span class="sl-sticker">{{ ahorro_texto }}</span></p>{%- endif -%}
   </a>
   {%- if product.available == false -%}
     <span class="sl-tarjeta__agotado">{{ texto_agotado }}</span>

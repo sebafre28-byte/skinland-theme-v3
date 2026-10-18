@@ -1,0 +1,124 @@
+{{ 'sl-coleccion.css' | asset_url | stylesheet_tag }}
+{{ 'sl-tarjeta.css' | asset_url | stylesheet_tag }}
+{{ 'sl-buscar.css' | asset_url | stylesheet_tag }}
+{{ 'component-facets.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign sort_by = search.sort_by | default: search.default_sort_by
+  assign terminos = search.terms | escape
+  assign url_sin_filtros = '?q=' | append: terminos | append: '&options%5Bprefix%5D=last&sort_by=' | append: sort_by
+-%}
+
+{%- paginate search.results by section.settings.resultados_por_pagina -%}
+  <div class="sl-coleccion sl-buscar sl-scope">
+    <div class="sl-container">
+      <header class="sl-coleccion__cab">
+        <h1 class="sl-h1 sl-coleccion__titulo">{{ section.settings.titulo }}</h1>
+        <form action="{{ routes.search_url }}" method="get" role="search" class="sl-buscar__form">
+          <label class="visually-hidden" for="sl-buscar-q">{{ section.settings.placeholder }}</label>
+          <input id="sl-buscar-q" class="sl-buscar__input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ section.settings.placeholder | escape }}" autocomplete="off">
+          <input name="options[prefix]" type="hidden" value="last">
+          <button type="submit" class="sl-btn sl-btn--tinta sl-buscar__boton">{{ section.settings.boton }}</button>
+        </form>
+        {%- if search.performed -%}
+          {%- if search.results_count > 0 -%}
+            <p class="sl-buscar__conteo" role="status">{{ section.settings.texto_resultados | replace: '[n]', search.results_count | replace: '[busqueda]', search.terms }}</p>
+          {%- elsif search.filters == empty -%}
+            <p class="sl-buscar__conteo" role="status">{{ section.settings.texto_sin_resultados | replace: '[busqueda]', search.terms }}</p>
+          {%- endif -%}
+        {%- endif -%}
+      </header>
+    </div>
+
+    {%- if search.performed -%}
+      <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+      {%- if search.filters != empty and section.settings.filtros -%}
+        <aside
+          aria-labelledby="verticalTitle"
+          class="facets-wrapper sl-coleccion__filtros page-width"
+          id="main-search-filters"
+          data-id="{{ section.id }}"
+        >
+          {% render 'facets',
+            results: search,
+            enable_filtering: section.settings.filtros,
+            enable_sorting: section.settings.orden,
+            filter_type: 'horizontal',
+            paginate: paginate
+          %}
+        </aside>
+      {%- endif -%}
+
+      <div class="sl-container">
+        <div class="product-grid-container" id="ProductGridContainer">
+          {%- if search.results.size == 0 and search.filters != empty -%}
+            <div class="collection collection--empty" id="product-grid" data-id="{{ section.id }}">
+              <div class="loading-overlay gradient"></div>
+              <p class="sl-coleccion__vacio">
+                {{ section.settings.texto_vacio }}
+                <a href="{{ url_sin_filtros }}" class="sl-coleccion__limpiar">{{ section.settings.texto_limpiar }}</a>
+              </p>
+            </div>
+          {%- elsif search.results.size > 0 -%}
+            <div class="collection" id="product-grid" data-id="{{ section.id }}">
+              <div class="loading-overlay gradient"></div>
+              <ul class="sl-coleccion__grid" role="list">
+                {%- for item in search.results -%}
+                  <li>
+                    {%- case item.object_type -%}
+                      {%- when 'product' -%}
+                        {%- assign form_id = 'sl-bus-' | append: section.id | append: '-' | append: item.id -%}
+                        {% render 'sl-tarjeta-producto',
+                          product: item,
+                          form_id: form_id,
+                          texto_agregar: section.settings.texto_agregar,
+                          texto_agotado: section.settings.texto_agotado,
+                          texto_ver: section.settings.texto_ver,
+                          mostrar_marca: true
+                        %}
+                      {%- else -%}
+                        <a class="sl-buscar__otro" href="{{ item.url }}">
+                          <span class="sl-chip">{% if item.object_type == 'article' %}{{ section.settings.etiqueta_articulo }}{% else %}{{ section.settings.etiqueta_pagina }}{% endif %}</span>
+                          <strong>{{ item.title | truncate: 60 | escape }}</strong>
+                        </a>
+                    {%- endcase -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+              {%- if paginate.pages > 1 -%}
+                {% render 'pagination', paginate: paginate %}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Skinland · Búsqueda",
+  "tag": "section",
+  "class": "sl-buscar-section",
+  "settings": [
+    { "type": "text", "id": "titulo", "label": "Título", "default": "Buscar" },
+    { "type": "text", "id": "placeholder", "label": "Texto del campo", "default": "Busca un producto, rutina o kit" },
+    { "type": "text", "id": "boton", "label": "Botón", "default": "Buscar" },
+    { "type": "range", "id": "resultados_por_pagina", "label": "Resultados por página", "min": 8, "max": 36, "step": 4, "default": 24 },
+    { "type": "checkbox", "id": "filtros", "label": "Activar filtros", "default": true },
+    { "type": "checkbox", "id": "orden", "label": "Activar orden", "default": true },
+    { "type": "text", "id": "texto_resultados", "label": "Cantidad de resultados", "default": "[n] resultados para «[busqueda]»", "info": "Usa [n] y [busqueda]." },
+    { "type": "text", "id": "texto_sin_resultados", "label": "Sin resultados", "default": "No encontramos resultados para «[busqueda]». Prueba con otra palabra.", "info": "Usa [busqueda]." },
+    { "type": "text", "id": "texto_vacio", "label": "Sin resultados con filtros", "default": "No hay productos con esos filtros." },
+    { "type": "text", "id": "texto_limpiar", "label": "Enlace para quitar filtros", "default": "Quitar filtros" },
+    { "type": "text", "id": "texto_agregar", "label": "Botón agregar", "default": "Agregar" },
+    { "type": "text", "id": "texto_ver", "label": "Botón de productos con variantes", "default": "Ver opciones" },
+    { "type": "text", "id": "texto_agotado", "label": "Texto de agotado", "default": "Agotado" },
+    { "type": "text", "id": "etiqueta_articulo", "label": "Etiqueta de artículos", "default": "Artículo" },
+    { "type": "text", "id": "etiqueta_pagina", "label": "Etiqueta de páginas", "default": "Página" }
+  ]
+}
+{% endschema %}
