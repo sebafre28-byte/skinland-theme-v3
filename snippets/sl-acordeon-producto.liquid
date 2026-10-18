@@ -51,7 +51,7 @@
     {%- if pasos > 0 -%}
       <span class="sl-acordeon__chip">{{ texto_productos | replace: '[n]', pasos }}</span>
     {%- endif -%}
-    <ol class="sl-acordeon__fotos" role="list">
+    <ol class="sl-acordeon__fotos sl-acordeon__fotos--n{{ product.metafields.custom.routine_products.value.size }}" role="list">
       {%- for c in product.metafields.custom.routine_products.value -%}
         {%- capture paso_c -%}{% render 'sl-paso', componente: c, nombre: true %}{%- endcapture -%}
         {%- assign nombre_c = c.metafields.custom.nombre_corto.value | default: c.title -%}

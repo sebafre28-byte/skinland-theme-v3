@@ -30,18 +30,20 @@
     <h3 class="sl-combina__titulo">{{ rutina.title }}</h3>
     <span class="sl-combina__precio">{{ precio_t }}</span>
   </div>
-  <ul class="sl-combina__lista" role="list" aria-label="{{ texto_incluye | escape }}">
+  <ul class="sl-combina__lista sl-combina__lista--n{{ rutina.metafields.custom.routine_products.value.size }}" role="list" aria-label="{{ texto_incluye | escape }}">
     {%- for c in rutina.metafields.custom.routine_products.value -%}
       {%- capture paso -%}{% render 'sl-paso', componente: c, nombre: true %}{%- endcapture -%}
       {%- assign nombre_c = c.metafields.custom.nombre_corto.value | default: c.title -%}
       <li class="sl-combina__item{% if c.id == actual.id %} sl-combina__item--actual{% endif %}">
+        <span class="sl-combina__num" aria-hidden="true">{{ forloop.index }}</span>
         <span class="sl-combina__foto">
           {%- if c.featured_image -%}
-            {{ c.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', widths: '100, 200', sizes: '72px', alt: '' }}
+            {{ c.featured_image | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 240', sizes: '120px', alt: '' }}
           {%- endif -%}
         </span>
+        <span class="sl-combina__paso">{{ paso | strip }}</span>
         <span class="sl-combina__nombre">{{ nombre_c }}</span>
-        <span class="sl-combina__paso">{% if c.id == actual.id %}{{ texto_este }}{% else %}{{ paso | strip }}{% endif %}</span>
+        {%- if c.id == actual.id -%}<span class="sl-combina__este">{{ texto_este }}</span>{%- endif -%}
       </li>
     {%- endfor -%}
   </ul>

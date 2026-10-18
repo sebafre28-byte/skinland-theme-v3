@@ -32,7 +32,7 @@
       {%- if foto != blank -%}
         {{ foto | image_url: width: 900 | image_tag: loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 750px) 560px, 90vw', widths: '400, 600, 900', class: 'sl-home-hero__foto', alt: foto.alt }}
       {%- elsif comps_hero.size > 0 -%}
-        <ol class="sl-home-hero__productos" role="list">
+        <ol class="sl-home-hero__productos sl-home-hero__productos--n{{ comps_hero.size }}" role="list">
           {%- for c in comps_hero -%}
             {%- capture paso_c -%}{% render 'sl-paso', componente: c, nombre: true %}{%- endcapture -%}
             <li class="sl-home-hero__prod">

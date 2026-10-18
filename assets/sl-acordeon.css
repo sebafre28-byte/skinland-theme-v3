@@ -23,12 +23,18 @@
 .sl-kit-destacado .sl-acordeon[data-sl-color='lima'] { --sl-necesidad: var(--sl-blanco); }
 
 /* Cada producto de la rutina: número, foto sin fondo (multiply), paso y nombre */
-.sl-acordeon__fotos { display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); gap: 8px; margin: 0; padding: 12px 10px; list-style: none; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); }
-.sl-acordeon__prod { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; min-width: 0; }
-.sl-acordeon__num { position: absolute; top: 0; left: 4px; z-index: 1; width: 22px; height: 22px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-lima); font-family: var(--sl-font-display); font-size: 12px; font-weight: 800; }
+.sl-acordeon__fotos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 10px; list-style: none; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); }
+.sl-acordeon__fotos--n1 { grid-template-columns: 1fr; }
+.sl-acordeon__fotos--n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.sl-acordeon__fotos--n4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.sl-acordeon__prod { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 4px 10px; border-radius: var(--sl-radio-s); background: var(--sl-crema); text-align: center; min-width: 0; }
+.sl-acordeon__num { position: absolute; top: 6px; left: 6px; z-index: 1; width: 24px; height: 24px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-lima); font-family: var(--sl-font-display); font-size: 12px; font-weight: 800; }
 .sl-acordeon__img { width: 100%; aspect-ratio: 1; display: grid; place-items: center; }
 .sl-acordeon__img img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; filter: brightness(1.04) contrast(1.02); }
-.sl-acordeon__prod--solo { grid-column: 1 / -1; }
+.sl-acordeon__prod--solo { grid-column: 1 / -1; background: none; }
 .sl-acordeon__prod--solo .sl-acordeon__img { max-width: 260px; }
 .sl-acordeon__paso { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; opacity: .75; }
-.sl-acordeon__nombre-c { font-size: 12px; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+.sl-acordeon__nombre-c { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 13px; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+@media screen and (min-width: 750px) {
+  .sl-acordeon__fotos--n4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
