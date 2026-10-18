@@ -31,7 +31,7 @@
   min-width: 20px; height: 20px; padding: 0 5px;
   display: flex; align-items: center; justify-content: center;
   border: var(--sl-borde); border-radius: 999px;
-  background: var(--sl-lima); color: var(--sl-tinta);
+  background: var(--sl-tinta); color: var(--sl-blanco);
   font-size: 11px; font-weight: 700; line-height: 1;
 }
 
@@ -56,8 +56,8 @@
   border: var(--sl-borde); border-radius: 999px; box-shadow: 3px 3px 0 var(--sl-tinta);
   color: var(--sl-tinta); font-family: var(--sl-font-display); font-size: 16px; font-weight: 800; text-decoration: none;
 }
-.sl-menu__test { background: var(--sl-lila); }
-.sl-menu__aly { background: var(--sl-lima); }
+.sl-menu__test { background: var(--sl-tinta); color: var(--sl-blanco); }
+.sl-menu__aly { background: var(--sl-blanco); }
 .sl-menu__lista, .sl-menu__sub { margin: 0; padding: 0; list-style: none; }
 .sl-menu__lista { display: flex; flex-direction: column; gap: 2px; }
 .sl-menu__link {
@@ -113,7 +113,7 @@
   .sl-header__sub a:hover { background: var(--sl-lima); }
   .sl-header__test {
     padding: 6px 12px; border: var(--sl-borde); border-radius: 999px;
-    background: var(--sl-lila); color: var(--sl-tinta);
+    background: var(--sl-tinta); color: var(--sl-blanco); box-shadow: 3px 3px 0 var(--sl-lima);
     font-size: 15px; font-weight: 700; text-decoration: none;
   }
   .sl-header__icon--buscar { display: flex; }

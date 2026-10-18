@@ -14,8 +14,7 @@
 .sl-combina__lista--n2, .sl-combina__lista--n4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .sl-combina__item { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 4px 10px; border: 2px solid transparent; border-radius: var(--sl-radio-s); background: var(--sl-crema); text-align: center; min-width: 0; }
 .sl-combina__item--actual { border-color: var(--sl-tinta); background: var(--sl-lima); }
-.sl-combina__num { position: absolute; top: 6px; left: 6px; z-index: 1; width: 24px; height: 24px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-lima); font-family: var(--sl-font-display); font-size: 12px; font-weight: 800; }
-.sl-combina__item--actual .sl-combina__num { background: var(--sl-blanco); }
+.sl-combina__num { position: absolute; top: 6px; left: 6px; z-index: 1; width: 24px; height: 24px; display: grid; place-items: center; border: var(--sl-borde); border-radius: 50%; background: var(--sl-tinta); color: var(--sl-blanco); font-family: var(--sl-font-display); font-size: 12px; font-weight: 800; }
 .sl-combina__este { margin-top: 4px; padding: 2px 8px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .sl-combina__foto { width: 100%; aspect-ratio: 1; display: grid; place-items: center; }
 .sl-combina__foto img { width: 100%; height: 100%; object-fit: contain; }
