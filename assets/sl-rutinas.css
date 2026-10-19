@@ -8,5 +8,4 @@
 .sl-rutinas__panel[hidden] { display: none; }
 @media screen and (min-width: 990px) {
   .sl-rutinas { padding: 56px 0; }
-  .sl-rutinas__panel { max-width: 760px; }
 }

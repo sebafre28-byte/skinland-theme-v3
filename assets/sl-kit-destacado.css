@@ -8,5 +8,4 @@
 @media screen and (min-width: 990px) {
   .sl-kit-destacado { padding: 56px 0; }
   .sl-kit-destacado__titulo { font-size: 64px; }
-  .sl-kit-destacado__lista { max-width: 760px; }
 }
