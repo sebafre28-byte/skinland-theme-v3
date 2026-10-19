@@ -168,7 +168,8 @@ body {
   margin: 0 auto; padding-inline: var(--sl-gutter);
 }
 @media screen and (min-width: 990px) {
-  .content-for-layout:has(.sl-par) { display: flex; flex-wrap: wrap; }
+  /* Dawn deja .content-for-layout en columna: sin flex-direction: row las secciones se parten en columnas y la página se ensancha */
+  .content-for-layout:has(.sl-par) { display: flex; flex-direction: row; flex-wrap: wrap; align-content: flex-start; }
   .content-for-layout:has(.sl-par) > .shopify-section { flex: 0 0 100%; min-width: 0; }
   /* Solo se emparejan si las dos secciones tienen contenido (una oculta deja el contenedor vacío) */
   .content-for-layout:has(.sl-par) > .shopify-section.sl-par--izq:has(.sl-par__inner):has(+ .sl-par--der .sl-par__inner),
