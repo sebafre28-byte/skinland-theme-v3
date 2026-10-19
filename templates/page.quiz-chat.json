@@ -1,0 +1,108 @@
+{
+  "sections": {
+    "quiz": {
+      "type": "sl-quiz",
+      "blocks": {
+        "q_piel": {
+          "type": "question",
+          "settings": {
+            "question_role": "tipo_piel",
+            "question_heading": "¿Cómo luce tu piel al mediodía, sin productos?",
+            "question_sub": "Piensa en cómo la ves normalmente, sin haberte aplicado nada.",
+            "question_image": "shopify://shop_images/ChatGPT_Image_16_may_2026_10_58_40_p.m..png",
+            "opt1_label": "Brillante y grasa",
+            "opt1_desc": "Especialmente en frente, nariz y mentón",
+            "opt1_tag": "tipo-piel-grasa",
+            "opt2_label": "Tensa o seca",
+            "opt2_desc": "Sensación de tirantez o descamación",
+            "opt2_tag": "tipo-piel-seca",
+            "opt3_label": "Brillante al centro, seca en mejillas",
+            "opt3_desc": "La famosa zona T activa",
+            "opt3_tag": "tipo-piel-mixta",
+            "opt4_label": "Se enrojece o irrita fácil",
+            "opt4_desc": "Reacciona a productos o clima",
+            "opt4_tag": "tipo-piel-sensible"
+          }
+        },
+        "q_objetivo": {
+          "type": "question",
+          "settings": {
+            "question_role": "objetivo_principal",
+            "question_heading": "Si pudieras resolver una sola cosa, ¿cuál sería?",
+            "question_sub": "Elige la que más te pesa hoy. Es la que manda en tu recomendación.",
+            "opt1_label": "Granitos o acné",
+            "opt1_desc": "Brotes frecuentes o puntos negros",
+            "opt1_tag": "objetivo-antiacne",
+            "opt2_label": "Manchas o tono desigual",
+            "opt2_desc": "Zonas oscuras, marcas o falta de luminosidad",
+            "opt2_tag": "objetivo-manchas",
+            "opt3_label": "Líneas de expresión",
+            "opt3_desc": "Arrugas finas y falta de firmeza",
+            "opt3_tag": "objetivo-antiedad",
+            "opt4_label": "Deshidratación",
+            "opt4_desc": "Se siente tirante, se ve apagada",
+            "opt4_tag": "objetivo-hidratar",
+            "opt5_label": "Rojeces o irritación",
+            "opt5_desc": "Se enrojece, arde o pica",
+            "opt5_tag": "objetivo-calmar",
+            "opt6_label": "Poros y brillo",
+            "opt6_desc": "Poros visibles o exceso de grasa",
+            "opt6_tag": "objetivo-poros"
+          }
+        },
+        "q_extra": {
+          "type": "question",
+          "settings": {
+            "question_role": "objetivo_secundario",
+            "question_heading": "¿Hay algo más que te gustaría trabajar?",
+            "question_sub": "Si eliges algo, te armamos un kit enfocado. Si no, una rutina completa.",
+            "opt1_label": "No, eso es lo principal",
+            "opt1_desc": "Prefiero una rutina completa y simple",
+            "opt1_tag": "objetivo-ninguno",
+            "opt2_label": "Poros y brillo",
+            "opt2_tag": "objetivo-poros",
+            "opt3_label": "Manchas o tono desigual",
+            "opt3_tag": "objetivo-manchas",
+            "opt4_label": "Deshidratación",
+            "opt4_tag": "objetivo-hidratar",
+            "opt5_label": "Rojeces o irritación",
+            "opt5_tag": "objetivo-calmar",
+            "opt6_label": "Granitos o acné",
+            "opt6_tag": "objetivo-antiacne"
+          }
+        },
+        "q_sens": {
+          "type": "question",
+          "settings": {
+            "question_role": "sensibilidad",
+            "question_heading": "¿Cómo reacciona tu piel ante productos nuevos?",
+            "question_sub": "Esto define qué tan intensa puede ser tu rutina.",
+            "opt1_label": "Bien, raramente reacciona",
+            "opt1_desc": "Puedo usar casi cualquier cosa",
+            "opt1_tag": "sensibilidad-ninguna",
+            "opt2_label": "A veces se irrita",
+            "opt2_desc": "Prefiero fórmulas suaves",
+            "opt2_tag": "sensibilidad-reactiva",
+            "opt3_label": "Reacciona a casi todo",
+            "opt3_desc": "Necesito ir muy de a poco",
+            "opt3_tag": "sensibilidad-muy-reactiva"
+          }
+        }
+      },
+      "block_order": [
+        "q_piel",
+        "q_objetivo",
+        "q_extra",
+        "q_sens"
+      ],
+      "settings": {
+        "quiz_collection": "recomendaciones-quiz",
+        "enable_routine_level_question": true,
+        "estilo": "chat"
+      }
+    }
+  },
+  "order": [
+    "quiz"
+  ]
+}

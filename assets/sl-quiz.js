@@ -5,6 +5,8 @@
   var QID  = ROOT.dataset.qid;
   var NS   = ROOT.dataset.ns;
   var DATA = {};
+  var ESTILO = ROOT.dataset.estilo || 'clasico';
+  var SIN_MOVIMIENTO = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   var VERSION = 'v14';
   function T(k,def){ var u=(DATA&&DATA.ui)||{}; return (u[k]!==undefined&&u[k]!=='')?u[k]:def; }
 
@@ -455,7 +457,98 @@
       .catch(function(err){ console.error('[Skinland Quiz] Klaviyo:',err); return false; });
   }
 
+
+  /* ── Estilo conversación (chat) ── */
+  function esc(t){ return String(t==null?'':t).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function esChat(rootId){ return ESTILO==='chat' && instOf(rootId)==='inline'; }
+  function chatNombre(){ return ROOT.dataset.chatNombre || 'Aly'; }
+  function chatKeep(rootId){
+    var t=$id(rootId+'-bandeja'); if(!t) return;
+    t.scrollIntoView({ block:'end', behavior: SIN_MOVIMIENTO?'auto':'smooth' });
+  }
+  function chatMsg(rootId,who,html){
+    var h=$id(rootId+'-hilo'); if(!h) return null;
+    var d=document.createElement('div');
+    d.className='slqc-msg slqc-msg--'+who;
+    d.innerHTML=(who==='aly'?'<span class="slqc-av" aria-hidden="true">'+esc(chatNombre().charAt(0))+'</span>':'')+'<div class="slqc-burbuja">'+html+'</div>';
+    h.appendChild(d); return d;
+  }
+  function chatTyping(rootId,cb){
+    if(SIN_MOVIMIENTO){ cb(); return; }
+    var d=chatMsg(rootId,'aly','<span class="slqc-escribiendo" aria-label="'+esc(chatNombre())+' está escribiendo"><i></i><i></i><i></i></span>');
+    chatKeep(rootId);
+    setTimeout(function(){ if(d&&d.parentNode) d.parentNode.removeChild(d); cb(); },650);
+  }
+  function chatProgress(rootId,done){
+    var total=(DATA.steps||[]).length+1;
+    var pf=$id(rootId+'-pf'), pl=$id(rootId+'-pl');
+    if(pf) pf.style.width=Math.round((done/total)*100)+'%';
+    if(pl) pl.textContent=Math.min(done+1,total)+' / '+total;
+  }
+  function chatBackBtn(rootId){ return '<button type="button" class="slqc-volver" onclick="'+NS+'Q.chatBack(\''+rootId+'\')">'+T('atras','← Atrás')+'</button>'; }
+  function chatAsk(rootId,i,instant){
+    var steps=DATA.steps||[], step=steps[i], it=instOf(rootId), tray=$id(rootId+'-bandeja');
+    if(!step||!tray) return;
+    state[it].cur=i; chatProgress(rootId,i); tray.innerHTML='';
+    function show(){
+      chatMsg(rootId,'aly','<strong>'+step.heading+'</strong>'+(step.sub?'<span class="slqc-sub">'+step.sub+'</span>':''));
+      var H='<div class="slqc-ops" role="group" aria-label="'+esc(step.heading.replace(/<[^>]+>/g,''))+'">';
+      step.options.forEach(function(opt,k){
+        H+='<button type="button" class="slqc-op" onclick="'+NS+'Q.chatPick(\''+rootId+'\','+i+','+k+')"><span class="slqc-op__t">'+opt.label+'</span>'+(opt.desc?'<span class="slqc-op__d">'+opt.desc+'</span>':'')+'</button>';
+      });
+      H+='</div>';
+      if(i>0) H+=chatBackBtn(rootId);
+      tray.innerHTML=H;
+      if(!instant) chatKeep(rootId);
+    }
+    if(instant) show(); else chatTyping(rootId,show);
+  }
+  function chatCapture(rootId,instant){
+    var steps=DATA.steps||[], cap=DATA.capture||{}, it=instOf(rootId), tray=$id(rootId+'-bandeja');
+    if(!tray) return;
+    state[it].cur=steps.length; chatProgress(rootId,steps.length); tray.innerHTML='';
+    function show(){
+      chatMsg(rootId,'aly','<strong>'+(cap.heading||'¡Casi listo! Recibe tu rutina')+'</strong><span class="slqc-sub">'+(cap.sub||'Déjanos tu email para guardar y recibir tu recomendación.')+'</span>');
+      var H='<div class="slqc-form">';
+      H+='<label for="'+rootId+'-name" class="slq-opt-label--dark">'+T('nombre','Nombre')+'</label>';
+      H+='<input class="slq-input" type="text" id="'+rootId+'-name" placeholder="'+T('nombre_ph','Tu nombre')+'" autocomplete="given-name">';
+      H+='<label for="'+rootId+'-em" class="slq-opt-label--dark">'+T('email','Email')+'</label>';
+      H+='<input class="slq-input" type="email" id="'+rootId+'-em" placeholder="'+T('email_ph','tu@email.com')+'" autocomplete="email" inputmode="email">';
+      H+='<label class="slq-consent"><input type="checkbox" id="'+rootId+'-consent-em" onchange="'+NS+'Q.onConsent(\''+rootId+'\',\'em\')"><span>'+(cap.consent_text||'Acepto recibir comunicaciones de Skinland. Me puedo dar de baja cuando quiera.')+'</span></label>';
+      H+='<p class="slq-consent-error" id="'+rootId+'-consent-err-em">'+T('consent_error','Debes aceptar para continuar.')+'</p>';
+      H+='<button class="slq-btn slq-btn--primary slqc-enviar" id="'+rootId+'-submit" onclick="'+NS+'Q.submitCapture(\''+rootId+'\')">'+T('ver_rutina','Ver mi rutina →')+'</button>';
+      H+='<button class="slq-skip" onclick="'+NS+'Q.showResults(\''+rootId+'\',null)">'+T('sin_datos','Ver resultados sin dejar datos')+'</button>';
+      H+='</div>'+chatBackBtn(rootId);
+      tray.innerHTML=H;
+      if(!instant) chatKeep(rootId);
+    }
+    if(instant) show(); else chatTyping(rootId,show);
+  }
+  function chatStart(rootId){
+    var it=instOf(rootId), h=$id(rootId+'-hilo'), tray=$id(rootId+'-bandeja');
+    state[it]={cur:0,answers:{}};
+    if(h) h.innerHTML=''; if(tray) tray.innerHTML='';
+    chatProgress(rootId,0);
+    var saludo=ROOT.dataset.chatSaludo;
+    if(saludo) chatMsg(rootId,'aly',esc(saludo));
+    if((DATA.steps||[]).length) chatAsk(rootId,0,SIN_MOVIMIENTO);
+  }
+  function buildChatHTML(rootId){
+    var total=(DATA.steps||[]).length+1;
+    var H='<div class="slq-root slqc" id="'+rootId+'">';
+    H+='<div class="slq-prog-wrap"><div class="slq-prog-bar"><div class="slq-prog-fill" id="'+rootId+'-pf" style="width:0%"></div></div><span class="slq-prog-label" id="'+rootId+'-pl">1 / '+total+'</span></div>';
+    H+='<div class="slqc-hilo" id="'+rootId+'-hilo" role="log" aria-live="polite"></div>';
+    H+='<div class="slqc-bandeja" id="'+rootId+'-bandeja"></div>';
+    H+='<div class="slq-results" id="'+rootId+'-res"><div class="slq-results-hdr">';
+    H+='<h2 class="slq-results-heading">'+DATA.results.heading+'</h2><p class="slq-results-sub">'+DATA.results.sub+'</p></div>';
+    H+='<div id="'+rootId+'-success"></div><div id="'+rootId+'-rc"></div>';
+    H+='<button class="slq-restart" onclick="'+NS+'Q.restart(\''+rootId+'\')">'+T('reiniciar','Empezar de nuevo')+'</button>';
+    H+='</div></div>';
+    return H;
+  }
+
   function buildHTML(rootId){
+    if(esChat(rootId)) return buildChatHTML(rootId);
     var steps=DATA.steps||[], cap=DATA.capture||{}, total=steps.length+1;
     var H='<div class="slq-root" id="'+rootId+'">';
     H+='<div class="slq-prog-wrap"><div class="slq-prog-bar"><div class="slq-prog-fill" id="'+rootId+'-pf" style="width:'+pct(0,total)+'%"></div></div><span class="slq-prog-label" id="'+rootId+'-pl">1 / '+total+'</span></div>';
@@ -544,6 +637,29 @@
       state.modal={cur:0,answers:{}};
       var mc=$id(QID+'-modal-content'); if(mc) mc.innerHTML=buildHTML(QID+'-modal');
       m.removeAttribute('hidden'); document.body.style.overflow='hidden';
+    },
+    chatPick: function(rootId,i,k){
+      var steps=DATA.steps||[], step=steps[i], it=instOf(rootId), tray=$id(rootId+'-bandeja');
+      if(!step||!step.options[k]) return;
+      var opt=step.options[k];
+      if(tray) tray.innerHTML='';
+      chatMsg(rootId,'yo',opt.label);
+      state[it].answers[step.id]=[opt.tag];
+      if(i<steps.length-1) chatAsk(rootId,i+1); else chatCapture(rootId);
+    },
+    chatBack: function(rootId){
+      var steps=DATA.steps||[], it=instOf(rootId), h=$id(rootId+'-hilo');
+      var target=Math.max(0,Math.min(state[it].cur,steps.length)-1);
+      for(var j=target;j<steps.length;j++) delete state[it].answers[steps[j].id];
+      if(h) h.innerHTML='';
+      var saludo=ROOT.dataset.chatSaludo; if(saludo) chatMsg(rootId,'aly',esc(saludo));
+      for(var n=0;n<target;n++){
+        var st=steps[n], tag=(state[it].answers[st.id]||[])[0], lab='';
+        st.options.forEach(function(o){ if(o.tag===tag) lab=o.label; });
+        chatMsg(rootId,'aly','<strong>'+st.heading+'</strong>'+(st.sub?'<span class="slqc-sub">'+st.sub+'</span>':''));
+        chatMsg(rootId,'yo',lab);
+      }
+      chatAsk(rootId,target,true);
     },
     onConsent: function(rootId,panel){
       var cb=$id(rootId+'-consent-'+panel), err=$id(rootId+'-consent-err-'+panel);
@@ -654,6 +770,7 @@
 
       var res=$id(rootId+'-res');
       if(res) res.classList.add('slq-results--on');
+      var rootEl=$id(rootId); if(rootEl&&esChat(rootId)) rootEl.classList.add('slqc--fin');
 
       var sc=$id(rootId+'-success');
       if(sc) sc.innerHTML='';
@@ -783,6 +900,12 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
       return H;
     },
     restart: function(rootId){
+      if(esChat(rootId)){
+        var rEl=$id(rootId); if(rEl) rEl.classList.remove('slqc--fin');
+        var sc0=$id(rootId+'-success'), res0=$id(rootId+'-res');
+        if(sc0) sc0.innerHTML=''; if(res0) res0.classList.remove('slq-results--on');
+        chatStart(rootId); return;
+      }
       var it=instOf(rootId); state[it]={cur:0,answers:{}};
       document.querySelectorAll('input[name^="'+rootId+'-q"]').forEach(function(inp){ inp.checked=false; });
       var steps=DATA.steps||[]; steps.forEach(function(_,i){ var b=$id(rootId+'-nb'+i); if(b) b.disabled=true; });
@@ -799,7 +922,22 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
     try { DATA=JSON.parse($id(QID+'-data').textContent); }
     catch(e){ DATA={steps:[],products:[],capture:{},results:{heading:'Resultados',sub:''}}; }
     var inlineEl=$id(QID+'-inline-content');
-    if(inlineEl){ state.inline={cur:0,answers:{}}; inlineEl.innerHTML=buildHTML(QID+'-inline'); }
+    if(inlineEl){
+      state.inline={cur:0,answers:{}}; inlineEl.innerHTML=buildHTML(QID+'-inline');
+      if(ESTILO==='chat') chatStart(QID+'-inline');
+      if(ESTILO==='pantalla'){
+        var pendiente=false;
+        inlineEl.addEventListener('click',function(e){
+          var lab=e.target.closest?e.target.closest('.slq-opt'):null; if(!lab) return;
+          var inp=lab.querySelector('input'), m=inp&&inp.name.match(/-q(\d+)$/); if(!m||pendiente) return;
+          var idx=+m[1]; pendiente=true;
+          setTimeout(function(){
+            pendiente=false;
+            if(state.inline.cur===idx&&document.querySelector('input[name="'+QID+'-inline-q'+idx+'"]:checked')) window[NS+'Q'].next(idx,QID+'-inline');
+          },SIN_MOVIMIENTO?0:280);
+        });
+      }
+    }
     var modalEl=$id(QID+'-modal-content');
     if(modalEl){ state.modal={cur:0,answers:{}}; modalEl.innerHTML=buildHTML(QID+'-modal'); }
     document.querySelectorAll('[data-open-quiz="'+QID+'"]').forEach(function(btn){

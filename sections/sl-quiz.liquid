@@ -14,7 +14,7 @@
   assign customer_form_id = qid | append: '-shopify-customer-form'
 -%}
 
-<section class="slq-wrap sl-scope" id="{{ qid }}-wrap" data-sl-quiz data-qid="{{ qid }}" data-ns="{{ ns }}" data-section-id="{{ section.id }}" aria-labelledby="{{ qid }}-titulo">
+<section class="slq-wrap sl-scope" id="{{ qid }}-wrap" data-sl-quiz data-estilo="{{ section.settings.estilo | default: 'clasico' }}" data-chat-nombre="{{ section.settings.chat_nombre | escape }}" data-chat-saludo="{{ section.settings.chat_saludo | escape }}" data-qid="{{ qid }}" data-ns="{{ ns }}" data-section-id="{{ section.id }}" aria-labelledby="{{ qid }}-titulo">
   <div class="sl-container slq-wrap__inner">
     <header class="slq-cab">
       {%- if section.settings.eyebrow != blank -%}<span class="slq-cab__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
@@ -275,6 +275,35 @@
   "tag": "section",
   "class": "sl-quiz-section",
   "settings": [
+    {
+      "type": "header",
+      "content": "Estilo del test"
+    },
+    {
+      "type": "select",
+      "id": "estilo",
+      "label": "Estilo",
+      "default": "clasico",
+      "options": [
+        { "value": "clasico", "label": "Clásico (varias preguntas con foto)" },
+        { "value": "chat", "label": "Conversación (chat con Aly)" },
+        { "value": "pantalla", "label": "Una pregunta por pantalla" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "chat_nombre",
+      "label": "Nombre de quien conversa",
+      "info": "Solo en el estilo conversación.",
+      "default": "Aly"
+    },
+    {
+      "type": "text",
+      "id": "chat_saludo",
+      "label": "Saludo inicial",
+      "info": "Solo en el estilo conversación.",
+      "default": "¡Hola! Te hago unas preguntas cortas y te recomiendo una rutina simple."
+    },
     {
       "type": "header",
       "content": "Encabezado"
