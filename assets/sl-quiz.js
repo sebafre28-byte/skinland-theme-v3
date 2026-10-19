@@ -526,11 +526,11 @@
     d.innerHTML='<div class="slqc-burbuja">'+html+hora+'</div>';
     h.appendChild(d); chatKeep(rootId); return d;
   }
-  function chatTyping(rootId,cb,corto){
+  function chatTyping(rootId,cb,ms){
     if(SIN_MOVIMIENTO){ cb(); return; }
     var d=chatMsg(rootId,'aly','<span class="slqc-escribiendo" aria-label="'+esc(chatNombre())+' está escribiendo"><i></i><i></i><i></i></span>');
     chatHabla(rootId,true);
-    setTimeout(function(){ if(d&&d.parentNode) d.parentNode.removeChild(d); chatHabla(rootId,false); cb(); },corto?1000:1500);
+    setTimeout(function(){ if(d&&d.parentNode) d.parentNode.removeChild(d); chatHabla(rootId,false); cb(); },ms||2200);
   }
   function chatProgress(rootId,done){
     var total=(DATA.steps||[]).length+1;
@@ -545,7 +545,7 @@
     state[it].cur=i; chatProgress(rootId,i); tray.innerHTML='';
     function show(){
       chatMsg(rootId,'aly','<strong>'+step.heading+'</strong>'+(step.sub?'<span class="slqc-sub">'+step.sub+'</span>':''));
-      var H='<div class="slqc-resp-cab"><span>'+T('chat_responde','Tu respuesta')+'</span><span>'+T('chat_toca','Toca una opción')+' ↓</span></div><div class="slqc-ops'+(step.options.length>=5?' slqc-ops--muchas':'')+'" role="group" aria-label="'+esc(step.heading.replace(/<[^>]+>/g,''))+'">';
+      var H='<div class="slqc-resp-cab"><span>'+T('chat_responde','Tu respuesta')+'</span><span>'+T('chat_toca','Toca una opción')+' ↓</span></div><div class="slqc-ops'+(step.options.length>=4?' slqc-ops--muchas':'')+'" role="group" aria-label="'+esc(step.heading.replace(/<[^>]+>/g,''))+'">';
       step.options.forEach(function(opt,k){
         H+='<button type="button" class="slqc-op" onclick="'+NS+'Q.chatPick(\''+rootId+'\','+i+','+k+')"><span class="slqc-op__t">'+opt.label+'</span>'+(opt.desc?'<span class="slqc-op__d">'+opt.desc+'</span>':'')+'</button>';
       });
@@ -585,7 +585,7 @@
     var saludo=ROOT.dataset.chatSaludo;
     function primera(){ if((DATA.steps||[]).length) chatAsk(rootId,0,SIN_MOVIMIENTO); }
     if(!saludo){ primera(); return; }
-    chatTyping(rootId,function(){ chatMsg(rootId,'aly',esc(saludo)); primera(); },true);
+    chatTyping(rootId,function(){ chatMsg(rootId,'aly',esc(saludo)); setTimeout(primera,SIN_MOVIMIENTO?0:1200); },1600);
   }
   function buildChatHTML(rootId){
     var total=(DATA.steps||[]).length+1;
@@ -704,7 +704,7 @@
       state[it].answers[step.id]=[opt.tag];
       var reply=(step.replies||{})[opt.tag];
       function seguir(){ if(i<steps.length-1) chatAsk(rootId,i+1); else chatCapture(rootId); }
-      if(reply) chatTyping(rootId,function(){ chatMsg(rootId,'aly',esc(reply)); seguir(); },true);
+      if(reply) chatTyping(rootId,function(){ chatMsg(rootId,'aly',esc(reply)); setTimeout(seguir,SIN_MOVIMIENTO?0:Math.min(5000,Math.max(2200,reply.length*45))); },2200);
       else seguir();
     },
     chatBack: function(rootId){

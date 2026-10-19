@@ -272,3 +272,9 @@ html.slqc-bloqueado .shopify-section-group-footer-group, html.slqc-bloqueado foo
 .slqc-op__d { font-size: 12px; line-height: 1.25; }
 .slqc-resp-cab { padding-bottom: 2px; }
 .slqc-ops--muchas .slqc-op { justify-content: center; }
+
+/* Con 4 o más opciones: dos columnas compactas, con su descripción, para no tener que hacer scroll */
+.slqc-ops--muchas .slqc-op { min-height: 58px; padding: 6px 9px; }
+.slqc-ops--muchas .slqc-op__t { font-size: 13.5px; line-height: 1.15; }
+.slqc-ops--muchas .slqc-op__d { display: block; font-size: 11px; line-height: 1.2; margin-top: 2px; }
+.slqc-bandeja { max-height: 52%; }

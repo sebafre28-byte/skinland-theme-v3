@@ -6,8 +6,7 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */
-{
+ */{
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
@@ -23,13 +22,41 @@
         "originales": {
           "type": "texto",
           "settings": {
-            "texto": "100% originales"
+            "texto": "Productos coreanos 100% originales"
+          }
+        },
+        "chile": {
+          "type": "texto",
+          "settings": {
+            "texto": "Despacho a todo Chile"
+          }
+        },
+        "wsp": {
+          "type": "texto",
+          "settings": {
+            "texto": "Asesoría gratis por WhatsApp"
+          }
+        },
+        "rutinas": {
+          "type": "texto",
+          "settings": {
+            "texto": "Rutinas armadas para tu tipo de piel"
+          }
+        },
+        "test": {
+          "type": "texto",
+          "settings": {
+            "texto": "Test de piel en 1 minuto"
           }
         }
       },
       "block_order": [
         "envio",
-        "originales"
+        "chile",
+        "originales",
+        "wsp",
+        "rutinas",
+        "test"
       ],
       "settings": {
         "etiqueta_aria": "Anuncios"
