@@ -270,3 +270,17 @@ html.slqc-bloqueado .shopify-section-group-footer-group, html.slqc-bloqueado foo
   .slqc--fin .slq-prods-grid { grid-template-columns: repeat(4, 1fr); }
   .slqc--fin .slq-routine-alt { flex-direction: row; align-items: center; justify-content: space-between; }
 }
+
+.slq-routine-alt-copy { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.slq-routine-alt-why { display: block; max-width: 56ch; font-size: 14px; line-height: 1.45; }
+.slq-routine-alt-price { font-weight: 700; }
+
+/* Escritorio: el resultado se ve en la misma página (la página hace scroll), no dentro de una ventana con scroll propio */
+@media screen and (min-width: 750px) {
+  .slq-wrap .slqc.slqc--fin { height: auto; min-height: 0; overflow: visible; }
+  .slqc--fin .slqc-cuerpo { overflow: visible; flex: none; }
+  .slqc--fin .slqc-top { border-radius: 16px 16px 0 0; }
+  .slq-wrap:has(.slqc--fin) { padding-bottom: 48px; }
+  html.slqc-bloqueado:has(.slqc--fin), html.slqc-bloqueado:has(.slqc--fin) body { overflow: visible; }
+  html.slqc-bloqueado:has(.slqc--fin) footer, html.slqc-bloqueado:has(.slqc--fin) .sl-footer, html.slqc-bloqueado:has(.slqc--fin) .shopify-section-group-footer-group { display: revert; }
+}

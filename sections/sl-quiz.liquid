@@ -243,7 +243,13 @@
     "email_ph": {{ section.settings.ui_email_ph | json }},
     "consent_error": {{ section.settings.ui_consent_error | json }},
     "por_separado": {{ section.settings.ui_por_separado | json }},
-    "ahorras": {{ section.settings.ui_ahorras | json }}
+    "ahorras": {{ section.settings.ui_ahorras | json }},
+    "alt_label": {{ section.settings.ui_alt_label | json }},
+    "alt_titulo_completa": {{ section.settings.ui_alt_titulo_completa | json }},
+    "alt_porque_completa": {{ section.settings.ui_alt_porque_completa | json }},
+    "alt_titulo_simple": {{ section.settings.ui_alt_titulo_simple | json }},
+    "alt_porque_simple": {{ section.settings.ui_alt_porque_simple | json }},
+    "alt_boton": {{ section.settings.ui_alt_boton | json }}
   },
   "capture": {
     "heading": {{ section.settings.capture_heading | json }},
@@ -630,6 +636,50 @@
       "label": "Etiqueta de ahorro",
       "default": "Ahorras [ahorro]",
       "info": "Usa [ahorro]."
+    },
+    {
+      "type": "header",
+      "content": "Tarjeta \"También puedes elegir\""
+    },
+    {
+      "type": "text",
+      "id": "ui_alt_label",
+      "label": "Etiqueta",
+      "default": "También puedes elegir"
+    },
+    {
+      "type": "text",
+      "id": "ui_alt_titulo_completa",
+      "label": "Título si la alternativa es más completa",
+      "info": "Se usa cuando recomendamos la rutina corta. Usa [pasos].",
+      "default": "Rutina Esencial · [pasos] pasos"
+    },
+    {
+      "type": "textarea",
+      "id": "ui_alt_porque_completa",
+      "label": "Por qué elegirla (más completa)",
+      "info": "Usa [pasos].",
+      "default": "Si quieres una rutina más completa, suma un paso más para cuidar tu piel con más detalle."
+    },
+    {
+      "type": "text",
+      "id": "ui_alt_titulo_simple",
+      "label": "Título si la alternativa es más corta",
+      "info": "Se usa cuando recomendamos la rutina de más pasos. Usa [pasos].",
+      "default": "Rutina Express · [pasos] pasos"
+    },
+    {
+      "type": "textarea",
+      "id": "ui_alt_porque_simple",
+      "label": "Por qué elegirla (más corta)",
+      "info": "Usa [pasos].",
+      "default": "Si prefieres algo más corto, rápido y simple, cubre lo esencial en solo [pasos] pasos y es más fácil de mantener."
+    },
+    {
+      "type": "text",
+      "id": "ui_alt_boton",
+      "label": "Botón",
+      "default": "Ver rutina →"
     }
   ],
   "blocks": [

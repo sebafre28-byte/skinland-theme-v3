@@ -706,12 +706,15 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
         H+='</div></div></div>';
 
         if(rec.alternativaRutina){
-          var alt=rec.alternativaRutina;
+          var alt=rec.alternativaRutina, mas=Number(alt.routine_steps)>Number(best.routine_steps);
+          var tit=T(mas?'alt_titulo_completa':'alt_titulo_simple',mas?'Rutina Esencial · [pasos] pasos':'Rutina Express · [pasos] pasos').replace(/\[pasos\]/g,alt.routine_steps);
+          var porque=T(mas?'alt_porque_completa':'alt_porque_simple','').replace(/\[pasos\]/g,alt.routine_steps);
           H+='<div class="slq-routine-alt" data-sl-color="'+(best.color||'menta')+'">';
-          H+='<div class="slq-routine-alt-copy"><span class="slq-routine-alt-label">También puedes elegir</span>';
-          H+='<strong class="slq-routine-alt-title">Rutina de '+alt.routine_steps+' pasos</strong>';
+          H+='<div class="slq-routine-alt-copy"><span class="slq-routine-alt-label">'+T('alt_label','También puedes elegir')+'</span>';
+          H+='<strong class="slq-routine-alt-title">'+tit+'</strong>';
+          if(porque) H+='<span class="slq-routine-alt-why">'+porque+'</span>';
           H+='<span class="slq-routine-alt-price">'+alt.price+'</span></div>';
-          H+='<a class="slq-routine-alt-btn" href="'+alt.url+'">Ver alternativa →</a></div>';
+          H+='<a class="slq-routine-alt-btn" href="'+alt.url+'">'+T('alt_boton','Ver rutina →')+'</a></div>';
         }
       } else {
         H+='<div class="slq-no-results">';
