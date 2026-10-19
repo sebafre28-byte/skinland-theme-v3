@@ -34,29 +34,33 @@
 .av-destellos path { fill: var(--sl-amarillo); stroke: var(--sl-tinta); stroke-width: .8; stroke-linejoin: round; }
 .av-ojos, .av-boca, .av-destellos path { transform-box: fill-box; transform-origin: center; }
 
-/* Burbuja: escribe… → aparece la pregunta → pausa → vuelve a empezar (ciclo de 9 s) */
+/* Burbuja: el JS escribe la pregunta letra a letra (sl-aly.js); sin JS se ve el texto fijo */
 .sl-aly__chat { display: grid; }
 .sl-aly__chat > * { grid-area: 1 / 1; align-self: start; margin: 0; }
 .sl-aly__escribe { display: none; width: max-content; gap: 5px; padding: 15px 16px; border: var(--sl-borde); border-radius: 16px 16px 16px 4px; background: var(--sl-blanco); }
 .sl-aly__escribe i { width: 7px; height: 7px; border-radius: 50%; background: var(--sl-tinta); opacity: .5; }
+.sl-aly__pregunta { position: relative; }
+.sl-aly__vivo { display: none; }
+.sl-aly--js .sl-aly__fijo { opacity: 0; }
+.sl-aly--js .sl-aly__vivo { display: block; position: absolute; inset: 12px 14px; }
+.sl-aly--js .sl-aly__vivo.is-tipeando::after { content: ''; display: inline-block; width: 2px; height: 1.05em; margin-left: 2px; vertical-align: -2px; background: var(--sl-tinta); animation: sl-aly-cursor .7s steps(1) infinite; }
+.sl-aly--js .sl-aly__pregunta.is-oculta { opacity: 0; }
+.sl-aly--js .sl-aly__escribe.is-visible { display: flex; }
+@keyframes sl-aly-cursor { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: no-preference) {
   .av-cuerpo { animation: aly-respira 3.2s ease-in-out infinite; transform-origin: 50px 100px; }
   .av-cabeza { animation: aly-balanceo 4.4s ease-in-out infinite; transform-origin: 50px 76px; }
   .av-ojos { animation: aly-parpadeo 4s infinite; }
   .av-destellos path { animation: aly-brilla 1.9s ease-in-out infinite; }
   .av-destellos path:last-child { animation-delay: .8s; }
-  .sl-aly__escribe { display: flex; animation: sl-aly-puntos 9s infinite; }
   .sl-aly__escribe i { animation: aly-punto .9s ease-in-out infinite; }
   .sl-aly__escribe i:nth-child(2) { animation-delay: .15s; }
   .sl-aly__escribe i:nth-child(3) { animation-delay: .3s; }
-  .sl-aly__pregunta { animation: sl-aly-pregunta 9s infinite; }
-  .sl-aly__caja:has(.sl-aly__chat) .av-boca { animation: sl-aly-boca 9s infinite; }
+  .sl-aly--habla .av-boca { animation: aly-habla .26s ease-in-out infinite alternate; }
 }
 @keyframes aly-respira { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(1.2px); } }
 @keyframes aly-balanceo { 0%, 100% { transform: rotate(-2.6deg); } 50% { transform: rotate(2.6deg); } }
 @keyframes aly-parpadeo { 0%, 90%, 100% { transform: scaleY(1); } 93% { transform: scaleY(.08); } 96% { transform: scaleY(1); } 97% { transform: scaleY(.08); } }
 @keyframes aly-brilla { 0%, 100% { transform: scale(.55); opacity: .5; } 50% { transform: scale(1.15); opacity: 1; } }
 @keyframes aly-punto { 0%, 100% { opacity: .25; transform: translateY(0); } 50% { opacity: .9; transform: translateY(-3px); } }
-@keyframes sl-aly-puntos { 0%, 2% { opacity: 0; } 4%, 20% { opacity: 1; } 22%, 100% { opacity: 0; } }
-@keyframes sl-aly-pregunta { 0%, 21% { opacity: 0; transform: translateY(8px); } 25%, 92% { opacity: 1; transform: none; } 97%, 100% { opacity: 0; transform: none; } }
-@keyframes sl-aly-boca { 0%, 4% { transform: scaleY(1); } 6% { transform: scaleY(1.7); } 8% { transform: scaleY(.7); } 10% { transform: scaleY(1.7); } 12% { transform: scaleY(.7); } 14% { transform: scaleY(1.7); } 16% { transform: scaleY(.7); } 18% { transform: scaleY(1.7); } 20%, 100% { transform: scaleY(1); } }
+@keyframes aly-habla { from { transform: scaleY(.7); } to { transform: scaleY(1.7); } }
