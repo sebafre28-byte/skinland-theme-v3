@@ -10,6 +10,7 @@
   assign bs = bs_raw | strip | split: '|'
   assign bs_suma = bs[0] | plus: 0
   assign bs_ahorro = bs[1] | plus: 0
+  assign bs_ahorro_txt = bs_ahorro | money_without_trailing_zeros
   assign pasos = bs[3] | plus: 0
   assign form_solo = ''
 
@@ -35,9 +36,11 @@
             <p class="sl-incluye__bajada">{{ section.settings.bajada | replace: '[n]', pasos }}</p>
           </div>
           {%- if bs_ahorro > 0 -%}
+            {%- assign ahorro_menos_a = '−' | append: bs_ahorro_txt -%}
             <p class="sl-incluye__resumen sl-incluye__resumen--arriba">
-              {{ section.settings.texto_por_separado }} <s>{{ bs_suma | money_without_trailing_zeros }}</s> ·
-              <strong>{{ section.settings.texto_en_rutina }} {{ precio | money_without_trailing_zeros }}</strong>
+              <span>{{ section.settings.texto_por_separado }} <s>{{ bs_suma | money_without_trailing_zeros }}</s></span>
+              <span>{{ section.settings.texto_en_rutina }} <strong>{{ precio | money_without_trailing_zeros }}</strong></span>
+              <span class="sl-sticker">{{ section.settings.texto_ahorras | default: '[ahorro]' | replace: '[ahorro]', ahorro_menos_a }}</span>
             </p>
           {%- endif -%}
         </div>
@@ -90,10 +93,12 @@
         </ul>
 
         {%- if bs_ahorro > 0 -%}
-          <p class="sl-incluye__resumen sl-incluye__resumen--pie">
-            <span>{{ section.settings.texto_por_separado }} <s>{{ bs_suma | money_without_trailing_zeros }}</s></span>
-            <strong>{{ section.settings.texto_en_rutina }} {{ precio | money_without_trailing_zeros }}</strong>
-          </p>
+          {%- assign ahorro_menos = '−' | append: bs_ahorro_txt -%}
+          <div class="sl-incluye__resumen sl-incluye__resumen--pie">
+            <p class="sl-incluye__fila sl-incluye__fila--sep"><span>{{ section.settings.texto_por_separado }}</span> <s>{{ bs_suma | money_without_trailing_zeros }}</s></p>
+            <p class="sl-incluye__fila sl-incluye__fila--juntos"><span>{{ section.settings.texto_en_rutina }}</span> <strong>{{ precio | money_without_trailing_zeros }}</strong></p>
+            <p class="sl-incluye__ahorro"><span class="sl-sticker">{{ section.settings.texto_ahorras | default: '[ahorro]' | replace: '[ahorro]', ahorro_menos }}</span></p>
+          </div>
         {%- endif -%}
       </div>
     </div>
@@ -211,9 +216,16 @@
     },
     {
       "type": "text",
+      "id": "texto_ahorras",
+      "label": "Etiqueta de ahorro",
+      "default": "Ahorras [ahorro]",
+      "info": "Usa [ahorro]."
+    },
+    {
+      "type": "text",
       "id": "texto_en_rutina",
       "label": "Texto de \"en rutina\"",
-      "default": "En rutina"
+      "default": "Comprándolos juntos pagas"
     },
     {
       "type": "header",
