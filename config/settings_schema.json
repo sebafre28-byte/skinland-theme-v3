@@ -295,7 +295,7 @@
         "type": "text",
         "id": "sl_cart_pagar",
         "label": "Botón de pago",
-        "default": "Continuar al pago"
+        "default": "Ir a pagar"
       },
       {
         "type": "text",
