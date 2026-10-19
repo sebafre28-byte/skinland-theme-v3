@@ -157,3 +157,17 @@
 /* Precio con el ahorro pegado a su derecha; debajo costo por día y duración en una línea, y la suma por separado */
 .sl-buybox__precio-fila .sl-sticker { flex: none; align-self: center; }
 .sl-buybox__precio-fila { justify-content: flex-start; gap: 12px; }
+
+/* Celular: primera pantalla con menos galería y el precio antes de las versiones.
+   La foto sigue completa (object-fit: contain), solo baja ~20 % de alto y gana un poco de tamaño dentro del marco. */
+@media screen and (max-width: 989px) {
+  .sl-galeria { gap: 10px; }
+  .sl-galeria__escenario { aspect-ratio: 358 / 272; }
+  .sl-galeria__item img { padding: 3%; }
+  .sl-galeria__ahorro { width: 76px; height: 76px; font-size: 12px; }
+  .sl-galeria__mini { width: 48px; height: 48px; border-radius: 10px; }
+  .sl-buybox__precio { order: 1; }
+  .sl-buybox > .sl-versiones { order: 2; }
+  .sl-buybox > .sl-promesa, .sl-buybox > .sl-beneficios, .sl-buybox > .sl-ficha, .sl-buybox > .sl-form,
+  .sl-buybox > .sl-ayuda, .sl-buybox > .sl-envio, .sl-buybox > .sl-confianza { order: 3; }
+}
