@@ -5,6 +5,8 @@
   var QID  = ROOT.dataset.qid;
   var NS   = ROOT.dataset.ns;
   var DATA = {};
+  var NOMBRE = '';
+  function conNombre(t){ t=String(t==null?'':t); if(NOMBRE) return t.replace(/\[nombre\]/g,esc(NOMBRE)); return t.replace(/\[nombre\],?\s*/g,'').replace(/^([a-záéíóú])/,function(c){ return c.toUpperCase(); }); }
   var ESTILO = ROOT.dataset.estilo || 'clasico';
   var SIN_MOVIMIENTO = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   var VERSION = 'v14';
@@ -829,6 +831,7 @@
       });
     },
     showResults: function(rootId,status){
+      NOMBRE=(status&&status.name?status.name.split(' ')[0]:'')||NOMBRE||'';
       var it=instOf(rootId), steps=DATA.steps||[], total=steps.length+1;
       for(var i=0;i<=total;i++){ var s=$id(rootId+'-s'+i); if(s) s.classList.remove('slq-step--active'); }
 
@@ -859,6 +862,8 @@
         sc.innerHTML='<div class="slq-success-msg"><strong>✓ ¡Listo'+who+'!</strong>'+msg+'</div>';
       }
 
+      var hd=document.querySelector('#'+rootId+'-res .slq-results-heading'), sb=document.querySelector('#'+rootId+'-res .slq-results-sub');
+      if(hd) hd.innerHTML=conNombre(DATA.results.heading); if(sb) sb.innerHTML=conNombre(DATA.results.sub);
       var rc=$id(rootId+'-rc');
       if(rc) rc.innerHTML=this._calcResults(it);
       scrollTop(rootId);
@@ -893,10 +898,10 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
         else if(rec.confianza==='parcial') whyTxt=(R.copy_parcial||'Es lo más cercano a tu perfil dentro de lo que tenemos hoy.');
         else                               whyTxt=(R.copy_base||'No tenemos una rutina formulada para ese objetivo, pero esta es la base correcta para tu tipo de piel. Escríbenos y vemos qué sumarle.');
         if(rec.confianza!=='base'){
-          if(razones.length===1) whyTxt+=' Apunta a '+razones[0]+'.';
-          else if(razones.length>1) whyTxt+=' Apunta a '+razones[0]+', y de paso a '+razones.slice(1).join(', ')+'.';
+          if(razones.length===1) whyTxt+=' Se enfoca en '+razones[0]+'.';
+          else if(razones.length>1) whyTxt+=' Se enfoca en '+razones[0]+', y de paso en '+razones.slice(1).join(', ')+'.';
         }
-        H+='<p class="slq-kit-why">'+whyTxt+'</p>';
+        H+='<p class="slq-kit-why">'+conNombre(whyTxt)+'</p>';
 
         if(best.description) H+='<p class="slq-kit-desc">'+best.description+'</p>';
 
@@ -941,6 +946,10 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
           H+='</div></div></a>';
         });
         H+='</div>';
+      }
+
+      if(R.wa_url){
+        H+='<div class="slq-wa"><strong class="slq-wa__t">'+conNombre(R.wa_titulo||'')+'</strong><p class="slq-wa__p">'+conNombre(R.wa_texto||'')+'</p><a class="slq-btn slq-btn--primary slq-wa__b" href="'+esc(R.wa_url)+'" target="_blank" rel="noopener">'+esc(R.wa_boton||'WhatsApp')+'</a></div>';
       }
 
       if((DATA.capture||{}).debug_mode){

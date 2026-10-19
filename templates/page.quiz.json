@@ -102,7 +102,8 @@
       "settings": {
         "quiz_collection": "recomendaciones-quiz",
         "enable_routine_level_question": true,
-        "routine_level_respuestas": "preferencia-rutina-3 | Perfecto, una rutina simple es más fácil de mantener todos los días.\npreferencia-rutina-4 | Genial, con experiencia podemos sumar un paso extra para trabajar tu piel.\npreferencia-kit | Entendido, buscaré un kit enfocado en esa necesidad."
+        "routine_level_respuestas": "preferencia-rutina-3 | Perfecto, una rutina simple es más fácil de mantener todos los días.\npreferencia-rutina-4 | Genial, con experiencia podemos sumar un paso extra para trabajar tu piel.\npreferencia-kit | Entendido, buscaré un kit enfocado en esa necesidad.",
+        "results_sub": "La armé según tus respuestas, con los pasos en el orden correcto."
       }
     }
   },

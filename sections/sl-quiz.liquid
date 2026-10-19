@@ -271,9 +271,13 @@
   "results": {
     "heading": {{ section.settings.results_heading | json }},
     "sub": {{ section.settings.results_sub | json }},
-    "copy_fuerte": {{ section.settings.copy_fuerte | default: 'La elegimos porque está formulada exactamente para tu perfil.' | json }},
-    "copy_parcial": {{ section.settings.copy_parcial | default: 'Es lo más cercano a tu perfil dentro de lo que tenemos hoy.' | json }},
-    "copy_base": {{ section.settings.copy_base | default: 'No tenemos una rutina formulada para ese objetivo, pero esta es la base correcta para tu tipo de piel. Escríbenos y vemos qué sumarle.' | json }},
+    "copy_fuerte": {{ section.settings.copy_fuerte | default: '[nombre], esta rutina calza justo con lo que me contaste y es simple de seguir, paso a paso.' | json }},
+    "copy_parcial": {{ section.settings.copy_parcial | default: '[nombre], es la que más se acerca a lo que me contaste: reúne los pasos clave para tu piel, en el orden correcto. Si quieres afinarla, te ayudo por WhatsApp.' | json }},
+    "copy_base": {{ section.settings.copy_base | default: '[nombre], para ese objetivo aún no tenemos una rutina hecha a tu medida, pero esta es la base correcta para tu tipo de piel. Escríbeme y vemos qué sumarle.' | json }},
+    "wa_titulo": {{ section.settings.wa_titulo | default: '¿Aún tienes dudas?' | json }},
+    "wa_texto": {{ section.settings.wa_texto | default: 'Aly te asesora gratis por WhatsApp para elegir la que mejor te acomode.' | json }},
+    "wa_boton": {{ section.settings.wa_boton | default: 'Hablar con Aly' | json }},
+    "wa_url": {% capture wa_u %}{% render 'sl-whatsapp-url', mensaje: section.settings.wa_mensaje %}{% endcapture %}{{ wa_u | strip | json }},
     "no_match_heading": {{ section.settings.no_match_heading | default: 'Tu perfil necesita algo más específico' | json }},
     "no_match_text": {{ section.settings.no_match_text | default: 'Con tus respuestas no encontramos una rutina o kit que calce del todo. Preferimos decírtelo antes que recomendarte algo a medias. Escríbenos y te armamos algo a tu medida.' | json }},
     "no_match_url": {{ section.settings.no_match_url | default: routes.all_products_collection_url | json }},
@@ -514,7 +518,7 @@
       "type": "text",
       "id": "results_heading",
       "label": "Título",
-      "default": "Tu rutina personalizada"
+      "default": "[nombre], esta es tu rutina"
     },
     {
       "type": "text",
@@ -526,19 +530,43 @@
       "type": "text",
       "id": "copy_fuerte",
       "label": "Copy — match fuerte",
-      "default": "La elegimos porque calza con tu perfil."
+      "default": "[nombre], esta rutina calza justo con lo que me contaste y es simple de seguir, paso a paso."
     },
     {
       "type": "text",
       "id": "copy_parcial",
       "label": "Copy — match parcial",
-      "default": "Es lo más cercano a tu perfil dentro de lo que tenemos hoy."
+      "default": "[nombre], es la que más se acerca a lo que me contaste: reúne los pasos clave para tu piel, en el orden correcto. Si quieres afinarla, te ayudo por WhatsApp."
     },
     {
       "type": "text",
       "id": "copy_base",
       "label": "Copy — rutina base (sin match de objetivo)",
-      "default": "No tenemos una rutina pensada para ese objetivo, pero esta es una buena base para tu tipo de piel. Escríbenos y vemos qué sumarle."
+      "default": "[nombre], para ese objetivo aún no tenemos una rutina hecha a tu medida, pero esta es la base correcta para tu tipo de piel. Escríbeme y vemos qué sumarle."
+    },
+    {
+      "type": "text",
+      "id": "wa_titulo",
+      "label": "Cierre del resultado: título",
+      "default": "¿Aún tienes dudas?"
+    },
+    {
+      "type": "text",
+      "id": "wa_texto",
+      "label": "Cierre del resultado: texto",
+      "default": "Aly te asesora gratis por WhatsApp para elegir la que mejor te acomode."
+    },
+    {
+      "type": "text",
+      "id": "wa_boton",
+      "label": "Cierre del resultado: botón",
+      "default": "Hablar con Aly"
+    },
+    {
+      "type": "text",
+      "id": "wa_mensaje",
+      "label": "Mensaje de WhatsApp",
+      "default": "Hola Aly, hice el test de piel y quiero tu ayuda para elegir mi rutina."
     },
     {
       "type": "header",

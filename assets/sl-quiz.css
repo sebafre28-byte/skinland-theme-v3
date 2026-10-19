@@ -292,3 +292,10 @@ html.slqc-bloqueado .shopify-section-group-footer-group, html.slqc-bloqueado foo
 .slqc--fin .slq-kit-price { font-size: 28px; }
 .slqc--fin .slq-prods-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .slqc--fin .slq-routine-alt { flex-direction: column; align-items: stretch; }
+
+/* Foto del resultado: completa, sin recortar el producto */
+.slqc--fin .slq-kit > img { aspect-ratio: 1 / 1; object-fit: cover; }
+.slq-wa { display: flex; flex-direction: column; gap: 6px; margin: 4px 0 18px; padding: 16px; border: var(--sl-borde); border-radius: 18px; background: var(--sl-blanco); }
+.slq-wa__t { font-family: var(--sl-font-display); font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+.slq-wa__p { margin: 0 0 8px; font-size: 14px; line-height: 1.45; }
+.slq-wa__b { width: 100%; text-decoration: none; }
