@@ -255,3 +255,18 @@ html.slqc-bloqueado .shopify-section-group-footer-group, html.slqc-bloqueado foo
 .slqc-form__pie .slq-skip { width: auto; margin: 0; min-height: 38px; font-size: 13px; }
 .slqc-form__pie .slqc-volver { min-height: 38px; }
 .slqc-bandeja:has(.slqc-form) { max-height: 62%; }
+
+/* Escritorio: al dar el resultado la ventana se ensancha y la recomendación va en dos columnas (info a la izquierda, foto a la derecha) */
+@media screen and (min-width: 990px) {
+  .slq-wrap:has(.slqc--fin) .slq-wrap__inner { max-width: 1040px; }
+  .slqc--fin .slqc-cuerpo { padding: 28px 36px 36px; }
+  .slqc--fin .slq-results-heading { font-size: 34px; }
+  .slqc--fin .slq-results-sub { font-size: 16px; }
+  .slqc--fin .slq-kit { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+  .slqc--fin .slq-kit-body { padding: 24px 28px; gap: 12px; }
+  .slqc--fin .slq-kit-title { font-size: 34px; }
+  .slqc--fin .slq-kit-price { font-size: 36px; }
+  .slqc--fin .slq-kit > img { aspect-ratio: auto; height: 100%; min-height: 280px; object-fit: cover; object-position: center; border-top: 0; border-left: var(--sl-borde); }
+  .slqc--fin .slq-prods-grid { grid-template-columns: repeat(4, 1fr); }
+  .slqc--fin .slq-routine-alt { flex-direction: row; align-items: center; justify-content: space-between; }
+}

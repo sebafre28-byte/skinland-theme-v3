@@ -33,4 +33,6 @@
     max-width: calc(var(--sl-contenedor) + 64px); margin: 0 auto;
     flex-direction: row; flex-wrap: wrap; justify-content: space-between; padding: 0 32px 40px;
   }
+  .sl-footer__inner { padding-bottom: 36px; }
+  .sl-footer__base::before { content: ''; flex: 0 0 100%; height: 1px; margin-bottom: 18px; background: color-mix(in srgb, var(--sl-crema) 22%, transparent); }
 }
