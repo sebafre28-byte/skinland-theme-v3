@@ -50,7 +50,7 @@
 .slq-kit-ahorro { margin: 0 0 12px; }
 .slq-kit-btn { display: flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 16px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-tinta); color: var(--sl-blanco); font-family: var(--sl-font-display); font-size: 17px; font-weight: 700; text-decoration: none; box-shadow: 4px 4px 0 var(--sl-lima); }
 .slq-routine-alt { display: flex; flex-direction: column; gap: 12px; margin: 0 0 22px; padding: 14px 16px; border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); }
-.slq-routine-alt-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.slq-routine-alt-label { display: block; font-size: 14px; font-weight: 700; line-height: 1.35; }
 .slq-routine-alt-title { display: block; font-family: var(--sl-font-display); font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
 .slq-routine-alt-price { display: block; font-size: 13px; }
 .slq-routine-alt-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); color: var(--sl-tinta); font-size: 14px; font-weight: 700; text-decoration: none; }
@@ -272,7 +272,6 @@ html.slqc-bloqueado .shopify-section-group-footer-group, html.slqc-bloqueado foo
 }
 
 .slq-routine-alt-copy { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.slq-routine-alt-why { display: block; max-width: 56ch; font-size: 14px; line-height: 1.45; }
 .slq-routine-alt-price { font-weight: 700; }
 
 /* Escritorio: el resultado se ve en la misma página (la página hace scroll), no dentro de una ventana con scroll propio */
