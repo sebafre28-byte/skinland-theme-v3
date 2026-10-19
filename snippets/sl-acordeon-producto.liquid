@@ -80,7 +80,6 @@
     <div class="sl-acordeon__precio">
       <span class="sl-precio">{{ precio_t }}</span>
       {%- if hay_ahorro -%}
-        <span class="sl-texto-chico">{{ texto_por_separado }} <s>{{ suma | money_without_trailing_zeros }}</s></span>
         <span class="sl-sticker">{{ texto_ahorras | default: '[ahorro]' | replace: '[ahorro]', ahorro_menos }}</span>
       {%- endif -%}
     </div>

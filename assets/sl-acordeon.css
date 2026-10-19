@@ -44,3 +44,5 @@
 .sl-acordeon__versiones { display: flex; gap: 6px; padding: 4px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); }
 .sl-acordeon__version { flex: 1 1 0; min-height: 40px; padding: 0 8px; border: 0; border-radius: 999px; background: transparent; color: var(--sl-tinta); font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
 .sl-acordeon__version[aria-pressed='true'] { background: var(--sl-tinta); color: var(--sl-blanco); cursor: default; }
+
+.sl-acordeon__precio { flex-wrap: nowrap; justify-content: flex-start; gap: 12px; }
