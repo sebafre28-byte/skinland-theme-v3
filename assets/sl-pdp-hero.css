@@ -153,3 +153,6 @@
 .sl-costo-dia--dos strong { font-size: 14px; font-weight: 800; }
 .sl-costo-dia--dos span { font-size: 13px; }
 .sl-buybox__separado { flex: none; }
+
+/* Precio a la izquierda y ahorro a la derecha; debajo costo por día y duración en una línea, y la suma por separado */
+.sl-buybox__precio-fila .sl-sticker { flex: none; align-self: center; }

@@ -254,12 +254,14 @@
           <div class="sl-buybox__precio">
             <div class="sl-buybox__precio-fila">
               <span class="sl-precio">{{ precio_texto }}</span>
-              {%- render 'sl-costo-dia', precio: precio, dias: dias, texto_costo: section.settings.texto_costo_dia, texto_dura: section.settings.texto_dura, dos_lineas: true -%}
+              {%- if bs_ahorro > 0 -%}
+                {%- assign ahorro_monto = bs_ahorro | money_without_trailing_zeros -%}
+                {%- assign ahorro_menos = '−' | append: ahorro_monto -%}
+                <span class="sl-sticker">{{ section.settings.texto_ahorras | default: '[ahorro]' | replace: '[ahorro]', ahorro_menos }}</span>
+              {%- endif -%}
             </div>
+            {%- render 'sl-costo-dia', precio: precio, dias: dias, texto_costo: section.settings.texto_costo_dia, texto_dura: section.settings.texto_dura -%}
             {%- if bs_ahorro > 0 -%}
-              {%- assign ahorro_monto = bs_ahorro | money_without_trailing_zeros -%}
-              {%- assign ahorro_menos = '−' | append: ahorro_monto -%}
-              <span class="sl-sticker">{{ section.settings.texto_ahorras | default: '[ahorro]' | replace: '[ahorro]', ahorro_menos }}</span>
               <p class="sl-buybox__separado">{{ section.settings.texto_por_separado }} <s>{{ bs_suma | money_without_trailing_zeros }}</s></p>
             {%- endif -%}
             {%- if settings.sl_texto_cuotas != blank -%}
