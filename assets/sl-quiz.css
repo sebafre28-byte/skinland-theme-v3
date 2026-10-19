@@ -76,7 +76,8 @@
 .slq-kit-title { margin: 0; font-family: var(--sl-font-display); font-size: 28px; font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
 .slq-kit-why { margin: 0; padding: 10px 12px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); font-size: 14px; line-height: 1.45; }
 .slq-kit-desc { margin: 0; font-size: 14px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
-.slq-kit-prices { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+.slq-kit-prices { display: flex; align-items: center; flex-wrap: nowrap; justify-content: flex-start; gap: 12px; margin-bottom: 6px; }
+.slq-kit-prices .sl-sticker { flex: none; }
 .slq-kit-price { font-family: var(--sl-font-display); font-size: 32px; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
 .slq-kit-compare { font-size: 13px; }
 .slq-kit-ahorro { margin: 0 0 12px; }

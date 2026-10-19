@@ -16,7 +16,7 @@
           {%- if section.settings.foto != blank -%}
             {{ section.settings.foto | image_url: width: 240 | image_tag: loading: 'lazy', widths: '120, 240', sizes: '72px', class: 'sl-aly__foto', alt: section.settings.nombre }}
           {%- else -%}
-            <span class="sl-aly__avatar" aria-hidden="true">{{ section.settings.nombre | slice: 0, 3 }}</span>
+            {%- render 'sl-aly-avatar' -%}
           {%- endif -%}
           <div>
             <h2 class="sl-aly__titulo" id="sl-aly-{{ section.id }}">{{ section.settings.titulo }}</h2>
@@ -26,7 +26,10 @@
           </div>
         </div>
         {%- if section.settings.pregunta != blank -%}
-          <p class="sl-aly__pregunta">{{ section.settings.pregunta }}</p>
+          <div class="sl-aly__chat">
+            <p class="sl-aly__escribe" aria-hidden="true"><i></i><i></i><i></i></p>
+            <p class="sl-aly__pregunta">{{ section.settings.pregunta }}</p>
+          </div>
         {%- endif -%}
         {%- if section.blocks.size > 0 -%}
           <ul class="sl-aly__respuestas" role="list">
@@ -71,7 +74,7 @@
       "type": "image_picker",
       "id": "foto",
       "label": "Foto de quien asesora",
-      "info": "Solo una foto real y con permiso de la persona. Si está vacía se muestra el avatar con iniciales."
+      "info": "Solo una foto real y con permiso de la persona. Si está vacía se muestra el avatar animado de Aly."
     },
     { "type": "text", "id": "nombre", "label": "Nombre del asistente", "default": "Aly" },
     { "type": "text", "id": "titulo", "label": "Título", "default": "¿No sabes qué elegir?" },

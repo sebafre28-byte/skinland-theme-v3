@@ -570,13 +570,13 @@
     if(!tray) return;
     state[it].cur=steps.length; chatProgress(rootId,steps.length); tray.innerHTML='';
     function show(){
-      chatMsg(rootId,'aly','<strong>'+(cap.heading||'¡Casi listo! Recibe tu rutina')+'</strong><span class="slqc-sub">'+(cap.sub||'Déjanos tu email para guardar y recibir tu recomendación.')+'</span>');
+      chatMsg(rootId,'aly','<strong>'+(cap.heading||'Recibe tu rutina en tu correo')+'</strong><span class="slqc-sub">'+(cap.sub||'Escribe tus datos y te enviamos tu recomendación, más consejos de skincare.')+'</span>');
       var H='<div class="slqc-resp-cab"><span>'+T('chat_responde','Tu respuesta')+'</span><span>'+T('chat_escribe','Escribe tus datos')+' ↓</span></div><div class="slqc-form">';
       H+='<input class="slq-input" type="text" id="'+rootId+'-name" aria-label="'+T('nombre','Nombre')+'" placeholder="'+T('nombre_ph','Tu nombre')+'" autocomplete="given-name">';
       H+='<input class="slq-input" type="email" id="'+rootId+'-em" aria-label="'+T('email','Email')+'" placeholder="'+T('email_ph','tu@email.com')+'" autocomplete="email" inputmode="email">';
       H+='<label class="slq-consent"><input type="checkbox" id="'+rootId+'-consent-em" onchange="'+NS+'Q.onConsent(\''+rootId+'\',\'em\')"><span>'+(cap.consent_text||'Acepto recibir comunicaciones de Skinland. Me puedo dar de baja cuando quiera.')+'</span></label>';
       H+='<p class="slq-consent-error" id="'+rootId+'-consent-err-em">'+T('consent_error','Debes aceptar para continuar.')+'</p>';
-      H+='<button class="slq-btn slq-btn--primary slqc-enviar" id="'+rootId+'-submit" onclick="'+NS+'Q.submitCapture(\''+rootId+'\')">'+T('ver_rutina','Ver mi rutina →')+'</button>';
+      H+='<button class="slq-btn slq-btn--primary slqc-enviar" id="'+rootId+'-submit" onclick="'+NS+'Q.submitCapture(\''+rootId+'\')">'+T('ver_rutina','Recibir mi rutina →')+'</button>';
       H+='<div class="slqc-form__pie">'+chatBackBtn(rootId)+'<button class="slq-skip" onclick="'+NS+'Q.showResults(\''+rootId+'\',null)">'+T('sin_datos','Ver resultados sin dejar datos')+'</button></div></div>';
       tray.innerHTML=H; tray.scrollTop=0;
       chatKeep(rootId);
@@ -651,8 +651,8 @@
     /* Paso captura */
     var ei=steps.length;
     H+='<div class="slq-step" id="'+rootId+'-s'+ei+'">';
-    H+='<h2 class="slq-q-heading">'+(cap.heading||'¡Casi listo! Recibe tu rutina')+'</h2>';
-    H+='<p class="slq-q-sub">'+(cap.sub||'Déjanos tu email para guardar y recibir tu recomendación.')+'</p>';
+    H+='<h2 class="slq-q-heading">'+(cap.heading||'Recibe tu rutina en tu correo')+'</h2>';
+    H+='<p class="slq-q-sub">'+(cap.sub||'Escribe tus datos y te enviamos tu recomendación, más consejos de skincare.')+'</p>';
     H+='<div class="slq-capture">';
     H+='<label for="'+rootId+'-name" class="slq-opt-label--dark">'+T('nombre','Nombre')+'</label>';
     H+='<input class="slq-input" type="text" id="'+rootId+'-name" placeholder="'+T('nombre_ph','Tu nombre')+'" autocomplete="given-name">';
@@ -664,7 +664,7 @@
     H+='<label class="slq-consent"><input type="checkbox" id="'+rootId+'-consent-em" onchange="'+NS+'Q.onConsent(\''+rootId+'\',\'em\')"><span>'+(cap.consent_text||'Acepto recibir comunicaciones de Skinland. Me puedo dar de baja cuando quiera.')+'</span></label>';
     H+='<p class="slq-consent-error" id="'+rootId+'-consent-err-em">'+T('consent_error','Debes aceptar para continuar.')+'</p>';
     H+='</div>';
-    H+='<div class="slq-nav"><button class="slq-btn slq-btn--back" onclick="'+NS+'Q.prev(\''+rootId+'\')">'+T('atras','← Atrás')+'</button><button class="slq-btn slq-btn--primary" id="'+rootId+'-submit" onclick="'+NS+'Q.submitCapture(\''+rootId+'\')">'+T('ver_rutina','Ver mi rutina →')+'</button></div>';
+    H+='<div class="slq-nav"><button class="slq-btn slq-btn--back" onclick="'+NS+'Q.prev(\''+rootId+'\')">'+T('atras','← Atrás')+'</button><button class="slq-btn slq-btn--primary" id="'+rootId+'-submit" onclick="'+NS+'Q.submitCapture(\''+rootId+'\')">'+T('ver_rutina','Recibir mi rutina →')+'</button></div>';
     H+='<button class="slq-skip" onclick="'+NS+'Q.showResults(\''+rootId+'\',null)">'+T('sin_datos','Ver resultados sin dejar datos')+'</button>';
     H+='</div>';
 
@@ -819,11 +819,11 @@
           .catch(function(){ return [shopifyOk,false]; });
       })
       .then(function(results){
-        if(btn){ btn.disabled=false; btn.textContent=T('ver_rutina','Ver mi rutina →'); }
+        if(btn){ btn.disabled=false; btn.textContent=T('ver_rutina','Recibir mi rutina →'); }
         self.showResults(rootId,{ name:name, email:email, shopifyOk:!!results[0], klaviyoOk:!!results[1] });
       })
       .catch(function(){
-        if(btn){ btn.disabled=false; btn.textContent=T('ver_rutina','Ver mi rutina →'); }
+        if(btn){ btn.disabled=false; btn.textContent=T('ver_rutina','Recibir mi rutina →'); }
         self.showResults(rootId,{ name:name, email:email, shopifyOk:false, klaviyoOk:false });
       });
     },
@@ -904,11 +904,9 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
 
         H+='<div class="slq-kit-foot"><div class="slq-kit-prices">';
         H+='<span class="slq-kit-price">'+best.price+'</span>';
-        if(best.suma&&best.ahorro){
-          H+='<span class="slq-kit-compare">'+T('por_separado','Si compras los productos por separado pagarías')+' <s>'+best.suma+'</s></span>';
-        }
+        if(best.suma&&best.ahorro) H+='<span class="sl-sticker">'+T('ahorras','Ahorras [ahorro]').replace('[ahorro]','\u2212'+best.ahorro)+'</span>';
         H+='</div>';
-        if(best.suma&&best.ahorro) H+='<p class="slq-kit-ahorro"><span class="sl-sticker">'+T('ahorras','Ahorras [ahorro]').replace('[ahorro]',best.ahorro)+'</span></p>';
+        if(best.suma&&best.ahorro) H+='<p class="slq-kit-ahorro"><span class="slq-kit-compare">'+T('por_separado','Si compras los productos por separado pagarías')+' <s>'+best.suma+'</s></span></p>';
         H+='<a href="'+best.url+'" class="slq-kit-btn" data-quiz-result="'+best.handle+'">'+T('ver_recomendacion','Ver recomendación →')+'</a>';
         H+='</div></div></div>';
 
