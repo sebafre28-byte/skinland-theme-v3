@@ -21,7 +21,8 @@
             "opt3_tag": "tipo-piel-mixta",
             "opt4_label": "Se enrojece o irrita fácil",
             "opt4_desc": "Reacciona a productos o clima",
-            "opt4_tag": "tipo-piel-sensible"
+            "opt4_tag": "tipo-piel-sensible",
+            "respuestas_aly": "tipo-piel-grasa | Entiendo, el brillo durante el día es muy común. Buscaremos texturas ligeras que no sobrecarguen tu piel.\ntipo-piel-seca | Gracias por contarme. Cuando la piel se siente tirante, lo ideal es limpiar suave e hidratar bien.\ntipo-piel-mixta | Clásico de la zona T: brillo al centro y mejillas más secas. Podemos equilibrar ambas zonas con productos ligeros.\ntipo-piel-sensible | Anotado. Para una piel que reacciona fácil, elegiré fórmulas suaves y vamos de a poco."
           }
         },
         "q_objetivo": {
@@ -47,7 +48,8 @@
             "opt5_tag": "objetivo-calmar",
             "opt6_label": "Poros y brillo",
             "opt6_desc": "Poros visibles o exceso de grasa",
-            "opt6_tag": "objetivo-poros"
+            "opt6_tag": "objetivo-poros",
+            "respuestas_aly": "objetivo-antiacne | Entiendo, los granitos pueden ser molestos. Voy a buscar rutinas y kits pensados para que tu piel se vea más calmada y pareja.\nobjetivo-manchas | Perfecto. Buscaremos opciones que ayuden a que el tono se vea más parejo y luminoso, siempre con protector solar.\nobjetivo-antiedad | Muy bien. Pensaremos en hidratación y cuidado diario para que tu piel se vea descansada y cómoda.\nobjetivo-hidratar | Claro, cuando la piel se siente tirante se nota. Armaremos algo enfocado en hidratar y dar confort.\nobjetivo-calmar | Gracias por avisar. Priorizaré fórmulas suaves que ayuden a calmar la apariencia de la piel.\nobjetivo-poros | Entendido. Buscaremos algo que ayude a que los poros se vean más finos y el brillo se note menos."
           }
         },
         "q_extra": {
@@ -68,7 +70,8 @@
             "opt5_label": "Rojeces o irritación",
             "opt5_tag": "objetivo-calmar",
             "opt6_label": "Granitos o acné",
-            "opt6_tag": "objetivo-antiacne"
+            "opt6_tag": "objetivo-antiacne",
+            "respuestas_aly": "objetivo-ninguno | Perfecto, entonces vamos con una rutina completa y simple.\nobjetivo-poros | Anotado: también poros y brillo. Lo sumo a tu perfil.\nobjetivo-manchas | Anotado: también el tono desigual. Lo sumo a tu perfil.\nobjetivo-hidratar | Anotado: también hidratación. Lo sumo a tu perfil.\nobjetivo-calmar | Anotado: también calmar la piel. Lo sumo a tu perfil.\nobjetivo-antiacne | Anotado: también los granitos. Lo sumo a tu perfil."
           }
         },
         "q_sens": {
@@ -85,7 +88,8 @@
             "opt2_tag": "sensibilidad-reactiva",
             "opt3_label": "Reacciona a casi todo",
             "opt3_desc": "Necesito ir muy de a poco",
-            "opt3_tag": "sensibilidad-muy-reactiva"
+            "opt3_tag": "sensibilidad-muy-reactiva",
+            "respuestas_aly": "sensibilidad-ninguna | Qué bueno, eso me da más libertad para elegir.\nsensibilidad-reactiva | Gracias. Elegiré fórmulas suaves para esos días en que se irrita.\nsensibilidad-muy-reactiva | Entiendo. Iremos con mucho cuidado y de a pocos productos nuevos."
           }
         }
       },
@@ -98,7 +102,8 @@
       "settings": {
         "quiz_collection": "recomendaciones-quiz",
         "enable_routine_level_question": true,
-        "estilo": "chat"
+        "estilo": "chat",
+        "routine_level_respuestas": "preferencia-rutina-3 | Perfecto, una rutina simple es más fácil de mantener todos los días.\npreferencia-rutina-4 | Genial, con experiencia podemos sumar un paso extra para trabajar tu piel.\npreferencia-kit | Entendido, buscaré un kit enfocado en esa necesidad."
       }
     }
   },

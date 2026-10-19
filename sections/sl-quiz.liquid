@@ -105,7 +105,8 @@
                 }
               {%- endif -%}
             {%- endfor -%}
-          ]
+          ],
+          "replies": {% render 'sl-quiz-replies', texto: block.settings.respuestas_aly %}
         }
       {%- endif -%}
     {%- endfor -%}
@@ -142,7 +143,8 @@
             "image": null,
             "image_alt": ""
           }
-        ]
+        ],
+        "replies": {% render 'sl-quiz-replies', texto: section.settings.routine_level_respuestas %}
       }
     {%- endif -%}
   ],
@@ -321,7 +323,13 @@
       "id": "chat_saludo",
       "label": "Saludo inicial",
       "info": "Solo en el estilo conversación.",
-      "default": "¡Hola! Te hago unas preguntas cortas y te recomiendo una rutina simple."
+      "default": "¡Hola! Te puedo recomendar un kit o rutina que se adapte a tus necesidades."
+    },
+    {
+      "type": "textarea",
+      "id": "routine_level_respuestas",
+      "label": "Respuestas de la conversación (pregunta de nivel)",
+      "info": "Una por línea: etiqueta | lo que responde. Etiquetas: preferencia-rutina-3, preferencia-rutina-4, preferencia-kit."
     },
     {
       "type": "header",
@@ -693,6 +701,12 @@
           "id": "question_sub",
           "label": "Instrucción",
           "default": "Elige la que más se parezca a tu día a día."
+        },
+        {
+          "type": "textarea",
+          "id": "respuestas_aly",
+          "label": "Respuestas de la conversación",
+          "info": "Solo en el estilo conversación. Una por línea: etiqueta | lo que responde. Ejemplo: tipo-piel-grasa | Entiendo, el brillo es muy común."
         },
         {
           "type": "image_picker",

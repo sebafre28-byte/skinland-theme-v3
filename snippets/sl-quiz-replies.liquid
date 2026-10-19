@@ -1,0 +1,20 @@
+{%- comment -%}
+  Respuestas del chat del test: una por línea, con el formato "etiqueta | texto". Imprime un objeto JSON {etiqueta: texto}.
+  Parámetro: texto (textarea del ajuste "Respuestas de la conversación").
+{%- endcomment -%}
+{%- assign lineas = texto | newline_to_br | split: '<br />' -%}
+{%- assign primera = true -%}
+{
+{%- for linea in lineas -%}
+  {%- assign limpia = linea | strip -%}
+  {%- if limpia contains '|' -%}
+    {%- assign etiqueta = limpia | split: '|' | first | strip -%}
+    {%- assign resto = limpia | remove_first: etiqueta | remove_first: '|' | strip -%}
+    {%- if etiqueta != blank and resto != blank -%}
+      {%- unless primera %},{% endunless -%}
+      {{ etiqueta | json }}: {{ resto | json }}
+      {%- assign primera = false -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+}

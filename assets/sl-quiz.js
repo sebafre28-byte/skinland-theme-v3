@@ -496,11 +496,11 @@
     d.innerHTML=(who==='aly'?avatarHTML('chico'):'')+'<div class="slqc-burbuja">'+html+'</div>';
     h.appendChild(d); chatKeep(rootId); return d;
   }
-  function chatTyping(rootId,cb){
+  function chatTyping(rootId,cb,corto){
     if(SIN_MOVIMIENTO){ cb(); return; }
     var d=chatMsg(rootId,'aly','<span class="slqc-escribiendo" aria-label="'+esc(chatNombre())+' está escribiendo"><i></i><i></i><i></i></span>');
     chatHabla(rootId,true);
-    setTimeout(function(){ if(d&&d.parentNode) d.parentNode.removeChild(d); chatHabla(rootId,false); cb(); },700);
+    setTimeout(function(){ if(d&&d.parentNode) d.parentNode.removeChild(d); chatHabla(rootId,false); cb(); },corto?550:700);
   }
   function chatProgress(rootId,done){
     var total=(DATA.steps||[]).length+1;
@@ -671,7 +671,10 @@
       if(tray) tray.innerHTML='';
       chatMsg(rootId,'yo',opt.label);
       state[it].answers[step.id]=[opt.tag];
-      if(i<steps.length-1) chatAsk(rootId,i+1); else chatCapture(rootId);
+      var reply=(step.replies||{})[opt.tag];
+      function seguir(){ if(i<steps.length-1) chatAsk(rootId,i+1); else chatCapture(rootId); }
+      if(reply) chatTyping(rootId,function(){ chatMsg(rootId,'aly',esc(reply)); seguir(); },true);
+      else seguir();
     },
     chatBack: function(rootId){
       var steps=DATA.steps||[], it=instOf(rootId), h=$id(rootId+'-hilo');
@@ -684,6 +687,7 @@
         st.options.forEach(function(o){ if(o.tag===tag) lab=o.label; });
         chatMsg(rootId,'aly','<strong>'+st.heading+'</strong>'+(st.sub?'<span class="slqc-sub">'+st.sub+'</span>':''));
         chatMsg(rootId,'yo',lab);
+        var rp=(st.replies||{})[tag]; if(rp) chatMsg(rootId,'aly',esc(rp));
       }
       chatAsk(rootId,target,true);
     },
