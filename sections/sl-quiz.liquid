@@ -14,7 +14,7 @@
   assign customer_form_id = qid | append: '-shopify-customer-form'
 -%}
 
-<section class="slq-wrap sl-scope" id="{{ qid }}-wrap" data-sl-quiz data-estilo="{{ section.settings.estilo | default: 'clasico' }}" data-chat-nombre="{{ section.settings.chat_nombre | escape }}" data-chat-saludo="{{ section.settings.chat_saludo | escape }}" data-chat-avatar="{{ section.settings.chat_avatar | default: 'aly1' }}" data-chat-foto="{% if section.settings.chat_foto != blank %}{{ section.settings.chat_foto | image_url: width: 160 }}{% endif %}" data-chat-salir="{{ routes.root_url }}" data-flotante="{% unless request.design_mode %}1{% endunless %}" data-qid="{{ qid }}" data-ns="{{ ns }}" data-section-id="{{ section.id }}" aria-labelledby="{{ qid }}-titulo">
+<section class="slq-wrap sl-scope" id="{{ qid }}-wrap" data-sl-quiz data-chat-nombre="{{ section.settings.chat_nombre | escape }}" data-chat-saludo="{{ section.settings.chat_saludo | escape }}" data-chat-avatar="{{ section.settings.chat_avatar | default: 'aly1' }}" data-chat-foto="{% if section.settings.chat_foto != blank %}{{ section.settings.chat_foto | image_url: width: 160 }}{% endif %}" data-chat-salir="{{ routes.root_url }}" data-flotante="{% unless request.design_mode %}1{% endunless %}" data-qid="{{ qid }}" data-ns="{{ ns }}" data-section-id="{{ section.id }}" aria-labelledby="{{ qid }}-titulo">
   <div class="sl-container slq-wrap__inner">
     <header class="slq-cab">
       {%- if section.settings.eyebrow != blank -%}<span class="slq-cab__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
@@ -29,7 +29,6 @@
   Formulario nativo Shopify para crear/actualizar un suscriptor.
   Se mantiene fuera de la vista, pero presente en el DOM para hCaptcha.
 {%- endcomment -%}
-{%- if section.settings.estilo == 'chat' -%}
 <template id="{{ qid }}-form-tpl">
 <div id="{{ qid }}-customer-form" class="slq-native-form" aria-hidden="true">
   {%- form 'customer', id: customer_form_id, data-shopify-captcha: 'true' -%}
@@ -39,15 +38,6 @@
   {%- endform -%}
 </div>
 </template>
-{%- else -%}
-<div id="{{ qid }}-customer-form" class="slq-native-form" aria-hidden="true">
-  {%- form 'customer', id: customer_form_id, data-shopify-captcha: 'true' -%}
-    <input type="hidden" name="contact[first_name]" value="">
-    <input type="hidden" name="contact[email]" value="">
-    <input type="hidden" name="contact[tags]" value="">
-  {%- endform -%}
-</div>
-{%- endif -%}
 <iframe id="{{ qid }}-shopify-target" name="{{ qid }}-shopify-target" class="slq-native-frame" title="" aria-hidden="true" tabindex="-1"></iframe>
 
 {%- comment %} ── Datos JSON ── {% endcomment %}
@@ -242,7 +232,6 @@
   ],
   "ui": {
     "atras": {{ section.settings.ui_atras | json }},
-    "siguiente": {{ section.settings.ui_siguiente | json }},
     "ver_rutina": {{ section.settings.ui_ver_rutina | json }},
     "sin_datos": {{ section.settings.ui_sin_datos | json }},
     "reiniciar": {{ section.settings.ui_reiniciar | json }},
@@ -259,9 +248,6 @@
   "capture": {
     "heading": {{ section.settings.capture_heading | json }},
     "sub": {{ section.settings.capture_sub | json }},
-    "benefit_1": {{ section.settings.benefit_1 | json }},
-    "benefit_2": {{ section.settings.benefit_2 | json }},
-    "benefit_3": {{ section.settings.benefit_3 | json }},
     "consent_text": {{ section.settings.consent_text | json }},
     "klaviyo_public_key": {{ section.settings.klaviyo_public_key | default: '' | strip | json }},
     "klaviyo_list_id": {{ section.settings.klaviyo_list_id | default: '' | strip | json }},
@@ -296,38 +282,22 @@
   "settings": [
     {
       "type": "header",
-      "content": "Estilo del test"
-    },
-    {
-      "type": "select",
-      "id": "estilo",
-      "label": "Estilo",
-      "default": "clasico",
-      "options": [
-        { "value": "clasico", "label": "Clásico (varias preguntas con foto)" },
-        { "value": "chat", "label": "Conversación (chat con Aly)" },
-        { "value": "pantalla", "label": "Una pregunta por pantalla" }
-      ]
+      "content": "Aly (chat)"
     },
     {
       "type": "text",
       "id": "chat_nombre",
       "label": "Nombre de quien conversa",
-      "info": "Solo en el estilo conversación.",
       "default": "Aly"
     },
     {
       "type": "select",
       "id": "chat_avatar",
       "label": "Avatar del chat",
-      "info": "Solo en el estilo conversación. Son dibujos animados, no fotos.",
+      "info": "Es un dibujo animado, no una foto.",
       "default": "aly1",
       "options": [
-        { "value": "aly1", "label": "1 · Moños y estrella" },
-        { "value": "aly2", "label": "2 · Pelo largo y cinta" },
-        { "value": "aly3", "label": "3 · Bob con lentes" },
-        { "value": "aly4", "label": "4 · Cola de caballo" },
-        { "value": "aly5", "label": "5 · Boina y ondas" },
+        { "value": "aly1", "label": "Aly (moños y estrella)" },
         { "value": "letra", "label": "Inicial del nombre" }
       ]
     },
@@ -341,7 +311,6 @@
       "type": "text",
       "id": "chat_saludo",
       "label": "Saludo inicial",
-      "info": "Solo en el estilo conversación.",
       "default": "¡Hola! Te puedo recomendar un kit o rutina que se adapte a tus necesidades."
     },
     {
@@ -387,24 +356,6 @@
       "id": "capture_sub",
       "label": "Subtítulo",
       "default": "Escribe tus datos y te enviamos tu recomendación, más consejos de skincare."
-    },
-    {
-      "type": "text",
-      "id": "benefit_1",
-      "label": "Beneficio 1",
-      "default": "Recibe tu rutina personalizada al instante"
-    },
-    {
-      "type": "text",
-      "id": "benefit_2",
-      "label": "Beneficio 2",
-      "default": "Guarda tu recomendación para revisarla después"
-    },
-    {
-      "type": "text",
-      "id": "benefit_3",
-      "label": "Beneficio 3",
-      "default": "Consejos de Skinland según tu perfil"
     },
     {
       "type": "text",
@@ -603,12 +554,6 @@
     },
     {
       "type": "text",
-      "id": "ui_siguiente",
-      "label": "Siguiente",
-      "default": "Siguiente →"
-    },
-    {
-      "type": "text",
       "id": "ui_atras",
       "label": "Atrás",
       "default": "← Atrás"
@@ -749,7 +694,7 @@
           "type": "textarea",
           "id": "respuestas_aly",
           "label": "Respuestas de la conversación",
-          "info": "Solo en el estilo conversación. Una por línea: etiqueta | lo que responde. Ejemplo: tipo-piel-grasa | Entiendo, el brillo es muy común."
+          "info": "Una por línea: etiqueta | lo que responde. Ejemplo: tipo-piel-grasa | Entiendo, el brillo es muy común."
         },
         {
           "type": "image_picker",
