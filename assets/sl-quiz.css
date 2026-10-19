@@ -263,3 +263,11 @@ html.slqc-bloqueado .shopify-section-group-footer-group, html.slqc-bloqueado foo
   .av-cola { animation: aly-cola 2.6s ease-in-out infinite; transform-origin: 68px 24px; }
 }
 @keyframes aly-cola { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(7deg); } }
+
+/* Panel más bajo para que la conversación no se pierda */
+.slqc-bandeja { max-height: 46%; padding-top: 16px; gap: 4px; }
+.slqc-ops { gap: 6px; }
+.slqc-op { min-height: 44px; padding: 7px 38px 7px 16px; border-radius: 14px; box-shadow: 2px 2px 0 var(--sl-tinta); }
+.slqc-op__t { font-size: 15px; line-height: 1.2; }
+.slqc-op__d { font-size: 12px; line-height: 1.25; }
+.slqc-resp-cab { padding-bottom: 2px; }
