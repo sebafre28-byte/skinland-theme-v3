@@ -278,3 +278,17 @@ html.slqc-bloqueado .shopify-section-group-footer-group, html.slqc-bloqueado foo
 .slqc-ops--muchas .slqc-op__t { font-size: 13.5px; line-height: 1.15; }
 .slqc-ops--muchas .slqc-op__d { display: block; font-size: 11px; line-height: 1.2; margin-top: 2px; }
 .slqc-bandeja { max-height: 52%; }
+
+/* Resultado dentro del chat: a todo el ancho y más compacto */
+.slqc--fin .slqc-cuerpo { padding: 14px 14px 24px; background: var(--sl-crema); }
+.slqc--fin .slq-results-heading { font-size: 26px; }
+.slqc--fin .slq-results-sub { font-size: 14px; }
+.slqc--fin .slq-results-hdr { padding-bottom: 12px; }
+.slqc--fin .slq-kit { grid-template-columns: 1fr; border-radius: 18px; }
+.slqc--fin .slq-kit > img { width: 100%; height: auto; aspect-ratio: 16 / 10; padding: 0; object-fit: cover; border-right: 0; border-bottom: var(--sl-borde); }
+.slqc--fin .slq-kit-body { padding: 14px; gap: 8px; }
+.slqc--fin .slq-kit-title { font-size: 24px; }
+.slqc--fin .slq-kit-desc { -webkit-line-clamp: 3; }
+.slqc--fin .slq-kit-price { font-size: 28px; }
+.slqc--fin .slq-prods-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.slqc--fin .slq-routine-alt { flex-direction: column; align-items: stretch; }

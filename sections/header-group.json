@@ -22,7 +22,7 @@
         "originales": {
           "type": "texto",
           "settings": {
-            "texto": "Productos coreanos 100% originales"
+            "texto": "Productos 100% originales"
           }
         },
         "chile": {
@@ -36,27 +36,13 @@
           "settings": {
             "texto": "Asesoría gratis por WhatsApp"
           }
-        },
-        "rutinas": {
-          "type": "texto",
-          "settings": {
-            "texto": "Rutinas armadas para tu tipo de piel"
-          }
-        },
-        "test": {
-          "type": "texto",
-          "settings": {
-            "texto": "Test de piel en 1 minuto"
-          }
         }
       },
       "block_order": [
         "envio",
         "chile",
         "originales",
-        "wsp",
-        "rutinas",
-        "test"
+        "wsp"
       ],
       "settings": {
         "etiqueta_aria": "Anuncios"

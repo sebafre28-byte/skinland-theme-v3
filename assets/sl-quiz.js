@@ -556,7 +556,14 @@
     }
     if(instant) show(); else chatTyping(rootId,show);
   }
+  function chatCargarForm(){
+    /* El formulario protegido con hCaptcha se carga recién al llegar al paso del correo, para que su insignia no aparezca antes */
+    if($id(QID+'-customer-form')) return;
+    var tpl=$id(QID+'-form-tpl'); if(!tpl||!tpl.content) return;
+    document.body.appendChild(tpl.content.cloneNode(true));
+  }
   function chatCapture(rootId,instant){
+    chatCargarForm();
     var steps=DATA.steps||[], cap=DATA.capture||{}, it=instOf(rootId), tray=$id(rootId+'-bandeja');
     if(!tray) return;
     state[it].cur=steps.length; chatProgress(rootId,steps.length); tray.innerHTML='';

@@ -29,6 +29,8 @@
   Formulario nativo Shopify para crear/actualizar un suscriptor.
   Se mantiene fuera de la vista, pero presente en el DOM para hCaptcha.
 {%- endcomment -%}
+{%- if section.settings.estilo == 'chat' -%}
+<template id="{{ qid }}-form-tpl">
 <div id="{{ qid }}-customer-form" class="slq-native-form" aria-hidden="true">
   {%- form 'customer', id: customer_form_id, data-shopify-captcha: 'true' -%}
     <input type="hidden" name="contact[first_name]" value="">
@@ -36,6 +38,16 @@
     <input type="hidden" name="contact[tags]" value="">
   {%- endform -%}
 </div>
+</template>
+{%- else -%}
+<div id="{{ qid }}-customer-form" class="slq-native-form" aria-hidden="true">
+  {%- form 'customer', id: customer_form_id, data-shopify-captcha: 'true' -%}
+    <input type="hidden" name="contact[first_name]" value="">
+    <input type="hidden" name="contact[email]" value="">
+    <input type="hidden" name="contact[tags]" value="">
+  {%- endform -%}
+</div>
+{%- endif -%}
 <iframe id="{{ qid }}-shopify-target" name="{{ qid }}-shopify-target" class="slq-native-frame" title="" aria-hidden="true" tabindex="-1"></iframe>
 
 {%- comment %} ── Datos JSON ── {% endcomment %}
