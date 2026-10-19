@@ -14,7 +14,7 @@
   assign customer_form_id = qid | append: '-shopify-customer-form'
 -%}
 
-<section class="slq-wrap sl-scope" id="{{ qid }}-wrap" data-sl-quiz data-estilo="{{ section.settings.estilo | default: 'clasico' }}" data-chat-nombre="{{ section.settings.chat_nombre | escape }}" data-chat-saludo="{{ section.settings.chat_saludo | escape }}" data-chat-avatar="{{ section.settings.chat_avatar | default: 'aly' }}" data-chat-foto="{% if section.settings.chat_foto != blank %}{{ section.settings.chat_foto | image_url: width: 160 }}{% endif %}" data-chat-salir="{{ routes.root_url }}" data-flotante="{% unless request.design_mode %}1{% endunless %}" data-qid="{{ qid }}" data-ns="{{ ns }}" data-section-id="{{ section.id }}" aria-labelledby="{{ qid }}-titulo">
+<section class="slq-wrap sl-scope" id="{{ qid }}-wrap" data-sl-quiz data-estilo="{{ section.settings.estilo | default: 'clasico' }}" data-chat-nombre="{{ section.settings.chat_nombre | escape }}" data-chat-saludo="{{ section.settings.chat_saludo | escape }}" data-chat-avatar="{{ section.settings.chat_avatar | default: 'aly1' }}" data-chat-foto="{% if section.settings.chat_foto != blank %}{{ section.settings.chat_foto | image_url: width: 160 }}{% endif %}" data-chat-salir="{{ routes.root_url }}" data-flotante="{% unless request.design_mode %}1{% endunless %}" data-qid="{{ qid }}" data-ns="{{ ns }}" data-section-id="{{ section.id }}" aria-labelledby="{{ qid }}-titulo">
   <div class="sl-container slq-wrap__inner">
     <header class="slq-cab">
       {%- if section.settings.eyebrow != blank -%}<span class="slq-cab__eyebrow">{{ section.settings.eyebrow }}</span>{%- endif -%}
@@ -303,10 +303,14 @@
       "type": "select",
       "id": "chat_avatar",
       "label": "Avatar del chat",
-      "info": "Solo en el estilo conversación. Es un dibujo animado, no una foto.",
-      "default": "aly",
+      "info": "Solo en el estilo conversación. Son dibujos animados, no fotos.",
+      "default": "aly1",
       "options": [
-        { "value": "aly", "label": "Ilustración animada (mujer coreana)" },
+        { "value": "aly1", "label": "1 · Moños y estrella" },
+        { "value": "aly2", "label": "2 · Pelo largo y cinta" },
+        { "value": "aly3", "label": "3 · Bob con lentes" },
+        { "value": "aly4", "label": "4 · Cola de caballo" },
+        { "value": "aly5", "label": "5 · Boina y ondas" },
         { "value": "letra", "label": "Inicial del nombre" }
       ]
     },

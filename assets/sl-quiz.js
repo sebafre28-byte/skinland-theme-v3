@@ -465,36 +465,40 @@
   function chatNombre(){ return ROOT.dataset.chatNombre || 'Aly'; }
   function avatarTipo(){
     var q=''; try{ q=new URLSearchParams(window.location.search).get('avatar')||''; }catch(e){}
-    var t=q||ROOT.dataset.chatAvatar||'aly';
-    return t==='letra'?'letra':'aly';
+    var t=q||ROOT.dataset.chatAvatar||'1';
+    if(t==='letra') return 'letra';
+    t=String(t).replace('aly','');
+    return ['1','2','3','4','5'].indexOf(t)!==-1?t:'1';
   }
-  /* Avatar dibujado (no es una foto): mujer coreana ilustrada que pestañea, se balancea y mueve la boca mientras "escribe" */
+  /* Avatares dibujados (no son fotos): 5 versiones de Aly. Parpadean, se balancean y mueven la boca mientras "escribe" */
+  var AV_CARA='<ellipse class="av-cara" cx="50" cy="52" rx="23.5" ry="26"/>';
+  var AV_RASGOS='<g class="av-ojos"><ellipse cx="40" cy="54" rx="3.3" ry="4.2"/><ellipse cx="60" cy="54" rx="3.3" ry="4.2"/><circle class="av-brilloojo" cx="41.3" cy="52.6" r="1.2"/><circle class="av-brilloojo" cx="61.3" cy="52.6" r="1.2"/></g><path class="av-pestana" d="M36.4 52.4l-2.2-1.6M63.6 52.4l2.2-1.6"/><path class="av-ceja" d="M34.5 46.5q5.5-3.2 11-1M54.5 45.5q5.5-2.2 11 1"/><ellipse class="av-rubor" cx="33.5" cy="61" rx="4.6" ry="2.6"/><ellipse class="av-rubor" cx="66.5" cy="61" rx="4.6" ry="2.6"/><path class="av-boca" d="M43.5 65q6.5 5.5 13 0"/>';
+  var AV_CUERPO='<path class="av-ropa" d="M12 112c0-26 14-40 38-40s38 14 38 40z"/><path class="av-cuello" d="M42 64h16v13c-3 5-13 5-16 0z"/>';
+  var AV_DESTELLOS='<g class="av-destellos"><path d="M10 16l1.5 3.4 3.4 1.5-3.4 1.5L10 26l-1.5-3.6L5 20.9l3.5-1.5z"/><path d="M91 54l1.2 2.7 2.7 1.2-2.7 1.2L91 62l-1.2-2.9-2.7-1.2 2.7-1.2z"/></g>';
+  var AV={
+    '1':{ atras:'<circle class="av-pelo" cx="26" cy="22" r="11"/><circle class="av-pelo" cx="74" cy="22" r="11"/><circle class="av-lazo" cx="26" cy="22" r="3.4"/><circle class="av-lazo" cx="74" cy="22" r="3.4"/><ellipse class="av-pelo" cx="50" cy="46" rx="31" ry="33"/><path class="av-pelo" d="M27 40c-3.5 13 .5 28 7 38c-2.5-12-3-26-1-38z"/><path class="av-pelo" d="M73 40c3.5 13-.5 28-7 38c2.5-12 3-26 1-38z"/>',
+      frente:'<path class="av-pelo" d="M24.5 50C23.5 31 35 19.5 50 19.5S76.5 31 75.5 50C73 41 67 36.5 59 36C55 40.5 45 40.5 41 36C33 36.5 27 41 24.5 50z"/><path class="av-mecha" d="M46 24c-.5 4-2.5 7-5.5 9.5M54 24c.5 4 2.5 7 5.5 9.5"/>',
+      extra:'<path class="av-estrella" d="M71 35l1.7 3.5 3.9.5-2.8 2.7.7 3.9-3.5-1.9-3.5 1.9.7-3.9-2.8-2.7 3.9-.5z"/>' },
+    '2':{ atras:'<path class="av-pelo" d="M22 52c-3 22-1 38 5 52h46c6-14 8-30 5-52c-2-19-14-31-28-31s-26 12-28 31z"/>',
+      frente:'<path class="av-pelo" d="M24.5 54C22.5 33 35 21 50 21s27.5 12 25.5 33C71 43 61 33 50 28C39 33 29 43 24.5 54z"/><path class="av-mecha" d="M50 26c-6 5-12 12-17 20"/>',
+      extra:'<path class="av-cinta" d="M25.5 40q24.5-24 49 0"/><circle class="av-lazo" cx="68" cy="25" r="4"/><circle class="av-lazo" cx="74" cy="29" r="3"/>' },
+    '3':{ atras:'<path class="av-pelo" d="M21 48c0-21 12-31 29-31s29 10 29 31v32h-9V52H30v28h-9z"/>',
+      frente:'<path class="av-pelo" d="M25 51c-1-17 10-26 25-26s26 9 25 26c-9-1-17-4-25-4s-16 3-25 4z"/><path class="av-mecha" d="M38 30c-3 3-5 7-6 11M62 30c3 3 5 7 6 11"/>',
+      extra:'<circle class="av-lente" cx="40" cy="54" r="8.6"/><circle class="av-lente" cx="60" cy="54" r="8.6"/><path class="av-lente" d="M48.6 53.5h2.8"/>' },
+    '4':{ atras:'<g class="av-cola"><path class="av-pelo" d="M68 22c16 0 24 16 17 38c-1-11-5-18-14-21z"/></g><ellipse class="av-pelo" cx="50" cy="44" rx="29" ry="30"/>',
+      frente:'<path class="av-pelo" d="M24.5 51C23.5 31 35 20.5 50 20.5S76.5 31 75.5 51C72 40 62 34 51 33C42 40 31 43 24.5 51z"/><path class="av-mecha" d="M52 24c-3 4-8 8-14 11"/>',
+      extra:'<circle class="av-lazo" cx="68" cy="24" r="5"/><path class="av-estrella" d="M31 33l1.5 3.2 3.5.4-2.6 2.4.7 3.5-3.1-1.7-3.1 1.7.7-3.5-2.6-2.4 3.5-.4z"/>' },
+    '5':{ atras:'<ellipse class="av-pelo" cx="50" cy="48" rx="31" ry="32"/><circle class="av-pelo" cx="23" cy="68" r="8"/><circle class="av-pelo" cx="77" cy="68" r="8"/><circle class="av-pelo" cx="30" cy="79" r="7"/><circle class="av-pelo" cx="70" cy="79" r="7"/>',
+      frente:'<path class="av-pelo" d="M25 52C24 35 35 25 50 25c11 0 21 6 25 18C66 40 57 35 44 38C36 40 29 44 25 52z"/>',
+      extra:'<path class="av-boina" d="M23 33C21 19 35 12 52 13c15 1 27 8 25 19C66 27 44 25 23 33z"/><circle class="av-boina" cx="52" cy="12" r="2.6"/>' }
+  };
   function avatarHTML(tamano){
     var foto=ROOT.dataset.chatFoto, t=avatarTipo();
     if(foto) return '<span class="slqc-av slqc-av--'+tamano+' slqc-av--foto" aria-hidden="true"><img src="'+esc(foto)+'" alt=""></span>';
     if(t==='letra') return '<span class="slqc-av slqc-av--'+tamano+' slqc-av--letra" aria-hidden="true">'+esc(chatNombre().charAt(0))+'</span>';
-    var S='<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">'
-      +'<g class="av-cuerpo">'
-      +'<path class="av-ropa" d="M12 112c0-26 14-40 38-40s38 14 38 40z"/>'
-      +'<path class="av-cuello" d="M42 64h16v13c-3 5-13 5-16 0z"/>'
-      +'<g class="av-cabeza">'
-      +'<circle class="av-pelo" cx="26" cy="22" r="11"/><circle class="av-pelo" cx="74" cy="22" r="11"/>'
-      +'<circle class="av-lazo" cx="26" cy="22" r="3.4"/><circle class="av-lazo" cx="74" cy="22" r="3.4"/>'
-      +'<ellipse class="av-pelo" cx="50" cy="46" rx="31" ry="33"/>'
-      +'<ellipse class="av-cara" cx="50" cy="52" rx="23.5" ry="26"/>'
-      +'<path class="av-pelo" d="M27 40c-3.500 13 .5 28 7 38c-2.500-12-3-26-1-38z"/><path class="av-pelo" d="M73 40c3.500 13-.5 28-7 38c2.500-12 3-26 1-38z"/>'
-      +'<path class="av-pelo" d="M24.5 50C23.5 31 35 19.5 50 19.5S76.500 31 75.500 50C73 41 67 36.500 59 36C55 40.500 45 40.500 41 36C33 36.500 27 41 24.500 50z"/>'
-      +'<path class="av-mecha" d="M46 24c-.5 4-2.500 7-5.500 9.500M54 24c.5 4 2.500 7 5.500 9.500"/>'
-      +'<g class="av-ojos"><ellipse cx="40" cy="54" rx="3.3" ry="4.2"/><ellipse cx="60" cy="54" rx="3.3" ry="4.2"/><circle class="av-brilloojo" cx="41.3" cy="52.6" r="1.2"/><circle class="av-brilloojo" cx="61.3" cy="52.6" r="1.2"/></g>'
-      +'<path class="av-pestana" d="M36.4 52.4l-2.2-1.6M63.6 52.4l2.2-1.6"/>'
-      +'<path class="av-ceja" d="M34.5 46.5q5.5-3.2 11-1M54.5 45.5q5.5-2.2 11 1"/>'
-      +'<ellipse class="av-rubor" cx="33.5" cy="61" rx="4.6" ry="2.6"/><ellipse class="av-rubor" cx="66.5" cy="61" rx="4.6" ry="2.6"/>'
-      +'<path class="av-boca" d="M43.5 65q6.5 5.5 13 0"/>'
-      +'<path class="av-estrella" d="M71 35l1.7 3.5 3.9.5-2.8 2.7.7 3.9-3.5-1.9-3.5 1.9.7-3.9-2.8-2.7 3.9-.5z"/>'
-      +'</g></g>'
-      +'<g class="av-destellos"><path d="M10 16l1.5 3.4 3.4 1.5-3.4 1.5L10 26l-1.5-3.6L5 20.9l3.5-1.5z"/><path d="M91 54l1.2 2.7 2.7 1.2-2.7 1.2L91 62l-1.2-2.9-2.7-1.2 2.7-1.2z"/></g>'
-      +'</svg>';
-    return '<span class="slqc-av slqc-av--'+tamano+' slqc-av--aly" aria-hidden="true">'+S+'</span>';
+    var v=AV[t];
+    var S='<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><g class="av-cuerpo">'+AV_CUERPO+'<g class="av-cabeza">'+v.atras+AV_CARA+v.frente+AV_RASGOS+v.extra+'</g></g>'+AV_DESTELLOS+'</svg>';
+    return '<span class="slqc-av slqc-av--'+tamano+' slqc-av--v'+t+'" aria-hidden="true">'+S+'</span>';
   }
   function chatHora(){ var d=new Date(); return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }
   /* La ventana ocupa lo que queda de pantalla bajo el encabezado del sitio (y se ajusta con el teclado) */
@@ -536,7 +540,7 @@
     state[it].cur=i; chatProgress(rootId,i); tray.innerHTML='';
     function show(){
       chatMsg(rootId,'aly','<strong>'+step.heading+'</strong>'+(step.sub?'<span class="slqc-sub">'+step.sub+'</span>':''));
-      var H='<div class="slqc-ops'+(step.options.length>=5?' slqc-ops--muchas':'')+'" role="group" aria-label="'+esc(step.heading.replace(/<[^>]+>/g,''))+'">';
+      var H='<div class="slqc-resp-cab"><span>'+T('chat_responde','Tu respuesta')+'</span><span>'+T('chat_toca','Toca una opción')+' ↓</span></div><div class="slqc-ops'+(step.options.length>=5?' slqc-ops--muchas':'')+'" role="group" aria-label="'+esc(step.heading.replace(/<[^>]+>/g,''))+'">';
       step.options.forEach(function(opt,k){
         H+='<button type="button" class="slqc-op" onclick="'+NS+'Q.chatPick(\''+rootId+'\','+i+','+k+')"><span class="slqc-op__t">'+opt.label+'</span>'+(opt.desc?'<span class="slqc-op__d">'+opt.desc+'</span>':'')+'</button>';
       });
@@ -553,7 +557,7 @@
     state[it].cur=steps.length; chatProgress(rootId,steps.length); tray.innerHTML='';
     function show(){
       chatMsg(rootId,'aly','<strong>'+(cap.heading||'¡Casi listo! Recibe tu rutina')+'</strong><span class="slqc-sub">'+(cap.sub||'Déjanos tu email para guardar y recibir tu recomendación.')+'</span>');
-      var H='<div class="slqc-form">';
+      var H='<div class="slqc-resp-cab"><span>'+T('chat_responde','Tu respuesta')+'</span><span>'+T('chat_escribe','Escribe tus datos')+' ↓</span></div><div class="slqc-form">';
       H+='<label for="'+rootId+'-name" class="slq-opt-label--dark">'+T('nombre','Nombre')+'</label>';
       H+='<input class="slq-input" type="text" id="'+rootId+'-name" placeholder="'+T('nombre_ph','Tu nombre')+'" autocomplete="given-name">';
       H+='<label for="'+rootId+'-em" class="slq-opt-label--dark">'+T('email','Email')+'</label>';
