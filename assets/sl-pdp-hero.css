@@ -146,3 +146,10 @@
 
 .sl-buybox__precio-fila { flex-wrap: wrap; row-gap: 2px; }
 .sl-buybox__separado { flex: 1 1 140px; }
+
+/* Orden del precio: precio grande + costo por día y duración a la derecha; abajo el ahorro y la suma por separado */
+.sl-buybox__precio-fila { flex-wrap: nowrap; align-items: center; justify-content: space-between; gap: 14px; }
+.sl-costo-dia--dos { display: flex; flex-direction: column; gap: 1px; text-align: right; line-height: 1.25; }
+.sl-costo-dia--dos strong { font-size: 14px; font-weight: 800; }
+.sl-costo-dia--dos span { font-size: 13px; }
+.sl-buybox__separado { flex: none; }

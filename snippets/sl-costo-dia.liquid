@@ -9,5 +9,9 @@
     assign t_costo = texto_costo | replace: '[precio]', por_dia_texto
     assign t_dura = texto_dura | replace: '[dias]', dias
   -%}
-  <p class="sl-costo-dia">{{ t_costo }} · {{ t_dura }}</p>
+  {%- if dos_lineas -%}
+    <p class="sl-costo-dia sl-costo-dia--dos"><strong>{{ t_costo }}</strong><span>{{ t_dura }}</span></p>
+  {%- else -%}
+    <p class="sl-costo-dia">{{ t_costo }} · {{ t_dura }}</p>
+  {%- endif -%}
 {%- endif -%}
