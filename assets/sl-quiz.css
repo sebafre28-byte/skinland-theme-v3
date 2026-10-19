@@ -311,3 +311,8 @@ html.slqc-bloqueado .shopify-section-group-footer-group, html.slqc-bloqueado foo
 .slq-wa__b { display: flex; align-items: center; justify-content: center; gap: 10px; }
 .slqc--fin .slq-routine-alt { background: var(--sl-celeste); }
 .slqc--fin .slq-routine-alt-btn { background: var(--sl-blanco); }
+
+/* Colores según la rutina o kit recomendado; solo Aly queda en blanco. Foto como franja baja */
+.slq-kit { background: var(--sl-necesidad, var(--sl-menta)); }
+.slqc--fin .slq-routine-alt { background: var(--sl-necesidad, var(--sl-menta)); }
+.slqc--fin .slq-kit > img { aspect-ratio: 2 / 1; object-position: center 35%; }

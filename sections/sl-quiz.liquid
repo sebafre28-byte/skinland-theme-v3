@@ -230,6 +230,7 @@
             "description": {{ p.description | strip_html | strip | truncate: 190 | json }},
             "image": {% if p.featured_image != blank %}{{ p.featured_image | image_url: width: 700 | json }}{% else %}null{% endif %},
             "alt": {{ p.featured_image.alt | default: p.title | json }},
+            "color": {% capture col_raw %}{% render 'sl-color-necesidad', product: p %}{% endcapture %}{{ col_raw | strip | json }},
             "quiz_tipo": {{ quiz_tipo | json }},
             "routine_steps": {{ routine_steps }},
             "match_tags": {{ p.tags | join: ',' | downcase | json }},

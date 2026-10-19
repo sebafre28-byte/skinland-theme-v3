@@ -875,7 +875,7 @@
       var H='';
 
       if(best){
-        H+='<div class="slq-kit">';
+        H+='<div class="slq-kit" data-sl-color="'+(best.color||'menta')+'">';
         if(best.image) H+='<img src="'+best.image+'" alt="'+best.alt+'" loading="lazy">';
         H+='<div class="slq-kit-body">';
         var resultTag = 'Rutina recomendada';
@@ -917,7 +917,7 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
 
         if(rec.alternativaRutina){
           var alt=rec.alternativaRutina;
-          H+='<div class="slq-routine-alt">';
+          H+='<div class="slq-routine-alt" data-sl-color="'+(best.color||'menta')+'">';
           H+='<div class="slq-routine-alt-copy"><span class="slq-routine-alt-label">También puedes elegir</span>';
           H+='<strong class="slq-routine-alt-title">Rutina de '+alt.routine_steps+' pasos</strong>';
           H+='<span class="slq-routine-alt-price">'+alt.price+'</span></div>';
