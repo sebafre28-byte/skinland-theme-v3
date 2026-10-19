@@ -307,3 +307,7 @@ html.slqc-bloqueado .shopify-section-group-footer-group, html.slqc-bloqueado foo
 
 .slqc--fin .slq-success-msg { margin-bottom: 12px; padding: 8px 12px; font-size: 12.5px; line-height: 1.35; }
 .slqc--fin .slq-success-msg strong { display: inline; margin-right: 4px; }
+
+.slq-wa__b { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.slqc--fin .slq-routine-alt { background: var(--sl-celeste); }
+.slqc--fin .slq-routine-alt-btn { background: var(--sl-blanco); }

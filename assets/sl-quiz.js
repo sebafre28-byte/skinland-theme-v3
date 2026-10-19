@@ -949,7 +949,7 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
       }
 
       if(R.wa_url){
-        H+='<div class="slq-wa"><strong class="slq-wa__t">'+conNombre(R.wa_titulo||'')+'</strong><p class="slq-wa__p">'+conNombre(R.wa_texto||'')+'</p><a class="slq-btn slq-btn--primary slq-wa__b" href="'+esc(R.wa_url)+'" target="_blank" rel="noopener">'+esc(R.wa_boton||'WhatsApp')+'</a></div>';
+        H+='<div class="slq-wa"><strong class="slq-wa__t">'+conNombre(R.wa_titulo||'')+'</strong><p class="slq-wa__p">'+conNombre(R.wa_texto||'')+'</p><a class="slq-btn slq-btn--primary slq-wa__b" href="'+esc(R.wa_url)+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.800 7L4 20.500l1.600-4.700A8 8 0 1 1 21 12z"/><path d="M9 9.500c0 3 2.500 5.500 5.500 5.500l1-1.500-2-1-.8.800c-.8-.4-1.500-1.100-1.900-1.900l.8-.8-1-2z"/></svg>'+esc(R.wa_boton||'WhatsApp')+'</a></div>';
       }
 
       if((DATA.capture||{}).debug_mode){
