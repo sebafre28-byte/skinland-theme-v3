@@ -299,3 +299,11 @@ html.slqc-bloqueado .shopify-section-group-footer-group, html.slqc-bloqueado foo
 .slq-wa__t { font-family: var(--sl-font-display); font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
 .slq-wa__p { margin: 0 0 8px; font-size: 14px; line-height: 1.45; }
 .slq-wa__b { width: 100%; text-decoration: none; }
+
+/* En el resultado, primero la información y el botón; la foto va debajo, completa */
+.slqc--fin .slq-kit { display: flex; flex-direction: column; }
+.slqc--fin .slq-kit-body { order: 1; }
+.slqc--fin .slq-kit > img { order: 2; border-bottom: 0; border-top: var(--sl-borde); }
+
+.slqc--fin .slq-success-msg { margin-bottom: 12px; padding: 8px 12px; font-size: 12.5px; line-height: 1.35; }
+.slqc--fin .slq-success-msg strong { display: inline; margin-right: 4px; }

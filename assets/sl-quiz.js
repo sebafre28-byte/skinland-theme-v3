@@ -850,9 +850,9 @@
         var who=status.name?', '+status.name.split(' ')[0]:'';
         var msg='';
         if(status.klaviyoOk&&(DATA.capture||{}).email_flow_active){
-          msg='Tu recomendación fue registrada y la enviaremos a <strong>'+status.email+'</strong>. Revisa también promociones o spam.';
+          msg='Tu recomendación fue registrada y la enviaremos a <b>'+status.email+'</b>. Revisa también promociones o spam.';
         }else if(status.shopifyOk||status.klaviyoOk){
-          msg='Guardamos tu perfil correctamente con el email <strong>'+status.email+'</strong>. Tu recomendación aparece a continuación.';
+          msg='Guardamos tu perfil correctamente con el email <b>'+status.email+'</b>. Tu recomendación aparece a continuación.';
         }else{
           msg='Tu recomendación está lista, pero no pudimos confirmar el registro del email. Intenta nuevamente más tarde.';
         }
