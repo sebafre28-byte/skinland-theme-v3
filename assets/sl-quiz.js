@@ -465,22 +465,43 @@
   function chatNombre(){ return ROOT.dataset.chatNombre || 'Aly'; }
   function avatarTipo(){
     var q=''; try{ q=new URLSearchParams(window.location.search).get('avatar')||''; }catch(e){}
-    var t=q||ROOT.dataset.chatAvatar||'gota';
-    return ['gota','chica','tubo','letra'].indexOf(t)!==-1?t:'gota';
+    var t=q||ROOT.dataset.chatAvatar||'aly';
+    return t==='letra'?'letra':'aly';
   }
-  /* Avatares dibujados (no son fotos de personas): se animan con CSS (parpadeo, rebote y "hablando" mientras escribe) */
+  /* Avatar dibujado (no es una foto): mujer coreana ilustrada que pestañea, se balancea y mueve la boca mientras "escribe" */
   function avatarHTML(tamano){
-    var foto=ROOT.dataset.chatFoto, t=avatarTipo(), S='';
+    var foto=ROOT.dataset.chatFoto, t=avatarTipo();
     if(foto) return '<span class="slqc-av slqc-av--'+tamano+' slqc-av--foto" aria-hidden="true"><img src="'+esc(foto)+'" alt=""></span>';
     if(t==='letra') return '<span class="slqc-av slqc-av--'+tamano+' slqc-av--letra" aria-hidden="true">'+esc(chatNombre().charAt(0))+'</span>';
-    if(t==='gota'){
-      S='<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="slqc-cuerpo-av"><path d="M32 5C32 5 11 28 11 41a21 21 0 0 0 42 0C53 28 32 5 32 5z" class="av-gota"/><path d="M20 38c1-7 5-13 9-18" class="av-brillo"/><g class="av-ojos"><ellipse cx="24" cy="40" rx="2.6" ry="3.4"/><ellipse cx="40" cy="40" rx="2.6" ry="3.4"/></g><circle cx="19" cy="47" r="3" class="av-rubor"/><circle cx="45" cy="47" r="3" class="av-rubor"/><path d="M26 48c3 4 9 4 12 0" class="av-boca"/></g></svg>';
-    } else if(t==='chica'){
-      S='<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="slqc-cuerpo-av"><circle cx="32" cy="12" r="8" class="av-pelo"/><path d="M12 62c0-12 9-20 20-20s20 8 20 20z" class="av-ropa"/><path d="M14 36a18 20 0 0 1 36 0c0 8-8 17-18 17S14 44 14 36z" class="av-cara"/><path d="M13 34c0-13 8-21 19-21s19 8 19 21c-4-8-10-11-19-11s-15 3-19 11z" class="av-pelo"/><g class="av-ojos"><ellipse cx="25" cy="38" rx="2.2" ry="3"/><ellipse cx="39" cy="38" rx="2.2" ry="3"/></g><circle cx="20" cy="44" r="3" class="av-rubor"/><circle cx="44" cy="44" r="3" class="av-rubor"/><path d="M27 47c2.5 3.5 7.5 3.5 10 0" class="av-boca"/></g></svg>';
-    } else {
-      S='<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g class="slqc-cuerpo-av"><rect x="19" y="10" width="26" height="8" rx="3" class="av-tapa"/><path d="M20 18h24l-2 38a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4z" class="av-tubo"/><g class="av-ojos"><ellipse cx="27" cy="34" rx="2.4" ry="3.2"/><ellipse cx="37" cy="34" rx="2.4" ry="3.2"/></g><circle cx="24" cy="41" r="2.6" class="av-rubor"/><circle cx="40" cy="41" r="2.6" class="av-rubor"/><path d="M28 43c2 3 6 3 8 0" class="av-boca"/></g></svg>';
-    }
-    return '<span class="slqc-av slqc-av--'+tamano+' slqc-av--'+t+'" aria-hidden="true">'+S+'</span>';
+    var S='<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">'
+      +'<g class="av-cuerpo">'
+      +'<path class="av-ropa" d="M12 112c0-26 14-40 38-40s38 14 38 40z"/>'
+      +'<path class="av-cuello" d="M42 64h16v13c-3 5-13 5-16 0z"/>'
+      +'<g class="av-cabeza">'
+      +'<circle class="av-pelo" cx="26" cy="22" r="11"/><circle class="av-pelo" cx="74" cy="22" r="11"/>'
+      +'<circle class="av-lazo" cx="26" cy="22" r="3.4"/><circle class="av-lazo" cx="74" cy="22" r="3.4"/>'
+      +'<ellipse class="av-pelo" cx="50" cy="46" rx="31" ry="33"/>'
+      +'<ellipse class="av-cara" cx="50" cy="52" rx="23.5" ry="26"/>'
+      +'<path class="av-pelo" d="M27 40c-3.500 13 .5 28 7 38c-2.500-12-3-26-1-38z"/><path class="av-pelo" d="M73 40c3.500 13-.5 28-7 38c2.500-12 3-26 1-38z"/>'
+      +'<path class="av-pelo" d="M24.5 50C23.5 31 35 19.5 50 19.5S76.500 31 75.500 50C73 41 67 36.500 59 36C55 40.500 45 40.500 41 36C33 36.500 27 41 24.500 50z"/>'
+      +'<path class="av-mecha" d="M46 24c-.5 4-2.500 7-5.500 9.500M54 24c.5 4 2.500 7 5.500 9.500"/>'
+      +'<g class="av-ojos"><ellipse cx="40" cy="54" rx="3.3" ry="4.2"/><ellipse cx="60" cy="54" rx="3.3" ry="4.2"/><circle class="av-brilloojo" cx="41.3" cy="52.6" r="1.2"/><circle class="av-brilloojo" cx="61.3" cy="52.6" r="1.2"/></g>'
+      +'<path class="av-pestana" d="M36.4 52.4l-2.2-1.6M63.6 52.4l2.2-1.6"/>'
+      +'<path class="av-ceja" d="M34.5 46.5q5.5-3.2 11-1M54.5 45.5q5.5-2.2 11 1"/>'
+      +'<ellipse class="av-rubor" cx="33.5" cy="61" rx="4.6" ry="2.6"/><ellipse class="av-rubor" cx="66.5" cy="61" rx="4.6" ry="2.6"/>'
+      +'<path class="av-boca" d="M43.5 65q6.5 5.5 13 0"/>'
+      +'<path class="av-estrella" d="M71 35l1.7 3.5 3.9.5-2.8 2.7.7 3.9-3.5-1.9-3.5 1.9.7-3.9-2.8-2.7 3.9-.5z"/>'
+      +'</g></g>'
+      +'<g class="av-destellos"><path d="M10 16l1.5 3.4 3.4 1.5-3.4 1.5L10 26l-1.5-3.6L5 20.9l3.5-1.5z"/><path d="M91 54l1.2 2.7 2.7 1.2-2.7 1.2L91 62l-1.2-2.9-2.7-1.2 2.7-1.2z"/></g>'
+      +'</svg>';
+    return '<span class="slqc-av slqc-av--'+tamano+' slqc-av--aly" aria-hidden="true">'+S+'</span>';
+  }
+  function chatHora(){ var d=new Date(); return ('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2); }
+  /* La ventana ocupa lo que queda de pantalla bajo el encabezado del sitio (y se ajusta con el teclado) */
+  function chatMedir(){
+    var w=$id(QID+'-wrap'), inl=$id(QID+'-inline-content'); if(!w||!inl) return;
+    var alto=(window.visualViewport?window.visualViewport.height:window.innerHeight)-w.getBoundingClientRect().top;
+    w.style.setProperty('--slqc-alto',Math.max(380,Math.floor(alto))+'px');
   }
   function chatKeep(rootId){
     var c=$id(rootId+'-cuerpo'); if(!c) return;
@@ -490,10 +511,10 @@
   function chatMsg(rootId,who,html){
     var h=$id(rootId+'-hilo'); if(!h) return null;
     var prev=h.lastElementChild;
-    if(who==='aly'&&prev&&prev.classList.contains('slqc-msg--aly')) prev.classList.add('slqc-msg--cont');
     var d=document.createElement('div');
-    d.className='slqc-msg slqc-msg--'+who;
-    d.innerHTML=(who==='aly'?avatarHTML('chico'):'')+'<div class="slqc-burbuja">'+html+'</div>';
+    d.className='slqc-msg slqc-msg--'+who+((prev&&prev.classList.contains('slqc-msg--'+who))?' slqc-msg--seguido':'');
+    var hora=html.indexOf('slqc-escribiendo')===-1?'<span class="slqc-hora">'+chatHora()+(who==='yo'?' <b class="slqc-visto">✓✓</b>':'')+'</span>':'';
+    d.innerHTML='<div class="slqc-burbuja">'+html+hora+'</div>';
     h.appendChild(d); chatKeep(rootId); return d;
   }
   function chatTyping(rootId,cb,corto){
@@ -560,7 +581,7 @@
     var total=(DATA.steps||[]).length+1;
     var salir=ROOT.dataset.chatSalir||'/';
     var H='<div class="slq-root slqc" id="'+rootId+'">';
-    H+='<div class="slqc-top"><a class="slqc-salir" href="'+esc(salir)+'" aria-label="Salir del test">&times;</a>'+avatarHTML('grande')+'<div class="slqc-quien"><strong>'+esc(chatNombre())+'</strong><span class="slqc-estado">'+T('chat_rol','Asistente de Skinland')+'</span></div><span class="slq-prog-label" id="'+rootId+'-pl">1 / '+total+'</span></div>';
+    H+='<div class="slqc-top"><a class="slqc-salir" href="'+esc(salir)+'" aria-label="Salir del test"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>'+avatarHTML('grande')+'<div class="slqc-quien"><strong>'+esc(chatNombre())+'</strong><span class="slqc-estado">'+T('chat_rol','Asistente de Skinland')+'</span></div><span class="slq-prog-label" id="'+rootId+'-pl">1 / '+total+'</span></div>';
     H+='<div class="slq-prog-bar slqc-barra"><div class="slq-prog-fill" id="'+rootId+'-pf" style="width:0%"></div></div>';
     H+='<div class="slqc-cuerpo" id="'+rootId+'-cuerpo">';
     H+='<div class="slqc-hilo" id="'+rootId+'-hilo" role="log" aria-live="polite"></div>';
@@ -955,7 +976,11 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
     if(inlineEl){
       state.inline={cur:0,answers:{}}; inlineEl.innerHTML=buildHTML(QID+'-inline');
       if(ESTILO==='chat'){
-        if(ROOT.dataset.flotante==='1') document.documentElement.classList.add('slqc-bloqueado');
+        if(ROOT.dataset.flotante==='1'){
+          document.documentElement.classList.add('slqc-bloqueado'); window.scrollTo(0,0);
+          chatMedir(); window.addEventListener('resize',chatMedir);
+          if(window.visualViewport) window.visualViewport.addEventListener('resize',chatMedir);
+        }
         chatStart(QID+'-inline');
       }
       if(ESTILO==='pantalla'){
