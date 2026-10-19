@@ -156,3 +156,4 @@
 
 /* Precio a la izquierda y ahorro a la derecha; debajo costo por día y duración en una línea, y la suma por separado */
 .sl-buybox__precio-fila .sl-sticker { flex: none; align-self: center; }
+.sl-buybox__precio-fila { justify-content: flex-start; gap: 12px; }
