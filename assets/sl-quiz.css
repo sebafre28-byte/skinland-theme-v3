@@ -271,3 +271,4 @@ html.slqc-bloqueado .shopify-section-group-footer-group, html.slqc-bloqueado foo
 .slqc-op__t { font-size: 15px; line-height: 1.2; }
 .slqc-op__d { font-size: 12px; line-height: 1.25; }
 .slqc-resp-cab { padding-bottom: 2px; }
+.slqc-ops--muchas .slqc-op { justify-content: center; }
