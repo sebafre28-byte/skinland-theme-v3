@@ -11,7 +11,6 @@
     render 'sl-bundle-sum', product: product
   endcapture
   assign bs = bs_raw | strip | split: '|'
-  assign suma = bs[0] | plus: 0
   assign ahorro = bs[1] | plus: 0
   assign completo = bs[2]
   assign pasos = bs[3] | plus: 0
