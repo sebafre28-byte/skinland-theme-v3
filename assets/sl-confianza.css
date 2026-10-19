@@ -14,3 +14,8 @@
 @media screen and (min-width: 750px) {
   .sl-home-hero .sl-confianza__lista { grid-template-columns: repeat(4, 1fr); }
 }
+@media screen and (min-width: 990px) {
+  .sl-home-hero .sl-confianza__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
+  .sl-home-hero .sl-confianza__texto strong { font-size: 14px; }
+  .sl-home-hero .sl-confianza__texto small { font-size: 13px; }
+}

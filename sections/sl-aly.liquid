@@ -52,12 +52,14 @@
             {%- endfor -%}
           </ul>
         {%- endif -%}
-        {%- if wa != blank -%}
-          <a class="sl-btn sl-btn--tinta sl-btn--block" href="{{ wa }}" target="_blank" rel="noopener">{{ section.settings.boton_aly }}</a>
-        {%- endif -%}
-        {%- if test != blank -%}
-          <a class="sl-btn sl-btn--block" href="{{ test }}">{{ section.settings.boton }}</a>
-        {%- endif -%}
+        <div class="sl-aly__acciones">
+          {%- if wa != blank -%}
+            <a class="sl-btn sl-btn--tinta sl-btn--block" href="{{ wa }}" target="_blank" rel="noopener">{{ section.settings.boton_aly }}</a>
+          {%- endif -%}
+          {%- if test != blank -%}
+            <a class="sl-btn sl-btn--block" href="{{ test }}">{{ section.settings.boton }}</a>
+          {%- endif -%}
+        </div>
       </div>
     </div>
   </section>
