@@ -905,7 +905,7 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
         H+='<div class="slq-kit-foot"><div class="slq-kit-prices">';
         H+='<span class="slq-kit-price">'+best.price+'</span>';
         if(best.suma&&best.ahorro){
-          H+='<span class="slq-kit-compare">'+T('por_separado','Los productos por separado suman')+' <s>'+best.suma+'</s></span>';
+          H+='<span class="slq-kit-compare">'+T('por_separado','Si compras los productos por separado pagarías')+' <s>'+best.suma+'</s></span>';
         }
         H+='</div>';
         if(best.suma&&best.ahorro) H+='<p class="slq-kit-ahorro"><span class="sl-sticker">'+T('ahorras','Ahorras [ahorro]').replace('[ahorro]',best.ahorro)+'</span></p>';
