@@ -577,7 +577,7 @@
       H+='<label class="slq-consent"><input type="checkbox" id="'+rootId+'-consent-em" onchange="'+NS+'Q.onConsent(\''+rootId+'\',\'em\')"><span>'+(cap.consent_text||'Acepto recibir comunicaciones de Skinland. Me puedo dar de baja cuando quiera.')+'</span></label>';
       H+='<p class="slq-consent-error" id="'+rootId+'-consent-err-em">'+T('consent_error','Debes aceptar para continuar.')+'</p>';
       H+='<button class="slq-btn slq-btn--primary slqc-enviar" id="'+rootId+'-submit" onclick="'+NS+'Q.submitCapture(\''+rootId+'\')">'+T('ver_rutina','Ver mi rutina →')+'</button>';
-      H+='<div class="slqc-form__pie"><button class="slq-skip" onclick="'+NS+'Q.showResults(\''+rootId+'\',null)">'+T('sin_datos','Ver resultados sin dejar datos')+'</button>'+chatBackBtn(rootId)+'</div></div>';
+      H+='<div class="slqc-form__pie">'+chatBackBtn(rootId)+'<button class="slq-skip" onclick="'+NS+'Q.showResults(\''+rootId+'\',null)">'+T('sin_datos','Ver resultados sin dejar datos')+'</button></div></div>';
       tray.innerHTML=H; tray.scrollTop=0;
       chatKeep(rootId);
     }
