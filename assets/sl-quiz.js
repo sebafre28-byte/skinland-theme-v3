@@ -572,15 +572,12 @@
     function show(){
       chatMsg(rootId,'aly','<strong>'+(cap.heading||'¡Casi listo! Recibe tu rutina')+'</strong><span class="slqc-sub">'+(cap.sub||'Déjanos tu email para guardar y recibir tu recomendación.')+'</span>');
       var H='<div class="slqc-resp-cab"><span>'+T('chat_responde','Tu respuesta')+'</span><span>'+T('chat_escribe','Escribe tus datos')+' ↓</span></div><div class="slqc-form">';
-      H+='<label for="'+rootId+'-name" class="slq-opt-label--dark">'+T('nombre','Nombre')+'</label>';
-      H+='<input class="slq-input" type="text" id="'+rootId+'-name" placeholder="'+T('nombre_ph','Tu nombre')+'" autocomplete="given-name">';
-      H+='<label for="'+rootId+'-em" class="slq-opt-label--dark">'+T('email','Email')+'</label>';
-      H+='<input class="slq-input" type="email" id="'+rootId+'-em" placeholder="'+T('email_ph','tu@email.com')+'" autocomplete="email" inputmode="email">';
+      H+='<input class="slq-input" type="text" id="'+rootId+'-name" aria-label="'+T('nombre','Nombre')+'" placeholder="'+T('nombre_ph','Tu nombre')+'" autocomplete="given-name">';
+      H+='<input class="slq-input" type="email" id="'+rootId+'-em" aria-label="'+T('email','Email')+'" placeholder="'+T('email_ph','tu@email.com')+'" autocomplete="email" inputmode="email">';
       H+='<label class="slq-consent"><input type="checkbox" id="'+rootId+'-consent-em" onchange="'+NS+'Q.onConsent(\''+rootId+'\',\'em\')"><span>'+(cap.consent_text||'Acepto recibir comunicaciones de Skinland. Me puedo dar de baja cuando quiera.')+'</span></label>';
       H+='<p class="slq-consent-error" id="'+rootId+'-consent-err-em">'+T('consent_error','Debes aceptar para continuar.')+'</p>';
       H+='<button class="slq-btn slq-btn--primary slqc-enviar" id="'+rootId+'-submit" onclick="'+NS+'Q.submitCapture(\''+rootId+'\')">'+T('ver_rutina','Ver mi rutina →')+'</button>';
-      H+='<button class="slq-skip" onclick="'+NS+'Q.showResults(\''+rootId+'\',null)">'+T('sin_datos','Ver resultados sin dejar datos')+'</button>';
-      H+='</div>'+chatBackBtn(rootId);
+      H+='<div class="slqc-form__pie"><button class="slq-skip" onclick="'+NS+'Q.showResults(\''+rootId+'\',null)">'+T('sin_datos','Ver resultados sin dejar datos')+'</button>'+chatBackBtn(rootId)+'</div></div>';
       tray.innerHTML=H; tray.scrollTop=0;
       chatKeep(rootId);
     }
@@ -908,7 +905,7 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
         H+='<div class="slq-kit-foot"><div class="slq-kit-prices">';
         H+='<span class="slq-kit-price">'+best.price+'</span>';
         if(best.suma&&best.ahorro){
-          H+='<span class="slq-kit-compare">'+T('por_separado','Por separado')+' <s>'+best.suma+'</s></span>';
+          H+='<span class="slq-kit-compare">'+T('por_separado','Los productos por separado suman')+' <s>'+best.suma+'</s></span>';
         }
         H+='</div>';
         if(best.suma&&best.ahorro) H+='<p class="slq-kit-ahorro"><span class="sl-sticker">'+T('ahorras','Ahorras [ahorro]').replace('[ahorro]',best.ahorro)+'</span></p>';
@@ -949,7 +946,7 @@ else if(best.quiz_tipo === 'rutina' && Number(best.routine_steps) === 4){
       }
 
       if(R.wa_url){
-        H+='<div class="slq-wa"><strong class="slq-wa__t">'+conNombre(R.wa_titulo||'')+'</strong><p class="slq-wa__p">'+conNombre(R.wa_texto||'')+'</p><a class="slq-btn slq-btn--primary slq-wa__b" href="'+esc(R.wa_url)+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.800 7L4 20.500l1.600-4.700A8 8 0 1 1 21 12z"/><path d="M9 9.500c0 3 2.500 5.500 5.500 5.500l1-1.500-2-1-.8.800c-.8-.4-1.500-1.100-1.900-1.900l.8-.8-1-2z"/></svg>'+esc(R.wa_boton||'WhatsApp')+'</a></div>';
+        H+='<div class="slq-wa"><strong class="slq-wa__t">'+conNombre(R.wa_titulo||'')+'</strong><p class="slq-wa__p">'+conNombre(R.wa_texto||'')+'</p><a class="slq-btn slq-btn--primary slq-wa__b" href="'+esc(R.wa_url)+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M8 9h8M8 12h5"/></svg>'+esc(R.wa_boton||'WhatsApp')+'</a></div>';
       }
 
       if((DATA.capture||{}).debug_mode){
