@@ -32,3 +32,14 @@
   .sl-ingredientes__lista { gap: 16px; }
   .sl-ingredientes__desc { font-size: 13px; }
 }
+
+/* Sola (sin la pareja de resultados): título e INCI a la izquierda, ingredientes en fila a la derecha */
+@media screen and (min-width: 990px) {
+  .shopify-section:not(.sl-par--izq:has(.sl-par__inner) + .sl-par--der) > .sl-ingredientes .sl-par__inner {
+    display: grid; grid-template-columns: 340px minmax(0, 1fr); grid-template-areas: 't l' 'b l'; grid-template-rows: auto 1fr; align-content: start; column-gap: 56px; row-gap: 14px;
+  }
+  .shopify-section:not(.sl-par--izq:has(.sl-par__inner) + .sl-par--der) > .sl-ingredientes .sl-h2 { grid-area: t; }
+  .shopify-section:not(.sl-par--izq:has(.sl-par__inner) + .sl-par--der) > .sl-ingredientes .sl-ingredientes__lista { grid-area: l; grid-template-columns: repeat(auto-fill, 160px); justify-content: start; align-self: center; }
+  .shopify-section:not(.sl-par--izq:has(.sl-par__inner) + .sl-par--der) > .sl-ingredientes .sl-ingredientes__inci-boton { grid-area: b; align-self: start; justify-self: start; }
+  .shopify-section:not(.sl-par--izq:has(.sl-par__inner) + .sl-par--der) > .sl-ingredientes .sl-ingredientes__circulo { width: 112px; height: 112px; font-size: 13px; }
+}

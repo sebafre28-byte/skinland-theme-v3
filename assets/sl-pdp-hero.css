@@ -121,9 +121,9 @@
   .sl-hero { padding-top: 20px; }
   .sl-hero .sl-container { padding-inline: 32px; }
   .sl-migas { display: flex; }
-  .sl-versiones__lista { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .sl-versiones__lista { grid-template-columns: repeat(auto-fit, minmax(138px, 1fr)); }
   .sl-hero__grid { flex-direction: row; align-items: flex-start; gap: 48px; padding-bottom: 64px; }
-  .sl-galeria { flex: 1 1 0; flex-direction: row-reverse; align-items: flex-start; gap: 14px; }
+  .sl-galeria { flex: 1 1 0; flex-direction: row-reverse; align-items: flex-start; gap: 14px; position: sticky; top: 104px; }
   .sl-galeria__escenario { flex: 1 1 auto; aspect-ratio: 1 / 1; }
   .sl-galeria__minis { flex: 0 0 72px; flex-direction: column; gap: 10px; }
   .sl-galeria__mini { width: 72px; height: 72px; border-radius: var(--sl-radio-m); font-size: 10px; }

@@ -17,3 +17,12 @@
   .sl-faq { padding: 64px 0; }
   .sl-faq__titulo { font-size: 42px; }
 }
+/* Sola (sin pareja con reseñas): título e invitación a Aly a la izquierda, preguntas a la derecha */
+@media screen and (min-width: 990px) {
+  .shopify-section:not(.sl-par--izq:has(.sl-par__inner) + .sl-par--der) > .sl-faq .sl-par__inner {
+    display: grid; grid-template-columns: 340px minmax(0, 1fr); grid-template-areas: 't l' 'a l'; grid-template-rows: auto 1fr; align-content: start; column-gap: 56px; row-gap: 14px;
+  }
+  .shopify-section:not(.sl-par--izq:has(.sl-par__inner) + .sl-par--der) > .sl-faq .sl-faq__titulo { grid-area: t; }
+  .shopify-section:not(.sl-par--izq:has(.sl-par__inner) + .sl-par--der) > .sl-faq .sl-faq__lista { grid-area: l; }
+  .shopify-section:not(.sl-par--izq:has(.sl-par__inner) + .sl-par--der) > .sl-faq .sl-faq__ayuda { grid-area: a; align-self: start; justify-self: start; }
+}
