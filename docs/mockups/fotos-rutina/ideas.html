@@ -1,0 +1,112 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>5 ideas para las fotos de rutinas y kits</title>
+<style>
+@font-face{font-family:'Funnel Display';font-weight:800;src:url(../../../assets/funnel-display-latin-800-normal.woff2) format('woff2')}
+@font-face{font-family:'Funnel Display';font-weight:600;src:url(../../../assets/funnel-display-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Funnel Sans';font-weight:400;src:url(../../../assets/funnel-sans-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Funnel Sans';font-weight:700;src:url(../../../assets/funnel-sans-latin-700-normal.woff2) format('woff2')}
+:root{--tinta:#17261F;--crema:#F0ECE6;--lima:#DCF56C;--menta:#8EE3B8;--durazno:#FFB38A;--celeste:#A9D8FF;--lila:#CDB8FF;--rosa:#FFA3C5;--amarillo:#FFE58F;--borde:2px solid var(--tinta)}
+*{box-sizing:border-box}body{margin:0;background:var(--crema);color:var(--tinta);font-family:'Funnel Sans',system-ui,sans-serif;padding:28px 20px 60px}
+h1{font-family:'Funnel Display';font-weight:800;font-size:32px;margin:0 0 6px;letter-spacing:-.02em}
+.sub{margin:0 0 28px;max-width:70ch}
+.grid{display:grid;gap:36px 28px;grid-template-columns:1fr;max-width:1280px;margin:0 auto}
+@media(min-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.wide{grid-column:1/-1}}
+.idea h2{font-family:'Funnel Display';font-weight:800;font-size:22px;margin:0 0 4px}
+.idea .num{display:inline-grid;place-items:center;width:30px;height:30px;border:var(--borde);border-radius:50%;background:var(--lima);margin-right:8px;font-size:16px}
+.idea p.d{margin:0 0 12px;font-size:14px;max-width:60ch}
+.stage{position:relative;aspect-ratio:1/1;border:var(--borde);border-radius:26px;background:var(--menta);box-shadow:6px 6px 0 var(--tinta);overflow:hidden}
+.stage img{display:block;border-radius:12px;border:var(--borde);background:var(--crema);object-fit:cover}
+.chip{position:absolute;top:14px;left:14px;z-index:5;padding:6px 10px;border:var(--borde);border-radius:10px;background:#fff;font-size:12px;font-weight:700;transform:rotate(-4deg)}
+.sello{position:absolute;top:14px;right:14px;z-index:5;width:78px;height:78px;border:var(--borde);border-radius:50%;background:var(--durazno);display:grid;place-items:center;text-align:center;font-family:'Funnel Display';font-weight:800;font-size:12px;line-height:1.05;transform:rotate(10deg)}
+.n{position:absolute;z-index:4;width:28px;height:28px;border:var(--borde);border-radius:50%;background:var(--tinta);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+.nota{font-size:12px;margin-top:10px;opacity:.8}
+/* 1 flat-lay */
+.v1 .mesa{position:absolute;left:6%;right:6%;bottom:8%;height:52%;border-radius:50%;background:#fff;border:var(--borde)}
+.v1 img{position:absolute;z-index:1;box-shadow:4px 5px 0 var(--tinta)}
+.v1 .a{width:30%;aspect-ratio:1;left:10%;bottom:30%;transform:rotate(-9deg)}.v1 .b{width:32%;aspect-ratio:1;left:34%;bottom:20%;transform:rotate(2deg);z-index:2}.v1 .c{width:28%;aspect-ratio:1;left:62%;bottom:30%;transform:rotate(9deg)}
+.v1 .n1{left:11%;bottom:60%;z-index:5}.v1 .n2{left:36%;bottom:55%;z-index:5}.v1 .n3{left:64%;bottom:60%;z-index:5}
+/* 2 stickers */
+.v2{background:var(--lima)}
+.sticker{position:absolute;width:36%;aspect-ratio:3/4;border:5px solid #fff;border-radius:22px;background:var(--crema);box-shadow:0 0 0 2px var(--tinta),5px 6px 0 2px var(--tinta);display:grid;place-items:center;padding:6% 6% 16%}
+.sticker img{width:100%;height:100%;object-fit:contain;border:0;border-radius:10px}
+.sticker b{position:absolute;bottom:6%;left:50%;transform:translateX(-50%);white-space:nowrap;padding:3px 10px;border:var(--borde);border-radius:999px;background:var(--rosa);font-size:11px}
+.sticker i{position:absolute;top:-14px;left:-14px;width:30px;height:30px;border:var(--borde);border-radius:50%;background:var(--tinta);color:#fff;display:grid;place-items:center;font-style:normal;font-size:14px;font-weight:700}
+.v2 .s1{left:6%;top:24%;transform:rotate(-7deg)}.v2 .s2{left:32%;top:30%;transform:rotate(3deg);z-index:2}.v2 .s3{left:58%;top:22%;transform:rotate(-3deg)}.v2 .s2 b{background:var(--celeste)}.v2 .s3 b{background:var(--durazno)}
+/* 3 caja */
+.v3{background:var(--celeste)}
+.caja{position:absolute;left:12%;right:12%;bottom:10%;height:46%}
+.caja .fondo{position:absolute;inset:0;border:var(--borde);border-radius:8px 8px 14px 14px;background:var(--lima)}
+.caja .frente{position:absolute;left:0;right:0;bottom:0;height:46%;border:var(--borde);border-radius:6px 6px 14px 14px;background:var(--lima);z-index:3;display:flex;align-items:center;justify-content:center;font-family:'Funnel Display';font-weight:800;font-size:clamp(18px,4.4vw,34px);letter-spacing:-.02em}
+.caja .tapa{position:absolute;left:-2%;right:-2%;top:-46%;height:44%;border:var(--borde);border-radius:10px;background:var(--lima);transform:rotate(-7deg) translateY(-6%);transform-origin:left bottom;z-index:1;box-shadow:4px 4px 0 var(--tinta)}
+.caja .tapa::after{content:'Rutina Express · Piel grasa';position:absolute;inset:0;display:grid;place-items:center;font-size:12px;font-weight:700}
+.v3 img{position:absolute;bottom:40%;z-index:2;aspect-ratio:1;box-shadow:3px 3px 0 var(--tinta)}
+.v3 .a{width:24%;left:16%;transform:rotate(-6deg)}.v3 .b{width:26%;left:38%;bottom:45%}.v3 .c{width:22%;left:62%;transform:rotate(6deg)}
+/* 4 galería */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.strip .stage{aspect-ratio:3/4;border-radius:20px;box-shadow:4px 4px 0 var(--tinta)}
+.strip .stage .big{position:absolute;left:50%;top:22%;transform:translateX(-50%);width:76%;aspect-ratio:1}
+.paso{position:absolute;left:12px;top:10px;font-family:'Funnel Display';font-weight:800;font-size:44px;line-height:1}
+.info{position:absolute;left:8px;right:8px;bottom:8px;padding:6px 8px;border:var(--borde);border-radius:12px;background:#fff;font-size:12px;line-height:1.3}
+.info b{display:block;font-size:13px}.tag{display:inline-block;margin-top:4px;padding:1px 8px;border:var(--borde);border-radius:999px;background:var(--lima);font-size:10px;font-weight:700}
+.strip .conj img{position:absolute;aspect-ratio:1;box-shadow:2px 3px 0 var(--tinta)}
+.strip .conj .a{left:6%;top:24%;width:42%;transform:rotate(-6deg)}.strip .conj .b{left:44%;top:30%;width:44%;z-index:2}.strip .conj .c{left:22%;top:50%;width:38%;transform:rotate(5deg);z-index:3}
+@media(max-width:700px){.strip{grid-template-columns:repeat(2,1fr)}}
+/* 5 sesión */
+.tomas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tomas .stage{aspect-ratio:4/5;border-radius:20px;box-shadow:4px 4px 0 var(--tinta)}
+.tomas h3{font-size:12px;margin:8px 0 2px}.tomas p{font-size:12px;margin:0}
+.t1{background:var(--durazno)}.t1 img{position:absolute;aspect-ratio:1;box-shadow:3px 3px 0 var(--tinta)}
+.t1 .p1{left:6%;width:28%;bottom:22%}.t1 .p2{left:36%;width:30%;bottom:26%;z-index:2}.t1 .p3{left:68%;width:26%;bottom:22%}
+.peana{position:absolute;left:8%;right:8%;bottom:8%;height:12%;border:var(--borde);border-radius:10px;background:#fff}
+.t2{background:var(--crema)}.t2 .fila{position:absolute;left:8%;right:8%;top:10%;display:flex;gap:8%;justify-content:center}
+.t2 .fila img{width:28%;aspect-ratio:1;box-shadow:3px 3px 0 var(--tinta)}
+.t2 .gota{position:absolute;border:var(--borde);border-radius:50% 50% 50% 8%;transform:rotate(-30deg)}
+.t3{background:repeating-linear-gradient(45deg,#fff,#fff 10px,var(--crema) 10px,var(--crema) 20px);display:grid;place-items:center;text-align:center;font-weight:700;font-size:13px;padding:14px;border-style:dashed}
+@media(max-width:700px){.tomas{grid-template-columns:1fr}}
+</style></head><body>
+<h1>5 ideas para la foto de rutinas y kits</h1>
+<p class="sub">Mockups con las 3 fotos reales que tengo hoy (Rutina Express Piel Grasa: limpiador, crema y protector solar). Los textos y los datos son los que ya salen de la rutina. Los kits de 5 productos usarían el mismo formato con más piezas. La idea 5 solo muestra el guion de la sesión, no fotos reales de la sesión.</p>
+<div class="grid">
+
+<section class="idea"><h2><span class="num">1</span>Flat-lay automático</h2>
+<p class="d">Los productos reales sobre una "mesa" redonda, en abanico, con su número. Todo en el color de la necesidad.</p>
+<div class="stage v1"><span class="chip">3 pasos · dura ~60 días</span><span class="sello">Ahorras<br>$5.980</span><div class="mesa"></div>
+<img class="a" src="img/foam.png" alt=""><img class="b" src="img/gel.png" alt=""><img class="c" src="img/boj.png" alt="">
+<span class="n n1">1</span><span class="n n2">2</span><span class="n n3">3</span></div>
+<p class="nota">Se arma solo: el tema ordena las fotos según la cantidad (2, 3, 4 o 5).</p></section>
+
+<section class="idea"><h2><span class="num">2</span>Stickers Color Pop</h2>
+<p class="d">Cada producto como un sticker con borde blanco, número y paso. Distintas inclinaciones, sombra dura como el resto del sitio.</p>
+<div class="stage v2"><span class="chip">3 pasos · dura ~60 días</span><span class="sello">Ahorras<br>$5.980</span>
+<div class="sticker s1"><i>1</i><img src="img/foam.png" alt=""><b>Limpia</b></div>
+<div class="sticker s2"><i>2</i><img src="img/gel.png" alt=""><b>Hidrata</b></div>
+<div class="sticker s3"><i>3</i><img src="img/boj.png" alt=""><b>Protege</b></div></div>
+<p class="nota">Es automático. El nombre del paso sale de las etiquetas del producto.</p></section>
+
+<section class="idea"><h2><span class="num">3</span>Caja abierta Skinland</h2>
+<p class="d">Una caja dibujada con los productos asomando. La tapa abierta lleva el nombre de la rutina. Sirve como primera foto, "todo en una caja".</p>
+<div class="stage v3"><span class="chip">3 pasos · dura ~60 días</span>
+<img class="a" src="img/foam.png" alt=""><img class="b" src="img/gel.png" alt=""><img class="c" src="img/boj.png" alt="">
+<div class="caja"><div class="tapa"></div><div class="fondo"></div><div class="frente">skinland.</div></div></div>
+<p class="nota">Un dibujo base para todas. Cambian los productos, el color y el nombre de la tapa.</p></section>
+
+<section class="idea"><h2><span class="num">4</span>Galería paso a paso</h2>
+<p class="d">La galería pasa de 2 a N+1 fotos: primero el conjunto y después una por producto, con el paso, el momento de uso y su beneficio corto.</p>
+<div class="strip">
+<div class="stage conj"><span class="chip" style="font-size:10px;top:10px;left:8px">Conjunto</span><img class="a" src="img/foam.png" alt=""><img class="b" src="img/gel.png" alt=""><img class="c" src="img/boj.png" alt=""><div class="info"><b>Rutina Express</b>3 pasos</div></div>
+<div class="stage" style="background:var(--lima)"><span class="paso">1</span><img class="big" src="img/foam.png" alt=""><div class="info"><b>Limpia</b>Limpia el exceso de grasa sin dejar sensación tirante.<br><span class="tag">Mañana y noche</span></div></div>
+<div class="stage" style="background:var(--celeste)"><span class="paso">2</span><img class="big" src="img/gel.png" alt=""><div class="info"><b>Hidrata</b>Hidratación ligera que no deja la piel grasosa.<br><span class="tag">Mañana y noche</span></div></div>
+<div class="stage" style="background:var(--durazno)"><span class="paso">3</span><img class="big" src="img/boj.png" alt=""><div class="info"><b>Protege</b>Protector solar liviano de acabado fresco.<br><span class="tag">Solo mañana</span></div></div>
+</div>
+<p class="nota">Todo sale de datos que ya cargamos (paso, momento de uso, beneficio corto). Para mostrarlo con colores distintos por foto, o con un solo color de la rutina, basta un ajuste.</p></section>
+
+<section class="idea wide"><h2><span class="num">5</span>Sesión de estudio con receta fija</h2>
+<p class="d">Fotos reales hechas por ustedes, siempre con la misma receta. Aquí solo se ve el guion, con las fotos que tengo de ejemplo. Las tomas 2 y 3 se hacen en la sesión.</p>
+<div class="tomas">
+<div><div class="stage t1"><span class="chip">Toma 1</span><div class="peana"></div><img class="p1" src="img/foam.png" alt=""><img class="p2" src="img/gel.png" alt=""><img class="p3" src="img/boj.png" alt=""></div><h3>Toma 1 · el conjunto</h3><p>Fondo de color, productos de más bajo a más alto sobre una peana blanca.</p></div>
+<div><div class="stage t2"><span class="chip">Toma 2</span><div class="fila"><img src="img/foam.png" alt=""><img src="img/gel.png" alt=""><img src="img/boj.png" alt=""></div>
+<span class="gota" style="width:44px;height:44px;left:16%;bottom:16%;background:#fff"></span><span class="gota" style="width:44px;height:44px;left:44%;bottom:16%;background:#ffd6e4"></span><span class="gota" style="width:44px;height:44px;left:72%;bottom:16%;background:#d9ecff"></span></div><h3>Toma 2 · vista desde arriba + textura</h3><p>Una gota real de cada producto bajo su envase. Las gotas de aquí son solo guía.</p></div>
+<div><div class="stage t3">Toma 3<br>un producto en mano<br>(foto real de la sesión)</div><h3>Toma 3 · en uso</h3><p>Un producto en mano, siempre el mismo encuadre y fondo.</p></div>
+</div>
+<p class="nota">No se arma sola: la receta se repite en cada rutina o kit nuevo. Es la que más cuesta, pero la que más sube la calidad con el tiempo.</p></section>
+</div></body></html>
