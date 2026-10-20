@@ -111,6 +111,10 @@
   .sl-header__sub-btn[aria-expanded='true'] + .sl-header__sub { display: block; }
   .sl-header__sub a { display: block; padding: 11px 12px; border-radius: var(--sl-radio-s); font-size: 14px; font-weight: 600; color: var(--sl-tinta); text-decoration: none; }
   .sl-header__sub a:hover { background: var(--sl-lima); }
+  .sl-header__sub .sl-menu__sub-btn { padding: 11px 12px; border-radius: var(--sl-radio-s); font-size: 14px; font-weight: 600; cursor: pointer; }
+  .sl-header__sub .sl-menu__sub-btn:hover { background: var(--sl-lima); }
+  .sl-header__sub .sl-menu__sub3 { margin: 2px 0 6px 12px; }
+  .sl-header__sub .sl-menu__sub3 a { padding: 8px 12px; }
   .sl-header__test {
     padding: 6px 12px; border: var(--sl-borde); border-radius: 999px;
     background: var(--sl-tinta); color: var(--sl-blanco); box-shadow: 3px 3px 0 var(--sl-lima);
