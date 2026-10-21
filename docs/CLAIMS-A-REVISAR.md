@@ -81,3 +81,9 @@ Frases que pueden leerse como diagnóstico: "Tienes rojeces persistentes o tende
 
 ### 7.5 Cómo cambiarlo cuando lo apruebes
 Los textos viven en metacampos de los productos (`ingN_desc`, `routine_results`, `para_quien_es`), que también usa el tema live. Cambiarlos se ve hoy en skinland.cl. Propuesta: primero escribo el script en modo de prueba con el antes/después y lo apruebas; después corro y te dejo el deshacer.
+
+### 7.6 Aplicado el 21-oct-2026
+Se aplicaron los 32 reemplazos de `docs/claims/cambios-feed.json` con `metafieldsSet` en la tienda Skinland: 15 `ing1_desc`, 8 `routine_results` (13 títulos) y 4 `para_quien_es`. Releídos desde la tienda: todos con el texto nuevo, sin errores.
+- Se ve también en el tema live (Sense), porque comparte estos metacampos.
+- **Deshacer:** para cada cambio, intercambiar `find` y `replace` del archivo (el texto nuevo vuelve al anterior) y escribirlo con `metafieldsSet`. Pedírselo a Claude: "deshaz los cambios de claims del feed".
+- Siguen pendientes las secciones 1 a 4 (`ing2_desc`, `faq`, textos largos de resultados).
