@@ -59,3 +59,16 @@ Detalle en `docs/klaviyo/LEEME.md` y `docs/klaviyo/COLECCIONES.md`.
 | Colecciones «Rutinas Express» y «Rutinas Esencial» | Borrar las colecciones |
 | `nombre_corto` y `beneficio_corto` en 22 productos | `metafieldsDelete` en esos dos metacampos |
 | `version_nombre = Kit` en Kit Anti Manchas y Kit Anti Edad | Borrar el metacampo |
+
+## Fotos de rutinas y kits: plan híbrido (aprobado)
+
+Portadas = escena base de la IA (sin productos ni texto) + envases reales recortados y pegados por script. Fotos extra (lino, manos) con ChatGPT y referencias, revisando etiquetas. Todo el texto lo pone el tema desde los datos.
+
+- 3 escenas base: 3, 4 y 5 productos. 1:1, 2048 px, fondo crema, podios de travertino, productos dentro del 80 % central.
+- Piloto: **Rutina Express Piel Grasa** (`rutina-express-piel-grasa`), componentes en orden:
+  1. MIXSOON Centella Cleansing Foam 150ml (foto 750×750)
+  2. SKIN1004 Centella Poremizing Light Gel Cream 75ml (750×750)
+  3. Beauty of Joseon Relief Sun Aqua-Fresh Rice + B5 50ml (500×500)
+- Riesgo: las fotos fuente son chicas (500–750 px). Hay que ver si traen fondo blanco/recortable y si sirven para una portada de 2048 px o hay que pedir las originales.
+- 👤 Pendiente tuyo: habilitar `cdn.shopify.com` en la red del entorno y abrir sesión nueva (en la actual sigue 403).
+- 👤 Si tienes las fotos originales de packshot (PNG/transparentes), mejor que las del CDN.
