@@ -1,0 +1,21 @@
+{%- comment -%}
+  Feed de Klaviyo · tipo de piel de un producto: grasa, seca, mixta o sensible (vacío si no tiene).
+  Primero custom.tipo_piel ("Piel grasa"); si falta, la primera etiqueta tipo-piel-* en ese orden.
+  Parámetro: producto.
+{%- endcomment -%}
+{%- liquid
+  assign piel = producto.metafields.custom.tipo_piel.value | first | downcase | remove: 'piel ' | strip
+  if piel != 'grasa' and piel != 'seca' and piel != 'mixta' and piel != 'sensible'
+    assign piel = ''
+    if producto.tags contains 'tipo-piel-grasa'
+      assign piel = 'grasa'
+    elsif producto.tags contains 'tipo-piel-seca'
+      assign piel = 'seca'
+    elsif producto.tags contains 'tipo-piel-mixta'
+      assign piel = 'mixta'
+    elsif producto.tags contains 'tipo-piel-sensible'
+      assign piel = 'sensible'
+    endif
+  endif
+  echo piel
+-%}

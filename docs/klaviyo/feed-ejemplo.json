@@ -1,0 +1,1465 @@
+{
+ "v": 1,
+ "actualizado": "2026-10-20T23:00:00-03:00",
+ "umbral": 64990,
+ "umbral_fmt": "$64.990",
+ "p": {
+  "rutina-express-piel-grasa": {
+   "t": "Rutina Express Piel Grasa",
+   "url": "https://skinland.cl/products/rutina-express-piel-grasa",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/rutina-express-piel-grasa.png?width=600",
+   "precio": 59990,
+   "precio_fmt": "$59.990",
+   "suma": 65970,
+   "suma_fmt": "$65.970",
+   "ahorro": 5980,
+   "ahorro_fmt": "$5.980",
+   "version": "express",
+   "version_nombre": "Express",
+   "resumen": "Limpia · hidrata · protege",
+   "piel": "grasa",
+   "color": "#8EE3B8",
+   "n_pasos": 3,
+   "dias": 60,
+   "dia_fmt": "$1.000",
+   "disponible": true,
+   "envio_gratis": false,
+   "falta": 5000,
+   "falta_fmt": "$5.000",
+   "pct": 92,
+   "pasos": [
+    {
+     "t": "MIXSOON Centella Cleansing Foam",
+     "corto": "MIXSOON Foam",
+     "rol": "Limpia",
+     "precio": 19990,
+     "beneficio": "Saca la grasa sin dejarte la cara tirante",
+     "ing": [
+      "Centella asiática",
+      "Ácido salicílico"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "mixsoon-centella-cleansing-foam",
+     "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/mixsoon-centella-cleansing-foam.png?width=200",
+     "precio_fmt": "$19.990"
+    },
+    {
+     "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+     "corto": "SKIN1004 Gel Cream",
+     "rol": "Hidrata",
+     "precio": 23990,
+     "beneficio": "Hidrata sin pesar (sí, tu piel también lo necesita)",
+     "ing": [
+      "Niacinamida",
+      "Sal rosada del Himalaya",
+      "Adenosina"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-poremizing-light-gel-cream",
+     "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-poremizing-light-gel-cream.png?width=200",
+     "precio_fmt": "$23.990"
+    },
+    {
+     "t": "Beauty of Joseon Relief Sun Aqua-Fresh SPF50+",
+     "corto": "Aqua-Fresh SPF50+",
+     "rol": "Protege",
+     "precio": 21990,
+     "beneficio": "Un protector liviano que no se siente pegajoso",
+     "ing": [
+      "Agua de arroz",
+      "Pantenol (B5)",
+      "Ceramida NP"
+     ],
+     "am": true,
+     "pm": false,
+     "handle": "boj-relief-sun-aqua-fresh",
+     "url": "https://skinland.cl/products/boj-relief-sun-aqua-fresh",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/boj-relief-sun-aqua-fresh.png?width=200",
+     "precio_fmt": "$21.990"
+    }
+   ],
+   "am": [
+    {
+     "t": "MIXSOON Centella Cleansing Foam",
+     "corto": "MIXSOON Foam",
+     "rol": "Limpia",
+     "precio": 19990,
+     "beneficio": "Saca la grasa sin dejarte la cara tirante",
+     "ing": [
+      "Centella asiática",
+      "Ácido salicílico"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "mixsoon-centella-cleansing-foam",
+     "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/mixsoon-centella-cleansing-foam.png?width=200",
+     "precio_fmt": "$19.990"
+    },
+    {
+     "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+     "corto": "SKIN1004 Gel Cream",
+     "rol": "Hidrata",
+     "precio": 23990,
+     "beneficio": "Hidrata sin pesar (sí, tu piel también lo necesita)",
+     "ing": [
+      "Niacinamida",
+      "Sal rosada del Himalaya",
+      "Adenosina"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-poremizing-light-gel-cream",
+     "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-poremizing-light-gel-cream.png?width=200",
+     "precio_fmt": "$23.990"
+    },
+    {
+     "t": "Beauty of Joseon Relief Sun Aqua-Fresh SPF50+",
+     "corto": "Aqua-Fresh SPF50+",
+     "rol": "Protege",
+     "precio": 21990,
+     "beneficio": "Un protector liviano que no se siente pegajoso",
+     "ing": [
+      "Agua de arroz",
+      "Pantenol (B5)",
+      "Ceramida NP"
+     ],
+     "am": true,
+     "pm": false,
+     "handle": "boj-relief-sun-aqua-fresh",
+     "url": "https://skinland.cl/products/boj-relief-sun-aqua-fresh",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/boj-relief-sun-aqua-fresh.png?width=200",
+     "precio_fmt": "$21.990"
+    }
+   ],
+   "pm": [
+    {
+     "t": "MIXSOON Centella Cleansing Foam",
+     "corto": "MIXSOON Foam",
+     "rol": "Limpia",
+     "precio": 19990,
+     "beneficio": "Saca la grasa sin dejarte la cara tirante",
+     "ing": [
+      "Centella asiática",
+      "Ácido salicílico"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "mixsoon-centella-cleansing-foam",
+     "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/mixsoon-centella-cleansing-foam.png?width=200",
+     "precio_fmt": "$19.990"
+    },
+    {
+     "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+     "corto": "SKIN1004 Gel Cream",
+     "rol": "Hidrata",
+     "precio": 23990,
+     "beneficio": "Hidrata sin pesar (sí, tu piel también lo necesita)",
+     "ing": [
+      "Niacinamida",
+      "Sal rosada del Himalaya",
+      "Adenosina"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-poremizing-light-gel-cream",
+     "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-poremizing-light-gel-cream.png?width=200",
+     "precio_fmt": "$23.990"
+    }
+   ],
+   "puntual": [],
+   "para_quien": [
+    "A media tarde ya te brilla la cara.",
+    "Tienes poros visibles o se te tapan fácil.",
+    "Odias las cremas pesadas y quieres texturas livianas."
+   ],
+   "no_es": [
+    {
+     "situacion": "En verdad tu piel se siente seca o tirante",
+     "t": "Express Piel Seca",
+     "url": "https://skinland.cl/products/rutina-express-piel-seca",
+     "version": "express",
+     "precio_fmt": "$62.990"
+    },
+    {
+     "situacion": "Te salen granitos seguido",
+     "t": "Kit Anti Acné",
+     "url": "https://skinland.cl/products/kit-anti-acne",
+     "version": "kit",
+     "precio_fmt": "$79.990"
+    }
+   ],
+   "resultados": [
+    {
+     "cuando": "Semana 1",
+     "texto": "Piel más limpia y fresca."
+    },
+    {
+     "cuando": "Semana 2",
+     "texto": "Menos brillo a mitad del día."
+    },
+    {
+     "cuando": "Mes 1",
+     "texto": "La rutina ya es hábito y tu piel, más equilibrada."
+    }
+   ],
+   "videos": [],
+   "ing_top": [],
+   "up": {
+    "handle": "rutina-piel-grasa",
+    "t": "Rutina Piel Grasa",
+    "url": "https://skinland.cl/products/rutina-piel-grasa",
+    "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/rutina-piel-grasa.png?width=600",
+    "precio": 76990,
+    "precio_fmt": "$76.990",
+    "version": "esencial",
+    "version_nombre": "Esencial",
+    "n_pasos": 4,
+    "resumen": "Limpia · trata · hidrata · protege",
+    "ahorro": 10970,
+    "ahorro_fmt": "$10.970",
+    "suma_fmt": "$87.960",
+    "envio_gratis": true,
+    "falta_fmt": "",
+    "disponible": true,
+    "pasos": [
+     {
+      "rol": "Limpia",
+      "corto": "MIXSOON Foam"
+     },
+     {
+      "rol": "Trata",
+      "corto": "Tea-Trica Ampoule"
+     },
+     {
+      "rol": "Hidrata",
+      "corto": "SKIN1004 Gel Cream"
+     },
+     {
+      "rol": "Protege",
+      "corto": "Aqua-Fresh SPF50+"
+     }
+    ],
+    "dif": 17000,
+    "dif_fmt": "$17.000",
+    "suma": "la ampolla SKIN1004 Tea-Trica, para calmar y equilibrar la piel entre la limpieza y la crema"
+   },
+   "kit": {
+    "handle": "kit-anti-acne",
+    "t": "Kit Anti Acné",
+    "url": "https://skinland.cl/products/kit-anti-acne",
+    "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/kit-anti-acne.png?width=600",
+    "precio": 79990,
+    "precio_fmt": "$79.990",
+    "version": "kit",
+    "version_nombre": "Kit",
+    "n_pasos": 5,
+    "resumen": "Limpia · trata · hidrata · protege",
+    "ahorro": 21960,
+    "ahorro_fmt": "$21.960",
+    "suma_fmt": "$101.950",
+    "envio_gratis": true,
+    "falta_fmt": "",
+    "disponible": true,
+    "pasos": [
+     {
+      "rol": "Limpia",
+      "corto": "MIXSOON Foam"
+     },
+     {
+      "rol": "Trata",
+      "corto": "Tea-Trica Ampoule"
+     },
+     {
+      "rol": "Hidrata",
+      "corto": "SKIN1004 Gel Cream"
+     },
+     {
+      "rol": "Protege",
+      "corto": "Aqua-Fresh SPF50+"
+     },
+     {
+      "rol": "Granito puntual",
+      "corto": "parches The Saem"
+     }
+    ],
+    "dif": 20000,
+    "dif_fmt": "$20.000",
+    "objetivo": "antiacne",
+    "gancho": "¿También te salen granitos?",
+    "suma": "la ampolla Tea-Trica + los parches The Saem"
+   },
+   "comp": {
+    "handle": "the-saem-clear-spot-patch",
+    "t": "Parches The Saem · 24 unidades",
+    "corto": "parches",
+    "beneficio": "Para el granito que aparece justo antes de un evento. Se pegan solo donde sale uno.",
+    "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/the-saem-clear-spot-patch.png?width=200",
+    "precio": 5990,
+    "precio_fmt": "$5.990",
+    "total": 65980,
+    "total_fmt": "$65.980",
+    "cart_url": "https://skinland.cl/cart/45879364681001:1,45879364681002:1"
+   }
+  },
+  "kit-anti-acne": {
+   "t": "Kit Anti Acné",
+   "url": "https://skinland.cl/products/kit-anti-acne",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/kit-anti-acne.png?width=600",
+   "precio": 79990,
+   "precio_fmt": "$79.990",
+   "suma": 101950,
+   "suma_fmt": "$101.950",
+   "ahorro": 21960,
+   "ahorro_fmt": "$21.960",
+   "version": "kit",
+   "version_nombre": "Kit",
+   "resumen": "Limpia · trata · hidrata · protege",
+   "piel": "grasa",
+   "color": "#FFE58A",
+   "n_pasos": 5,
+   "dias": 60,
+   "dia_fmt": "$1.300",
+   "disponible": true,
+   "envio_gratis": true,
+   "falta": 0,
+   "falta_fmt": "",
+   "pct": 100,
+   "pasos": [
+    {
+     "t": "MIXSOON Centella Cleansing Foam",
+     "corto": "MIXSOON Foam",
+     "rol": "Limpia",
+     "precio": 19990,
+     "beneficio": "Saca la grasa sin dejarte la cara tirante",
+     "ing": [
+      "Centella asiática",
+      "Ácido salicílico"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "mixsoon-centella-cleansing-foam",
+     "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/mixsoon-centella-cleansing-foam.png?width=200",
+     "precio_fmt": "$19.990"
+    },
+    {
+     "t": "SKIN1004 Tea-Trica Relief Ampoule",
+     "corto": "Tea-Trica Ampoule",
+     "rol": "Trata",
+     "precio": 29990,
+     "beneficio": "Ayuda a calmar la piel en los días con granitos",
+     "ing": [
+      "Centella de Madagascar",
+      "Árbol de té"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-tea-trica-relief-ampoule",
+     "url": "https://skinland.cl/products/skin1004-tea-trica-relief-ampoule",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-tea-trica-relief-ampoule.png?width=200",
+     "precio_fmt": "$29.990"
+    },
+    {
+     "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+     "corto": "SKIN1004 Gel Cream",
+     "rol": "Hidrata",
+     "precio": 23990,
+     "beneficio": "Hidrata sin pesar (sí, tu piel también lo necesita)",
+     "ing": [
+      "Niacinamida",
+      "Sal rosada del Himalaya",
+      "Adenosina"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-poremizing-light-gel-cream",
+     "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-poremizing-light-gel-cream.png?width=200",
+     "precio_fmt": "$23.990"
+    },
+    {
+     "t": "Beauty of Joseon Relief Sun Aqua-Fresh SPF50+",
+     "corto": "Aqua-Fresh SPF50+",
+     "rol": "Protege",
+     "precio": 21990,
+     "beneficio": "Un protector liviano que no se siente pegajoso",
+     "ing": [
+      "Agua de arroz",
+      "Pantenol (B5)",
+      "Ceramida NP"
+     ],
+     "am": true,
+     "pm": false,
+     "handle": "boj-relief-sun-aqua-fresh",
+     "url": "https://skinland.cl/products/boj-relief-sun-aqua-fresh",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/boj-relief-sun-aqua-fresh.png?width=200",
+     "precio_fmt": "$21.990"
+    },
+    {
+     "t": "The Saem Clear Spot Patch · 24 unidades",
+     "corto": "parches The Saem",
+     "rol": "Granito puntual",
+     "precio": 5990,
+     "beneficio": "Para el granito que aparece justo antes de un evento",
+     "ing": [],
+     "am": false,
+     "pm": false,
+     "puntual": true,
+     "handle": "the-saem-clear-spot-patch",
+     "url": "https://skinland.cl/products/the-saem-clear-spot-patch",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/the-saem-clear-spot-patch.png?width=200",
+     "precio_fmt": "$5.990"
+    }
+   ],
+   "am": [
+    {
+     "t": "MIXSOON Centella Cleansing Foam",
+     "corto": "MIXSOON Foam",
+     "rol": "Limpia",
+     "precio": 19990,
+     "beneficio": "Saca la grasa sin dejarte la cara tirante",
+     "ing": [
+      "Centella asiática",
+      "Ácido salicílico"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "mixsoon-centella-cleansing-foam",
+     "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/mixsoon-centella-cleansing-foam.png?width=200",
+     "precio_fmt": "$19.990"
+    },
+    {
+     "t": "SKIN1004 Tea-Trica Relief Ampoule",
+     "corto": "Tea-Trica Ampoule",
+     "rol": "Trata",
+     "precio": 29990,
+     "beneficio": "Ayuda a calmar la piel en los días con granitos",
+     "ing": [
+      "Centella de Madagascar",
+      "Árbol de té"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-tea-trica-relief-ampoule",
+     "url": "https://skinland.cl/products/skin1004-tea-trica-relief-ampoule",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-tea-trica-relief-ampoule.png?width=200",
+     "precio_fmt": "$29.990"
+    },
+    {
+     "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+     "corto": "SKIN1004 Gel Cream",
+     "rol": "Hidrata",
+     "precio": 23990,
+     "beneficio": "Hidrata sin pesar (sí, tu piel también lo necesita)",
+     "ing": [
+      "Niacinamida",
+      "Sal rosada del Himalaya",
+      "Adenosina"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-poremizing-light-gel-cream",
+     "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-poremizing-light-gel-cream.png?width=200",
+     "precio_fmt": "$23.990"
+    },
+    {
+     "t": "Beauty of Joseon Relief Sun Aqua-Fresh SPF50+",
+     "corto": "Aqua-Fresh SPF50+",
+     "rol": "Protege",
+     "precio": 21990,
+     "beneficio": "Un protector liviano que no se siente pegajoso",
+     "ing": [
+      "Agua de arroz",
+      "Pantenol (B5)",
+      "Ceramida NP"
+     ],
+     "am": true,
+     "pm": false,
+     "handle": "boj-relief-sun-aqua-fresh",
+     "url": "https://skinland.cl/products/boj-relief-sun-aqua-fresh",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/boj-relief-sun-aqua-fresh.png?width=200",
+     "precio_fmt": "$21.990"
+    }
+   ],
+   "pm": [
+    {
+     "t": "MIXSOON Centella Cleansing Foam",
+     "corto": "MIXSOON Foam",
+     "rol": "Limpia",
+     "precio": 19990,
+     "beneficio": "Saca la grasa sin dejarte la cara tirante",
+     "ing": [
+      "Centella asiática",
+      "Ácido salicílico"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "mixsoon-centella-cleansing-foam",
+     "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/mixsoon-centella-cleansing-foam.png?width=200",
+     "precio_fmt": "$19.990"
+    },
+    {
+     "t": "SKIN1004 Tea-Trica Relief Ampoule",
+     "corto": "Tea-Trica Ampoule",
+     "rol": "Trata",
+     "precio": 29990,
+     "beneficio": "Ayuda a calmar la piel en los días con granitos",
+     "ing": [
+      "Centella de Madagascar",
+      "Árbol de té"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-tea-trica-relief-ampoule",
+     "url": "https://skinland.cl/products/skin1004-tea-trica-relief-ampoule",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-tea-trica-relief-ampoule.png?width=200",
+     "precio_fmt": "$29.990"
+    },
+    {
+     "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+     "corto": "SKIN1004 Gel Cream",
+     "rol": "Hidrata",
+     "precio": 23990,
+     "beneficio": "Hidrata sin pesar (sí, tu piel también lo necesita)",
+     "ing": [
+      "Niacinamida",
+      "Sal rosada del Himalaya",
+      "Adenosina"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-poremizing-light-gel-cream",
+     "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-poremizing-light-gel-cream.png?width=200",
+     "precio_fmt": "$23.990"
+    }
+   ],
+   "puntual": [
+    {
+     "t": "The Saem Clear Spot Patch · 24 unidades",
+     "corto": "parches The Saem",
+     "rol": "Granito puntual",
+     "precio": 5990,
+     "beneficio": "Para el granito que aparece justo antes de un evento",
+     "ing": [],
+     "am": false,
+     "pm": false,
+     "puntual": true,
+     "handle": "the-saem-clear-spot-patch",
+     "url": "https://skinland.cl/products/the-saem-clear-spot-patch",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/the-saem-clear-spot-patch.png?width=200",
+     "precio_fmt": "$5.990"
+    }
+   ],
+   "para_quien": [],
+   "no_es": [
+    {
+     "situacion": "Si te brilla toda la cara",
+     "t": "Express Piel Grasa",
+     "url": "https://skinland.cl/products/rutina-express-piel-grasa",
+     "version": "express",
+     "precio_fmt": "$59.990",
+     "resumen": "3 pasos: limpia, hidrata y protege"
+    },
+    {
+     "situacion": "Si te brilla sobre todo la zona T",
+     "t": "Express Piel Mixta",
+     "url": "https://skinland.cl/products/rutina-express-piel-mixta",
+     "version": "express",
+     "precio_fmt": "$59.990",
+     "resumen": "3 pasos: limpia, hidrata y protege"
+    }
+   ],
+   "resultados": [
+    {
+     "cuando": "Semana 1",
+     "texto": "Piel más limpia y con menos brillo."
+    },
+    {
+     "cuando": "Semana 2",
+     "texto": "Piel con aspecto más calmado."
+    },
+    {
+     "cuando": "Mes 1",
+     "texto": "Rutina hecha hábito y piel de aspecto más parejo."
+    }
+   ],
+   "videos": [],
+   "ing_top": [],
+   "kit_suma": "los parches The Saem"
+  },
+  "rutina-piel-grasa": {
+   "t": "Rutina Piel Grasa",
+   "url": "https://skinland.cl/products/rutina-piel-grasa",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/rutina-piel-grasa.png?width=600",
+   "precio": 76990,
+   "precio_fmt": "$76.990",
+   "suma": 87960,
+   "suma_fmt": "$87.960",
+   "ahorro": 10970,
+   "ahorro_fmt": "$10.970",
+   "version": "esencial",
+   "version_nombre": "Esencial",
+   "resumen": "Limpia · trata · hidrata · protege",
+   "piel": "grasa",
+   "color": "#8EE3B8",
+   "n_pasos": 4,
+   "dias": 60,
+   "dia_fmt": "$1.300",
+   "disponible": true,
+   "envio_gratis": true,
+   "falta": 0,
+   "falta_fmt": "",
+   "pct": 100,
+   "pasos": [
+    {
+     "t": "MIXSOON Centella Cleansing Foam",
+     "corto": "MIXSOON Foam",
+     "rol": "Limpia",
+     "precio": 19990,
+     "beneficio": "Saca la grasa sin dejarte la cara tirante",
+     "ing": [
+      "Centella asiática",
+      "Ácido salicílico"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "mixsoon-centella-cleansing-foam",
+     "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/mixsoon-centella-cleansing-foam.png?width=200",
+     "precio_fmt": "$19.990"
+    },
+    {
+     "t": "SKIN1004 Tea-Trica Relief Ampoule",
+     "corto": "Tea-Trica Ampoule",
+     "rol": "Trata",
+     "precio": 29990,
+     "beneficio": "Ayuda a calmar la piel en los días con granitos",
+     "ing": [
+      "Centella de Madagascar",
+      "Árbol de té"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-tea-trica-relief-ampoule",
+     "url": "https://skinland.cl/products/skin1004-tea-trica-relief-ampoule",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-tea-trica-relief-ampoule.png?width=200",
+     "precio_fmt": "$29.990"
+    },
+    {
+     "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+     "corto": "SKIN1004 Gel Cream",
+     "rol": "Hidrata",
+     "precio": 23990,
+     "beneficio": "Hidrata sin pesar (sí, tu piel también lo necesita)",
+     "ing": [
+      "Niacinamida",
+      "Sal rosada del Himalaya",
+      "Adenosina"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-poremizing-light-gel-cream",
+     "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-poremizing-light-gel-cream.png?width=200",
+     "precio_fmt": "$23.990"
+    },
+    {
+     "t": "Beauty of Joseon Relief Sun Aqua-Fresh SPF50+",
+     "corto": "Aqua-Fresh SPF50+",
+     "rol": "Protege",
+     "precio": 21990,
+     "beneficio": "Un protector liviano que no se siente pegajoso",
+     "ing": [
+      "Agua de arroz",
+      "Pantenol (B5)",
+      "Ceramida NP"
+     ],
+     "am": true,
+     "pm": false,
+     "handle": "boj-relief-sun-aqua-fresh",
+     "url": "https://skinland.cl/products/boj-relief-sun-aqua-fresh",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/boj-relief-sun-aqua-fresh.png?width=200",
+     "precio_fmt": "$21.990"
+    }
+   ],
+   "am": [
+    {
+     "t": "MIXSOON Centella Cleansing Foam",
+     "corto": "MIXSOON Foam",
+     "rol": "Limpia",
+     "precio": 19990,
+     "beneficio": "Saca la grasa sin dejarte la cara tirante",
+     "ing": [
+      "Centella asiática",
+      "Ácido salicílico"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "mixsoon-centella-cleansing-foam",
+     "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/mixsoon-centella-cleansing-foam.png?width=200",
+     "precio_fmt": "$19.990"
+    },
+    {
+     "t": "SKIN1004 Tea-Trica Relief Ampoule",
+     "corto": "Tea-Trica Ampoule",
+     "rol": "Trata",
+     "precio": 29990,
+     "beneficio": "Ayuda a calmar la piel en los días con granitos",
+     "ing": [
+      "Centella de Madagascar",
+      "Árbol de té"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-tea-trica-relief-ampoule",
+     "url": "https://skinland.cl/products/skin1004-tea-trica-relief-ampoule",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-tea-trica-relief-ampoule.png?width=200",
+     "precio_fmt": "$29.990"
+    },
+    {
+     "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+     "corto": "SKIN1004 Gel Cream",
+     "rol": "Hidrata",
+     "precio": 23990,
+     "beneficio": "Hidrata sin pesar (sí, tu piel también lo necesita)",
+     "ing": [
+      "Niacinamida",
+      "Sal rosada del Himalaya",
+      "Adenosina"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-poremizing-light-gel-cream",
+     "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-poremizing-light-gel-cream.png?width=200",
+     "precio_fmt": "$23.990"
+    },
+    {
+     "t": "Beauty of Joseon Relief Sun Aqua-Fresh SPF50+",
+     "corto": "Aqua-Fresh SPF50+",
+     "rol": "Protege",
+     "precio": 21990,
+     "beneficio": "Un protector liviano que no se siente pegajoso",
+     "ing": [
+      "Agua de arroz",
+      "Pantenol (B5)",
+      "Ceramida NP"
+     ],
+     "am": true,
+     "pm": false,
+     "handle": "boj-relief-sun-aqua-fresh",
+     "url": "https://skinland.cl/products/boj-relief-sun-aqua-fresh",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/boj-relief-sun-aqua-fresh.png?width=200",
+     "precio_fmt": "$21.990"
+    }
+   ],
+   "pm": [
+    {
+     "t": "MIXSOON Centella Cleansing Foam",
+     "corto": "MIXSOON Foam",
+     "rol": "Limpia",
+     "precio": 19990,
+     "beneficio": "Saca la grasa sin dejarte la cara tirante",
+     "ing": [
+      "Centella asiática",
+      "Ácido salicílico"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "mixsoon-centella-cleansing-foam",
+     "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/mixsoon-centella-cleansing-foam.png?width=200",
+     "precio_fmt": "$19.990"
+    },
+    {
+     "t": "SKIN1004 Tea-Trica Relief Ampoule",
+     "corto": "Tea-Trica Ampoule",
+     "rol": "Trata",
+     "precio": 29990,
+     "beneficio": "Ayuda a calmar la piel en los días con granitos",
+     "ing": [
+      "Centella de Madagascar",
+      "Árbol de té"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-tea-trica-relief-ampoule",
+     "url": "https://skinland.cl/products/skin1004-tea-trica-relief-ampoule",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-tea-trica-relief-ampoule.png?width=200",
+     "precio_fmt": "$29.990"
+    },
+    {
+     "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+     "corto": "SKIN1004 Gel Cream",
+     "rol": "Hidrata",
+     "precio": 23990,
+     "beneficio": "Hidrata sin pesar (sí, tu piel también lo necesita)",
+     "ing": [
+      "Niacinamida",
+      "Sal rosada del Himalaya",
+      "Adenosina"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "skin1004-poremizing-light-gel-cream",
+     "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-poremizing-light-gel-cream.png?width=200",
+     "precio_fmt": "$23.990"
+    }
+   ],
+   "puntual": [],
+   "para_quien": [],
+   "no_es": [],
+   "resultados": [],
+   "videos": [],
+   "ing_top": [],
+   "down": {
+    "handle": "rutina-express-piel-grasa",
+    "t": "Rutina Express Piel Grasa",
+    "url": "https://skinland.cl/products/rutina-express-piel-grasa",
+    "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/rutina-express-piel-grasa.png?width=600",
+    "precio": 59990,
+    "precio_fmt": "$59.990",
+    "version": "express",
+    "version_nombre": "Express",
+    "n_pasos": 3,
+    "resumen": "Limpia · hidrata · protege",
+    "ahorro": 5980,
+    "ahorro_fmt": "$5.980",
+    "suma_fmt": "$65.970",
+    "envio_gratis": false,
+    "falta_fmt": "$5.000",
+    "disponible": true,
+    "pasos": [
+     {
+      "rol": "Limpia",
+      "corto": "MIXSOON Foam"
+     },
+     {
+      "rol": "Hidrata",
+      "corto": "SKIN1004 Gel Cream"
+     },
+     {
+      "rol": "Protege",
+      "corto": "Aqua-Fresh SPF50+"
+     }
+    ],
+    "dif": 17000,
+    "dif_fmt": "$17.000"
+   }
+  },
+  "rutina-express-piel-sensible": {
+   "t": "Rutina Express Piel Sensible",
+   "url": "https://skinland.cl/products/rutina-express-piel-sensible",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/rutina-express-piel-sensible.png?width=600",
+   "precio": 54990,
+   "precio_fmt": "$54.990",
+   "suma": 60970,
+   "suma_fmt": "$60.970",
+   "ahorro": 5980,
+   "ahorro_fmt": "$5.980",
+   "version": "express",
+   "version_nombre": "Express",
+   "resumen": "Limpia · hidrata · protege",
+   "piel": "sensible",
+   "color": "#CBB8FF",
+   "n_pasos": 3,
+   "dias": 60,
+   "dia_fmt": "$900",
+   "disponible": true,
+   "envio_gratis": false,
+   "falta": 10000,
+   "falta_fmt": "$10.000",
+   "pct": 85,
+   "pasos": [
+    {
+     "t": "HaruHaru Wonder Black Rice Soft Cleansing Gel",
+     "corto": "HaruHaru Gel",
+     "rol": "Limpia",
+     "precio": 17990,
+     "beneficio": "Limpia sin arrastrar ni irritar",
+     "ing": [
+      "Arroz negro"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "haruharu-black-rice-soft-cleansing-gel",
+     "url": "https://skinland.cl/products/haruharu-black-rice-soft-cleansing-gel",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/haruharu-black-rice-soft-cleansing-gel.png?width=200",
+     "precio_fmt": "$17.990"
+    },
+    {
+     "t": "AROOM Chaga Comfort Cream",
+     "corto": "AROOM Cream",
+     "rol": "Hidrata",
+     "precio": 20990,
+     "beneficio": "Cuida la barrera, sin fragancia",
+     "ing": [
+      "Chaga"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "aroom-chaga-comfort-cream",
+     "url": "https://skinland.cl/products/aroom-chaga-comfort-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/aroom-chaga-comfort-cream.png?width=200",
+     "precio_fmt": "$20.990"
+    },
+    {
+     "t": "K-SECRET Sun: Pine Tree + Ceramide",
+     "corto": "K-SECRET Sun",
+     "rol": "Protege",
+     "precio": 21990,
+     "beneficio": "Protege con ceramida, sin pesar",
+     "ing": [
+      "Ceramida"
+     ],
+     "am": true,
+     "pm": false,
+     "handle": "k-secret-sun-pine-tree-ceramide",
+     "url": "https://skinland.cl/products/k-secret-sun-pine-tree-ceramide",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/k-secret-sun-pine-tree-ceramide.png?width=200",
+     "precio_fmt": "$21.990"
+    }
+   ],
+   "am": [
+    {
+     "t": "HaruHaru Wonder Black Rice Soft Cleansing Gel",
+     "corto": "HaruHaru Gel",
+     "rol": "Limpia",
+     "precio": 17990,
+     "beneficio": "Limpia sin arrastrar ni irritar",
+     "ing": [
+      "Arroz negro"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "haruharu-black-rice-soft-cleansing-gel",
+     "url": "https://skinland.cl/products/haruharu-black-rice-soft-cleansing-gel",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/haruharu-black-rice-soft-cleansing-gel.png?width=200",
+     "precio_fmt": "$17.990"
+    },
+    {
+     "t": "AROOM Chaga Comfort Cream",
+     "corto": "AROOM Cream",
+     "rol": "Hidrata",
+     "precio": 20990,
+     "beneficio": "Cuida la barrera, sin fragancia",
+     "ing": [
+      "Chaga"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "aroom-chaga-comfort-cream",
+     "url": "https://skinland.cl/products/aroom-chaga-comfort-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/aroom-chaga-comfort-cream.png?width=200",
+     "precio_fmt": "$20.990"
+    },
+    {
+     "t": "K-SECRET Sun: Pine Tree + Ceramide",
+     "corto": "K-SECRET Sun",
+     "rol": "Protege",
+     "precio": 21990,
+     "beneficio": "Protege con ceramida, sin pesar",
+     "ing": [
+      "Ceramida"
+     ],
+     "am": true,
+     "pm": false,
+     "handle": "k-secret-sun-pine-tree-ceramide",
+     "url": "https://skinland.cl/products/k-secret-sun-pine-tree-ceramide",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/k-secret-sun-pine-tree-ceramide.png?width=200",
+     "precio_fmt": "$21.990"
+    }
+   ],
+   "pm": [
+    {
+     "t": "HaruHaru Wonder Black Rice Soft Cleansing Gel",
+     "corto": "HaruHaru Gel",
+     "rol": "Limpia",
+     "precio": 17990,
+     "beneficio": "Limpia sin arrastrar ni irritar",
+     "ing": [
+      "Arroz negro"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "haruharu-black-rice-soft-cleansing-gel",
+     "url": "https://skinland.cl/products/haruharu-black-rice-soft-cleansing-gel",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/haruharu-black-rice-soft-cleansing-gel.png?width=200",
+     "precio_fmt": "$17.990"
+    },
+    {
+     "t": "AROOM Chaga Comfort Cream",
+     "corto": "AROOM Cream",
+     "rol": "Hidrata",
+     "precio": 20990,
+     "beneficio": "Cuida la barrera, sin fragancia",
+     "ing": [
+      "Chaga"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "aroom-chaga-comfort-cream",
+     "url": "https://skinland.cl/products/aroom-chaga-comfort-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/aroom-chaga-comfort-cream.png?width=200",
+     "precio_fmt": "$20.990"
+    }
+   ],
+   "puntual": [],
+   "para_quien": [],
+   "no_es": [],
+   "resultados": [],
+   "videos": [],
+   "ing_top": [],
+   "up": {
+    "handle": "rutina-piel-sensible",
+    "t": "Rutina Piel Sensible",
+    "url": "https://skinland.cl/products/rutina-piel-sensible",
+    "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/rutina-piel-sensible.png?width=600",
+    "precio": 74990,
+    "precio_fmt": "$74.990",
+    "version": "esencial",
+    "version_nombre": "Esencial",
+    "n_pasos": 4,
+    "resumen": "Limpia · trata · hidrata · protege",
+    "ahorro": 9970,
+    "ahorro_fmt": "$9.970",
+    "suma_fmt": "$84.960",
+    "envio_gratis": true,
+    "falta_fmt": "",
+    "disponible": true,
+    "pasos": [
+     {
+      "rol": "Limpia",
+      "corto": "HaruHaru Gel"
+     },
+     {
+      "rol": "Trata",
+      "corto": "Round Lab Ampoule"
+     },
+     {
+      "rol": "Hidrata",
+      "corto": "AROOM Cream"
+     },
+     {
+      "rol": "Protege",
+      "corto": "K-SECRET Sun"
+     }
+    ],
+    "dif": 20000,
+    "dif_fmt": "$20.000",
+    "suma": "la ampolla calmante Round Lab"
+   },
+   "kit": null
+  },
+  "rutina-piel-sensible": {
+   "t": "Rutina Piel Sensible",
+   "url": "https://skinland.cl/products/rutina-piel-sensible",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/rutina-piel-sensible.png?width=600",
+   "precio": 74990,
+   "precio_fmt": "$74.990",
+   "suma": 84960,
+   "suma_fmt": "$84.960",
+   "ahorro": 9970,
+   "ahorro_fmt": "$9.970",
+   "version": "esencial",
+   "version_nombre": "Esencial",
+   "resumen": "Limpia · trata · hidrata · protege",
+   "piel": "sensible",
+   "color": "#CBB8FF",
+   "n_pasos": 4,
+   "dias": 60,
+   "dia_fmt": "$1.200",
+   "disponible": true,
+   "envio_gratis": true,
+   "falta": 0,
+   "falta_fmt": "",
+   "pct": 100,
+   "pasos": [
+    {
+     "t": "HaruHaru Wonder Black Rice Soft Cleansing Gel",
+     "corto": "HaruHaru Gel",
+     "rol": "Limpia",
+     "precio": 17990,
+     "beneficio": "Limpia sin arrastrar ni irritar",
+     "ing": [
+      "Arroz negro"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "haruharu-black-rice-soft-cleansing-gel",
+     "url": "https://skinland.cl/products/haruharu-black-rice-soft-cleansing-gel",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/haruharu-black-rice-soft-cleansing-gel.png?width=200",
+     "precio_fmt": "$17.990"
+    },
+    {
+     "t": "Round Lab Pine Calming Cica Ampoule",
+     "corto": "Round Lab Ampoule",
+     "rol": "Trata",
+     "precio": 23990,
+     "beneficio": "Va entre la limpieza y la crema y ayuda a calmar la piel en sus días más reactivos",
+     "ing": [
+      "Cica",
+      "Pino"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "round-lab-pine-calming-cica-ampoule",
+     "url": "https://skinland.cl/products/round-lab-pine-calming-cica-ampoule",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/round-lab-pine-calming-cica-ampoule.png?width=200",
+     "precio_fmt": "$23.990"
+    },
+    {
+     "t": "AROOM Chaga Comfort Cream",
+     "corto": "AROOM Cream",
+     "rol": "Hidrata",
+     "precio": 20990,
+     "beneficio": "Cuida la barrera, sin fragancia",
+     "ing": [
+      "Chaga"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "aroom-chaga-comfort-cream",
+     "url": "https://skinland.cl/products/aroom-chaga-comfort-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/aroom-chaga-comfort-cream.png?width=200",
+     "precio_fmt": "$20.990"
+    },
+    {
+     "t": "K-SECRET Sun: Pine Tree + Ceramide",
+     "corto": "K-SECRET Sun",
+     "rol": "Protege",
+     "precio": 21990,
+     "beneficio": "Protege con ceramida, sin pesar",
+     "ing": [
+      "Ceramida"
+     ],
+     "am": true,
+     "pm": false,
+     "handle": "k-secret-sun-pine-tree-ceramide",
+     "url": "https://skinland.cl/products/k-secret-sun-pine-tree-ceramide",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/k-secret-sun-pine-tree-ceramide.png?width=200",
+     "precio_fmt": "$21.990"
+    }
+   ],
+   "am": [
+    {
+     "t": "HaruHaru Wonder Black Rice Soft Cleansing Gel",
+     "corto": "HaruHaru Gel",
+     "rol": "Limpia",
+     "precio": 17990,
+     "beneficio": "Limpia sin arrastrar ni irritar",
+     "ing": [
+      "Arroz negro"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "haruharu-black-rice-soft-cleansing-gel",
+     "url": "https://skinland.cl/products/haruharu-black-rice-soft-cleansing-gel",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/haruharu-black-rice-soft-cleansing-gel.png?width=200",
+     "precio_fmt": "$17.990"
+    },
+    {
+     "t": "Round Lab Pine Calming Cica Ampoule",
+     "corto": "Round Lab Ampoule",
+     "rol": "Trata",
+     "precio": 23990,
+     "beneficio": "Va entre la limpieza y la crema y ayuda a calmar la piel en sus días más reactivos",
+     "ing": [
+      "Cica",
+      "Pino"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "round-lab-pine-calming-cica-ampoule",
+     "url": "https://skinland.cl/products/round-lab-pine-calming-cica-ampoule",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/round-lab-pine-calming-cica-ampoule.png?width=200",
+     "precio_fmt": "$23.990"
+    },
+    {
+     "t": "AROOM Chaga Comfort Cream",
+     "corto": "AROOM Cream",
+     "rol": "Hidrata",
+     "precio": 20990,
+     "beneficio": "Cuida la barrera, sin fragancia",
+     "ing": [
+      "Chaga"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "aroom-chaga-comfort-cream",
+     "url": "https://skinland.cl/products/aroom-chaga-comfort-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/aroom-chaga-comfort-cream.png?width=200",
+     "precio_fmt": "$20.990"
+    },
+    {
+     "t": "K-SECRET Sun: Pine Tree + Ceramide",
+     "corto": "K-SECRET Sun",
+     "rol": "Protege",
+     "precio": 21990,
+     "beneficio": "Protege con ceramida, sin pesar",
+     "ing": [
+      "Ceramida"
+     ],
+     "am": true,
+     "pm": false,
+     "handle": "k-secret-sun-pine-tree-ceramide",
+     "url": "https://skinland.cl/products/k-secret-sun-pine-tree-ceramide",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/k-secret-sun-pine-tree-ceramide.png?width=200",
+     "precio_fmt": "$21.990"
+    }
+   ],
+   "pm": [
+    {
+     "t": "HaruHaru Wonder Black Rice Soft Cleansing Gel",
+     "corto": "HaruHaru Gel",
+     "rol": "Limpia",
+     "precio": 17990,
+     "beneficio": "Limpia sin arrastrar ni irritar",
+     "ing": [
+      "Arroz negro"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "haruharu-black-rice-soft-cleansing-gel",
+     "url": "https://skinland.cl/products/haruharu-black-rice-soft-cleansing-gel",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/haruharu-black-rice-soft-cleansing-gel.png?width=200",
+     "precio_fmt": "$17.990"
+    },
+    {
+     "t": "Round Lab Pine Calming Cica Ampoule",
+     "corto": "Round Lab Ampoule",
+     "rol": "Trata",
+     "precio": 23990,
+     "beneficio": "Va entre la limpieza y la crema y ayuda a calmar la piel en sus días más reactivos",
+     "ing": [
+      "Cica",
+      "Pino"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "round-lab-pine-calming-cica-ampoule",
+     "url": "https://skinland.cl/products/round-lab-pine-calming-cica-ampoule",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/round-lab-pine-calming-cica-ampoule.png?width=200",
+     "precio_fmt": "$23.990"
+    },
+    {
+     "t": "AROOM Chaga Comfort Cream",
+     "corto": "AROOM Cream",
+     "rol": "Hidrata",
+     "precio": 20990,
+     "beneficio": "Cuida la barrera, sin fragancia",
+     "ing": [
+      "Chaga"
+     ],
+     "am": true,
+     "pm": true,
+     "handle": "aroom-chaga-comfort-cream",
+     "url": "https://skinland.cl/products/aroom-chaga-comfort-cream",
+     "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/aroom-chaga-comfort-cream.png?width=200",
+     "precio_fmt": "$20.990"
+    }
+   ],
+   "puntual": [],
+   "para_quien": [],
+   "no_es": [],
+   "resultados": [
+    {
+     "cuando": "Semana 1",
+     "texto": "Tu piel se siente más cómoda."
+    },
+    {
+     "cuando": "Semana 2",
+     "texto": "Menos sensación de tirantez."
+    },
+    {
+     "cuando": "Mes 1",
+     "texto": "Una piel más tranquila día a día."
+    }
+   ],
+   "videos": [],
+   "ing_top": [],
+   "down": {
+    "handle": "rutina-express-piel-sensible",
+    "t": "Rutina Express Piel Sensible",
+    "url": "https://skinland.cl/products/rutina-express-piel-sensible",
+    "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/rutina-express-piel-sensible.png?width=600",
+    "precio": 54990,
+    "precio_fmt": "$54.990",
+    "version": "express",
+    "version_nombre": "Express",
+    "n_pasos": 3,
+    "resumen": "Limpia · hidrata · protege",
+    "ahorro": 5980,
+    "ahorro_fmt": "$5.980",
+    "suma_fmt": "$60.970",
+    "envio_gratis": false,
+    "falta_fmt": "$10.000",
+    "disponible": true,
+    "pasos": [
+     {
+      "rol": "Limpia",
+      "corto": "HaruHaru Gel"
+     },
+     {
+      "rol": "Hidrata",
+      "corto": "AROOM Cream"
+     },
+     {
+      "rol": "Protege",
+      "corto": "K-SECRET Sun"
+     }
+    ],
+    "dif": 20000,
+    "dif_fmt": "$20.000"
+   },
+   "extra": {
+    "corto": "Round Lab Ampoule",
+    "t": "Round Lab Pine Calming Cica Ampoule",
+    "beneficio": "Va entre la limpieza y la crema y ayuda a calmar la piel en sus días más reactivos",
+    "precio": 23990,
+    "precio_fmt": "$23.990",
+    "down_mas_extra_fmt": "$78.980",
+    "conviene": 3990,
+    "conviene_fmt": "$3.990"
+   }
+  },
+  "mixsoon-centella-cleansing-foam": {
+   "t": "MIXSOON Centella Cleansing Foam",
+   "corto": "MIXSOON Foam",
+   "rol": "Limpia",
+   "precio": 19990,
+   "beneficio": "Saca la grasa sin dejarte la cara tirante",
+   "ing": [
+    "Centella asiática",
+    "Ácido salicílico"
+   ],
+   "am": true,
+   "pm": true,
+   "handle": "mixsoon-centella-cleansing-foam",
+   "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/mixsoon-centella-cleansing-foam.png?width=200",
+   "precio_fmt": "$19.990",
+   "uso": "Mañana y noche",
+   "rutina": {
+    "handle": "rutina-express-piel-grasa",
+    "t": "Rutina Express Piel Grasa",
+    "url": "https://skinland.cl/products/rutina-express-piel-grasa",
+    "precio": 59990,
+    "precio_fmt": "$59.990",
+    "ahorro_fmt": "$5.980",
+    "envio_gratis": false,
+    "pasos": [
+     {
+      "rol": "Limpia",
+      "corto": "MIXSOON Foam",
+      "t": "MIXSOON Centella Cleansing Foam",
+      "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+      "precio": 19990,
+      "precio_fmt": "$19.990"
+     },
+     {
+      "rol": "Hidrata",
+      "corto": "SKIN1004 Gel Cream",
+      "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+      "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+      "precio": 23990,
+      "precio_fmt": "$23.990"
+     },
+     {
+      "rol": "Protege",
+      "corto": "Aqua-Fresh SPF50+",
+      "t": "Beauty of Joseon Relief Sun Aqua-Fresh SPF50+",
+      "url": "https://skinland.cl/products/boj-relief-sun-aqua-fresh",
+      "precio": 21990,
+      "precio_fmt": "$21.990"
+     }
+    ]
+   },
+   "paso_n": 1
+  },
+  "skin1004-poremizing-light-gel-cream": {
+   "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+   "corto": "SKIN1004 Gel Cream",
+   "rol": "Hidrata",
+   "precio": 23990,
+   "beneficio": "Hidrata sin pesar (sí, tu piel también lo necesita)",
+   "ing": [
+    "Niacinamida",
+    "Sal rosada del Himalaya",
+    "Adenosina"
+   ],
+   "am": true,
+   "pm": true,
+   "handle": "skin1004-poremizing-light-gel-cream",
+   "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/skin1004-poremizing-light-gel-cream.png?width=200",
+   "precio_fmt": "$23.990",
+   "uso": "Mañana y noche",
+   "rutina": {
+    "handle": "rutina-express-piel-grasa",
+    "t": "Rutina Express Piel Grasa",
+    "url": "https://skinland.cl/products/rutina-express-piel-grasa",
+    "precio": 59990,
+    "precio_fmt": "$59.990",
+    "ahorro_fmt": "$5.980",
+    "envio_gratis": false,
+    "pasos": [
+     {
+      "rol": "Limpia",
+      "corto": "MIXSOON Foam",
+      "t": "MIXSOON Centella Cleansing Foam",
+      "url": "https://skinland.cl/products/mixsoon-centella-cleansing-foam",
+      "precio": 19990,
+      "precio_fmt": "$19.990"
+     },
+     {
+      "rol": "Hidrata",
+      "corto": "SKIN1004 Gel Cream",
+      "t": "SKIN1004 Centella Poremizing Light Gel Cream",
+      "url": "https://skinland.cl/products/skin1004-poremizing-light-gel-cream",
+      "precio": 23990,
+      "precio_fmt": "$23.990"
+     },
+     {
+      "rol": "Protege",
+      "corto": "Aqua-Fresh SPF50+",
+      "t": "Beauty of Joseon Relief Sun Aqua-Fresh SPF50+",
+      "url": "https://skinland.cl/products/boj-relief-sun-aqua-fresh",
+      "precio": 21990,
+      "precio_fmt": "$21.990"
+     }
+    ]
+   },
+   "paso_n": 2
+  }
+ },
+ "piel": {
+  "grasa": {
+   "express": "rutina-express-piel-grasa",
+   "esencial": "rutina-piel-grasa"
+  },
+  "sensible": {
+   "express": "rutina-express-piel-sensible",
+   "esencial": "rutina-piel-sensible"
+  }
+ },
+ "kits_objetivo": {
+  "antiacne": "kit-anti-acne",
+  "manchas": "kit-anti-manchas",
+  "antiedad": "kit-anti-edad"
+ }
+}

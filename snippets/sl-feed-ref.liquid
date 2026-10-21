@@ -1,0 +1,100 @@
+{%- comment -%}
+  Feed de Klaviyo · referencia a otra rutina o kit (up, down, kit) respecto de una base.
+  Parámetros: ref (producto referido), base (producto base), con_kit (true en kit: agrega objetivo, gancho), umbral (CLP enteros).
+  Imprime un objeto JSON compacto.
+{%- endcomment -%}
+{%- liquid
+  capture bs_raw
+    render 'sl-bundle-sum', product: ref
+  endcapture
+  assign bs = bs_raw | strip | split: '|'
+  assign suma_c = bs[0] | plus: 0
+  assign ahorro_c = bs[1] | plus: 0
+  assign precio_r = ref.selected_or_first_available_variant.price
+  assign precio_b = base.selected_or_first_available_variant.price
+  assign precio_pesos = precio_r | divided_by: 100
+  assign dif_c = precio_r | minus: precio_b
+  if dif_c < 0
+    assign dif_c = dif_c | times: -1
+  endif
+  assign falta = umbral | minus: precio_pesos
+  if falta < 0
+    assign falta = 0
+  endif
+  assign envio_gratis = false
+  if precio_pesos >= umbral
+    assign envio_gratis = true
+  endif
+
+  assign pasos_json = ''
+  assign roles_texto = ''
+  assign n_pasos = 0
+  assign suma_texto = ''
+  for c in ref.metafields.custom.routine_products.value
+    capture rol_raw
+      render 'sl-paso', componente: c
+    endcapture
+    assign rol = rol_raw | strip
+    assign corto = c.metafields.custom.nombre_corto.value | default: c.title
+    assign j_rol = rol | json
+    assign j_corto = corto | json
+    assign paso = '{"rol":' | append: j_rol | append: ',"corto":' | append: j_corto | append: '}'
+    if pasos_json == ''
+      assign pasos_json = paso
+    else
+      assign pasos_json = pasos_json | append: ',' | append: paso
+    endif
+    unless c.tags contains 'paso-tratamiento-local'
+      assign n_pasos = n_pasos | plus: 1
+      if roles_texto == ''
+        assign roles_texto = rol
+      else
+        assign roles_texto = roles_texto | append: ' · ' | append: rol
+      endif
+    endunless
+    assign esta_en_base = false
+    for b in base.metafields.custom.routine_products.value
+      if b.id == c.id
+        assign esta_en_base = true
+      endif
+    endfor
+    unless esta_en_base
+      if suma_texto == ''
+        assign suma_texto = corto
+      else
+        assign suma_texto = suma_texto | append: ' + ' | append: corto
+      endif
+    endunless
+  endfor
+
+  capture img_r
+    render 'sl-feed-img', imagen: ref.featured_image, ancho: 600
+  endcapture
+  assign url_r = shop.secure_url | append: ref.url
+  assign version_nombre = ref.metafields.custom.version_nombre.value | default: ''
+  assign resumen = ref.metafields.custom.version_resumen.value | default: roles_texto
+  assign objetivo = ''
+  if con_kit
+    for t in ref.tags
+      assign pref_obj = t | slice: 0, 19
+      if pref_obj == 'objetivo-principal-'
+        assign objetivo = t | remove: 'objetivo-principal-'
+      endif
+    endfor
+  endif
+  assign ahorro_fmt = ''
+  if ahorro_c > 0
+    assign ahorro_fmt = ahorro_c | money_without_trailing_zeros
+  endif
+  assign suma_fmt = ''
+  if ahorro_c > 0
+    assign suma_fmt = suma_c | money_without_trailing_zeros
+  endif
+  assign falta_fmt = ''
+  if falta > 0
+    assign falta_c = falta | times: 100
+    assign falta_fmt = falta_c | money_without_trailing_zeros
+  endif
+  assign dif_fmt = dif_c | money_without_trailing_zeros
+-%}
+{"handle":{{ ref.handle | json }},"t":{{ ref.title | json }},"url":{{ url_r | json }},"img":{{ img_r | strip | json }},"precio":{{ precio_pesos }},"precio_fmt":{{ precio_r | money_without_trailing_zeros | json }},"version":{{ version_nombre | downcase | json }},"version_nombre":{{ version_nombre | json }},"n_pasos":{{ n_pasos }},"resumen":{{ resumen | json }},"ahorro":{{ ahorro_c | divided_by: 100 }},"ahorro_fmt":{{ ahorro_fmt | json }},"suma_fmt":{{ suma_fmt | json }},"envio_gratis":{{ envio_gratis }},"falta_fmt":{{ falta_fmt | json }},"disponible":{{ ref.available }},"pasos":[{{ pasos_json }}],"dif":{{ dif_c | divided_by: 100 }},"dif_fmt":{{ dif_fmt | json }}{% if suma_texto != '' %},"suma":{{ suma_texto | json }}{% endif %}{% if con_kit %},"objetivo":{{ objetivo | json }},"gancho":{{ base.metafields.custom.upgrade_texto.value | default: '' | json }}{% endif %}}

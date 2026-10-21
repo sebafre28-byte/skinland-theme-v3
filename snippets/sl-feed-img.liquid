@@ -1,0 +1,14 @@
+{%- comment -%}
+  Feed de Klaviyo · URL absoluta (https:) de una imagen. Parámetros: imagen, ancho. Imprime vacío si no hay imagen.
+{%- endcomment -%}
+{%- liquid
+  if imagen
+    assign u = imagen | image_url: width: ancho
+    assign pref = u | slice: 0, 2
+    if pref == '//'
+      assign u = u | prepend: 'https:'
+    endif
+    assign u = u | replace: 'http://', 'https://'
+    echo u
+  endif
+-%}

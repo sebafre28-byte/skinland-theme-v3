@@ -1,0 +1,48 @@
+{%- comment -%}
+  Feed de Klaviyo · un componente de rutina o kit como paso. Imprime un objeto JSON compacto.
+  Parámetro: c (producto componente). Precios en CLP enteros.
+{%- endcomment -%}
+{%- liquid
+  capture rol_raw
+    render 'sl-paso', componente: c
+  endcapture
+  assign rol = rol_raw | strip
+  assign puntual = false
+  if c.tags contains 'paso-tratamiento-local'
+    assign puntual = true
+  endif
+  assign corto = c.metafields.custom.nombre_corto.value | default: c.title
+  assign v = c.variants | where: 'available' | first
+  unless v
+    assign v = c.variants | first
+  endunless
+  assign precio_c = v.price | divided_by: 100
+  assign am = false
+  assign pm = false
+  if c.tags contains 'uso-am' or c.tags contains 'uso-am-pm'
+    assign am = true
+  endif
+  if c.tags contains 'uso-pm' or c.tags contains 'uso-am-pm'
+    assign pm = true
+  endif
+  assign n1 = c.metafields.custom.ing1_nombre.value | strip
+  assign n2 = c.metafields.custom.ing2_nombre.value | strip
+  assign n3 = c.metafields.custom.ing3_nombre.value | strip
+  assign ings = ''
+  assign nombres_ing = n1 | append: '@@' | append: n2 | append: '@@' | append: n3 | split: '@@'
+  for nombre_ing in nombres_ing
+    if nombre_ing != blank
+      assign j = nombre_ing | json
+      if ings == ''
+        assign ings = j
+      else
+        assign ings = ings | append: ',' | append: j
+      endif
+    endif
+  endfor
+  capture img_c
+    render 'sl-feed-img', imagen: c.featured_image, ancho: 200
+  endcapture
+  assign url_c = shop.secure_url | append: c.url
+-%}
+{"t":{{ c.title | json }},"corto":{{ corto | json }},"rol":{{ rol | json }},"precio":{{ precio_c }},"beneficio":{{ c.metafields.custom.beneficio_corto.value | default: '' | json }},"ing":[{{ ings }}],"am":{{ am }},"pm":{{ pm }}{% if puntual %},"puntual":true{% endif %},"handle":{{ c.handle | json }},"url":{{ url_c | json }},"img":{{ img_c | strip | json }},"precio_fmt":{{ v.price | money_without_trailing_zeros | json }}}

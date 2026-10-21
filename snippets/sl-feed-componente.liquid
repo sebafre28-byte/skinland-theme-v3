@@ -1,0 +1,106 @@
+{%- comment -%}
+  Feed de Klaviyo · entrada de un producto suelto (componente de alguna rutina o kit). Imprime un objeto JSON compacto.
+  Parámetros: p (componente), todos (lista de productos activos), umbral (CLP enteros).
+  rutina = la rutina que lo contiene, prefiriendo una Express; paso_n = su posición en esa rutina.
+{%- endcomment -%}
+{%- liquid
+  capture base_raw
+    render 'sl-feed-paso', c: p
+  endcapture
+  assign base = base_raw | strip
+  assign base_sin_cierre = base | remove_last: '}'
+
+  assign am = false
+  assign pm = false
+  if p.tags contains 'uso-am' or p.tags contains 'uso-am-pm'
+    assign am = true
+  endif
+  if p.tags contains 'uso-pm' or p.tags contains 'uso-am-pm'
+    assign pm = true
+  endif
+  assign uso = ''
+  if am and pm
+    assign uso = 'Mañana y noche'
+  elsif am
+    assign uso = 'Solo mañana'
+  elsif pm
+    assign uso = 'Solo noche'
+  endif
+
+  assign elegida = nil
+  assign elegida_express = false
+  for r in todos
+    if r.metafields.custom.routine_products.value.size > 0 and r.available
+      assign contiene = false
+      for c in r.metafields.custom.routine_products.value
+        if c.id == p.id
+          assign contiene = true
+        endif
+      endfor
+      if contiene
+        assign r_version = r.metafields.custom.version_nombre.value | downcase
+        if elegida == nil
+          assign elegida = r
+          if r_version == 'express'
+            assign elegida_express = true
+          endif
+        elsif elegida_express == false and r_version == 'express'
+          assign elegida = r
+          assign elegida_express = true
+        endif
+      endif
+    endif
+  endfor
+
+  assign rutina_json = ''
+  assign paso_n = 0
+  if elegida
+    capture bs_raw
+      render 'sl-bundle-sum', product: elegida
+    endcapture
+    assign bs = bs_raw | strip | split: '|'
+    assign ahorro_c = bs[1] | plus: 0
+    assign ahorro_fmt = ''
+    if ahorro_c > 0
+      assign ahorro_fmt = ahorro_c | money_without_trailing_zeros
+    endif
+    assign precio_c = elegida.selected_or_first_available_variant.price
+    assign precio = precio_c | divided_by: 100
+    assign envio_gratis = false
+    if precio >= umbral
+      assign envio_gratis = true
+    endif
+    assign pasos_json = ''
+    for c in elegida.metafields.custom.routine_products.value
+      if c.id == p.id
+        assign paso_n = forloop.index
+      endif
+      capture rol_raw
+        render 'sl-paso', componente: c
+      endcapture
+      assign cv = c.variants | where: 'available' | first
+      unless cv
+        assign cv = c.variants | first
+      endunless
+      assign j_rol = rol_raw | strip | json
+      assign j_corto = c.metafields.custom.nombre_corto.value | default: c.title | json
+      assign j_t = c.title | json
+      assign j_url = shop.secure_url | append: c.url | json
+      assign j_pf = cv.price | money_without_trailing_zeros | json
+      assign cp_pesos = cv.price | divided_by: 100
+      assign item = '{"rol":' | append: j_rol | append: ',"corto":' | append: j_corto | append: ',"t":' | append: j_t | append: ',"url":' | append: j_url | append: ',"precio":' | append: cp_pesos | append: ',"precio_fmt":' | append: j_pf | append: '}'
+      if pasos_json == ''
+        assign pasos_json = item
+      else
+        assign pasos_json = pasos_json | append: ',' | append: item
+      endif
+    endfor
+    assign j_rh = elegida.handle | json
+    assign j_rt = elegida.title | json
+    assign j_ru = shop.secure_url | append: elegida.url | json
+    assign j_rp = precio_c | money_without_trailing_zeros | json
+    assign j_ra = ahorro_fmt | json
+    assign rutina_json = '{"handle":' | append: j_rh | append: ',"t":' | append: j_rt | append: ',"url":' | append: j_ru | append: ',"precio":' | append: precio | append: ',"precio_fmt":' | append: j_rp | append: ',"ahorro_fmt":' | append: j_ra | append: ',"envio_gratis":' | append: envio_gratis | append: ',"pasos":[' | append: pasos_json | append: ']}'
+  endif
+-%}
+{{ base_sin_cierre }},"uso":{{ uso | json }}{% if rutina_json != '' %},"rutina":{{ rutina_json }},"paso_n":{{ paso_n }}{% endif %}}
