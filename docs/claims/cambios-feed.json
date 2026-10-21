@@ -1,0 +1,198 @@
+{
+ "namespace": "custom",
+ "nota": "Reemplazo por texto sobre el valor vigente. Deshacer = intercambiar find y replace. No aplicado.",
+ "cambios": [
+  {
+   "handle": "numbuzin-no-1-pantothenic-b5-active-soothing-cream-80ml",
+   "key": "ing1_desc",
+   "find": "Descompone el sebo acumulado",
+   "replace": "Ayuda a equilibrar la apariencia de la piel con brillo"
+  },
+  {
+   "handle": "round-lab-pine-calming-cica-ampoule-30ml",
+   "key": "ing1_desc",
+   "find": "Repara y calma rápidamente",
+   "replace": "Ayuda a calmar la apariencia de la piel"
+  },
+  {
+   "handle": "aroom-chaga-comfort-cream-60ml",
+   "key": "ing1_desc",
+   "find": "Fortalece la barrera y reduce enrojecimiento",
+   "replace": "Ayuda a mantener la piel cómoda y a que se vea más pareja"
+  },
+  {
+   "handle": "dr-althea-147-barrier-cream-50-ml",
+   "key": "ing1_desc",
+   "find": "Fortalece y protege la barrera cutánea",
+   "replace": "Ayuda a cuidar la barrera de la piel"
+  },
+  {
+   "handle": "k-secret-seoul-1988-sun-pine-tree-ceramide-50ml",
+   "key": "ing1_desc",
+   "find": "Antiedad y firmeza",
+   "replace": "Ayuda a que la piel se vea más firme"
+  },
+  {
+   "handle": "nida-invisible-fit-sun-cream-50ml",
+   "key": "ing1_desc",
+   "find": "Fortalece la barrera y unifica el tono",
+   "replace": "Ayuda a que el tono se vea más parejo"
+  },
+  {
+   "handle": "centella-tone-brightening-capsule-cream-75ml",
+   "key": "ing1_desc",
+   "find": "Unifica el tono",
+   "replace": "Ayuda a que el tono se vea más parejo"
+  },
+  {
+   "handle": "skin1004-madagascar-centella-tea-trica-relief-ampoule-100ml",
+   "key": "ing1_desc",
+   "find": "Calma la piel irritada",
+   "replace": "Ayuda a calmar la apariencia de la piel"
+  },
+  {
+   "handle": "mixsoon-centella-cleansing-foam-150ml",
+   "key": "ing1_desc",
+   "find": "Calma y apoya la regeneración",
+   "replace": "Ayuda a calmar la apariencia de la piel"
+  },
+  {
+   "handle": "skin1004-centella-poremizing-light-gel-cream-75ml",
+   "key": "ing1_desc",
+   "find": "Purifica y minimiza poros",
+   "replace": "Ayuda a que los poros se vean más finos"
+  },
+  {
+   "handle": "skin1004-centella-poremizing-fresh-ampoule-100ml",
+   "key": "ing1_desc",
+   "find": "Limpia impurezas de los poros",
+   "replace": "Ayuda a limpiar la apariencia de los poros"
+  },
+  {
+   "handle": "lon-g-cc-cleanser-100ml",
+   "key": "ing1_desc",
+   "find": "Limpia poros",
+   "replace": "Ayuda a dejar los poros más despejados"
+  },
+  {
+   "handle": "dr-althea-aqua-glowing-sunscreen-45-ml",
+   "key": "ing1_desc",
+   "find": "Hidrata y regenera",
+   "replace": "Ayuda a hidratar la piel"
+  },
+  {
+   "handle": "k-secret-seoul-1988-cleansing-foam-pine-cica-1-probiotics-150-ml",
+   "key": "ing1_desc",
+   "find": "Calma y antioxida",
+   "replace": "Ayuda a calmar la apariencia de la piel"
+  },
+  {
+   "handle": "haruharu-wonder-black-rice-moisture-5-5-soft-cleansing-gel-100ml",
+   "key": "ing1_desc",
+   "find": "Antioxida, hidrata e ilumina",
+   "replace": "Ayuda a hidratar y a que la piel se vea más luminosa"
+  },
+  {
+   "handle": "kit-anti-edad",
+   "key": "routine_results",
+   "find": "— Piel más calmada y firme —",
+   "replace": "— Piel que se siente más calmada —"
+  },
+  {
+   "handle": "kit-anti-edad",
+   "key": "routine_results",
+   "find": "— Piel más tersa y con mejor apariencia general —",
+   "replace": "— Piel con mejor apariencia general —"
+  },
+  {
+   "handle": "rutina-piel-seca",
+   "key": "routine_results",
+   "find": "— Barrera más fortalecida —",
+   "replace": "— Piel que se siente más cómoda —"
+  },
+  {
+   "handle": "rutina-piel-seca",
+   "key": "routine_results",
+   "find": "— Piel más firme, luminosa y con hidratación duradera —",
+   "replace": "— Piel con apariencia más luminosa e hidratada —"
+  },
+  {
+   "handle": "rutina-express-piel-seca",
+   "key": "routine_results",
+   "find": "— Barrera más cuidada —",
+   "replace": "— Piel que se siente cómoda e hidratada —"
+  },
+  {
+   "handle": "rutina-piel-sensible",
+   "key": "routine_results",
+   "find": "— Menos reactividad —",
+   "replace": "— Piel que se siente más tranquila —"
+  },
+  {
+   "handle": "rutina-piel-sensible",
+   "key": "routine_results",
+   "find": "— Barrera más fortalecida —",
+   "replace": "— Piel con apariencia más calmada —"
+  },
+  {
+   "handle": "rutina-express-piel-sensible",
+   "key": "routine_results",
+   "find": "— Barrera más equilibrada —",
+   "replace": "— Piel que se siente más equilibrada —"
+  },
+  {
+   "handle": "kit-anti-manchas",
+   "key": "routine_results",
+   "find": "— El tono empieza a responder —",
+   "replace": "— El tono puede verse más parejo —"
+  },
+  {
+   "handle": "kit-anti-manchas",
+   "key": "routine_results",
+   "find": "— Tono más unificado —",
+   "replace": "— Tono con apariencia más uniforme —"
+  },
+  {
+   "handle": "rutina-piel-grasa",
+   "key": "routine_results",
+   "find": "— Menos brillo y más equilibrio —",
+   "replace": "— El brillo puede notarse menos —"
+  },
+  {
+   "handle": "rutina-piel-grasa",
+   "key": "routine_results",
+   "find": "— Piel más pareja y controlada —",
+   "replace": "— Piel con apariencia más pareja —"
+  },
+  {
+   "handle": "rutina-piel-mixta",
+   "key": "routine_results",
+   "find": "— Poros más refinados y menos imperfecciones —",
+   "replace": "— Poros que pueden verse más finos —"
+  },
+  {
+   "handle": "rutina-piel-sensible",
+   "key": "para_quien_es",
+   "find": "Tienes rojeces persistentes o tendencia a la reactividad.",
+   "replace": "Sientes tu piel sensible o con rojeces ocasionales."
+  },
+  {
+   "handle": "rutina-express-piel-sensible",
+   "key": "para_quien_es",
+   "find": "Tienes rojeces persistentes o tendencia a la reactividad.",
+   "replace": "Sientes tu piel sensible o con rojeces ocasionales."
+  },
+  {
+   "handle": "rutina-piel-seca",
+   "key": "para_quien_es",
+   "find": "Notas falta de elasticidad o firmeza por deshidratación.",
+   "replace": "Notas tu piel con falta de hidratación."
+  },
+  {
+   "handle": "kit-anti-acne",
+   "key": "para_quien_es",
+   "find": "Tienes brotes recurrentes o granos activos.",
+   "replace": "Tu piel tiende a tener granitos."
+  }
+ ]
+}
