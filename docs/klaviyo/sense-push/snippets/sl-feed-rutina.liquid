@@ -1,0 +1,443 @@
+{%- comment -%}
+  Feed de Klaviyo · entrada de una rutina o kit (p[handle]). Imprime un objeto JSON compacto.
+  Parámetros: p (rutina o kit), todos (lista de productos activos, para buscar la Esencial de un kit), umbral (CLP enteros).
+  Todo se calcula desde custom.*, las etiquetas y los ajustes del tema. Si un dato no existe, la clave va vacía.
+{%- endcomment -%}
+{%- liquid
+  assign componentes = p.metafields.custom.routine_products.value
+  assign precio_c = p.selected_or_first_available_variant.price
+  assign precio = precio_c | divided_by: 100
+
+  capture bs_raw
+    render 'sl-bundle-sum', product: p
+  endcapture
+  assign bs = bs_raw | strip | split: '|'
+  assign suma_c = bs[0] | plus: 0
+  assign ahorro_c = bs[1] | plus: 0
+  assign ahorro_fmt = ''
+  assign suma_fmt = ''
+  if ahorro_c > 0
+    assign ahorro_fmt = ahorro_c | money_without_trailing_zeros
+    assign suma_fmt = suma_c | money_without_trailing_zeros
+  endif
+
+  assign version_nombre = p.metafields.custom.version_nombre.value | default: ''
+  assign version = version_nombre | downcase
+  if version == ''
+    comment
+      Respaldo cuando falta custom.version_nombre: etiquetas reales del producto (producto-kit, rutina-3-pasos, rutina-4-pasos)
+    endcomment
+    if p.tags contains 'producto-kit'
+      assign version = 'kit'
+    elsif p.tags contains 'rutina-3-pasos'
+      assign version = 'express'
+    elsif p.tags contains 'rutina-4-pasos'
+      assign version = 'esencial'
+    endif
+  endif
+
+  capture piel_raw
+    render 'sl-feed-piel', producto: p
+  endcapture
+  assign piel = piel_raw | strip
+
+  capture color_raw
+    render 'sl-color-necesidad', product: p
+  endcapture
+  assign color_nombre = color_raw | strip
+  case color_nombre
+    when 'durazno'
+      assign color_hex = settings.sl_color_durazno | default: '#FFB38A'
+    when 'celeste'
+      assign color_hex = settings.sl_color_celeste | default: '#A9D8FF'
+    when 'lila'
+      assign color_hex = settings.sl_color_lila | default: '#CBB8FF'
+    when 'lima'
+      assign color_hex = settings.sl_color_lima | default: '#DCF56C'
+    when 'amarillo'
+      assign color_hex = settings.sl_color_amarillo | default: '#FFE58A'
+    when 'rosa'
+      assign color_hex = settings.sl_color_rosa | default: '#FFA3C8'
+    else
+      assign color_hex = settings.sl_color_menta | default: '#8EE3B8'
+  endcase
+
+  assign pasos_json = ''
+  assign am_json = ''
+  assign pm_json = ''
+  assign puntual_json = ''
+  assign roles_texto = ''
+  assign ing_json = ''
+  assign ing_n = 0
+  assign n_pasos = 0
+  for c in componentes
+    capture paso
+      render 'sl-feed-paso', c: c
+    endcapture
+    assign paso = paso | strip
+    if pasos_json == ''
+      assign pasos_json = paso
+    else
+      assign pasos_json = pasos_json | append: ',' | append: paso
+    endif
+    if c.tags contains 'paso-tratamiento-local'
+      if puntual_json == ''
+        assign puntual_json = paso
+      else
+        assign puntual_json = puntual_json | append: ',' | append: paso
+      endif
+    else
+      assign n_pasos = n_pasos | plus: 1
+      capture rol_raw
+        render 'sl-paso', componente: c
+      endcapture
+      if roles_texto == ''
+        assign roles_texto = rol_raw | strip
+      else
+        assign roles_texto = roles_texto | append: ' · ' | append: rol_raw | strip
+      endif
+      if c.tags contains 'uso-am' or c.tags contains 'uso-am-pm'
+        if am_json == ''
+          assign am_json = paso
+        else
+          assign am_json = am_json | append: ',' | append: paso
+        endif
+      endif
+      if c.tags contains 'uso-pm' or c.tags contains 'uso-am-pm'
+        if pm_json == ''
+          assign pm_json = paso
+        else
+          assign pm_json = pm_json | append: ',' | append: paso
+        endif
+      endif
+    endif
+    assign ing_nombre = c.metafields.custom.ing1_nombre.value | strip
+    assign ing_desc = c.metafields.custom.ing1_desc.value | strip
+    if ing_n < 3 and ing_nombre != blank and ing_desc != blank
+      assign ing_corto = c.metafields.custom.nombre_corto.value | default: c.title
+      assign j_n = ing_nombre | json
+      assign j_d = ing_desc | json
+      assign j_e = ing_corto | json
+      assign ing_item = '{"nombre":' | append: j_n | append: ',"desc":' | append: j_d | append: ',"en":' | append: j_e | append: '}'
+      if ing_json == ''
+        assign ing_json = ing_item
+      else
+        assign ing_json = ing_json | append: ',' | append: ing_item
+      endif
+      assign ing_n = ing_n | plus: 1
+    endif
+  endfor
+
+  assign resumen = p.metafields.custom.version_resumen.value | default: roles_texto
+
+  assign dias = p.metafields.custom.duracion_dias.value | default: 0
+  assign dia_fmt = ''
+  if dias > 0
+    assign por_dia = precio | times: 1.0 | divided_by: dias | divided_by: 100.0 | round | times: 10000
+    assign dia_fmt = por_dia | money_without_trailing_zeros
+  endif
+
+  assign falta = umbral | minus: precio
+  if falta < 0
+    assign falta = 0
+  endif
+  assign envio_gratis = false
+  if precio >= umbral
+    assign envio_gratis = true
+  endif
+  assign pct = precio | times: 100.0 | divided_by: umbral | round
+  if pct > 100
+    assign pct = 100
+  endif
+  assign falta_fmt = ''
+  if falta > 0
+    assign falta_c = falta | times: 100
+    assign falta_fmt = falta_c | money_without_trailing_zeros
+  endif
+
+  assign pq_json = ''
+  assign pq_n = 0
+  for linea in p.metafields.custom.para_quien_es.value
+    if pq_n < 3 and linea != blank
+      assign j = linea | json
+      if pq_json == ''
+        assign pq_json = j
+      else
+        assign pq_json = pq_json | append: ',' | append: j
+      endif
+      assign pq_n = pq_n | plus: 1
+    endif
+  endfor
+
+  assign noes_json = ''
+  for alt in p.metafields.custom.alternativas.value
+    assign ap = alt.producto.value
+    if ap
+      assign a_version = ap.metafields.custom.version_nombre.value | default: ''
+      assign a_url = shop.secure_url | append: ap.url
+      assign a_precio = ap.selected_or_first_available_variant.price | money_without_trailing_zeros
+      assign j_sit = alt.situacion.value | default: '' | json
+      assign j_t = ap.title | json
+      assign j_u = a_url | json
+      assign j_v = a_version | downcase | json
+      assign j_p = a_precio | json
+      assign a_resumen = ap.metafields.custom.version_resumen.value | default: ''
+      assign item = '{"situacion":' | append: j_sit | append: ',"t":' | append: j_t | append: ',"url":' | append: j_u | append: ',"version":' | append: j_v | append: ',"precio_fmt":' | append: j_p
+      if a_resumen != ''
+        assign j_r = a_resumen | json
+        assign item = item | append: ',"resumen":' | append: j_r
+      endif
+      assign item = item | append: '}'
+      if noes_json == ''
+        assign noes_json = item
+      else
+        assign noes_json = noes_json | append: ',' | append: item
+      endif
+    endif
+  endfor
+
+  assign res_json = ''
+  assign lineas = p.metafields.custom.routine_results.value | default: '' | newline_to_br | split: '<br />'
+  for linea in lineas
+    assign partes = linea | strip_newlines | strip | split: ' — '
+    if partes.size >= 2
+      assign j_c = partes[0] | strip | json
+      assign j_tx = partes[1] | strip | json
+      assign item = '{"cuando":' | append: j_c | append: ',"texto":' | append: j_tx | append: '}'
+      if res_json == ''
+        assign res_json = item
+      else
+        assign res_json = res_json | append: ',' | append: item
+      endif
+    endif
+  endfor
+
+  assign vid_json = ''
+  for vd in p.metafields.custom.videos.value
+    if vd.permiso_uso.value == true
+      assign v_media = vd.video.value
+      assign v_url = ''
+      if v_media
+        assign v_src = v_media.sources | first
+        assign v_url = v_src.url
+      endif
+      capture v_portada
+        render 'sl-feed-img', imagen: vd.portada.value, ancho: 600
+      endcapture
+      assign j_vu = v_url | json
+      assign j_vp = v_portada | strip | json
+      assign j_vt = vd.tipo.value | default: '' | json
+      assign j_vti = vd.titulo.value | default: '' | json
+      assign item = '{"url":' | append: j_vu | append: ',"portada":' | append: j_vp | append: ',"tipo":' | append: j_vt | append: ',"titulo":' | append: j_vti | append: '}'
+      if vid_json == ''
+        assign vid_json = item
+      else
+        assign vid_json = vid_json | append: ',' | append: item
+      endif
+    endif
+  endfor
+
+  comment
+    Versiones hermanas (up, down, kit, extra, kit_suma)
+  endcomment
+  assign ref_up = nil
+  assign ref_down = nil
+  assign ref_kit = nil
+  for vr in p.metafields.custom.versiones.value
+    assign vr_nombre = vr.metafields.custom.version_nombre.value | downcase
+    if vr and vr.handle != p.handle
+      if vr_nombre == 'esencial' and ref_up == nil
+        assign ref_up = vr
+      elsif vr_nombre == 'express' and ref_down == nil
+        assign ref_down = vr
+      elsif vr_nombre == 'kit' and ref_kit == nil
+        assign ref_kit = vr
+      endif
+    endif
+  endfor
+  if version == 'express' or version == 'esencial'
+    if p.metafields.custom.upgrade.value
+      assign ref_kit = p.metafields.custom.upgrade.value
+    endif
+    if ref_kit
+      assign kit_nombre = ref_kit.metafields.custom.version_nombre.value | downcase
+      if kit_nombre != 'kit'
+        assign ref_kit = nil
+      endif
+    endif
+  endif
+  if version == 'express'
+    assign ref_down = nil
+  endif
+  if version == 'esencial'
+    assign ref_up = nil
+  endif
+  if version == 'kit'
+    assign ref_up = nil
+    assign ref_down = nil
+    assign ref_kit = nil
+  endif
+
+  assign up_json = 'null'
+  if ref_up
+    capture up_json
+      render 'sl-feed-ref', ref: ref_up, base: p, con_kit: false, umbral: umbral
+    endcapture
+    assign up_json = up_json | strip
+  endif
+  assign down_json = 'null'
+  if ref_down
+    capture down_json
+      render 'sl-feed-ref', ref: ref_down, base: p, con_kit: false, umbral: umbral
+    endcapture
+    assign down_json = down_json | strip
+  endif
+  assign kit_json = 'null'
+  if ref_kit
+    capture kit_json
+      render 'sl-feed-ref', ref: ref_kit, base: p, con_kit: true, umbral: umbral
+    endcapture
+    assign kit_json = kit_json | strip
+  endif
+
+  assign extra_json = ''
+  comment
+    extra solo existe si la Esencial es la Express + exactamente un producto (sin otros cambios):
+    si cambian varios componentes, el argumento "suma un paso" no se sostiene y la clave se omite.
+  endcomment
+  if version == 'esencial' and ref_down
+    assign extra = nil
+    assign n_extra = 0
+    assign n_faltan = 0
+    for c in componentes
+      unless c.tags contains 'paso-tratamiento-local'
+        assign en_down = false
+        for d in ref_down.metafields.custom.routine_products.value
+          if d.id == c.id
+            assign en_down = true
+          endif
+        endfor
+        if en_down == false
+          assign n_extra = n_extra | plus: 1
+          assign extra = c
+        endif
+      endunless
+    endfor
+    for d in ref_down.metafields.custom.routine_products.value
+      assign en_esencial = false
+      for c in componentes
+        if d.id == c.id
+          assign en_esencial = true
+        endif
+      endfor
+      if en_esencial == false
+        assign n_faltan = n_faltan | plus: 1
+      endif
+    endfor
+    if n_extra != 1 or n_faltan != 0
+      assign extra = nil
+    endif
+    if extra
+      assign ev = extra.variants | where: 'available' | first
+      unless ev
+        assign ev = extra.variants | first
+      endunless
+      assign down_precio = ref_down.selected_or_first_available_variant.price
+      assign dme_c = down_precio | plus: ev.price
+      assign conviene_c = dme_c | minus: precio_c
+      assign conviene = conviene_c | divided_by: 100
+      assign conviene_fmt = ''
+      if conviene_c > 0
+        assign conviene_fmt = conviene_c | money_without_trailing_zeros
+      else
+        assign conviene = 0
+      endif
+      assign x_corto = extra.metafields.custom.nombre_corto.value | default: extra.title
+      assign j_xc = x_corto | json
+      assign j_xt = extra.title | json
+      assign j_xb = extra.metafields.custom.beneficio_corto.value | default: '' | json
+      assign j_xp = ev.price | money_without_trailing_zeros | json
+      assign j_xd = dme_c | money_without_trailing_zeros | json
+      assign j_xcf = conviene_fmt | json
+      assign x_precio = ev.price | divided_by: 100
+      assign extra_json = '{"corto":' | append: j_xc | append: ',"t":' | append: j_xt | append: ',"beneficio":' | append: j_xb | append: ',"precio":' | append: x_precio | append: ',"precio_fmt":' | append: j_xp | append: ',"down_mas_extra_fmt":' | append: j_xd | append: ',"conviene":' | append: conviene | append: ',"conviene_fmt":' | append: j_xcf | append: '}'
+    endif
+  endif
+
+  assign kit_suma = ''
+  if version == 'kit'
+    assign esencial_piel = nil
+    for t in todos
+      if esencial_piel == nil and t.metafields.custom.version_nombre.value == 'Esencial'
+        capture pt
+          render 'sl-feed-piel', producto: t
+        endcapture
+        assign pt_piel = pt | strip
+        if pt_piel == piel
+          assign esencial_piel = t
+        endif
+      endif
+    endfor
+    if esencial_piel
+      for c in componentes
+        assign en_es = false
+        for e in esencial_piel.metafields.custom.routine_products.value
+          if e.id == c.id
+            assign en_es = true
+          endif
+        endfor
+        unless en_es
+          assign k_corto = c.metafields.custom.nombre_corto.value | default: c.title
+          if kit_suma == ''
+            assign kit_suma = k_corto
+          else
+            assign kit_suma = kit_suma | append: ' + ' | append: k_corto
+          endif
+        endunless
+      endfor
+    endif
+  endif
+
+  assign comp_json = ''
+  if precio < umbral
+    assign cp = p.metafields.custom.complemento_envio.value
+    unless cp
+      assign cp = settings.sl_complemento_envio
+    endunless
+    if cp and cp.available
+      assign cv = cp.variants | where: 'available' | first
+      assign en_rutina = false
+      for c in componentes
+        if c.id == cp.id
+          assign en_rutina = true
+        endif
+      endfor
+      assign cprecio_c = cv.price
+      assign total_c = precio_c | plus: cprecio_c
+      assign total = total_c | divided_by: 100
+      if en_rutina == false and total >= umbral
+        capture cimg
+          render 'sl-feed-img', imagen: cp.featured_image, ancho: 200
+        endcapture
+        assign ccorto = cp.metafields.custom.nombre_corto.value | default: cp.title
+        assign cart_url = shop.secure_url | append: '/cart/' | append: p.selected_or_first_available_variant.id | append: ':1,' | append: cv.id | append: ':1'
+        assign j_ch = cp.handle | json
+        assign j_ct = cp.title | json
+        assign j_cc = ccorto | json
+        assign j_cb = cp.metafields.custom.beneficio_corto.value | default: '' | json
+        assign j_ci = cimg | strip | json
+        assign j_cpf = cprecio_c | money_without_trailing_zeros | json
+        assign j_ctf = total_c | money_without_trailing_zeros | json
+        assign j_cu = cart_url | json
+        assign cprecio = cprecio_c | divided_by: 100
+        assign comp_json = '{"handle":' | append: j_ch | append: ',"t":' | append: j_ct | append: ',"corto":' | append: j_cc | append: ',"beneficio":' | append: j_cb | append: ',"img":' | append: j_ci | append: ',"precio":' | append: cprecio | append: ',"precio_fmt":' | append: j_cpf | append: ',"total":' | append: total | append: ',"total_fmt":' | append: j_ctf | append: ',"cart_url":' | append: j_cu | append: '}'
+      endif
+    endif
+  endif
+
+  capture img_p
+    render 'sl-feed-img', imagen: p.featured_image, ancho: 600
+  endcapture
+  assign url_p = shop.secure_url | append: p.url
+-%}
+{"t":{{ p.title | json }},"url":{{ url_p | json }},"img":{{ img_p | strip | json }},"precio":{{ precio }},"precio_fmt":{{ precio_c | money_without_trailing_zeros | json }},"suma":{{ suma_c | divided_by: 100 }},"suma_fmt":{{ suma_fmt | json }},"ahorro":{{ ahorro_c | divided_by: 100 }},"ahorro_fmt":{{ ahorro_fmt | json }},"version":{{ version | json }},"version_nombre":{{ version_nombre | json }},"resumen":{{ resumen | json }},"piel":{{ piel | json }},"color":{{ color_hex | json }},"n_pasos":{{ n_pasos }},"dias":{{ dias }},"dia_fmt":{{ dia_fmt | json }},"disponible":{{ p.available }},"envio_gratis":{{ envio_gratis }},"falta":{{ falta }},"falta_fmt":{{ falta_fmt | json }},"pct":{{ pct }},"pasos":[{{ pasos_json }}],"am":[{{ am_json }}],"pm":[{{ pm_json }}],"puntual":[{{ puntual_json }}],"para_quien":[{{ pq_json }}],"no_es":[{{ noes_json }}],"resultados":[{{ res_json }}],"videos":[{{ vid_json }}],"ing_top":[{{ ing_json }}]{% if version == 'express' %},"up":{{ up_json }},"kit":{{ kit_json }}{% elsif version == 'esencial' %},"down":{{ down_json }},"kit":{{ kit_json }}{% if extra_json != '' %},"extra":{{ extra_json }}{% endif %}{% endif %}{% if version == 'kit' %},"kit_suma":{{ kit_suma | json }}{% endif %}{% if comp_json != '' %},"comp":{{ comp_json }}{% endif %}}

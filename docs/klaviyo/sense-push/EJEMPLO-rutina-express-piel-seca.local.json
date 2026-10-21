@@ -1,0 +1,253 @@
+{
+ "t": "Rutina Express Piel Seca",
+ "url": "https://skinland.cl/products/rutina-express-piel-seca",
+ "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/Mini_rutina_piel_seca_lifestyle_v4_98ce63c1-ffd4-4f54-88ab-df0f6fd013c5.jpg?v=1789867591&width=600",
+ "precio": 62990,
+ "precio_fmt": "$62.990",
+ "suma": 72970,
+ "suma_fmt": "$72.970",
+ "ahorro": 9980,
+ "ahorro_fmt": "$9.980",
+ "version": "express",
+ "version_nombre": "Express",
+ "resumen": "Limpia · hidrata · protege",
+ "piel": "seca",
+ "color": "#FFB38A",
+ "n_pasos": 3,
+ "dias": 60,
+ "dia_fmt": "$1.000",
+ "disponible": true,
+ "envio_gratis": false,
+ "falta": 2000,
+ "falta_fmt": "$2.000",
+ "pct": 97,
+ "pasos": [
+  {
+   "t": "Beauty of Joseon Green Plum Refreshing Cleanser 100ml",
+   "corto": "BoJ Green Plum",
+   "rol": "Limpia",
+   "precio": 15990,
+   "beneficio": "Gel limpiador que no deja la piel con sensación tirante.",
+   "ing": [
+    "Agua de Ciruela",
+    "Extracto de Frijol Mungo",
+    "Extracto de Centella + Houttuynia Cordata"
+   ],
+   "am": true,
+   "pm": true,
+   "handle": "beauty-of-joseon-green-plum-refreshing-cleanser-100ml",
+   "url": "https://skinland.cl/products/beauty-of-joseon-green-plum-refreshing-cleanser-100ml",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/Green_Plum_Refreshing_Cleanser_100ml.jpg?v=1779154214&width=200",
+   "precio_fmt": "$15.990"
+  },
+  {
+   "t": "Dr.Althea 147 Barrier Cream 50 ml",
+   "corto": "Dr.Althea 147 Cream",
+   "rol": "Hidrata",
+   "precio": 33990,
+   "beneficio": "Crema con ectoína y ceramidas que busca dar confort.",
+   "ing": [
+    "Ectoin",
+    "Ceramide NP + Betulina + NAD",
+    "Complejo de 7 Ácidos Hialurónicos"
+   ],
+   "am": true,
+   "pm": true,
+   "handle": "dr-althea-147-barrier-cream-50-ml",
+   "url": "https://skinland.cl/products/dr-althea-147-barrier-cream-50-ml",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/147_Barrier_Cream_50_mL_DR.ALTHEA.jpg?v=1784255611&width=200",
+   "precio_fmt": "$33.990"
+  },
+  {
+   "t": "Dr.Althea Aqua Glowing Sunscreen 45 ml",
+   "corto": "Dr.Althea Aqua Sunscreen",
+   "rol": "Protege",
+   "precio": 22990,
+   "beneficio": "Protector solar en emulsión acuosa con brillo natural.",
+   "ing": [
+    "Alga Verde + Sodium DNA (PDRN vegetal)",
+    "Niacinamida + Pantenol",
+    "Ceramide NP + Agua de Bambú"
+   ],
+   "am": true,
+   "pm": false,
+   "handle": "dr-althea-aqua-glowing-sunscreen-45-ml",
+   "url": "https://skinland.cl/products/dr-althea-aqua-glowing-sunscreen-45-ml",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/Aqua_Glowing_Sunscreen_45_mL_DR.ALTHEA.jpg?v=1784255612&width=200",
+   "precio_fmt": "$22.990"
+  }
+ ],
+ "am": [
+  {
+   "t": "Beauty of Joseon Green Plum Refreshing Cleanser 100ml",
+   "corto": "BoJ Green Plum",
+   "rol": "Limpia",
+   "precio": 15990,
+   "beneficio": "Gel limpiador que no deja la piel con sensación tirante.",
+   "ing": [
+    "Agua de Ciruela",
+    "Extracto de Frijol Mungo",
+    "Extracto de Centella + Houttuynia Cordata"
+   ],
+   "am": true,
+   "pm": true,
+   "handle": "beauty-of-joseon-green-plum-refreshing-cleanser-100ml",
+   "url": "https://skinland.cl/products/beauty-of-joseon-green-plum-refreshing-cleanser-100ml",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/Green_Plum_Refreshing_Cleanser_100ml.jpg?v=1779154214&width=200",
+   "precio_fmt": "$15.990"
+  },
+  {
+   "t": "Dr.Althea 147 Barrier Cream 50 ml",
+   "corto": "Dr.Althea 147 Cream",
+   "rol": "Hidrata",
+   "precio": 33990,
+   "beneficio": "Crema con ectoína y ceramidas que busca dar confort.",
+   "ing": [
+    "Ectoin",
+    "Ceramide NP + Betulina + NAD",
+    "Complejo de 7 Ácidos Hialurónicos"
+   ],
+   "am": true,
+   "pm": true,
+   "handle": "dr-althea-147-barrier-cream-50-ml",
+   "url": "https://skinland.cl/products/dr-althea-147-barrier-cream-50-ml",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/147_Barrier_Cream_50_mL_DR.ALTHEA.jpg?v=1784255611&width=200",
+   "precio_fmt": "$33.990"
+  },
+  {
+   "t": "Dr.Althea Aqua Glowing Sunscreen 45 ml",
+   "corto": "Dr.Althea Aqua Sunscreen",
+   "rol": "Protege",
+   "precio": 22990,
+   "beneficio": "Protector solar en emulsión acuosa con brillo natural.",
+   "ing": [
+    "Alga Verde + Sodium DNA (PDRN vegetal)",
+    "Niacinamida + Pantenol",
+    "Ceramide NP + Agua de Bambú"
+   ],
+   "am": true,
+   "pm": false,
+   "handle": "dr-althea-aqua-glowing-sunscreen-45-ml",
+   "url": "https://skinland.cl/products/dr-althea-aqua-glowing-sunscreen-45-ml",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/Aqua_Glowing_Sunscreen_45_mL_DR.ALTHEA.jpg?v=1784255612&width=200",
+   "precio_fmt": "$22.990"
+  }
+ ],
+ "pm": [
+  {
+   "t": "Beauty of Joseon Green Plum Refreshing Cleanser 100ml",
+   "corto": "BoJ Green Plum",
+   "rol": "Limpia",
+   "precio": 15990,
+   "beneficio": "Gel limpiador que no deja la piel con sensación tirante.",
+   "ing": [
+    "Agua de Ciruela",
+    "Extracto de Frijol Mungo",
+    "Extracto de Centella + Houttuynia Cordata"
+   ],
+   "am": true,
+   "pm": true,
+   "handle": "beauty-of-joseon-green-plum-refreshing-cleanser-100ml",
+   "url": "https://skinland.cl/products/beauty-of-joseon-green-plum-refreshing-cleanser-100ml",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/Green_Plum_Refreshing_Cleanser_100ml.jpg?v=1779154214&width=200",
+   "precio_fmt": "$15.990"
+  },
+  {
+   "t": "Dr.Althea 147 Barrier Cream 50 ml",
+   "corto": "Dr.Althea 147 Cream",
+   "rol": "Hidrata",
+   "precio": 33990,
+   "beneficio": "Crema con ectoína y ceramidas que busca dar confort.",
+   "ing": [
+    "Ectoin",
+    "Ceramide NP + Betulina + NAD",
+    "Complejo de 7 Ácidos Hialurónicos"
+   ],
+   "am": true,
+   "pm": true,
+   "handle": "dr-althea-147-barrier-cream-50-ml",
+   "url": "https://skinland.cl/products/dr-althea-147-barrier-cream-50-ml",
+   "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/147_Barrier_Cream_50_mL_DR.ALTHEA.jpg?v=1784255611&width=200",
+   "precio_fmt": "$33.990"
+  }
+ ],
+ "puntual": [],
+ "para_quien": [
+  "Tu piel suele sentirse tirante después de limpiarla. ",
+  "Sientes que pierde hidratación durante el día. ",
+  "Buscas una rutina sencilla que priorice hidratación y confort."
+ ],
+ "no_es": [],
+ "resultados": [
+  {
+   "cuando": "7 días",
+   "texto": "Piel más confortable"
+  },
+  {
+   "cuando": "14 días",
+   "texto": "Hidratación más estable"
+  },
+  {
+   "cuando": "30 días",
+   "texto": "Barrera más cuidada"
+  }
+ ],
+ "videos": [],
+ "ing_top": [
+  {
+   "nombre": "Agua de Ciruela",
+   "desc": "Hidrata y suaviza células muertas",
+   "en": "BoJ Green Plum"
+  },
+  {
+   "nombre": "Ectoin",
+   "desc": "Fortalece y protege la barrera cutánea",
+   "en": "Dr.Althea 147 Cream"
+  },
+  {
+   "nombre": "Alga Verde + Sodium DNA (PDRN vegetal)",
+   "desc": "Hidrata y regenera",
+   "en": "Dr.Althea Aqua Sunscreen"
+  }
+ ],
+ "up": {
+  "handle": "rutina-piel-seca",
+  "t": "Rutina Piel Seca",
+  "url": "https://skinland.cl/products/rutina-piel-seca",
+  "img": "https://cdn.shopify.com/s/files/1/0736/6223/4815/files/Rutinapielsecalifestylev4.png?v=1789868315&width=600",
+  "precio": 91990,
+  "precio_fmt": "$91.990",
+  "version": "esencial",
+  "version_nombre": "Esencial",
+  "n_pasos": 4,
+  "resumen": "Limpia · trata · hidrata · protege",
+  "ahorro": 20970,
+  "ahorro_fmt": "$20.970",
+  "suma_fmt": "$112.960",
+  "envio_gratis": true,
+  "falta_fmt": "",
+  "disponible": true,
+  "pasos": [
+   {
+    "rol": "Limpia",
+    "corto": "Arencia Rice Cleanser"
+   },
+   {
+    "rol": "Trata",
+    "corto": "EQQUALBERRY Hyaltoin"
+   },
+   {
+    "rol": "Hidrata",
+    "corto": "Dr.Althea 147 Cream"
+   },
+   {
+    "rol": "Protege",
+    "corto": "Dr.Althea Aqua Sunscreen"
+   }
+  ],
+  "dif": 29000,
+  "dif_fmt": "$29.000",
+  "suma": "Arencia Rice Cleanser + EQQUALBERRY Hyaltoin"
+ },
+ "kit": null
+}

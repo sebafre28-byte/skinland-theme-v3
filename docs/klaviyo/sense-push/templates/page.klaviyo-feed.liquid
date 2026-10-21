@@ -1,0 +1,144 @@
+{% layout none %}
+{%- comment -%}
+  Feed de Klaviyo (Web Feed "sl_feed"). Devuelve solo JSON.
+  Página en Admin: "klaviyo-feed" con esta plantilla → https://skinland.cl/pages/klaviyo-feed
+  Contrato: docs/klaviyo/feed-ejemplo.json. Todo sale de custom.*, etiquetas y ajustes del tema; nada escrito a mano.
+  Si falta un dato, la clave va vacía ("" , [] o null). Precios en CLP enteros; *_fmt con punto de miles.
+{%- endcomment -%}
+{%- liquid
+  assign umbral = settings.sl_envio_gratis_umbral | default: 64990 | plus: 0
+  assign umbral_c = umbral | times: 100
+  assign ahora = 'now' | date: '%Y-%m-%dT%H:%M:%S'
+  assign zona = 'now' | date: '%z'
+  assign zona_h = zona | slice: 0, 3
+  assign zona_m = zona | slice: 3, 2
+  assign actualizado = ahora | append: zona_h | append: ':' | append: zona_m
+-%}
+{%- paginate collections.all.products by 250 -%}
+{%- liquid
+  assign entradas = ''
+  assign pieles_raw = ''
+  assign objetivos_raw = ''
+
+  for p in collections.all.products
+    if p.metafields.custom.routine_products.value.size > 0
+      capture entrada
+        render 'sl-feed-rutina', p: p, todos: collections.all.products, umbral: umbral
+      endcapture
+      assign j_h = p.handle | json
+      assign par = j_h | append: ':' | append: entrada | strip
+      if entradas == ''
+        assign entradas = par
+      else
+        assign entradas = entradas | append: ',' | append: par
+      endif
+
+      assign v_nombre = p.metafields.custom.version_nombre.value | downcase
+      capture piel_raw
+        render 'sl-feed-piel', producto: p
+      endcapture
+      assign piel = piel_raw | strip
+      if piel != ''
+        if v_nombre == 'express' or v_nombre == 'esencial'
+          assign pieles_raw = pieles_raw | append: piel | append: '|' | append: v_nombre | append: '|' | append: p.handle | append: ';'
+        endif
+      endif
+      if v_nombre == ''
+        if p.tags contains 'producto-kit'
+          assign v_nombre = 'kit'
+        endif
+      endif
+      if v_nombre == 'kit'
+        for t in p.tags
+          assign pref_obj = t | slice: 0, 19
+          if pref_obj == 'objetivo-principal-'
+            assign obj = t | remove: 'objetivo-principal-'
+            assign objetivos_raw = objetivos_raw | append: obj | append: '|' | append: p.handle | append: ';'
+          endif
+        endfor
+      endif
+    endif
+  endfor
+
+  comment
+    Productos sueltos: los que son componente de alguna rutina o kit
+  endcomment
+  for p in collections.all.products
+    assign n_rp = p.metafields.custom.routine_products.value.size | default: 0
+    if n_rp == 0
+      assign es_componente = false
+      for r in collections.all.products
+        if es_componente == false and r.metafields.custom.routine_products.value.size > 0
+          for c in r.metafields.custom.routine_products.value
+            if c.id == p.id
+              assign es_componente = true
+            endif
+          endfor
+        endif
+      endfor
+      if es_componente
+        capture entrada
+          render 'sl-feed-componente', p: p, todos: collections.all.products, umbral: umbral
+        endcapture
+        assign j_h = p.handle | json
+        assign par = j_h | append: ':' | append: entrada | strip
+        if entradas == ''
+          assign entradas = par
+        else
+          assign entradas = entradas | append: ',' | append: par
+        endif
+      endif
+    endif
+  endfor
+
+  assign mapa_piel = ''
+  assign tipos = 'grasa,seca,mixta,sensible' | split: ','
+  for tipo in tipos
+    assign h_express = ''
+    assign h_esencial = ''
+    assign filas = pieles_raw | split: ';'
+    for fila in filas
+      assign cols = fila | split: '|'
+      if cols[0] == tipo
+        if cols[1] == 'express' and h_express == ''
+          assign h_express = cols[2]
+        elsif cols[1] == 'esencial' and h_esencial == ''
+          assign h_esencial = cols[2]
+        endif
+      endif
+    endfor
+    if h_express != '' or h_esencial != ''
+      assign j_t = tipo | json
+      assign j_e = h_express | json
+      assign j_s = h_esencial | json
+      assign item = j_t | append: ':{"express":' | append: j_e | append: ',"esencial":' | append: j_s | append: '}'
+      if mapa_piel == ''
+        assign mapa_piel = item
+      else
+        assign mapa_piel = mapa_piel | append: ',' | append: item
+      endif
+    endif
+  endfor
+
+  assign mapa_kits = ''
+  assign vistos = '|'
+  assign filas_obj = objetivos_raw | split: ';'
+  for fila in filas_obj
+    assign cols = fila | split: '|'
+    assign marca = '|' | append: cols[0] | append: '|'
+    unless vistos contains marca
+      assign vistos = vistos | append: cols[0] | append: '|'
+      assign j_o = cols[0] | json
+      assign j_k = cols[1] | json
+      assign item = j_o | append: ':' | append: j_k
+      if mapa_kits == ''
+        assign mapa_kits = item
+      else
+        assign mapa_kits = mapa_kits | append: ',' | append: item
+      endif
+    endunless
+  endfor
+  assign umbral_fmt = umbral_c | money_without_trailing_zeros
+-%}
+{"v":1,"actualizado":{{ actualizado | json }},"umbral":{{ umbral }},"umbral_fmt":{{ umbral_fmt | json }},"p":{ {{- entradas -}} },"piel":{ {{- mapa_piel -}} },"kits_objetivo":{ {{- mapa_kits -}} }}
+{%- endpaginate -%}
