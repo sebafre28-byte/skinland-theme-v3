@@ -1,7 +1,7 @@
 {%- comment -%}
   Feed de Klaviyo · entrada de un producto suelto (componente de alguna rutina o kit). Imprime un objeto JSON compacto.
   Parámetros: p (componente), todos (lista de productos activos), umbral (CLP enteros).
-  rutina = la rutina que lo contiene, prefiriendo una Express; paso_n = su posición en esa rutina.
+  rutina = la rutina que lo contiene, con prioridad Express > Esencial > Kit; paso_n = su posición en esa rutina.
 {%- endcomment -%}
 {%- liquid
   capture base_raw
@@ -28,7 +28,7 @@
   endif
 
   assign elegida = nil
-  assign elegida_express = false
+  assign elegida_rango = 0
   for r in todos
     if r.metafields.custom.routine_products.value.size > 0 and r.available
       assign contiene = false
@@ -39,14 +39,15 @@
       endfor
       if contiene
         assign r_version = r.metafields.custom.version_nombre.value | downcase
-        if elegida == nil
+        assign r_rango = 1
+        if r_version == 'express'
+          assign r_rango = 3
+        elsif r_version == 'esencial'
+          assign r_rango = 2
+        endif
+        if r_rango > elegida_rango
           assign elegida = r
-          if r_version == 'express'
-            assign elegida_express = true
-          endif
-        elsif elegida_express == false and r_version == 'express'
-          assign elegida = r
-          assign elegida_express = true
+          assign elegida_rango = r_rango
         endif
       endif
     endif
