@@ -87,3 +87,9 @@ Se aplicaron los 32 reemplazos de `docs/claims/cambios-feed.json` con `metafield
 - Se ve también en el tema live (Sense), porque comparte estos metacampos.
 - **Deshacer:** para cada cambio, intercambiar `find` y `replace` del archivo (el texto nuevo vuelve al anterior) y escribirlo con `metafieldsSet`. Pedírselo a Claude: "deshaz los cambios de claims del feed".
 - Siguen pendientes las secciones 1 a 4 (`ing2_desc`, `faq`, textos largos de resultados).
+
+### 7.7 Aplicado el 21-oct-2026: secciones 1 a 4
+Se aplicaron los 112 reemplazos de `docs/claims/cambios-1-4.json` (prueba en seco: `docs/claims/prueba-en-seco-1-4.md`) con `metafieldsSet` en la tienda Skinland: 83 campos de 28 productos, en 4 lotes. Cada valor se releyó antes de escribir y después de escribir; sin errores y sin frases viejas a la vista.
+- Se ve también en el tema live (Sense), porque comparte estos metacampos.
+- **Deshacer:** intercambiar `find` y `replace` de cada fila de `cambios-1-4.json` y escribirlo con `metafieldsSet`. Pedírselo a Claude: "deshaz los cambios de claims 1 a 4".
+- Quedan pendientes los hallazgos de `docs/claims/extras-fuera-de-1-4.md` y, por ejemplo, "reparación de barrera" en `compatible_con` de Arencia, "sin agredir la barrera" en el subtítulo de Kit Anti Edad y "sin dañar la barrera" en Rutina Piel Grasa.

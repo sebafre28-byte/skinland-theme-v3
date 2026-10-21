@@ -56,6 +56,7 @@ Detalle en `docs/klaviyo/LEEME.md` y `docs/klaviyo/COLECCIONES.md`.
 |---|---|
 | Página `klaviyo-feed` (publicada, plantilla `klaviyo-feed`) | Borrar la página |
 | Claims del feed (21-oct): 15 `ing1_desc`, 8 `routine_results` (13 títulos), 4 `para_quien_es` | Intercambiar `find`/`replace` de `docs/claims/cambios-feed.json` y reescribir con `metafieldsSet` |
+| Claims secciones 1 a 4 (21-oct): 83 campos de 28 productos (`faq`, `copy_corto`, `ing*_desc`, `para_quien_es`, `compatible_con`, `problema_resuelve`, `routine_*`) | Intercambiar `find`/`replace` de `docs/claims/cambios-1-4.json` y reescribir con `metafieldsSet` |
 | Habilitada la condición de colección en `custom.version_nombre` | `metafieldDefinitionUpdate` con `enabled: false` |
 | Colecciones «Rutinas Express» y «Rutinas Esencial» | Borrar las colecciones |
 | `nombre_corto` y `beneficio_corto` en 22 productos | `metafieldsDelete` en esos dos metacampos |
