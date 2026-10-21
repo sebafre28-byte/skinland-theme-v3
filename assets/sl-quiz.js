@@ -351,6 +351,12 @@
     var cap=DATA.capture||{};
     var pr=rec.profile||{};
     var best=rec.best||{};
+    /* Valores simples para Klaviyo: tipo de piel (grasa, seca, mixta, sensible), objetivos y sensibilidad (alta o ninguna) */
+    var skinTypeSimple=(pr.tipo_piel||'').replace('tipo-piel-','');
+    if(['grasa','seca','mixta','sensible'].indexOf(skinTypeSimple)===-1) skinTypeSimple='';
+    var objetivos=[pr.objetivo_principal,pr.objetivo_secundario].filter(function(t){ return t&&t!=='objetivo-ninguno'; }).map(function(t){ return t.replace('objetivo-',''); });
+    var sensibilidadSimple=(pr.sensibilidad==='sensibilidad-ninguna')?'ninguna':(pr.sensibilidad?'alta':'');
+    var imagenAbs=String(best.image||''); if(imagenAbs.indexOf('//')===0) imagenAbs='https:'+imagenAbs;
     var properties={
       quiz_skin_type:(pr.tipo_piel||'').replace('tipo-piel-',''),
       quiz_primary_concern:(pr.objetivo_principal||'').replace('objetivo-',''),
@@ -366,7 +372,12 @@
       quiz_result_title:best.title||'',
       quiz_result_handle:best.handle||'',
       quiz_result_type:best.quiz_tipo||'',
-      quiz_version:VERSION
+      quiz_version:VERSION,
+      /* Datos para los flujos de Klaviyo V3 */
+      sl_tipo_piel:skinTypeSimple,
+      sl_rec_handle:best.handle||'',
+      sl_objetivos:objetivos,
+      sl_sensibilidad:sensibilidadSimple
     };
 
     var subscriptionPayload={
@@ -404,8 +415,14 @@
             RecommendedProductHandle:best.handle||'',
             RecommendedProductTitle:best.title||'',
             RecommendedProductURL:best.absolute_url||best.url||'',
-            RecommendedProductImage:best.image||'',
+            RecommendedProductImage:imagenAbs,
             RecommendedProductPrice:best.price||'',
+            RecommendedProductPriceValue:best.price_value||0,
+            RecommendedProductAvailable:best.available!==false,
+            RecommendedVersion:best.version||'',
+            SkinType:skinTypeSimple,
+            MainGoal:(pr.objetivo_principal||'').replace('objetivo-',''),
+            Sensitivity:sensibilidadSimple,
             RecommendedProductComparePrice:best.compare_price||'',
             RecommendedProductType:best.quiz_tipo||'',
             RecommendationScore:best._score||0
