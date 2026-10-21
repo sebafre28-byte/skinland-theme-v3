@@ -25,3 +25,7 @@ Prompt original: `PROMPT-KLAVIYO.md`. Contrato del feed: `feed-ejemplo.json`.
 - `objetivo-antiacne|manchas|antiedad|hidratar|calmar|poros` (+ `objetivo-ninguno` en la 3.ª pregunta) ✔
 - `sensibilidad-ninguna|reactiva|muy-reactiva` ✘ **difiere** del contrato (`sensibilidad-alta|ninguna`). No lo cambié: la propiedad nueva `Sensitivity` entrega `alta` (reactiva o muy reactiva) o `ninguna`.
 - `preferencia-rutina-3|rutina-4|kit` ✔
+
+## Feed en el tema publicado (Sense) sin depender de V3
+`docs/klaviyo/sense/page.klaviyo-feed.liquid` es el mismo feed en UN solo archivo: sin snippets `sl-*` ni ajustes del tema (umbral 64990 y colores con respaldo; el complemento sale solo de `custom.complemento_envio`). Se genera con `python3 scripts/klaviyo/aplanar-feed.py` desde `templates/page.klaviyo-feed.liquid` y snippets. Probado con liquidjs y datos reales de Admin: la salida es idéntica byte a byte a la del feed de V3.
+Instalación manual en Sense (la herramienta de Shopify bloquea escrituras al tema publicado): Tienda online → Temas → Sense → ⋯ → Editar código → Plantillas → "Agregar plantilla" → tipo `page`, formato Liquid, nombre `klaviyo-feed` → pegar el contenido del archivo → Guardar. La página `klaviyo-feed` ya existe con esa plantilla.

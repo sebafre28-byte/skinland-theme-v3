@@ -1,0 +1,1664 @@
+{% layout none %}
+{%- comment -%}
+  Archivo generado por scripts/klaviyo/aplanar-feed.py a partir de templates/page.klaviyo-feed.liquid de skinland-theme-v3.
+  Es autosuficiente: no usa snippets ni ajustes del tema. Umbral de envio gratis 64990 y colores con respaldo;
+  el complemento de envio sale solo del metacampo custom.complemento_envio del producto.
+  No editar a mano: regenerar con el script.
+{%- endcomment -%}
+{%- liquid
+assign umbral = settings.sl_envio_gratis_umbral | default: 64990 | plus: 0
+assign umbral_c = umbral | times: 100
+assign ahora = 'now' | date: '%Y-%m-%dT%H:%M:%S'
+assign zona = 'now' | date: '%z'
+assign zona_h = zona | slice: 0, 3
+assign zona_m = zona | slice: 3, 2
+assign actualizado = ahora | append: zona_h | append: ':' | append: zona_m
+-%}
+{%- paginate collections.all.products by 250 -%}
+{%- liquid
+assign entradas = ''
+assign pieles_raw = ''
+assign objetivos_raw = ''
+for p in collections.all.products
+if p.metafields.custom.routine_products.value.size > 0
+capture entrada
+assign _f1_p = p
+assign _f1_todos = collections.all.products
+assign _f1_umbral = umbral
+assign _f1_componentes = _f1_p.metafields.custom.routine_products.value
+assign _f1_precio_c = _f1_p.selected_or_first_available_variant.price
+assign _f1_precio = _f1_precio_c | divided_by: 100
+capture _f1_bs_raw
+assign _f2_product = _f1_p
+assign _f2_componentes = _f2_product.metafields.custom.routine_products.value
+assign _f2_precio = _f2_product.selected_or_first_available_variant.price
+assign _f2_suma = 0
+assign _f2_pasos = 0
+assign _f2_completo = true
+if _f2_componentes == blank
+assign _f2_completo = false
+endif
+for _f2_c in _f2_componentes
+assign _f2_pasos = _f2_pasos | plus: 1
+assign _f2_v = _f2_c.variants | where: 'available' | first
+if _f2_v == blank
+assign _f2_completo = false
+assign _f2_v = _f2_c.variants | first
+endif
+assign _f2_suma = _f2_suma | plus: _f2_v.price
+endfor
+assign _f2_ahorro = 0
+if _f2_completo and _f2_suma > _f2_precio
+assign _f2_ahorro = _f2_suma | minus: _f2_precio
+endif
+echo _f2_suma
+echo '|'
+echo _f2_ahorro
+echo '|'
+echo _f2_completo
+echo '|'
+echo _f2_pasos
+endcapture
+assign _f1_bs = _f1_bs_raw | strip | split: '|'
+assign _f1_suma_c = _f1_bs[0] | plus: 0
+assign _f1_ahorro_c = _f1_bs[1] | plus: 0
+assign _f1_ahorro_fmt = ''
+assign _f1_suma_fmt = ''
+if _f1_ahorro_c > 0
+assign _f1_ahorro_fmt = _f1_ahorro_c | money_without_trailing_zeros
+assign _f1_suma_fmt = _f1_suma_c | money_without_trailing_zeros
+endif
+assign _f1_version_nombre = _f1_p.metafields.custom.version_nombre.value | default: ''
+assign _f1_version = _f1_version_nombre | downcase
+if _f1_version == ''
+if _f1_p.tags contains 'producto-kit'
+assign _f1_version = 'kit'
+elsif _f1_p.tags contains 'rutina-3-pasos'
+assign _f1_version = 'express'
+elsif _f1_p.tags contains 'rutina-4-pasos'
+assign _f1_version = 'esencial'
+endif
+endif
+capture _f1_piel_raw
+assign _f3_producto = _f1_p
+assign _f3_piel = _f3_producto.metafields.custom.tipo_piel.value | first | downcase | remove: 'piel ' | strip
+if _f3_piel != 'grasa' and _f3_piel != 'seca' and _f3_piel != 'mixta' and _f3_piel != 'sensible'
+assign _f3_piel = ''
+if _f3_producto.tags contains 'tipo-piel-grasa'
+assign _f3_piel = 'grasa'
+elsif _f3_producto.tags contains 'tipo-piel-seca'
+assign _f3_piel = 'seca'
+elsif _f3_producto.tags contains 'tipo-piel-mixta'
+assign _f3_piel = 'mixta'
+elsif _f3_producto.tags contains 'tipo-piel-sensible'
+assign _f3_piel = 'sensible'
+endif
+endif
+echo _f3_piel
+endcapture
+assign _f1_piel = _f1_piel_raw | strip
+capture _f1_color_raw
+assign _f4_product = _f1_p
+assign _f4_color = _f4_product.metafields.custom.color.value
+if _f4_color == blank
+assign _f4_tipo = _f4_product.metafields.custom.tipo_piel.value | first | downcase
+case _f4_tipo
+when 'piel grasa'
+assign _f4_color = 'menta'
+when 'piel seca'
+assign _f4_color = 'durazno'
+when 'piel mixta'
+assign _f4_color = 'celeste'
+when 'piel sensible'
+assign _f4_color = 'lila'
+else
+assign _f4_color = 'menta'
+endcase
+endif
+echo _f4_color
+endcapture
+assign _f1_color_nombre = _f1_color_raw | strip
+case _f1_color_nombre
+when 'durazno'
+assign _f1_color_hex = settings.sl_color_durazno | default: '#FFB38A'
+when 'celeste'
+assign _f1_color_hex = settings.sl_color_celeste | default: '#A9D8FF'
+when 'lila'
+assign _f1_color_hex = settings.sl_color_lila | default: '#CBB8FF'
+when 'lima'
+assign _f1_color_hex = settings.sl_color_lima | default: '#DCF56C'
+when 'amarillo'
+assign _f1_color_hex = settings.sl_color_amarillo | default: '#FFE58A'
+when 'rosa'
+assign _f1_color_hex = settings.sl_color_rosa | default: '#FFA3C8'
+else
+assign _f1_color_hex = settings.sl_color_menta | default: '#8EE3B8'
+endcase
+assign _f1_pasos_json = ''
+assign _f1_am_json = ''
+assign _f1_pm_json = ''
+assign _f1_puntual_json = ''
+assign _f1_roles_texto = ''
+assign _f1_ing_json = ''
+assign _f1_ing_n = 0
+assign _f1_n_pasos = 0
+for _f1_c in _f1_componentes
+capture _f1_paso
+assign _f5_c = _f1_c
+capture _f5_rol_raw
+assign _f6_componente = _f5_c
+assign _f6_etiquetas = _f6_componente.tags
+if _f6_etiquetas contains 'paso-limpieza'
+echo 'Limpia'
+elsif _f6_etiquetas contains 'paso-serum'
+echo 'Trata'
+elsif _f6_etiquetas contains 'paso-crema'
+echo 'Hidrata'
+elsif _f6_etiquetas contains 'paso-spf' or _f6_etiquetas contains 'paso-proteccion-solar'
+echo 'Protege'
+elsif _f6_etiquetas contains 'paso-tratamiento-local'
+echo 'Granito puntual'
+endif
+endcapture
+assign _f5_rol = _f5_rol_raw | strip
+assign _f5_puntual = false
+if _f5_c.tags contains 'paso-tratamiento-local'
+assign _f5_puntual = true
+endif
+assign _f5_corto = _f5_c.metafields.custom.nombre_corto.value | default: _f5_c.title
+assign _f5_v = _f5_c.variants | where: 'available' | first
+unless _f5_v
+assign _f5_v = _f5_c.variants | first
+endunless
+assign _f5_precio_c = _f5_v.price | divided_by: 100
+assign _f5_am = false
+assign _f5_pm = false
+if _f5_c.tags contains 'uso-am' or _f5_c.tags contains 'uso-am-pm'
+assign _f5_am = true
+endif
+if _f5_c.tags contains 'uso-pm' or _f5_c.tags contains 'uso-am-pm'
+assign _f5_pm = true
+endif
+assign _f5_n1 = _f5_c.metafields.custom.ing1_nombre.value | strip
+assign _f5_n2 = _f5_c.metafields.custom.ing2_nombre.value | strip
+assign _f5_n3 = _f5_c.metafields.custom.ing3_nombre.value | strip
+assign _f5_ings = ''
+assign _f5_nombres_ing = _f5_n1 | append: '@@' | append: _f5_n2 | append: '@@' | append: _f5_n3 | split: '@@'
+for _f5_nombre_ing in _f5_nombres_ing
+if _f5_nombre_ing != blank
+assign _f5_j = _f5_nombre_ing | json
+if _f5_ings == ''
+assign _f5_ings = _f5_j
+else
+assign _f5_ings = _f5_ings | append: ',' | append: _f5_j
+endif
+endif
+endfor
+capture _f5_img_c
+assign _f7_imagen = _f5_c.featured_image
+assign _f7_ancho = 200
+if _f7_imagen
+assign _f7_u = _f7_imagen | image_url: width: _f7_ancho
+assign _f7_pref = _f7_u | slice: 0, 2
+if _f7_pref == '//'
+assign _f7_u = _f7_u | prepend: 'https:'
+endif
+assign _f7_u = _f7_u | replace: 'http://', 'https://'
+echo _f7_u
+endif
+endcapture
+assign _f5_url_c = shop.secure_url | append: _f5_c.url
+echo '{"t":'
+echo _f5_c.title | json
+echo ',"corto":'
+echo _f5_corto | json
+echo ',"rol":'
+echo _f5_rol | json
+echo ',"precio":'
+echo _f5_precio_c
+echo ',"beneficio":'
+echo _f5_c.metafields.custom.beneficio_corto.value | default: '' | json
+echo ',"ing":['
+echo _f5_ings
+echo '],"am":'
+echo _f5_am
+echo ',"pm":'
+echo _f5_pm
+if _f5_puntual
+echo ',"puntual":true'
+endif
+echo ',"handle":'
+echo _f5_c.handle | json
+echo ',"url":'
+echo _f5_url_c | json
+echo ',"img":'
+echo _f5_img_c | strip | json
+echo ',"precio_fmt":'
+echo _f5_v.price | money_without_trailing_zeros | json
+echo '}'
+endcapture
+assign _f1_paso = _f1_paso | strip
+if _f1_pasos_json == ''
+assign _f1_pasos_json = _f1_paso
+else
+assign _f1_pasos_json = _f1_pasos_json | append: ',' | append: _f1_paso
+endif
+if _f1_c.tags contains 'paso-tratamiento-local'
+if _f1_puntual_json == ''
+assign _f1_puntual_json = _f1_paso
+else
+assign _f1_puntual_json = _f1_puntual_json | append: ',' | append: _f1_paso
+endif
+else
+assign _f1_n_pasos = _f1_n_pasos | plus: 1
+capture _f1_rol_raw
+assign _f8_componente = _f1_c
+assign _f8_etiquetas = _f8_componente.tags
+if _f8_etiquetas contains 'paso-limpieza'
+echo 'Limpia'
+elsif _f8_etiquetas contains 'paso-serum'
+echo 'Trata'
+elsif _f8_etiquetas contains 'paso-crema'
+echo 'Hidrata'
+elsif _f8_etiquetas contains 'paso-spf' or _f8_etiquetas contains 'paso-proteccion-solar'
+echo 'Protege'
+elsif _f8_etiquetas contains 'paso-tratamiento-local'
+echo 'Granito puntual'
+endif
+endcapture
+if _f1_roles_texto == ''
+assign _f1_roles_texto = _f1_rol_raw | strip
+else
+assign _f1_roles_texto = _f1_roles_texto | append: ' · ' | append: _f1_rol_raw | strip
+endif
+if _f1_c.tags contains 'uso-am' or _f1_c.tags contains 'uso-am-pm'
+if _f1_am_json == ''
+assign _f1_am_json = _f1_paso
+else
+assign _f1_am_json = _f1_am_json | append: ',' | append: _f1_paso
+endif
+endif
+if _f1_c.tags contains 'uso-pm' or _f1_c.tags contains 'uso-am-pm'
+if _f1_pm_json == ''
+assign _f1_pm_json = _f1_paso
+else
+assign _f1_pm_json = _f1_pm_json | append: ',' | append: _f1_paso
+endif
+endif
+endif
+assign _f1_ing_nombre = _f1_c.metafields.custom.ing1_nombre.value | strip
+assign _f1_ing_desc = _f1_c.metafields.custom.ing1_desc.value | strip
+if _f1_ing_n < 3 and _f1_ing_nombre != blank and _f1_ing_desc != blank
+assign _f1_ing_corto = _f1_c.metafields.custom.nombre_corto.value | default: _f1_c.title
+assign _f1_j_n = _f1_ing_nombre | json
+assign _f1_j_d = _f1_ing_desc | json
+assign _f1_j_e = _f1_ing_corto | json
+assign _f1_ing_item = '{"nombre":' | append: _f1_j_n | append: ',"desc":' | append: _f1_j_d | append: ',"en":' | append: _f1_j_e | append: '}'
+if _f1_ing_json == ''
+assign _f1_ing_json = _f1_ing_item
+else
+assign _f1_ing_json = _f1_ing_json | append: ',' | append: _f1_ing_item
+endif
+assign _f1_ing_n = _f1_ing_n | plus: 1
+endif
+endfor
+assign _f1_resumen = _f1_p.metafields.custom.version_resumen.value | default: _f1_roles_texto
+assign _f1_dias = _f1_p.metafields.custom.duracion_dias.value | default: 0
+assign _f1_dia_fmt = ''
+if _f1_dias > 0
+assign _f1_por_dia = _f1_precio | times: 1.0 | divided_by: _f1_dias | divided_by: 100.0 | round | times: 10000
+assign _f1_dia_fmt = _f1_por_dia | money_without_trailing_zeros
+endif
+assign _f1_falta = _f1_umbral | minus: _f1_precio
+if _f1_falta < 0
+assign _f1_falta = 0
+endif
+assign _f1_envio_gratis = false
+if _f1_precio >= _f1_umbral
+assign _f1_envio_gratis = true
+endif
+assign _f1_pct = _f1_precio | times: 100.0 | divided_by: _f1_umbral | round
+if _f1_pct > 100
+assign _f1_pct = 100
+endif
+assign _f1_falta_fmt = ''
+if _f1_falta > 0
+assign _f1_falta_c = _f1_falta | times: 100
+assign _f1_falta_fmt = _f1_falta_c | money_without_trailing_zeros
+endif
+assign _f1_pq_json = ''
+assign _f1_pq_n = 0
+for _f1_linea in _f1_p.metafields.custom.para_quien_es.value
+if _f1_pq_n < 3 and _f1_linea != blank
+assign _f1_j = _f1_linea | json
+if _f1_pq_json == ''
+assign _f1_pq_json = _f1_j
+else
+assign _f1_pq_json = _f1_pq_json | append: ',' | append: _f1_j
+endif
+assign _f1_pq_n = _f1_pq_n | plus: 1
+endif
+endfor
+assign _f1_noes_json = ''
+for _f1_alt in _f1_p.metafields.custom.alternativas.value
+assign _f1_ap = _f1_alt.producto.value
+if _f1_ap
+assign _f1_a_version = _f1_ap.metafields.custom.version_nombre.value | default: ''
+assign _f1_a_url = shop.secure_url | append: _f1_ap.url
+assign _f1_a_precio = _f1_ap.selected_or_first_available_variant.price | money_without_trailing_zeros
+assign _f1_j_sit = _f1_alt.situacion.value | default: '' | json
+assign _f1_j_t = _f1_ap.title | json
+assign _f1_j_u = _f1_a_url | json
+assign _f1_j_v = _f1_a_version | downcase | json
+assign _f1_j_p = _f1_a_precio | json
+assign _f1_a_resumen = _f1_ap.metafields.custom.version_resumen.value | default: ''
+assign _f1_item = '{"situacion":' | append: _f1_j_sit | append: ',"t":' | append: _f1_j_t | append: ',"url":' | append: _f1_j_u | append: ',"version":' | append: _f1_j_v | append: ',"precio_fmt":' | append: _f1_j_p
+if _f1_a_resumen != ''
+assign _f1_j_r = _f1_a_resumen | json
+assign _f1_item = _f1_item | append: ',"resumen":' | append: _f1_j_r
+endif
+assign _f1_item = _f1_item | append: '}'
+if _f1_noes_json == ''
+assign _f1_noes_json = _f1_item
+else
+assign _f1_noes_json = _f1_noes_json | append: ',' | append: _f1_item
+endif
+endif
+endfor
+assign _f1_res_json = ''
+assign _f1_lineas = _f1_p.metafields.custom.routine_results.value | default: '' | newline_to_br | split: '<br />'
+for _f1_linea in _f1_lineas
+assign _f1_partes = _f1_linea | strip_newlines | strip | split: ' — '
+if _f1_partes.size >= 2
+assign _f1_j_c = _f1_partes[0] | strip | json
+assign _f1_j_tx = _f1_partes[1] | strip | json
+assign _f1_item = '{"cuando":' | append: _f1_j_c | append: ',"texto":' | append: _f1_j_tx | append: '}'
+if _f1_res_json == ''
+assign _f1_res_json = _f1_item
+else
+assign _f1_res_json = _f1_res_json | append: ',' | append: _f1_item
+endif
+endif
+endfor
+assign _f1_vid_json = ''
+for _f1_vd in _f1_p.metafields.custom.videos.value
+if _f1_vd.permiso_uso.value == true
+assign _f1_v_media = _f1_vd.video.value
+assign _f1_v_url = ''
+if _f1_v_media
+assign _f1_v_src = _f1_v_media.sources | first
+assign _f1_v_url = _f1_v_src.url
+endif
+capture _f1_v_portada
+assign _f9_imagen = _f1_vd.portada.value
+assign _f9_ancho = 600
+if _f9_imagen
+assign _f9_u = _f9_imagen | image_url: width: _f9_ancho
+assign _f9_pref = _f9_u | slice: 0, 2
+if _f9_pref == '//'
+assign _f9_u = _f9_u | prepend: 'https:'
+endif
+assign _f9_u = _f9_u | replace: 'http://', 'https://'
+echo _f9_u
+endif
+endcapture
+assign _f1_j_vu = _f1_v_url | json
+assign _f1_j_vp = _f1_v_portada | strip | json
+assign _f1_j_vt = _f1_vd.tipo.value | default: '' | json
+assign _f1_j_vti = _f1_vd.titulo.value | default: '' | json
+assign _f1_item = '{"url":' | append: _f1_j_vu | append: ',"portada":' | append: _f1_j_vp | append: ',"tipo":' | append: _f1_j_vt | append: ',"titulo":' | append: _f1_j_vti | append: '}'
+if _f1_vid_json == ''
+assign _f1_vid_json = _f1_item
+else
+assign _f1_vid_json = _f1_vid_json | append: ',' | append: _f1_item
+endif
+endif
+endfor
+assign _f1_ref_up = nil
+assign _f1_ref_down = nil
+assign _f1_ref_kit = nil
+for _f1_vr in _f1_p.metafields.custom.versiones.value
+assign _f1_vr_nombre = _f1_vr.metafields.custom.version_nombre.value | downcase
+if _f1_vr and _f1_vr.handle != _f1_p.handle
+if _f1_vr_nombre == 'esencial' and _f1_ref_up == nil
+assign _f1_ref_up = _f1_vr
+elsif _f1_vr_nombre == 'express' and _f1_ref_down == nil
+assign _f1_ref_down = _f1_vr
+elsif _f1_vr_nombre == 'kit' and _f1_ref_kit == nil
+assign _f1_ref_kit = _f1_vr
+endif
+endif
+endfor
+if _f1_version == 'express' or _f1_version == 'esencial'
+if _f1_p.metafields.custom.upgrade.value
+assign _f1_ref_kit = _f1_p.metafields.custom.upgrade.value
+endif
+if _f1_ref_kit
+assign _f1_kit_nombre = _f1_ref_kit.metafields.custom.version_nombre.value | downcase
+if _f1_kit_nombre != 'kit'
+assign _f1_ref_kit = nil
+endif
+endif
+endif
+if _f1_version == 'express'
+assign _f1_ref_down = nil
+endif
+if _f1_version == 'esencial'
+assign _f1_ref_up = nil
+endif
+if _f1_version == 'kit'
+assign _f1_ref_up = nil
+assign _f1_ref_down = nil
+assign _f1_ref_kit = nil
+endif
+assign _f1_up_json = 'null'
+if _f1_ref_up
+capture _f1_up_json
+assign _f10_ref = _f1_ref_up
+assign _f10_base = _f1_p
+assign _f10_con_kit = false
+assign _f10_umbral = _f1_umbral
+capture _f10_bs_raw
+assign _f11_product = _f10_ref
+assign _f11_componentes = _f11_product.metafields.custom.routine_products.value
+assign _f11_precio = _f11_product.selected_or_first_available_variant.price
+assign _f11_suma = 0
+assign _f11_pasos = 0
+assign _f11_completo = true
+if _f11_componentes == blank
+assign _f11_completo = false
+endif
+for _f11_c in _f11_componentes
+assign _f11_pasos = _f11_pasos | plus: 1
+assign _f11_v = _f11_c.variants | where: 'available' | first
+if _f11_v == blank
+assign _f11_completo = false
+assign _f11_v = _f11_c.variants | first
+endif
+assign _f11_suma = _f11_suma | plus: _f11_v.price
+endfor
+assign _f11_ahorro = 0
+if _f11_completo and _f11_suma > _f11_precio
+assign _f11_ahorro = _f11_suma | minus: _f11_precio
+endif
+echo _f11_suma
+echo '|'
+echo _f11_ahorro
+echo '|'
+echo _f11_completo
+echo '|'
+echo _f11_pasos
+endcapture
+assign _f10_bs = _f10_bs_raw | strip | split: '|'
+assign _f10_suma_c = _f10_bs[0] | plus: 0
+assign _f10_ahorro_c = _f10_bs[1] | plus: 0
+assign _f10_precio_r = _f10_ref.selected_or_first_available_variant.price
+assign _f10_precio_b = _f10_base.selected_or_first_available_variant.price
+assign _f10_precio_pesos = _f10_precio_r | divided_by: 100
+assign _f10_dif_c = _f10_precio_r | minus: _f10_precio_b
+if _f10_dif_c < 0
+assign _f10_dif_c = _f10_dif_c | times: -1
+endif
+assign _f10_falta = _f10_umbral | minus: _f10_precio_pesos
+if _f10_falta < 0
+assign _f10_falta = 0
+endif
+assign _f10_envio_gratis = false
+if _f10_precio_pesos >= _f10_umbral
+assign _f10_envio_gratis = true
+endif
+assign _f10_pasos_json = ''
+assign _f10_roles_texto = ''
+assign _f10_n_pasos = 0
+assign _f10_suma_texto = ''
+for _f10_c in _f10_ref.metafields.custom.routine_products.value
+capture _f10_rol_raw
+assign _f12_componente = _f10_c
+assign _f12_etiquetas = _f12_componente.tags
+if _f12_etiquetas contains 'paso-limpieza'
+echo 'Limpia'
+elsif _f12_etiquetas contains 'paso-serum'
+echo 'Trata'
+elsif _f12_etiquetas contains 'paso-crema'
+echo 'Hidrata'
+elsif _f12_etiquetas contains 'paso-spf' or _f12_etiquetas contains 'paso-proteccion-solar'
+echo 'Protege'
+elsif _f12_etiquetas contains 'paso-tratamiento-local'
+echo 'Granito puntual'
+endif
+endcapture
+assign _f10_rol = _f10_rol_raw | strip
+assign _f10_corto = _f10_c.metafields.custom.nombre_corto.value | default: _f10_c.title
+assign _f10_j_rol = _f10_rol | json
+assign _f10_j_corto = _f10_corto | json
+assign _f10_paso = '{"rol":' | append: _f10_j_rol | append: ',"corto":' | append: _f10_j_corto | append: '}'
+if _f10_pasos_json == ''
+assign _f10_pasos_json = _f10_paso
+else
+assign _f10_pasos_json = _f10_pasos_json | append: ',' | append: _f10_paso
+endif
+unless _f10_c.tags contains 'paso-tratamiento-local'
+assign _f10_n_pasos = _f10_n_pasos | plus: 1
+if _f10_roles_texto == ''
+assign _f10_roles_texto = _f10_rol
+else
+assign _f10_roles_texto = _f10_roles_texto | append: ' · ' | append: _f10_rol
+endif
+endunless
+assign _f10_esta_en_base = false
+for _f10_b in _f10_base.metafields.custom.routine_products.value
+if _f10_b.id == _f10_c.id
+assign _f10_esta_en_base = true
+endif
+endfor
+unless _f10_esta_en_base
+if _f10_suma_texto == ''
+assign _f10_suma_texto = _f10_corto
+else
+assign _f10_suma_texto = _f10_suma_texto | append: ' + ' | append: _f10_corto
+endif
+endunless
+endfor
+capture _f10_img_r
+assign _f13_imagen = _f10_ref.featured_image
+assign _f13_ancho = 600
+if _f13_imagen
+assign _f13_u = _f13_imagen | image_url: width: _f13_ancho
+assign _f13_pref = _f13_u | slice: 0, 2
+if _f13_pref == '//'
+assign _f13_u = _f13_u | prepend: 'https:'
+endif
+assign _f13_u = _f13_u | replace: 'http://', 'https://'
+echo _f13_u
+endif
+endcapture
+assign _f10_url_r = shop.secure_url | append: _f10_ref.url
+assign _f10_version_nombre = _f10_ref.metafields.custom.version_nombre.value | default: ''
+assign _f10_resumen = _f10_ref.metafields.custom.version_resumen.value | default: _f10_roles_texto
+assign _f10_objetivo = ''
+if _f10_con_kit
+for _f10_t in _f10_ref.tags
+assign _f10_pref_obj = _f10_t | slice: 0, 19
+if _f10_pref_obj == 'objetivo-principal-'
+assign _f10_objetivo = _f10_t | remove: 'objetivo-principal-'
+endif
+endfor
+endif
+assign _f10_ahorro_fmt = ''
+if _f10_ahorro_c > 0
+assign _f10_ahorro_fmt = _f10_ahorro_c | money_without_trailing_zeros
+endif
+assign _f10_suma_fmt = ''
+if _f10_ahorro_c > 0
+assign _f10_suma_fmt = _f10_suma_c | money_without_trailing_zeros
+endif
+assign _f10_falta_fmt = ''
+if _f10_falta > 0
+assign _f10_falta_c = _f10_falta | times: 100
+assign _f10_falta_fmt = _f10_falta_c | money_without_trailing_zeros
+endif
+assign _f10_dif_fmt = _f10_dif_c | money_without_trailing_zeros
+echo '{"handle":'
+echo _f10_ref.handle | json
+echo ',"t":'
+echo _f10_ref.title | json
+echo ',"url":'
+echo _f10_url_r | json
+echo ',"img":'
+echo _f10_img_r | strip | json
+echo ',"precio":'
+echo _f10_precio_pesos
+echo ',"precio_fmt":'
+echo _f10_precio_r | money_without_trailing_zeros | json
+echo ',"version":'
+echo _f10_version_nombre | downcase | json
+echo ',"version_nombre":'
+echo _f10_version_nombre | json
+echo ',"n_pasos":'
+echo _f10_n_pasos
+echo ',"resumen":'
+echo _f10_resumen | json
+echo ',"ahorro":'
+echo _f10_ahorro_c | divided_by: 100
+echo ',"ahorro_fmt":'
+echo _f10_ahorro_fmt | json
+echo ',"suma_fmt":'
+echo _f10_suma_fmt | json
+echo ',"envio_gratis":'
+echo _f10_envio_gratis
+echo ',"falta_fmt":'
+echo _f10_falta_fmt | json
+echo ',"disponible":'
+echo _f10_ref.available
+echo ',"pasos":['
+echo _f10_pasos_json
+echo '],"dif":'
+echo _f10_dif_c | divided_by: 100
+echo ',"dif_fmt":'
+echo _f10_dif_fmt | json
+if _f10_suma_texto != ''
+echo ',"suma":'
+echo _f10_suma_texto | json
+endif
+if _f10_con_kit
+echo ',"objetivo":'
+echo _f10_objetivo | json
+echo ',"gancho":'
+echo _f10_base.metafields.custom.upgrade_texto.value | default: '' | json
+endif
+echo '}'
+endcapture
+assign _f1_up_json = _f1_up_json | strip
+endif
+assign _f1_down_json = 'null'
+if _f1_ref_down
+capture _f1_down_json
+assign _f14_ref = _f1_ref_down
+assign _f14_base = _f1_p
+assign _f14_con_kit = false
+assign _f14_umbral = _f1_umbral
+capture _f14_bs_raw
+assign _f15_product = _f14_ref
+assign _f15_componentes = _f15_product.metafields.custom.routine_products.value
+assign _f15_precio = _f15_product.selected_or_first_available_variant.price
+assign _f15_suma = 0
+assign _f15_pasos = 0
+assign _f15_completo = true
+if _f15_componentes == blank
+assign _f15_completo = false
+endif
+for _f15_c in _f15_componentes
+assign _f15_pasos = _f15_pasos | plus: 1
+assign _f15_v = _f15_c.variants | where: 'available' | first
+if _f15_v == blank
+assign _f15_completo = false
+assign _f15_v = _f15_c.variants | first
+endif
+assign _f15_suma = _f15_suma | plus: _f15_v.price
+endfor
+assign _f15_ahorro = 0
+if _f15_completo and _f15_suma > _f15_precio
+assign _f15_ahorro = _f15_suma | minus: _f15_precio
+endif
+echo _f15_suma
+echo '|'
+echo _f15_ahorro
+echo '|'
+echo _f15_completo
+echo '|'
+echo _f15_pasos
+endcapture
+assign _f14_bs = _f14_bs_raw | strip | split: '|'
+assign _f14_suma_c = _f14_bs[0] | plus: 0
+assign _f14_ahorro_c = _f14_bs[1] | plus: 0
+assign _f14_precio_r = _f14_ref.selected_or_first_available_variant.price
+assign _f14_precio_b = _f14_base.selected_or_first_available_variant.price
+assign _f14_precio_pesos = _f14_precio_r | divided_by: 100
+assign _f14_dif_c = _f14_precio_r | minus: _f14_precio_b
+if _f14_dif_c < 0
+assign _f14_dif_c = _f14_dif_c | times: -1
+endif
+assign _f14_falta = _f14_umbral | minus: _f14_precio_pesos
+if _f14_falta < 0
+assign _f14_falta = 0
+endif
+assign _f14_envio_gratis = false
+if _f14_precio_pesos >= _f14_umbral
+assign _f14_envio_gratis = true
+endif
+assign _f14_pasos_json = ''
+assign _f14_roles_texto = ''
+assign _f14_n_pasos = 0
+assign _f14_suma_texto = ''
+for _f14_c in _f14_ref.metafields.custom.routine_products.value
+capture _f14_rol_raw
+assign _f16_componente = _f14_c
+assign _f16_etiquetas = _f16_componente.tags
+if _f16_etiquetas contains 'paso-limpieza'
+echo 'Limpia'
+elsif _f16_etiquetas contains 'paso-serum'
+echo 'Trata'
+elsif _f16_etiquetas contains 'paso-crema'
+echo 'Hidrata'
+elsif _f16_etiquetas contains 'paso-spf' or _f16_etiquetas contains 'paso-proteccion-solar'
+echo 'Protege'
+elsif _f16_etiquetas contains 'paso-tratamiento-local'
+echo 'Granito puntual'
+endif
+endcapture
+assign _f14_rol = _f14_rol_raw | strip
+assign _f14_corto = _f14_c.metafields.custom.nombre_corto.value | default: _f14_c.title
+assign _f14_j_rol = _f14_rol | json
+assign _f14_j_corto = _f14_corto | json
+assign _f14_paso = '{"rol":' | append: _f14_j_rol | append: ',"corto":' | append: _f14_j_corto | append: '}'
+if _f14_pasos_json == ''
+assign _f14_pasos_json = _f14_paso
+else
+assign _f14_pasos_json = _f14_pasos_json | append: ',' | append: _f14_paso
+endif
+unless _f14_c.tags contains 'paso-tratamiento-local'
+assign _f14_n_pasos = _f14_n_pasos | plus: 1
+if _f14_roles_texto == ''
+assign _f14_roles_texto = _f14_rol
+else
+assign _f14_roles_texto = _f14_roles_texto | append: ' · ' | append: _f14_rol
+endif
+endunless
+assign _f14_esta_en_base = false
+for _f14_b in _f14_base.metafields.custom.routine_products.value
+if _f14_b.id == _f14_c.id
+assign _f14_esta_en_base = true
+endif
+endfor
+unless _f14_esta_en_base
+if _f14_suma_texto == ''
+assign _f14_suma_texto = _f14_corto
+else
+assign _f14_suma_texto = _f14_suma_texto | append: ' + ' | append: _f14_corto
+endif
+endunless
+endfor
+capture _f14_img_r
+assign _f17_imagen = _f14_ref.featured_image
+assign _f17_ancho = 600
+if _f17_imagen
+assign _f17_u = _f17_imagen | image_url: width: _f17_ancho
+assign _f17_pref = _f17_u | slice: 0, 2
+if _f17_pref == '//'
+assign _f17_u = _f17_u | prepend: 'https:'
+endif
+assign _f17_u = _f17_u | replace: 'http://', 'https://'
+echo _f17_u
+endif
+endcapture
+assign _f14_url_r = shop.secure_url | append: _f14_ref.url
+assign _f14_version_nombre = _f14_ref.metafields.custom.version_nombre.value | default: ''
+assign _f14_resumen = _f14_ref.metafields.custom.version_resumen.value | default: _f14_roles_texto
+assign _f14_objetivo = ''
+if _f14_con_kit
+for _f14_t in _f14_ref.tags
+assign _f14_pref_obj = _f14_t | slice: 0, 19
+if _f14_pref_obj == 'objetivo-principal-'
+assign _f14_objetivo = _f14_t | remove: 'objetivo-principal-'
+endif
+endfor
+endif
+assign _f14_ahorro_fmt = ''
+if _f14_ahorro_c > 0
+assign _f14_ahorro_fmt = _f14_ahorro_c | money_without_trailing_zeros
+endif
+assign _f14_suma_fmt = ''
+if _f14_ahorro_c > 0
+assign _f14_suma_fmt = _f14_suma_c | money_without_trailing_zeros
+endif
+assign _f14_falta_fmt = ''
+if _f14_falta > 0
+assign _f14_falta_c = _f14_falta | times: 100
+assign _f14_falta_fmt = _f14_falta_c | money_without_trailing_zeros
+endif
+assign _f14_dif_fmt = _f14_dif_c | money_without_trailing_zeros
+echo '{"handle":'
+echo _f14_ref.handle | json
+echo ',"t":'
+echo _f14_ref.title | json
+echo ',"url":'
+echo _f14_url_r | json
+echo ',"img":'
+echo _f14_img_r | strip | json
+echo ',"precio":'
+echo _f14_precio_pesos
+echo ',"precio_fmt":'
+echo _f14_precio_r | money_without_trailing_zeros | json
+echo ',"version":'
+echo _f14_version_nombre | downcase | json
+echo ',"version_nombre":'
+echo _f14_version_nombre | json
+echo ',"n_pasos":'
+echo _f14_n_pasos
+echo ',"resumen":'
+echo _f14_resumen | json
+echo ',"ahorro":'
+echo _f14_ahorro_c | divided_by: 100
+echo ',"ahorro_fmt":'
+echo _f14_ahorro_fmt | json
+echo ',"suma_fmt":'
+echo _f14_suma_fmt | json
+echo ',"envio_gratis":'
+echo _f14_envio_gratis
+echo ',"falta_fmt":'
+echo _f14_falta_fmt | json
+echo ',"disponible":'
+echo _f14_ref.available
+echo ',"pasos":['
+echo _f14_pasos_json
+echo '],"dif":'
+echo _f14_dif_c | divided_by: 100
+echo ',"dif_fmt":'
+echo _f14_dif_fmt | json
+if _f14_suma_texto != ''
+echo ',"suma":'
+echo _f14_suma_texto | json
+endif
+if _f14_con_kit
+echo ',"objetivo":'
+echo _f14_objetivo | json
+echo ',"gancho":'
+echo _f14_base.metafields.custom.upgrade_texto.value | default: '' | json
+endif
+echo '}'
+endcapture
+assign _f1_down_json = _f1_down_json | strip
+endif
+assign _f1_kit_json = 'null'
+if _f1_ref_kit
+capture _f1_kit_json
+assign _f18_ref = _f1_ref_kit
+assign _f18_base = _f1_p
+assign _f18_con_kit = true
+assign _f18_umbral = _f1_umbral
+capture _f18_bs_raw
+assign _f19_product = _f18_ref
+assign _f19_componentes = _f19_product.metafields.custom.routine_products.value
+assign _f19_precio = _f19_product.selected_or_first_available_variant.price
+assign _f19_suma = 0
+assign _f19_pasos = 0
+assign _f19_completo = true
+if _f19_componentes == blank
+assign _f19_completo = false
+endif
+for _f19_c in _f19_componentes
+assign _f19_pasos = _f19_pasos | plus: 1
+assign _f19_v = _f19_c.variants | where: 'available' | first
+if _f19_v == blank
+assign _f19_completo = false
+assign _f19_v = _f19_c.variants | first
+endif
+assign _f19_suma = _f19_suma | plus: _f19_v.price
+endfor
+assign _f19_ahorro = 0
+if _f19_completo and _f19_suma > _f19_precio
+assign _f19_ahorro = _f19_suma | minus: _f19_precio
+endif
+echo _f19_suma
+echo '|'
+echo _f19_ahorro
+echo '|'
+echo _f19_completo
+echo '|'
+echo _f19_pasos
+endcapture
+assign _f18_bs = _f18_bs_raw | strip | split: '|'
+assign _f18_suma_c = _f18_bs[0] | plus: 0
+assign _f18_ahorro_c = _f18_bs[1] | plus: 0
+assign _f18_precio_r = _f18_ref.selected_or_first_available_variant.price
+assign _f18_precio_b = _f18_base.selected_or_first_available_variant.price
+assign _f18_precio_pesos = _f18_precio_r | divided_by: 100
+assign _f18_dif_c = _f18_precio_r | minus: _f18_precio_b
+if _f18_dif_c < 0
+assign _f18_dif_c = _f18_dif_c | times: -1
+endif
+assign _f18_falta = _f18_umbral | minus: _f18_precio_pesos
+if _f18_falta < 0
+assign _f18_falta = 0
+endif
+assign _f18_envio_gratis = false
+if _f18_precio_pesos >= _f18_umbral
+assign _f18_envio_gratis = true
+endif
+assign _f18_pasos_json = ''
+assign _f18_roles_texto = ''
+assign _f18_n_pasos = 0
+assign _f18_suma_texto = ''
+for _f18_c in _f18_ref.metafields.custom.routine_products.value
+capture _f18_rol_raw
+assign _f20_componente = _f18_c
+assign _f20_etiquetas = _f20_componente.tags
+if _f20_etiquetas contains 'paso-limpieza'
+echo 'Limpia'
+elsif _f20_etiquetas contains 'paso-serum'
+echo 'Trata'
+elsif _f20_etiquetas contains 'paso-crema'
+echo 'Hidrata'
+elsif _f20_etiquetas contains 'paso-spf' or _f20_etiquetas contains 'paso-proteccion-solar'
+echo 'Protege'
+elsif _f20_etiquetas contains 'paso-tratamiento-local'
+echo 'Granito puntual'
+endif
+endcapture
+assign _f18_rol = _f18_rol_raw | strip
+assign _f18_corto = _f18_c.metafields.custom.nombre_corto.value | default: _f18_c.title
+assign _f18_j_rol = _f18_rol | json
+assign _f18_j_corto = _f18_corto | json
+assign _f18_paso = '{"rol":' | append: _f18_j_rol | append: ',"corto":' | append: _f18_j_corto | append: '}'
+if _f18_pasos_json == ''
+assign _f18_pasos_json = _f18_paso
+else
+assign _f18_pasos_json = _f18_pasos_json | append: ',' | append: _f18_paso
+endif
+unless _f18_c.tags contains 'paso-tratamiento-local'
+assign _f18_n_pasos = _f18_n_pasos | plus: 1
+if _f18_roles_texto == ''
+assign _f18_roles_texto = _f18_rol
+else
+assign _f18_roles_texto = _f18_roles_texto | append: ' · ' | append: _f18_rol
+endif
+endunless
+assign _f18_esta_en_base = false
+for _f18_b in _f18_base.metafields.custom.routine_products.value
+if _f18_b.id == _f18_c.id
+assign _f18_esta_en_base = true
+endif
+endfor
+unless _f18_esta_en_base
+if _f18_suma_texto == ''
+assign _f18_suma_texto = _f18_corto
+else
+assign _f18_suma_texto = _f18_suma_texto | append: ' + ' | append: _f18_corto
+endif
+endunless
+endfor
+capture _f18_img_r
+assign _f21_imagen = _f18_ref.featured_image
+assign _f21_ancho = 600
+if _f21_imagen
+assign _f21_u = _f21_imagen | image_url: width: _f21_ancho
+assign _f21_pref = _f21_u | slice: 0, 2
+if _f21_pref == '//'
+assign _f21_u = _f21_u | prepend: 'https:'
+endif
+assign _f21_u = _f21_u | replace: 'http://', 'https://'
+echo _f21_u
+endif
+endcapture
+assign _f18_url_r = shop.secure_url | append: _f18_ref.url
+assign _f18_version_nombre = _f18_ref.metafields.custom.version_nombre.value | default: ''
+assign _f18_resumen = _f18_ref.metafields.custom.version_resumen.value | default: _f18_roles_texto
+assign _f18_objetivo = ''
+if _f18_con_kit
+for _f18_t in _f18_ref.tags
+assign _f18_pref_obj = _f18_t | slice: 0, 19
+if _f18_pref_obj == 'objetivo-principal-'
+assign _f18_objetivo = _f18_t | remove: 'objetivo-principal-'
+endif
+endfor
+endif
+assign _f18_ahorro_fmt = ''
+if _f18_ahorro_c > 0
+assign _f18_ahorro_fmt = _f18_ahorro_c | money_without_trailing_zeros
+endif
+assign _f18_suma_fmt = ''
+if _f18_ahorro_c > 0
+assign _f18_suma_fmt = _f18_suma_c | money_without_trailing_zeros
+endif
+assign _f18_falta_fmt = ''
+if _f18_falta > 0
+assign _f18_falta_c = _f18_falta | times: 100
+assign _f18_falta_fmt = _f18_falta_c | money_without_trailing_zeros
+endif
+assign _f18_dif_fmt = _f18_dif_c | money_without_trailing_zeros
+echo '{"handle":'
+echo _f18_ref.handle | json
+echo ',"t":'
+echo _f18_ref.title | json
+echo ',"url":'
+echo _f18_url_r | json
+echo ',"img":'
+echo _f18_img_r | strip | json
+echo ',"precio":'
+echo _f18_precio_pesos
+echo ',"precio_fmt":'
+echo _f18_precio_r | money_without_trailing_zeros | json
+echo ',"version":'
+echo _f18_version_nombre | downcase | json
+echo ',"version_nombre":'
+echo _f18_version_nombre | json
+echo ',"n_pasos":'
+echo _f18_n_pasos
+echo ',"resumen":'
+echo _f18_resumen | json
+echo ',"ahorro":'
+echo _f18_ahorro_c | divided_by: 100
+echo ',"ahorro_fmt":'
+echo _f18_ahorro_fmt | json
+echo ',"suma_fmt":'
+echo _f18_suma_fmt | json
+echo ',"envio_gratis":'
+echo _f18_envio_gratis
+echo ',"falta_fmt":'
+echo _f18_falta_fmt | json
+echo ',"disponible":'
+echo _f18_ref.available
+echo ',"pasos":['
+echo _f18_pasos_json
+echo '],"dif":'
+echo _f18_dif_c | divided_by: 100
+echo ',"dif_fmt":'
+echo _f18_dif_fmt | json
+if _f18_suma_texto != ''
+echo ',"suma":'
+echo _f18_suma_texto | json
+endif
+if _f18_con_kit
+echo ',"objetivo":'
+echo _f18_objetivo | json
+echo ',"gancho":'
+echo _f18_base.metafields.custom.upgrade_texto.value | default: '' | json
+endif
+echo '}'
+endcapture
+assign _f1_kit_json = _f1_kit_json | strip
+endif
+assign _f1_extra_json = ''
+if _f1_version == 'esencial' and _f1_ref_down
+assign _f1_extra = nil
+assign _f1_n_extra = 0
+assign _f1_n_faltan = 0
+for _f1_c in _f1_componentes
+unless _f1_c.tags contains 'paso-tratamiento-local'
+assign _f1_en_down = false
+for _f1_d in _f1_ref_down.metafields.custom.routine_products.value
+if _f1_d.id == _f1_c.id
+assign _f1_en_down = true
+endif
+endfor
+if _f1_en_down == false
+assign _f1_n_extra = _f1_n_extra | plus: 1
+assign _f1_extra = _f1_c
+endif
+endunless
+endfor
+for _f1_d in _f1_ref_down.metafields.custom.routine_products.value
+assign _f1_en_esencial = false
+for _f1_c in _f1_componentes
+if _f1_d.id == _f1_c.id
+assign _f1_en_esencial = true
+endif
+endfor
+if _f1_en_esencial == false
+assign _f1_n_faltan = _f1_n_faltan | plus: 1
+endif
+endfor
+if _f1_n_extra != 1 or _f1_n_faltan != 0
+assign _f1_extra = nil
+endif
+if _f1_extra
+assign _f1_ev = _f1_extra.variants | where: 'available' | first
+unless _f1_ev
+assign _f1_ev = _f1_extra.variants | first
+endunless
+assign _f1_down_precio = _f1_ref_down.selected_or_first_available_variant.price
+assign _f1_dme_c = _f1_down_precio | plus: _f1_ev.price
+assign _f1_conviene_c = _f1_dme_c | minus: _f1_precio_c
+assign _f1_conviene = _f1_conviene_c | divided_by: 100
+assign _f1_conviene_fmt = ''
+if _f1_conviene_c > 0
+assign _f1_conviene_fmt = _f1_conviene_c | money_without_trailing_zeros
+else
+assign _f1_conviene = 0
+endif
+assign _f1_x_corto = _f1_extra.metafields.custom.nombre_corto.value | default: _f1_extra.title
+assign _f1_j_xc = _f1_x_corto | json
+assign _f1_j_xt = _f1_extra.title | json
+assign _f1_j_xb = _f1_extra.metafields.custom.beneficio_corto.value | default: '' | json
+assign _f1_j_xp = _f1_ev.price | money_without_trailing_zeros | json
+assign _f1_j_xd = _f1_dme_c | money_without_trailing_zeros | json
+assign _f1_j_xcf = _f1_conviene_fmt | json
+assign _f1_x_precio = _f1_ev.price | divided_by: 100
+assign _f1_extra_json = '{"corto":' | append: _f1_j_xc | append: ',"t":' | append: _f1_j_xt | append: ',"beneficio":' | append: _f1_j_xb | append: ',"precio":' | append: _f1_x_precio | append: ',"precio_fmt":' | append: _f1_j_xp | append: ',"down_mas_extra_fmt":' | append: _f1_j_xd | append: ',"conviene":' | append: _f1_conviene | append: ',"conviene_fmt":' | append: _f1_j_xcf | append: '}'
+endif
+endif
+assign _f1_kit_suma = ''
+if _f1_version == 'kit'
+assign _f1_esencial_piel = nil
+for _f1_t in _f1_todos
+if _f1_esencial_piel == nil and _f1_t.metafields.custom.version_nombre.value == 'Esencial'
+capture _f1_pt
+assign _f22_producto = _f1_t
+assign _f22_piel = _f22_producto.metafields.custom.tipo_piel.value | first | downcase | remove: 'piel ' | strip
+if _f22_piel != 'grasa' and _f22_piel != 'seca' and _f22_piel != 'mixta' and _f22_piel != 'sensible'
+assign _f22_piel = ''
+if _f22_producto.tags contains 'tipo-piel-grasa'
+assign _f22_piel = 'grasa'
+elsif _f22_producto.tags contains 'tipo-piel-seca'
+assign _f22_piel = 'seca'
+elsif _f22_producto.tags contains 'tipo-piel-mixta'
+assign _f22_piel = 'mixta'
+elsif _f22_producto.tags contains 'tipo-piel-sensible'
+assign _f22_piel = 'sensible'
+endif
+endif
+echo _f22_piel
+endcapture
+assign _f1_pt_piel = _f1_pt | strip
+if _f1_pt_piel == _f1_piel
+assign _f1_esencial_piel = _f1_t
+endif
+endif
+endfor
+if _f1_esencial_piel
+for _f1_c in _f1_componentes
+assign _f1_en_es = false
+for _f1_e in _f1_esencial_piel.metafields.custom.routine_products.value
+if _f1_e.id == _f1_c.id
+assign _f1_en_es = true
+endif
+endfor
+unless _f1_en_es
+assign _f1_k_corto = _f1_c.metafields.custom.nombre_corto.value | default: _f1_c.title
+if _f1_kit_suma == ''
+assign _f1_kit_suma = _f1_k_corto
+else
+assign _f1_kit_suma = _f1_kit_suma | append: ' + ' | append: _f1_k_corto
+endif
+endunless
+endfor
+endif
+endif
+assign _f1_comp_json = ''
+if _f1_precio < _f1_umbral
+assign _f1_cp = _f1_p.metafields.custom.complemento_envio.value
+if _f1_cp and _f1_cp.available
+assign _f1_cv = _f1_cp.variants | where: 'available' | first
+assign _f1_en_rutina = false
+for _f1_c in _f1_componentes
+if _f1_c.id == _f1_cp.id
+assign _f1_en_rutina = true
+endif
+endfor
+assign _f1_cprecio_c = _f1_cv.price
+assign _f1_total_c = _f1_precio_c | plus: _f1_cprecio_c
+assign _f1_total = _f1_total_c | divided_by: 100
+if _f1_en_rutina == false and _f1_total >= _f1_umbral
+capture _f1_cimg
+assign _f23_imagen = _f1_cp.featured_image
+assign _f23_ancho = 200
+if _f23_imagen
+assign _f23_u = _f23_imagen | image_url: width: _f23_ancho
+assign _f23_pref = _f23_u | slice: 0, 2
+if _f23_pref == '//'
+assign _f23_u = _f23_u | prepend: 'https:'
+endif
+assign _f23_u = _f23_u | replace: 'http://', 'https://'
+echo _f23_u
+endif
+endcapture
+assign _f1_ccorto = _f1_cp.metafields.custom.nombre_corto.value | default: _f1_cp.title
+assign _f1_cart_url = shop.secure_url | append: '/cart/' | append: _f1_p.selected_or_first_available_variant.id | append: ':1,' | append: _f1_cv.id | append: ':1'
+assign _f1_j_ch = _f1_cp.handle | json
+assign _f1_j_ct = _f1_cp.title | json
+assign _f1_j_cc = _f1_ccorto | json
+assign _f1_j_cb = _f1_cp.metafields.custom.beneficio_corto.value | default: '' | json
+assign _f1_j_ci = _f1_cimg | strip | json
+assign _f1_j_cpf = _f1_cprecio_c | money_without_trailing_zeros | json
+assign _f1_j_ctf = _f1_total_c | money_without_trailing_zeros | json
+assign _f1_j_cu = _f1_cart_url | json
+assign _f1_cprecio = _f1_cprecio_c | divided_by: 100
+assign _f1_comp_json = '{"handle":' | append: _f1_j_ch | append: ',"t":' | append: _f1_j_ct | append: ',"corto":' | append: _f1_j_cc | append: ',"beneficio":' | append: _f1_j_cb | append: ',"img":' | append: _f1_j_ci | append: ',"precio":' | append: _f1_cprecio | append: ',"precio_fmt":' | append: _f1_j_cpf | append: ',"total":' | append: _f1_total | append: ',"total_fmt":' | append: _f1_j_ctf | append: ',"cart_url":' | append: _f1_j_cu | append: '}'
+endif
+endif
+endif
+capture _f1_img_p
+assign _f24_imagen = _f1_p.featured_image
+assign _f24_ancho = 600
+if _f24_imagen
+assign _f24_u = _f24_imagen | image_url: width: _f24_ancho
+assign _f24_pref = _f24_u | slice: 0, 2
+if _f24_pref == '//'
+assign _f24_u = _f24_u | prepend: 'https:'
+endif
+assign _f24_u = _f24_u | replace: 'http://', 'https://'
+echo _f24_u
+endif
+endcapture
+assign _f1_url_p = shop.secure_url | append: _f1_p.url
+echo '{"t":'
+echo _f1_p.title | json
+echo ',"url":'
+echo _f1_url_p | json
+echo ',"img":'
+echo _f1_img_p | strip | json
+echo ',"precio":'
+echo _f1_precio
+echo ',"precio_fmt":'
+echo _f1_precio_c | money_without_trailing_zeros | json
+echo ',"suma":'
+echo _f1_suma_c | divided_by: 100
+echo ',"suma_fmt":'
+echo _f1_suma_fmt | json
+echo ',"ahorro":'
+echo _f1_ahorro_c | divided_by: 100
+echo ',"ahorro_fmt":'
+echo _f1_ahorro_fmt | json
+echo ',"version":'
+echo _f1_version | json
+echo ',"version_nombre":'
+echo _f1_version_nombre | json
+echo ',"resumen":'
+echo _f1_resumen | json
+echo ',"piel":'
+echo _f1_piel | json
+echo ',"color":'
+echo _f1_color_hex | json
+echo ',"n_pasos":'
+echo _f1_n_pasos
+echo ',"dias":'
+echo _f1_dias
+echo ',"dia_fmt":'
+echo _f1_dia_fmt | json
+echo ',"disponible":'
+echo _f1_p.available
+echo ',"envio_gratis":'
+echo _f1_envio_gratis
+echo ',"falta":'
+echo _f1_falta
+echo ',"falta_fmt":'
+echo _f1_falta_fmt | json
+echo ',"pct":'
+echo _f1_pct
+echo ',"pasos":['
+echo _f1_pasos_json
+echo '],"am":['
+echo _f1_am_json
+echo '],"pm":['
+echo _f1_pm_json
+echo '],"puntual":['
+echo _f1_puntual_json
+echo '],"para_quien":['
+echo _f1_pq_json
+echo '],"no_es":['
+echo _f1_noes_json
+echo '],"resultados":['
+echo _f1_res_json
+echo '],"videos":['
+echo _f1_vid_json
+echo '],"ing_top":['
+echo _f1_ing_json
+echo ']'
+if _f1_version == 'express'
+echo ',"up":'
+echo _f1_up_json
+echo ',"kit":'
+echo _f1_kit_json
+elsif _f1_version == 'esencial'
+echo ',"down":'
+echo _f1_down_json
+echo ',"kit":'
+echo _f1_kit_json
+if _f1_extra_json != ''
+echo ',"extra":'
+echo _f1_extra_json
+endif
+endif
+if _f1_version == 'kit'
+echo ',"kit_suma":'
+echo _f1_kit_suma | json
+endif
+if _f1_comp_json != ''
+echo ',"comp":'
+echo _f1_comp_json
+endif
+echo '}'
+endcapture
+assign j_h = p.handle | json
+assign par = j_h | append: ':' | append: entrada | strip
+if entradas == ''
+assign entradas = par
+else
+assign entradas = entradas | append: ',' | append: par
+endif
+assign v_nombre = p.metafields.custom.version_nombre.value | downcase
+capture piel_raw
+assign _f25_producto = p
+assign _f25_piel = _f25_producto.metafields.custom.tipo_piel.value | first | downcase | remove: 'piel ' | strip
+if _f25_piel != 'grasa' and _f25_piel != 'seca' and _f25_piel != 'mixta' and _f25_piel != 'sensible'
+assign _f25_piel = ''
+if _f25_producto.tags contains 'tipo-piel-grasa'
+assign _f25_piel = 'grasa'
+elsif _f25_producto.tags contains 'tipo-piel-seca'
+assign _f25_piel = 'seca'
+elsif _f25_producto.tags contains 'tipo-piel-mixta'
+assign _f25_piel = 'mixta'
+elsif _f25_producto.tags contains 'tipo-piel-sensible'
+assign _f25_piel = 'sensible'
+endif
+endif
+echo _f25_piel
+endcapture
+assign piel = piel_raw | strip
+if piel != ''
+if v_nombre == 'express' or v_nombre == 'esencial'
+assign pieles_raw = pieles_raw | append: piel | append: '|' | append: v_nombre | append: '|' | append: p.handle | append: ';'
+endif
+endif
+if v_nombre == ''
+if p.tags contains 'producto-kit'
+assign v_nombre = 'kit'
+endif
+endif
+if v_nombre == 'kit'
+for t in p.tags
+assign pref_obj = t | slice: 0, 19
+if pref_obj == 'objetivo-principal-'
+assign obj = t | remove: 'objetivo-principal-'
+assign objetivos_raw = objetivos_raw | append: obj | append: '|' | append: p.handle | append: ';'
+endif
+endfor
+endif
+endif
+endfor
+for p in collections.all.products
+assign n_rp = p.metafields.custom.routine_products.value.size | default: 0
+if n_rp == 0
+assign es_componente = false
+for r in collections.all.products
+if es_componente == false and r.metafields.custom.routine_products.value.size > 0
+for c in r.metafields.custom.routine_products.value
+if c.id == p.id
+assign es_componente = true
+endif
+endfor
+endif
+endfor
+if es_componente
+capture entrada
+assign _f26_p = p
+assign _f26_todos = collections.all.products
+assign _f26_umbral = umbral
+capture _f26_base_raw
+assign _f27_c = _f26_p
+capture _f27_rol_raw
+assign _f28_componente = _f27_c
+assign _f28_etiquetas = _f28_componente.tags
+if _f28_etiquetas contains 'paso-limpieza'
+echo 'Limpia'
+elsif _f28_etiquetas contains 'paso-serum'
+echo 'Trata'
+elsif _f28_etiquetas contains 'paso-crema'
+echo 'Hidrata'
+elsif _f28_etiquetas contains 'paso-spf' or _f28_etiquetas contains 'paso-proteccion-solar'
+echo 'Protege'
+elsif _f28_etiquetas contains 'paso-tratamiento-local'
+echo 'Granito puntual'
+endif
+endcapture
+assign _f27_rol = _f27_rol_raw | strip
+assign _f27_puntual = false
+if _f27_c.tags contains 'paso-tratamiento-local'
+assign _f27_puntual = true
+endif
+assign _f27_corto = _f27_c.metafields.custom.nombre_corto.value | default: _f27_c.title
+assign _f27_v = _f27_c.variants | where: 'available' | first
+unless _f27_v
+assign _f27_v = _f27_c.variants | first
+endunless
+assign _f27_precio_c = _f27_v.price | divided_by: 100
+assign _f27_am = false
+assign _f27_pm = false
+if _f27_c.tags contains 'uso-am' or _f27_c.tags contains 'uso-am-pm'
+assign _f27_am = true
+endif
+if _f27_c.tags contains 'uso-pm' or _f27_c.tags contains 'uso-am-pm'
+assign _f27_pm = true
+endif
+assign _f27_n1 = _f27_c.metafields.custom.ing1_nombre.value | strip
+assign _f27_n2 = _f27_c.metafields.custom.ing2_nombre.value | strip
+assign _f27_n3 = _f27_c.metafields.custom.ing3_nombre.value | strip
+assign _f27_ings = ''
+assign _f27_nombres_ing = _f27_n1 | append: '@@' | append: _f27_n2 | append: '@@' | append: _f27_n3 | split: '@@'
+for _f27_nombre_ing in _f27_nombres_ing
+if _f27_nombre_ing != blank
+assign _f27_j = _f27_nombre_ing | json
+if _f27_ings == ''
+assign _f27_ings = _f27_j
+else
+assign _f27_ings = _f27_ings | append: ',' | append: _f27_j
+endif
+endif
+endfor
+capture _f27_img_c
+assign _f29_imagen = _f27_c.featured_image
+assign _f29_ancho = 200
+if _f29_imagen
+assign _f29_u = _f29_imagen | image_url: width: _f29_ancho
+assign _f29_pref = _f29_u | slice: 0, 2
+if _f29_pref == '//'
+assign _f29_u = _f29_u | prepend: 'https:'
+endif
+assign _f29_u = _f29_u | replace: 'http://', 'https://'
+echo _f29_u
+endif
+endcapture
+assign _f27_url_c = shop.secure_url | append: _f27_c.url
+echo '{"t":'
+echo _f27_c.title | json
+echo ',"corto":'
+echo _f27_corto | json
+echo ',"rol":'
+echo _f27_rol | json
+echo ',"precio":'
+echo _f27_precio_c
+echo ',"beneficio":'
+echo _f27_c.metafields.custom.beneficio_corto.value | default: '' | json
+echo ',"ing":['
+echo _f27_ings
+echo '],"am":'
+echo _f27_am
+echo ',"pm":'
+echo _f27_pm
+if _f27_puntual
+echo ',"puntual":true'
+endif
+echo ',"handle":'
+echo _f27_c.handle | json
+echo ',"url":'
+echo _f27_url_c | json
+echo ',"img":'
+echo _f27_img_c | strip | json
+echo ',"precio_fmt":'
+echo _f27_v.price | money_without_trailing_zeros | json
+echo '}'
+endcapture
+assign _f26_base = _f26_base_raw | strip
+assign _f26_base_sin_cierre = _f26_base | remove_last: '}'
+assign _f26_am = false
+assign _f26_pm = false
+if _f26_p.tags contains 'uso-am' or _f26_p.tags contains 'uso-am-pm'
+assign _f26_am = true
+endif
+if _f26_p.tags contains 'uso-pm' or _f26_p.tags contains 'uso-am-pm'
+assign _f26_pm = true
+endif
+assign _f26_uso = ''
+if _f26_am and _f26_pm
+assign _f26_uso = 'Mañana y noche'
+elsif _f26_am
+assign _f26_uso = 'Solo mañana'
+elsif _f26_pm
+assign _f26_uso = 'Solo noche'
+endif
+assign _f26_elegida = nil
+assign _f26_elegida_rango = 0
+for _f26_r in _f26_todos
+if _f26_r.metafields.custom.routine_products.value.size > 0 and _f26_r.available
+assign _f26_contiene = false
+for _f26_c in _f26_r.metafields.custom.routine_products.value
+if _f26_c.id == _f26_p.id
+assign _f26_contiene = true
+endif
+endfor
+if _f26_contiene
+assign _f26_r_version = _f26_r.metafields.custom.version_nombre.value | downcase
+assign _f26_r_rango = 1
+if _f26_r_version == 'express'
+assign _f26_r_rango = 3
+elsif _f26_r_version == 'esencial'
+assign _f26_r_rango = 2
+endif
+if _f26_r_rango > _f26_elegida_rango
+assign _f26_elegida = _f26_r
+assign _f26_elegida_rango = _f26_r_rango
+endif
+endif
+endif
+endfor
+assign _f26_rutina_json = ''
+assign _f26_paso_n = 0
+if _f26_elegida
+capture _f26_bs_raw
+assign _f30_product = _f26_elegida
+assign _f30_componentes = _f30_product.metafields.custom.routine_products.value
+assign _f30_precio = _f30_product.selected_or_first_available_variant.price
+assign _f30_suma = 0
+assign _f30_pasos = 0
+assign _f30_completo = true
+if _f30_componentes == blank
+assign _f30_completo = false
+endif
+for _f30_c in _f30_componentes
+assign _f30_pasos = _f30_pasos | plus: 1
+assign _f30_v = _f30_c.variants | where: 'available' | first
+if _f30_v == blank
+assign _f30_completo = false
+assign _f30_v = _f30_c.variants | first
+endif
+assign _f30_suma = _f30_suma | plus: _f30_v.price
+endfor
+assign _f30_ahorro = 0
+if _f30_completo and _f30_suma > _f30_precio
+assign _f30_ahorro = _f30_suma | minus: _f30_precio
+endif
+echo _f30_suma
+echo '|'
+echo _f30_ahorro
+echo '|'
+echo _f30_completo
+echo '|'
+echo _f30_pasos
+endcapture
+assign _f26_bs = _f26_bs_raw | strip | split: '|'
+assign _f26_ahorro_c = _f26_bs[1] | plus: 0
+assign _f26_ahorro_fmt = ''
+if _f26_ahorro_c > 0
+assign _f26_ahorro_fmt = _f26_ahorro_c | money_without_trailing_zeros
+endif
+assign _f26_precio_c = _f26_elegida.selected_or_first_available_variant.price
+assign _f26_precio = _f26_precio_c | divided_by: 100
+assign _f26_envio_gratis = false
+if _f26_precio >= _f26_umbral
+assign _f26_envio_gratis = true
+endif
+assign _f26_pasos_json = ''
+for _f26_c in _f26_elegida.metafields.custom.routine_products.value
+if _f26_c.id == _f26_p.id
+assign _f26_paso_n = forloop.index
+endif
+capture _f26_rol_raw
+assign _f31_componente = _f26_c
+assign _f31_etiquetas = _f31_componente.tags
+if _f31_etiquetas contains 'paso-limpieza'
+echo 'Limpia'
+elsif _f31_etiquetas contains 'paso-serum'
+echo 'Trata'
+elsif _f31_etiquetas contains 'paso-crema'
+echo 'Hidrata'
+elsif _f31_etiquetas contains 'paso-spf' or _f31_etiquetas contains 'paso-proteccion-solar'
+echo 'Protege'
+elsif _f31_etiquetas contains 'paso-tratamiento-local'
+echo 'Granito puntual'
+endif
+endcapture
+assign _f26_cv = _f26_c.variants | where: 'available' | first
+unless _f26_cv
+assign _f26_cv = _f26_c.variants | first
+endunless
+assign _f26_j_rol = _f26_rol_raw | strip | json
+assign _f26_j_corto = _f26_c.metafields.custom.nombre_corto.value | default: _f26_c.title | json
+assign _f26_j_t = _f26_c.title | json
+assign _f26_j_url = shop.secure_url | append: _f26_c.url | json
+assign _f26_j_pf = _f26_cv.price | money_without_trailing_zeros | json
+assign _f26_cp_pesos = _f26_cv.price | divided_by: 100
+assign _f26_item = '{"rol":' | append: _f26_j_rol | append: ',"corto":' | append: _f26_j_corto | append: ',"t":' | append: _f26_j_t | append: ',"url":' | append: _f26_j_url | append: ',"precio":' | append: _f26_cp_pesos | append: ',"precio_fmt":' | append: _f26_j_pf | append: '}'
+if _f26_pasos_json == ''
+assign _f26_pasos_json = _f26_item
+else
+assign _f26_pasos_json = _f26_pasos_json | append: ',' | append: _f26_item
+endif
+endfor
+assign _f26_j_rh = _f26_elegida.handle | json
+assign _f26_j_rt = _f26_elegida.title | json
+assign _f26_j_ru = shop.secure_url | append: _f26_elegida.url | json
+assign _f26_j_rp = _f26_precio_c | money_without_trailing_zeros | json
+assign _f26_j_ra = _f26_ahorro_fmt | json
+assign _f26_rutina_json = '{"handle":' | append: _f26_j_rh | append: ',"t":' | append: _f26_j_rt | append: ',"url":' | append: _f26_j_ru | append: ',"precio":' | append: _f26_precio | append: ',"precio_fmt":' | append: _f26_j_rp | append: ',"ahorro_fmt":' | append: _f26_j_ra | append: ',"envio_gratis":' | append: _f26_envio_gratis | append: ',"pasos":[' | append: _f26_pasos_json | append: ']}'
+endif
+echo _f26_base_sin_cierre
+echo ',"uso":'
+echo _f26_uso | json
+if _f26_rutina_json != ''
+echo ',"rutina":'
+echo _f26_rutina_json
+echo ',"paso_n":'
+echo _f26_paso_n
+endif
+echo '}'
+endcapture
+assign j_h = p.handle | json
+assign par = j_h | append: ':' | append: entrada | strip
+if entradas == ''
+assign entradas = par
+else
+assign entradas = entradas | append: ',' | append: par
+endif
+endif
+endif
+endfor
+assign mapa_piel = ''
+assign tipos = 'grasa,seca,mixta,sensible' | split: ','
+for tipo in tipos
+assign h_express = ''
+assign h_esencial = ''
+assign filas = pieles_raw | split: ';'
+for fila in filas
+assign cols = fila | split: '|'
+if cols[0] == tipo
+if cols[1] == 'express' and h_express == ''
+assign h_express = cols[2]
+elsif cols[1] == 'esencial' and h_esencial == ''
+assign h_esencial = cols[2]
+endif
+endif
+endfor
+if h_express != '' or h_esencial != ''
+assign j_t = tipo | json
+assign j_e = h_express | json
+assign j_s = h_esencial | json
+assign item = j_t | append: ':{"express":' | append: j_e | append: ',"esencial":' | append: j_s | append: '}'
+if mapa_piel == ''
+assign mapa_piel = item
+else
+assign mapa_piel = mapa_piel | append: ',' | append: item
+endif
+endif
+endfor
+assign mapa_kits = ''
+assign vistos = '|'
+assign filas_obj = objetivos_raw | split: ';'
+for fila in filas_obj
+assign cols = fila | split: '|'
+assign marca = '|' | append: cols[0] | append: '|'
+unless vistos contains marca
+assign vistos = vistos | append: cols[0] | append: '|'
+assign j_o = cols[0] | json
+assign j_k = cols[1] | json
+assign item = j_o | append: ':' | append: j_k
+if mapa_kits == ''
+assign mapa_kits = item
+else
+assign mapa_kits = mapa_kits | append: ',' | append: item
+endif
+endunless
+endfor
+assign umbral_fmt = umbral_c | money_without_trailing_zeros
+-%}
+{"v":1,"actualizado":{{ actualizado | json }},"umbral":{{ umbral }},"umbral_fmt":{{ umbral_fmt | json }},"p":{ {{- entradas -}} },"piel":{ {{- mapa_piel -}} },"kits_objetivo":{ {{- mapa_kits -}} }}
+{%- endpaginate -%}
