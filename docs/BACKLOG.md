@@ -72,3 +72,9 @@ Portadas = escena base de la IA (sin productos ni texto) + envases reales recort
 - Riesgo: las fotos fuente son chicas (500–750 px). Hay que ver si traen fondo blanco/recortable y si sirven para una portada de 2048 px o hay que pedir las originales.
 - 👤 Pendiente tuyo: habilitar `cdn.shopify.com` en la red del entorno y abrir sesión nueva (en la actual sigue 403).
 - 👤 Si tienes las fotos originales de packshot (PNG/transparentes), mejor que las del CDN.
+
+### Avance piloto fotos (Express Piel Grasa)
+- Verificado: `cdn.shopify.com` ya abre; las 3 fotos fuente son packshots sobre fondo crema liso (750/750/500 px).
+- Recorte por color falla (envase blanco sobre fondo casi blanco). Con `rembg` (u2net) sale limpio: `scripts/fotos/recortar.py`.
+- `scripts/fotos/componer.py` pega envases con sombra de contacto sobre una escena. Probado solo con escena de prueba dibujada, no con la de la IA.
+- Falta: escena base real de 3 productos (ChatGPT), calibrar línea base/sombra por podio, alturas relativas por formato (150/75/50 ml, ajustadas a ojo), y revisar nitidez (el SPF es de 500 px).
