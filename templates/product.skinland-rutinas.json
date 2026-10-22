@@ -13,7 +13,7 @@
       "type": "sl-pdp-hero",
       "settings": {
         "imagen_ajuste": "contain",
-        "mostrar_migas": true,
+        "mostrar_migas": false,
         "texto_pasos": "[pasos] pasos",
         "texto_dura": "dura ~[dias] días",
         "sticker_ahorro": "Ahorras",
@@ -92,27 +92,6 @@
         "sentido": "inverso"
       }
     },
-    "videos": {
-      "type": "sl-videos",
-      "settings": {
-        "titulo": "Skinland, en la vida real",
-        "bajada": "Qué trae, cómo se siente y cómo se usa.",
-        "fondo": "lila",
-        "videos": [
-          "teste",
-          "skincare-coreano-sin-10-pasos",
-          "mi-pedido-skinland",
-          "una-rutina-pensada-para-su-piel",
-          "todo-lo-necesario-para-una-rutina-comple"
-        ],
-        "chip_colab": "Colaboración pagada",
-        "cta_texto_defecto": "Comenzar mi rutina",
-        "agotado_texto": "Agotado",
-        "aviso_editor": "Videos ocultos: se muestran los videos con permiso de uso (metaobjeto Skinland · Video). Hoy no hay ninguno cargado.",
-        "reproducir_aria": "Reproducir video: [titulo]",
-        "cerrar_aria": "Cerrar video"
-      }
-    },
     "incluye": {
       "type": "sl-incluye",
       "settings": {
@@ -168,6 +147,27 @@
         "texto_inci": "Ver ingredientes completos (INCI)",
         "titulo_inci": "Ingredientes completos (INCI)",
         "cerrar_aria": "Cerrar"
+      }
+    },
+    "videos": {
+      "type": "sl-videos",
+      "settings": {
+        "titulo": "Skinland, en la vida real",
+        "bajada": "Qué trae, cómo se siente y cómo se usa.",
+        "fondo": "lila",
+        "videos": [
+          "teste",
+          "skincare-coreano-sin-10-pasos",
+          "mi-pedido-skinland",
+          "una-rutina-pensada-para-su-piel",
+          "todo-lo-necesario-para-una-rutina-comple"
+        ],
+        "chip_colab": "Colaboración pagada",
+        "cta_texto_defecto": "Comenzar mi rutina",
+        "agotado_texto": "Agotado",
+        "aviso_editor": "Videos ocultos: se muestran los videos con permiso de uso (metaobjeto Skinland · Video). Hoy no hay ninguno cargado.",
+        "reproducir_aria": "Reproducir video: [titulo]",
+        "cerrar_aria": "Cerrar video"
       }
     },
     "resenas": {
