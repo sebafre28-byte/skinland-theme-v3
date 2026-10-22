@@ -1,8 +1,8 @@
 /* sl-tarjeta-producto (tarjeta de producto suelto) */
 .sl-tarjeta { display: flex; flex-direction: column; gap: 10px; height: 100%; padding: 10px; border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-necesidad, var(--sl-menta)); }
 .sl-tarjeta__enlace { display: flex; flex-direction: column; gap: 6px; flex: 1; color: var(--sl-tinta); text-decoration: none; }
-.sl-tarjeta__foto { position: relative; display: grid; place-items: center; aspect-ratio: 1; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); overflow: hidden; }
-.sl-tarjeta__foto img { width: 100%; height: 100%; object-fit: contain; padding: 8%; }
+.sl-tarjeta__foto { position: relative; display: grid; place-items: center; aspect-ratio: 1; padding: 8px; border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); overflow: hidden; }
+.sl-tarjeta__foto img { width: 100%; height: 100%; object-fit: contain; padding: 0; border-radius: 12px; }
 .sl-tarjeta__chip { position: absolute; top: 8px; left: 8px; z-index: 1; padding: 3px 8px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); font-size: 11px; font-weight: 700; }
 .sl-tarjeta__titulo { margin: 0; font-size: 14px; font-weight: 700; line-height: 1.25; }
 .sl-tarjeta__beneficio { margin: 0; font-size: 12px; line-height: 1.35; }
