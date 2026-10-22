@@ -95,8 +95,8 @@
     "videos": {
       "type": "sl-videos",
       "settings": {
-        "titulo": "Mírala en acción",
-        "bajada": "Qué trae, cómo se siente y cómo se usa. Videos reales.",
+        "titulo": "Skinland, en la vida real",
+        "bajada": "Qué trae, cómo se siente y cómo se usa.",
         "fondo": "lila",
         "videos": [
           "teste",
@@ -216,12 +216,12 @@
   "order": [
     "hero",
     "cinta",
-    "videos",
     "incluye",
     "uso",
     "para_ti",
     "resultados",
     "ingredientes",
+    "videos",
     "resenas",
     "faq",
     "cta_final",
