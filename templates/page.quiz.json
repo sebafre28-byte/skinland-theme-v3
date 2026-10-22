@@ -142,7 +142,7 @@
         "klaviyo_public_key": "SPSSX4",
         "klaviyo_list_id": "YarMfD",
         "klaviyo_event_name": "Skin Quiz Completed",
-        "email_flow_active": false,
+        "email_flow_active": true,
         "debug_mode": false,
         "enable_routine_level_question": true,
         "routine_level_heading": "¿Qué se adapta mejor a ti hoy?",
