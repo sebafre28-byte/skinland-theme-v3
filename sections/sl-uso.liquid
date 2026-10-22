@@ -84,9 +84,34 @@
           {%- endfor -%}
         </div>
       {%- else -%}
+        {%- liquid
+          assign p_am = false
+          assign p_pm = false
+          if product.tags contains 'uso-am' or product.tags contains 'uso-am-pm'
+            assign p_am = true
+          endif
+          if product.tags contains 'uso-pm' or product.tags contains 'uso-am-pm'
+            assign p_pm = true
+          endif
+          assign lineas = modo_uso | escape | newline_to_br | split: '<br />'
+        -%}
         <div class="sl-uso__tarjetas sl-uso__tarjetas--texto">
-          <div class="sl-uso__tarjeta sl-uso__tarjeta--texto">
-            {{ modo_uso | newline_to_br }}
+          <div class="sl-uso__tarjeta sl-uso__tarjeta--texto{% if p_am and p_pm == false %} sl-uso__tarjeta--am{% elsif p_pm and p_am == false %} sl-uso__tarjeta--pm{% endif %}">
+            {%- if p_am and p_pm -%}
+              <strong class="sl-uso__momento">{{ section.settings.manana_noche }}</strong>
+            {%- elsif p_am -%}
+              <strong class="sl-uso__momento">{{ section.settings.manana }}</strong>
+            {%- elsif p_pm -%}
+              <strong class="sl-uso__momento">{{ section.settings.noche }}</strong>
+            {%- endif -%}
+            <ol class="sl-uso__lista">
+              {%- for linea in lineas -%}
+                {%- assign linea = linea | strip -%}
+                {%- if linea != '' -%}
+                  <li class="sl-uso__item">{{ linea }}</li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ol>
           </div>
         </div>
       {%- endif -%}
@@ -117,6 +142,12 @@
       "id": "noche",
       "label": "Tarjeta de la noche",
       "default": "Noche"
+    },
+    {
+      "type": "text",
+      "id": "manana_noche",
+      "label": "Producto de mañana y noche (ficha de producto suelto)",
+      "default": "Mañana y noche"
     },
     {
       "type": "text",

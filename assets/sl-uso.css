@@ -9,6 +9,9 @@
 .sl-uso__tarjeta--am { background: var(--sl-amarillo); }
 .sl-uso__tarjeta--pm { background: var(--sl-lila); }
 .sl-uso__tarjeta--texto { background: var(--sl-blanco); font-size: 15px; line-height: 1.5; }
+.sl-uso__lista { counter-reset: paso; display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.sl-uso__item { counter-increment: paso; display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border: var(--sl-borde); border-radius: 12px; background: var(--sl-blanco); font-size: 14px; line-height: 1.4; }
+.sl-uso__item::before { content: counter(paso); flex: 0 0 auto; display: grid; place-items: center; width: 24px; height: 24px; border: var(--sl-borde); border-radius: 8px; background: var(--sl-menta); font-size: 13px; font-weight: 800; }
 .sl-uso__momento { font-family: var(--sl-font-display); font-size: 20px; font-weight: 800; }
 .sl-uso__paso { padding: 8px 12px; border: var(--sl-borde); border-radius: 12px; background: var(--sl-blanco); font-size: 14px; line-height: 1.35; }
 .sl-uso__paso strong { font-weight: 700; }

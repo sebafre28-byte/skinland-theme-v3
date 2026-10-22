@@ -1,5 +1,5 @@
 {%- comment -%}
-  Envío gratis: chip si el precio llega al umbral; si no, barra de progreso + complemento sugerido.
+  Envío gratis: chip si el precio más lo que ya hay en el carrito llega al umbral; si no, barra de progreso + complemento sugerido.
   Parámetros: product, precio (centavos), texto_incluido, texto_falta ("[falta]"),
   texto_complemento ("[producto]", "[precio]"), texto_agregar, comp_form_id.
   El complemento se agrega con un <product-form> nativo (otro formulario de Dawn), sin fetch propio.
@@ -9,10 +9,11 @@
   assign comp = settings.sl_complemento_envio
   assign mostrar = false
   assign falta = 0
+  assign acumulado = precio | plus: cart.total_price
   if umbral > 0
     assign mostrar = true
-    if precio < umbral
-      assign falta = umbral | minus: precio
+    if acumulado < umbral
+      assign falta = umbral | minus: acumulado
     endif
   endif
 -%}
@@ -21,7 +22,7 @@
     <p class="sl-envio sl-envio--incluido"><span class="sl-chip sl-chip--ok">{% render 'sl-icon', name: 'check', size: 14 %}{{ texto_incluido }}</span></p>
   {%- else -%}
     {%- liquid
-      assign progreso = precio | times: 100 | divided_by: umbral
+      assign progreso = acumulado | times: 100 | divided_by: umbral
       assign comp_var = comp.selected_or_first_available_variant
       assign falta_texto = falta | money_without_trailing_zeros
       assign umbral_texto = umbral | money_without_trailing_zeros
