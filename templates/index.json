@@ -11,11 +11,6 @@
   "sections": {
     "hero": {
       "type": "sl-home-hero",
-      "settings": {
-        "coleccion_ahorro_1": "rutinas",
-        "coleccion_ahorro_2": "kits",
-        "boton_coleccion": "rutinas"
-      },
       "blocks": {
         "l1": {
           "type": "lamina",
@@ -46,7 +41,21 @@
         "l1",
         "l2",
         "l3"
-      ]
+      ],
+      "settings": {
+        "texto_asesora": "",
+        "eyebrow": "K-beauty sin complicaciones",
+        "titulo": "No necesitas más skincare. Necesitas saber",
+        "marcado": "qué usar.",
+        "bajada": "Rutinas armadas por tipo de piel y kits por objetivo, con productos coreanos 100% originales.",
+        "chip_pasos": "Rutinas en 3 o 4 pasos",
+        "sticker": "Ahorra hasta [ahorro]",
+        "coleccion_ahorro_1": "rutinas",
+        "coleccion_ahorro_2": "kits",
+        "boton_texto": "Encuentra tu rutina",
+        "boton_coleccion": "rutinas",
+        "test_texto": "Haz el test de piel · 1 min"
+      }
     },
     "necesidades": {
       "type": "sl-necesidades",
@@ -56,8 +65,8 @@
           "settings": {
             "texto": "Brillo",
             "coleccion": "piel-grasa",
-            "color": "menta",
-            "producto": "rutina-express-piel-grasa"
+            "producto": "rutina-express-piel-grasa",
+            "color": "menta"
           }
         },
         "n2": {
@@ -65,8 +74,8 @@
           "settings": {
             "texto": "Granitos",
             "coleccion": "anti-acne",
-            "color": "lima",
-            "producto": "kit-anti-acne"
+            "producto": "kit-anti-acne",
+            "color": "lima"
           }
         },
         "n3": {
@@ -74,8 +83,8 @@
           "settings": {
             "texto": "Manchas",
             "coleccion": "anti-manchas",
-            "color": "amarillo",
-            "producto": "kit-anti-manchas"
+            "producto": "kit-anti-manchas",
+            "color": "amarillo"
           }
         },
         "n4": {
@@ -83,8 +92,8 @@
           "settings": {
             "texto": "Piel tirante",
             "coleccion": "piel-seca",
-            "color": "durazno",
-            "producto": "rutina-express-piel-seca"
+            "producto": "rutina-express-piel-seca",
+            "color": "durazno"
           }
         },
         "n5": {
@@ -92,8 +101,8 @@
           "settings": {
             "texto": "Zona T",
             "coleccion": "piel-mixta",
-            "color": "celeste",
-            "producto": "rutina-express-piel-mixta"
+            "producto": "rutina-express-piel-mixta",
+            "color": "celeste"
           }
         },
         "n6": {
@@ -101,8 +110,8 @@
           "settings": {
             "texto": "Rojeces",
             "coleccion": "piel-sensible",
-            "color": "lila",
-            "producto": "rutina-express-piel-sensible"
+            "producto": "rutina-express-piel-sensible",
+            "color": "lila"
           }
         },
         "n7": {
@@ -110,8 +119,8 @@
           "settings": {
             "texto": "Líneas",
             "coleccion": "anti-edad",
-            "color": "rosa",
-            "producto": "kit-anti-edad"
+            "producto": "kit-anti-edad",
+            "color": "rosa"
           }
         },
         "no_se": {
@@ -131,7 +140,69 @@
         "n7",
         "no_se"
       ],
-      "settings": {}
+      "settings": {
+        "titulo": "¿Qué te molesta hoy?"
+      }
+    },
+    "cinta": {
+      "type": "sl-cinta",
+      "blocks": {
+        "c1": {
+          "type": "texto",
+          "settings": {
+            "texto": "Rutinas armadas por tipo de piel",
+            "enlace": ""
+          }
+        },
+        "c2": {
+          "type": "texto",
+          "settings": {
+            "texto": "Kits por objetivo",
+            "enlace": ""
+          }
+        },
+        "c3": {
+          "type": "texto",
+          "settings": {
+            "texto": "Productos coreanos 100% originales",
+            "enlace": ""
+          }
+        },
+        "c4": {
+          "type": "texto",
+          "settings": {
+            "texto": "Test de piel en 1 minuto",
+            "enlace": ""
+          }
+        },
+        "c5": {
+          "type": "texto",
+          "settings": {
+            "texto": "Asesoría por WhatsApp",
+            "enlace": ""
+          }
+        },
+        "envio": {
+          "type": "envio_gratis",
+          "settings": {
+            "texto": "Envío gratis sobre",
+            "enlace": ""
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "envio"
+      ],
+      "settings": {
+        "etiqueta_aria": "Lo que hace Skinland",
+        "color": "tinta",
+        "sentido": "inverso"
+      }
     },
     "rutinas": {
       "type": "sl-rutinas",
@@ -140,17 +211,30 @@
           "type": "version",
           "settings": {
             "etiqueta": "Express · 3 pasos",
+            "marcada": false,
             "destacada": "rutina-express-piel-grasa",
-            "coleccion": "rutinas"
+            "coleccion": "rutinas",
+            "texto_productos": "[n] productos",
+            "texto_por_separado": "Si compras los productos por separado pagarías",
+            "texto_ahorras": "Ahorras [ahorro]",
+            "boton": "Ver [titulo] →",
+            "texto_desde": "desde [precio]",
+            "texto_agotado": "Agotado"
           }
         },
         "esencial": {
           "type": "version",
           "settings": {
             "etiqueta": "Esencial · 4 pasos",
+            "marcada": true,
             "destacada": "rutina-piel-grasa",
             "coleccion": "rutinas",
-            "marcada": true
+            "texto_productos": "[n] productos",
+            "texto_por_separado": "Si compras los productos por separado pagarías",
+            "texto_ahorras": "Ahorras [ahorro]",
+            "boton": "Ver [titulo] →",
+            "texto_desde": "desde [precio]",
+            "texto_agotado": "Agotado"
           }
         }
       },
@@ -158,13 +242,23 @@
         "express",
         "esencial"
       ],
-      "settings": {}
+      "settings": {
+        "titulo": "Tu rutina según tu piel"
+      }
     },
     "kit": {
       "type": "sl-kit-destacado",
       "settings": {
         "kit": "kit-anti-acne",
-        "coleccion": "kits"
+        "coleccion": "kits",
+        "eyebrow": "Kits por objetivo",
+        "titulo": "Todo en una caja",
+        "texto_productos": "[n] productos",
+        "texto_por_separado": "Si compras los productos por separado pagarías",
+        "texto_ahorras": "Ahorras [ahorro]",
+        "texto_desde": "[precio]",
+        "boton": "Ver [titulo] →",
+        "texto_agotado": "Agotado"
       }
     },
     "aly": {
@@ -174,24 +268,24 @@
           "type": "respuesta",
           "settings": {
             "texto": "Brillante",
-            "color": "menta",
-            "mensaje": "Hola Skinland 👋 Mi piel se ve brillante a mediodía. ¿Qué rutina me recomiendan?"
+            "mensaje": "Hola Skinland 👋 Mi piel se ve brillante a mediodía. ¿Qué rutina me recomiendan?",
+            "color": "menta"
           }
         },
         "a2": {
           "type": "respuesta",
           "settings": {
             "texto": "Tirante",
-            "color": "durazno",
-            "mensaje": "Hola Skinland 👋 Mi piel se siente tirante o seca. ¿Qué rutina me recomiendan?"
+            "mensaje": "Hola Skinland 👋 Mi piel se siente tirante o seca. ¿Qué rutina me recomiendan?",
+            "color": "durazno"
           }
         },
         "a3": {
           "type": "respuesta",
           "settings": {
             "texto": "Con granitos",
-            "color": "lima",
-            "mensaje": "Hola Skinland 👋 Me salen granitos seguido. ¿Qué rutina o kit me recomiendan?"
+            "mensaje": "Hola Skinland 👋 Me salen granitos seguido. ¿Qué rutina o kit me recomiendan?",
+            "color": "lima"
           }
         }
       },
@@ -200,21 +294,15 @@
         "a2",
         "a3"
       ],
-      "settings": {}
-    },
-    "videos": {
-      "type": "sl-videos",
       "settings": {
-        "titulo": "Mira cómo se usa"
+        "nombre": "Aly",
+        "titulo": "¿No sabes qué elegir?",
+        "bajada": "Haz el test o escríbele a Aly por WhatsApp",
+        "pregunta": "¿Cómo sientes tu piel a mediodía?",
+        "boton_aly": "Hablar con Aly por WhatsApp",
+        "boton": "Hacer el test completo",
+        "aviso_editor": "Aly oculta: agrega el enlace del test, un enlace de WhatsApp o el teléfono de la tienda."
       }
-    },
-    "newsletter": {
-      "type": "sl-newsletter",
-      "settings": {}
-    },
-    "resenas": {
-      "type": "sl-resenas-home",
-      "settings": {}
     },
     "marcas": {
       "type": "sl-marcas",
@@ -228,43 +316,50 @@
         "m1": {
           "type": "marca",
           "settings": {
-            "proveedor": "SKIN1004"
+            "proveedor": "SKIN1004",
+            "etiqueta": ""
           }
         },
         "m2": {
           "type": "marca",
           "settings": {
-            "proveedor": "Beauty of Joseon"
+            "proveedor": "Beauty of Joseon",
+            "etiqueta": ""
           }
         },
         "m3": {
           "type": "marca",
           "settings": {
-            "proveedor": "MIXSOON"
+            "proveedor": "MIXSOON",
+            "etiqueta": ""
           }
         },
         "m4": {
           "type": "marca",
           "settings": {
-            "proveedor": "Dr.Althea"
+            "proveedor": "Dr.Althea",
+            "etiqueta": ""
           }
         },
         "m5": {
           "type": "marca",
           "settings": {
-            "proveedor": "Round Lab"
+            "proveedor": "Round Lab",
+            "etiqueta": ""
           }
         },
         "m6": {
           "type": "marca",
           "settings": {
-            "proveedor": "EQQUALBERRY"
+            "proveedor": "EQQUALBERRY",
+            "etiqueta": ""
           }
         },
         "m7": {
           "type": "marca",
           "settings": {
-            "proveedor": "Centellian24"
+            "proveedor": "Centellian24",
+            "etiqueta": ""
           }
         }
       },
@@ -278,57 +373,53 @@
         "m6",
         "m7"
       ],
-      "settings": {}
-    },
-    "cinta": {
-      "type": "sl-cinta",
-      "blocks": {
-        "c1": {
-          "type": "texto",
-          "settings": {
-            "texto": "Rutinas armadas por tipo de piel"
-          }
-        },
-        "c2": {
-          "type": "texto",
-          "settings": {
-            "texto": "Kits por objetivo"
-          }
-        },
-        "c3": {
-          "type": "texto",
-          "settings": {
-            "texto": "Productos coreanos 100% originales"
-          }
-        },
-        "c4": {
-          "type": "texto",
-          "settings": {
-            "texto": "Test de piel en 1 minuto"
-          }
-        },
-        "c5": {
-          "type": "texto",
-          "settings": {
-            "texto": "Asesoría por WhatsApp"
-          }
-        },
-        "envio": {
-          "type": "envio_gratis",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "c1",
-        "c2",
-        "c3",
-        "c4",
-        "c5",
-        "envio"
-      ],
       "settings": {
-        "color": "tinta",
-        "sentido": "inverso"
+        "eyebrow": "Marcas seleccionadas",
+        "titulo": "Nuestras marcas favoritas",
+        "bajada": "Productos originales de las marcas que forman nuestras rutinas.",
+        "cantidad": 8,
+        "texto_agregar": "Agregar",
+        "texto_ver": "Ver opciones",
+        "texto_agotado": "Agotado",
+        "texto_vacio": "No hay productos disponibles para esta marca.",
+        "aviso_editor": "Marcas ocultas: agrega al menos una pestaña."
+      }
+    },
+    "videos": {
+      "type": "sl-videos",
+      "settings": {
+        "titulo": "Skinland, en la vida real",
+        "bajada": "Qué trae, cómo se siente y cómo se usa.",
+        "fondo": "lila",
+        "videos": [],
+        "chip_colab": "Colaboración pagada",
+        "cta_texto_defecto": "Comenzar mi rutina",
+        "agotado_texto": "Agotado",
+        "aviso_editor": "Videos ocultos: se muestran los videos con permiso de uso (metaobjeto Skinland · Video). Hoy no hay ninguno cargado.",
+        "reproducir_aria": "Reproducir video: [titulo]",
+        "cerrar_aria": "Cerrar video"
+      }
+    },
+    "resenas": {
+      "type": "sl-resenas-home",
+      "settings": {
+        "titulo": "Lo que dicen nuestras clientas",
+        "maximo": 6,
+        "chip_verificada": "Compra verificada",
+        "estrellas_aria": "[n] de 5 estrellas",
+        "foto_alt": "Foto de [autora]",
+        "aviso_editor": "Reseñas ocultas: se muestran las reseñas manuales válidas (metaobjeto Skinland · Reseña con compra verificada y permiso de uso). Hoy no hay ninguna cargada."
+      }
+    },
+    "newsletter": {
+      "type": "sl-newsletter",
+      "settings": {
+        "titulo": "Tips para tu piel, sin spam",
+        "etiqueta_correo": "Tu correo",
+        "placeholder": "nombre@correo.cl",
+        "boton": "Suscribirme",
+        "mensaje_ok": "Listo, ya estás suscrita.",
+        "beneficio": ""
       }
     }
   },
