@@ -30,10 +30,6 @@
         <span class="sl-entrega__etiqueta">{{ settings.sl_entrega_entrega }}</span>
       </li>
     </ol>
-    <p class="sl-entrega__nota">
-      {{ settings.sl_entrega_nota }}
-      {%- if shop.shipping_policy.url != blank and settings.sl_entrega_regiones != blank %} <a href="{{ shop.shipping_policy.url }}">{{ settings.sl_entrega_regiones }}</a>{% endif -%}
-    </p>
   </sl-entrega>
   <script src="{{ 'sl-entrega.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}

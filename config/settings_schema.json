@@ -99,19 +99,6 @@
       },
       {
         "type": "text",
-        "id": "sl_entrega_nota",
-        "label": "Nota bajo la línea de tiempo",
-        "default": "Estimado para la Región Metropolitana, de lunes a viernes y sin contar feriados."
-      },
-      {
-        "type": "text",
-        "id": "sl_entrega_regiones",
-        "label": "Enlace a los plazos de otras regiones",
-        "info": "Lleva a la política de envío. Vacío = sin enlace.",
-        "default": "Otras regiones: ver plazos"
-      },
-      {
-        "type": "text",
         "id": "sl_texto_cuotas",
         "label": "Texto de cuotas",
         "info": "Solo con cuotas reales con Mercado Pago. Vacío = no se muestra nada."
