@@ -29,6 +29,30 @@
   endif
   assign titulo = titulo | replace: '[producto]', product.title
 
+  assign suelto = false
+  if mf.routine_products.value == blank and mf.routine_cta_text.value == blank
+    assign suelto = true
+    assign titulo = section.settings.titulo_individual | replace: '[producto]', product.title
+  endif
+
+  # Producto suelto: la rutina más corta que lo incluye, para el enlace bajo el botón
+  assign rutina_enlace = nil
+  assign hay_enlace = false
+  if suelto and section.settings.coleccion_rutinas != blank
+    for pasos in (3..6)
+      for r in section.settings.coleccion_rutinas.products
+        if rutina_enlace == nil and r.metafields.custom.routine_products.value.size == pasos
+          for c in r.metafields.custom.routine_products.value
+            if c.id == product.id
+              assign rutina_enlace = r
+              assign hay_enlace = true
+            endif
+          endfor
+        endif
+      endfor
+    endfor
+  endif
+
   assign cta = mf.routine_cta_text.value | default: section.settings.cta_texto_defecto
   if mf.routine_products.value == blank and mf.routine_cta_text.value == blank
     assign cta = settings.sl_cta_individual
@@ -41,13 +65,14 @@
       <h2 class="sl-cta__titulo" id="sl-cta-{{ section.id }}">{{ titulo }}</h2>
       <div class="sl-cta__precio">
         <span class="sl-cta__monto">{{ precio | money_without_trailing_zeros }}</span>
-        {%- if bs_ahorro > 0 -%}
+        {%- if bs_ahorro > 0 and suelto == false -%}
           {%- assign ahorro_monto = bs_ahorro | money_without_trailing_zeros -%}
           {%- assign ahorro_menos = '−' | append: ahorro_monto -%}
           <span class="sl-sticker">{{ section.settings.texto_ahorras | default: '[ahorro]' | replace: '[ahorro]', ahorro_menos }}</span>
         {%- endif -%}
       </div>
     </div>
+    <div class="sl-cta__accion">
     <button
       type="submit"
       form="{{ form_id }}"
@@ -58,6 +83,10 @@
       <span>{% if disponible %}{{ cta }}{% else %}{{ section.settings.agotado_texto }}{% endif %}</span>
       {%- render 'loading-spinner' -%}
     </button>
+    {%- if hay_enlace -%}
+      <a class="sl-cta__rutina" href="{{ rutina_enlace.url }}">{{ section.settings.texto_ver_rutina | replace: '[titulo]', rutina_enlace.title }}</a>
+    {%- endif -%}
+    </div>
   </div>
 </section>
 <script src="{{ 'sl-form-externo.js' | asset_url }}" defer="defer"></script>
@@ -88,6 +117,26 @@
       "label": "Título si el producto no tiene tipo de piel",
       "info": "Usa [producto].",
       "default": "Tu [producto], lista para empezar."
+    },
+    {
+      "type": "text",
+      "id": "titulo_individual",
+      "label": "Título de un producto suelto",
+      "info": "Se usa en productos que no son rutina ni kit. Usa [producto].",
+      "default": "[producto], listo para sumar a tu rutina."
+    },
+    {
+      "type": "collection",
+      "id": "coleccion_rutinas",
+      "label": "Colección de rutinas",
+      "info": "En un producto suelto, de aquí sale la rutina más corta que lo incluye para el enlace bajo el botón. Sin colección o sin rutina, no se muestra el enlace."
+    },
+    {
+      "type": "text",
+      "id": "texto_ver_rutina",
+      "label": "Enlace a la rutina completa",
+      "info": "Usa [titulo].",
+      "default": "Ver la rutina completa: [titulo] →"
     },
     {
       "type": "text",

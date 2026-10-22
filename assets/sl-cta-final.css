@@ -8,10 +8,12 @@
 .sl-cta__titulo { margin: 0; font-family: var(--sl-font-display); font-size: 30px; font-weight: 800; line-height: .98; letter-spacing: -.03em; color: var(--sl-tinta); }
 .sl-cta__precio { display: flex; align-items: center; gap: 10px; }
 .sl-cta__monto { font-family: var(--sl-font-display); font-size: 30px; font-weight: 800; }
+.sl-cta__accion { display: flex; flex-direction: column; align-items: stretch; gap: 12px; }
 .sl-cta__boton { width: 100%; }
+.sl-cta__rutina { color: var(--sl-tinta); font-size: 14px; font-weight: 700; text-align: center; text-decoration: underline; text-underline-offset: 3px; }
 @media screen and (min-width: 990px) {
   .sl-cta { max-width: calc(var(--sl-contenedor) + 64px); margin: 0 auto; padding: 0 32px 64px; }
   .sl-cta__tarjeta { flex-direction: row; align-items: center; justify-content: space-between; gap: 32px; padding: 32px 40px; }
   .sl-cta__titulo { font-size: 38px; max-width: 640px; }
-  .sl-cta__boton { width: auto; min-width: 260px; }
+  .sl-cta__accion { min-width: 260px; }
 }

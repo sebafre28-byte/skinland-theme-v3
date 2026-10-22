@@ -47,7 +47,9 @@
     },
     "cta_final": {
       "type": "sl-cta-final",
-      "settings": {}
+      "settings": {
+        "coleccion_rutinas": "rutinas"
+      }
     },
     "sticky": {
       "type": "sl-sticky-atc",
