@@ -92,26 +92,6 @@
         "sentido": "inverso"
       }
     },
-    "videos": {
-      "type": "sl-videos",
-      "settings": {
-        "titulo": "Skinland, en la vida real",
-        "bajada": "Qué trae, cómo se siente y cómo se usa.",
-        "fondo": "lila",
-        "videos": [
-          "mi-pedido-skinland",
-          "una-rutina-pensada-para-su-piel",
-          "una-rutina-simple-pero-completa",
-          "todo-lo-necesario-para-una-rutina-comple"
-        ],
-        "chip_colab": "Colaboración pagada",
-        "cta_texto_defecto": "Comenzar mi rutina",
-        "agotado_texto": "Agotado",
-        "aviso_editor": "Videos ocultos: se muestran los videos con permiso de uso (metaobjeto Skinland · Video). Hoy no hay ninguno cargado.",
-        "reproducir_aria": "Reproducir video: [titulo]",
-        "cerrar_aria": "Cerrar video"
-      }
-    },
     "incluye": {
       "type": "sl-incluye",
       "settings": {
@@ -169,6 +149,26 @@
         "cerrar_aria": "Cerrar"
       }
     },
+    "videos": {
+      "type": "sl-videos",
+      "settings": {
+        "titulo": "Skinland, en la vida real",
+        "bajada": "Qué trae, cómo se siente y cómo se usa.",
+        "fondo": "lila",
+        "videos": [
+          "mi-pedido-skinland",
+          "una-rutina-pensada-para-su-piel",
+          "una-rutina-simple-pero-completa",
+          "todo-lo-necesario-para-una-rutina-comple"
+        ],
+        "chip_colab": "Colaboración pagada",
+        "cta_texto_defecto": "Comenzar mi rutina",
+        "agotado_texto": "Agotado",
+        "aviso_editor": "Videos ocultos: se muestran los videos con permiso de uso (metaobjeto Skinland · Video). Hoy no hay ninguno cargado.",
+        "reproducir_aria": "Reproducir video: [titulo]",
+        "cerrar_aria": "Cerrar video"
+      }
+    },
     "resenas": {
       "type": "sl-resenas",
       "settings": {
@@ -215,12 +215,12 @@
   "order": [
     "hero",
     "cinta",
-    "videos",
     "incluye",
     "uso",
     "para_ti",
     "resultados",
     "ingredientes",
+    "videos",
     "resenas",
     "faq",
     "cta_final",
