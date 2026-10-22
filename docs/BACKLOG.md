@@ -87,3 +87,10 @@ Portadas = escena base de la IA (sin productos ni texto) + envases reales recort
 - Recorte por color falla (envase blanco sobre fondo casi blanco). Con `rembg` (u2net) sale limpio: `scripts/fotos/recortar.py`.
 - `scripts/fotos/componer.py` pega envases con sombra de contacto sobre una escena. Probado solo con escena de prueba dibujada, no con la de la IA.
 - Falta: escena base real de 3 productos (ChatGPT), calibrar línea base/sombra por podio, alturas relativas por formato (150/75/50 ml, ajustadas a ojo), y revisar nitidez (el SPF es de 500 px).
+
+## 22-oct · Texto de vista previa y cápsulas en los correos de Klaviyo
+- Los 55 correos de los flujos V3 (quiz Rm7C4H y checkout V27TqG) llevan un texto de vista previa oculto propio, justo después de `<body>`, marcado con `<!-- sl-preheader -->`. Cambiarlo = editar ese div.
+- Cápsula "Ahorras / N pasos": solo la tenía el correo 01 del quiz (Tu7T6Q), ya arreglada (alineada, sin salto de línea). Los otros 54 no tienen esa cabecera.
+- Deshacer: cada plantilla tiene respaldo "[RESPALDO 22-oct D] <nombre>" (54 respaldos; Tu7T6Q: XPUQir).
+- No verificado: conteo exacto de espacios no cortantes (se escribieron como `&nbsp;`) y render real en Gmail/iPhone.
+- Pendiente: el `preview_text` propio de cada mensaje en los flows sigue con el texto anterior (Gmail usa el div oculto).
