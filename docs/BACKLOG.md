@@ -61,6 +61,7 @@ Detalle en `docs/klaviyo/LEEME.md` y `docs/klaviyo/COLECCIONES.md`.
 | Colecciones «Rutinas Express» y «Rutinas Esencial» | Borrar las colecciones |
 | `nombre_corto` y `beneficio_corto` en 22 productos | `metafieldsDelete` en esos dos metacampos |
 | `version_nombre = Kit` en Kit Anti Manchas y Kit Anti Edad | Borrar el metacampo |
+| Código de descuento `SKINLAND10` en Shopify (22-oct): 10 % en todo, 1 uso por cliente, sin fecha de término, combina solo con envío | Admin → Descuentos → `SKINLAND10` → Eliminar (o `discountCodeDelete` del nodo `gid://shopify/DiscountCodeNode/1515100274879`) |
 
 ## Fotos de rutinas y kits: plan híbrido (aprobado)
 
