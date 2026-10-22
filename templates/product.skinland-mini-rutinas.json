@@ -6,53 +6,47 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- */{
+ */
+{
   "sections": {
     "hero": {
       "type": "sl-pdp-hero",
-      "settings": {}
-    },
-    "videos": {
-      "type": "sl-videos",
       "settings": {
-        "titulo": "Mírala en acción"
+        "imagen_ajuste": "contain",
+        "mostrar_migas": true,
+        "texto_pasos": "[pasos] pasos",
+        "texto_dura": "dura ~[dias] días",
+        "sticker_ahorro": "Ahorras",
+        "texto_versiones": "Elige tu versión",
+        "texto_version_pasos": "[nombre] · [pasos] pasos",
+        "texto_por_separado": "Si compras los productos por separado pagarías",
+        "texto_ahorras": "Ahorras [ahorro]",
+        "texto_costo_dia": "≈ [precio] al día",
+        "texto_resenas": "[n] reseñas",
+        "texto_resena_una": "[n] reseña",
+        "resenas_minimo_promedio": 3,
+        "cta_texto_defecto": "Comenzar mi rutina",
+        "agotado_texto": "Agotado",
+        "ayuda_intro": "¿No sabes si es para ti?",
+        "ayuda_test": "Test de 1 min",
+        "ayuda_aly": "Pregúntale a Aly",
+        "envio_incluido": "Envío gratis incluido",
+        "envio_falta": "Con este producto te faltan [falta] para envío gratis",
+        "envio_complemento": "Suma [producto] ([precio]) y tu envío queda gratis.",
+        "envio_agregar": "+ Agregar",
+        "migas_aria": "Ruta",
+        "migas_inicio": "Inicio",
+        "foto_aria": "Ver foto [n]",
+        "video_aria": "Ver video",
+        "video_etiqueta": "Video",
+        "ficha_paso": "Es un",
+        "ficha_cuando": "Úsalo",
+        "ficha_rinde": "Rinde",
+        "ficha_am": "En la mañana",
+        "ficha_pm": "En la noche",
+        "ficha_ampm": "Mañana y noche",
+        "ficha_dias": "~[dias] días"
       }
-    },
-    "incluye": {
-      "type": "sl-incluye",
-      "settings": {}
-    },
-    "uso": {
-      "type": "sl-uso",
-      "settings": {}
-    },
-    "para_ti": {
-      "type": "sl-para-ti",
-      "settings": {}
-    },
-    "resultados": {
-      "type": "sl-resultados",
-      "settings": {}
-    },
-    "ingredientes": {
-      "type": "sl-ingredientes",
-      "settings": {}
-    },
-    "resenas": {
-      "type": "sl-resenas",
-      "settings": {}
-    },
-    "faq": {
-      "type": "sl-faq",
-      "settings": {}
-    },
-    "cta_final": {
-      "type": "sl-cta-final",
-      "settings": {}
-    },
-    "sticky": {
-      "type": "sl-sticky-atc",
-      "settings": {}
     },
     "cinta": {
       "type": "sl-cinta",
@@ -60,24 +54,30 @@
         "c1": {
           "type": "texto",
           "settings": {
-            "texto": "Productos coreanos 100% originales"
+            "texto": "Productos coreanos 100% originales",
+            "enlace": ""
           }
         },
         "c2": {
           "type": "texto",
           "settings": {
-            "texto": "Rutinas y kits armados para ti"
+            "texto": "Rutinas y kits armados para ti",
+            "enlace": ""
           }
         },
         "c3": {
           "type": "texto",
           "settings": {
-            "texto": "Asesoría por WhatsApp"
+            "texto": "Asesoría por WhatsApp",
+            "enlace": ""
           }
         },
         "envio": {
           "type": "envio_gratis",
-          "settings": {}
+          "settings": {
+            "texto": "Envío gratis sobre",
+            "enlace": ""
+          }
         }
       },
       "block_order": [
@@ -87,8 +87,128 @@
         "envio"
       ],
       "settings": {
+        "etiqueta_aria": "Lo que hace Skinland",
         "color": "menta",
         "sentido": "inverso"
+      }
+    },
+    "videos": {
+      "type": "sl-videos",
+      "settings": {
+        "titulo": "Skinland, en la vida real",
+        "bajada": "Qué trae, cómo se siente y cómo se usa.",
+        "fondo": "lila",
+        "videos": [
+          "mi-pedido-skinland",
+          "una-rutina-pensada-para-su-piel",
+          "una-rutina-simple-pero-completa",
+          "todo-lo-necesario-para-una-rutina-comple"
+        ],
+        "chip_colab": "Colaboración pagada",
+        "cta_texto_defecto": "Comenzar mi rutina",
+        "agotado_texto": "Agotado",
+        "aviso_editor": "Videos ocultos: se muestran los videos con permiso de uso (metaobjeto Skinland · Video). Hoy no hay ninguno cargado.",
+        "reproducir_aria": "Reproducir video: [titulo]",
+        "cerrar_aria": "Cerrar video"
+      }
+    },
+    "incluye": {
+      "type": "sl-incluye",
+      "settings": {
+        "titulo": "Qué incluye",
+        "bajada": "¿No quieres los [n]? Puedes llevar cualquiera por separado.",
+        "fusionar_fondo": true,
+        "boton_solo": "+ Solo este",
+        "agotado_texto": "Agotado",
+        "texto_por_separado": "Si compras los productos por separado pagarías",
+        "texto_ahorras": "Ahorras [ahorro]",
+        "texto_en_rutina": "Comprándolos juntos pagas",
+        "upgrade_frase": "Es esta misma rutina + [extras].",
+        "upgrade_chip": "+[diferencia] · sumas [productos] en productos",
+        "upgrade_chip_corto": "+[diferencia]",
+        "upgrade_boton": "Ver [titulo] →"
+      }
+    },
+    "uso": {
+      "type": "sl-uso",
+      "settings": {
+        "titulo": "Cómo se usa",
+        "manana": "Mañana",
+        "noche": "Noche",
+        "manana_noche": "Mañana y noche",
+        "etiqueta_local": "Parche",
+        "texto_local": "solo si aparece un granito"
+      }
+    },
+    "para_ti": {
+      "type": "sl-para-ti",
+      "settings": {
+        "titulo": "¿Es para ti?",
+        "titulo_si": "Sí, si…",
+        "titulo_otra": "Mejor otra opción, si…",
+        "aviso_prefijo": "Importante:"
+      }
+    },
+    "resultados": {
+      "type": "sl-resultados",
+      "settings": {
+        "titulo": "Qué puedes esperar",
+        "etiqueta_7": "Semana 1",
+        "etiqueta_14": "Semana 2",
+        "etiqueta_30": "Mes 1",
+        "texto_detalle": "Ver detalle",
+        "pie": "Cada piel es distinta: tiempos referenciales con uso diario."
+      }
+    },
+    "ingredientes": {
+      "type": "sl-ingredientes",
+      "settings": {
+        "titulo": "Ingredientes clave",
+        "texto_inci": "Ver ingredientes completos (INCI)",
+        "titulo_inci": "Ingredientes completos (INCI)",
+        "cerrar_aria": "Cerrar"
+      }
+    },
+    "resenas": {
+      "type": "sl-resenas",
+      "settings": {
+        "titulo": "Lo que dicen quienes la usan",
+        "maximo": 6,
+        "chip_verificada": "Compra verificada",
+        "estrellas_aria": "[n] de 5 estrellas",
+        "foto_alt": "Foto de [autora]",
+        "aviso_editor": "Reseñas ocultas: se muestran con reseñas manuales válidas de este producto (metaobjeto Skinland · Reseña) o con una app de reseñas y su bloque agregado aquí."
+      }
+    },
+    "faq": {
+      "type": "sl-faq",
+      "settings": {
+        "titulo": "Preguntas frecuentes",
+        "globales": [],
+        "texto_aly": "¿Otra duda? Pregúntale a Aly →",
+        "texto_whatsapp": "¿Otra duda? Escríbenos por WhatsApp →"
+      }
+    },
+    "cta_final": {
+      "type": "sl-cta-final",
+      "settings": {
+        "texto_ahorras": "Ahorras [ahorro]",
+        "titulo": "Tu rutina para [tipo de piel], lista para empezar.",
+        "titulo_alterno": "Tu [producto], lista para empezar.",
+        "titulo_individual": "[producto], listo para sumar a tu rutina.",
+        "coleccion_rutinas": "",
+        "texto_ver_rutina": "Ver la rutina completa: [titulo] →",
+        "cta_texto_defecto": "Comenzar mi rutina",
+        "agotado_texto": "Agotado"
+      }
+    },
+    "sticky": {
+      "type": "sl-sticky-atc",
+      "settings": {
+        "texto_ahorras": "Ahorras [ahorro]",
+        "cta_texto_defecto": "Comenzar mi rutina",
+        "agotado_texto": "Agotado",
+        "etiqueta_aria": "Comprar"
       }
     }
   },
