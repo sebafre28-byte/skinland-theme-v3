@@ -13,7 +13,7 @@
       "type": "sl-pdp-hero",
       "settings": {
         "imagen_ajuste": "contain",
-        "mostrar_migas": true,
+        "mostrar_migas": false,
         "texto_pasos": "[pasos] pasos",
         "texto_dura": "dura ~[dias] días",
         "sticker_ahorro": "Ahorras",
