@@ -1,4 +1,4 @@
-/* sl-rutinas: selector Express / Esencial. Sin JS se ve la primera versión. */
+/* sl-rutinas: selector Express / Esencial. Sin JS se ve la versión marcada al cargar (ajuste del bloque; por defecto la primera). */
 document.querySelectorAll('[data-sl-rutinas]').forEach((raiz) => {
   const tabs = raiz.querySelectorAll('[data-sl-tab]');
   const paneles = raiz.querySelectorAll('[data-sl-panel]');

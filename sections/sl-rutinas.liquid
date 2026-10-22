@@ -3,11 +3,18 @@
 
 {%- liquid
   assign bloques_ok = 0
+  assign inicial_n = 0
   for block in section.blocks
     if block.settings.destacada != blank
       assign bloques_ok = bloques_ok | plus: 1
+      if block.settings.marcada and inicial_n == 0
+        assign inicial_n = bloques_ok
+      endif
     endif
   endfor
+  if inicial_n == 0
+    assign inicial_n = 1
+  endif
 -%}
 
 {%- if bloques_ok > 0 -%}
@@ -20,8 +27,8 @@
           {%- assign n = 0 -%}
           {%- for block in section.blocks -%}
             {%- if block.settings.destacada != blank -%}
-              <button type="button" class="sl-rutinas__tab" data-sl-tab="{{ block.id }}" aria-pressed="{% if n == 0 %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.etiqueta }}</button>
               {%- assign n = n | plus: 1 -%}
+              <button type="button" class="sl-rutinas__tab" data-sl-tab="{{ block.id }}" aria-pressed="{% if n == inicial_n %}true{% else %}false{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.etiqueta }}</button>
             {%- endif -%}
           {%- endfor -%}
         </div>
@@ -31,8 +38,9 @@
       {%- for block in section.blocks -%}
         {%- assign p = block.settings.destacada -%}
         {%- if p != blank -%}
+          {%- assign n = n | plus: 1 -%}
           {%- assign pasos = p.metafields.custom.routine_products.value.size | plus: 0 -%}
-          <div class="sl-rutinas__panel" data-sl-panel="{{ block.id }}" {% if n > 0 %}hidden{% endif %}>
+          <div class="sl-rutinas__panel" data-sl-panel="{{ block.id }}" {% unless n == inicial_n %}hidden{% endunless %}>
             {% render 'sl-acordeon-producto',
               product: p,
               grupo: block.id,
@@ -65,7 +73,6 @@
               {%- endfor -%}
             {%- endif -%}
           </div>
-          {%- assign n = n | plus: 1 -%}
         {%- endif -%}
       {%- endfor -%}
     </div>
@@ -87,6 +94,7 @@
       "name": "Versión de rutina",
       "settings": [
         { "type": "text", "id": "etiqueta", "label": "Texto del selector", "default": "Express · 3 pasos" },
+        { "type": "checkbox", "id": "marcada", "label": "Marcada al cargar la página", "default": false, "info": "Esta versión se ve seleccionada al entrar. Si ninguna está marcada, se usa la primera." },
         { "type": "product", "id": "destacada", "label": "Rutina destacada", "info": "Sin producto, la versión no se muestra." },
         { "type": "collection", "id": "coleccion", "label": "Colección de rutinas", "info": "De aquí salen las otras rutinas con la misma cantidad de pasos que la destacada (calculada desde sus productos)." },
         { "type": "text", "id": "texto_productos", "label": "Etiqueta de pasos", "default": "[n] productos", "info": "Usa [n]." },

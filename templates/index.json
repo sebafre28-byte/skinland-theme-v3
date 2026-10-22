@@ -140,7 +140,8 @@
           "settings": {
             "etiqueta": "Esencial · 4 pasos",
             "destacada": "rutina-piel-grasa",
-            "coleccion": "rutinas"
+            "coleccion": "rutinas",
+            "marcada": true
           }
         }
       },
