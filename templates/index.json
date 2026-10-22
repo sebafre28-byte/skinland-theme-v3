@@ -391,7 +391,12 @@
         "titulo": "Skinland, en la vida real",
         "bajada": "Qué trae, cómo se siente y cómo se usa.",
         "fondo": "lila",
-        "videos": [],
+        "videos": [
+          "mi-pedido-skinland",
+          "una-rutina-pensada-para-su-piel",
+          "todo-lo-necesario-para-una-rutina-comple",
+          "una-rutina-simple-pero-completa"
+        ],
         "chip_colab": "Colaboración pagada",
         "cta_texto_defecto": "Comenzar mi rutina",
         "agotado_texto": "Agotado",
