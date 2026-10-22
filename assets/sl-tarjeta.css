@@ -8,7 +8,7 @@
 .sl-tarjeta__beneficio { margin: 0; font-size: 12px; line-height: 1.35; }
 .sl-tarjeta__precio { margin: 0; font-family: var(--sl-font-display); font-size: 18px; font-weight: 800; }
 .sl-tarjeta__boton, .sl-tarjeta__agotado { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 44px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-tinta); color: var(--sl-blanco); font: inherit; font-size: 14px; font-weight: 700; text-decoration: none; cursor: pointer; }
-.sl-tarjeta__agotado { background: var(--sl-blanco); color: var(--sl-tinta); opacity: .7; cursor: default; }
+.sl-tarjeta__agotado { background: var(--sl-compra); color: var(--sl-blanco); opacity: .55; cursor: not-allowed; }
 .sl-tarjeta__form .form { margin: 0; }
 .sl-tarjeta__marca { margin: 0; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; opacity: .7; }
 .sl-tarjeta[data-sl-color='blanco'] { --sl-necesidad: var(--sl-blanco); }

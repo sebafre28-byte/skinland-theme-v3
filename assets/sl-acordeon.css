@@ -13,7 +13,7 @@
 .sl-acordeon__precio { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
 .sl-acordeon__precio .sl-precio { font-size: 30px; }
 .sl-acordeon__ahorro { align-self: flex-start; padding: 6px 11px; border: var(--sl-borde); border-radius: var(--sl-radio-s); background: var(--sl-blanco); font-family: var(--sl-font-display); font-size: 13px; font-weight: 800; }
-.sl-acordeon__agotado { margin: 0; padding: 12px 16px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-blanco); font-weight: 700; text-align: center; }
+.sl-acordeon__agotado { margin: 0; padding: 14px 16px; border: var(--sl-borde); border-radius: var(--sl-radio-m); background: var(--sl-compra); color: var(--sl-blanco); font-family: var(--sl-font-display); font-size: 17px; font-weight: 700; text-align: center; opacity: .55; cursor: not-allowed; }
 .sl-acordeon__ver { align-self: center; padding: 8px; color: var(--sl-tinta); font-size: 14px; font-weight: 700; text-decoration: underline; }
 @media (prefers-reduced-motion: reduce) { .sl-acordeon__flecha { transition: none; } }
 
