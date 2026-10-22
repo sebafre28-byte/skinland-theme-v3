@@ -64,14 +64,14 @@
               assign form_solo = 'sl-solo-' | append: c.id
             -%}
             <li class="sl-incluye__item">
-              <div class="sl-incluye__foto">
+              <a class="sl-incluye__foto" href="{% render 'sl-enlace-producto', producto: c %}" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
                 {%- if foto != blank -%}
                   <img src="{{ foto | image_url: width: 400 }}" srcset="{{ foto | image_url: width: 200 }} 200w, {{ foto | image_url: width: 400 }} 400w, {{ foto | image_url: width: 600 }} 600w" sizes="(min-width: 990px) 360px, 72px" alt="{{ foto.alt | default: c.title | escape }}" width="{{ foto.width }}" height="{{ foto.height }}" loading="lazy">
                 {%- endif -%}
-              </div>
+              </a>
               <div class="sl-incluye__cuerpo">
                 <span class="sl-incluye__paso sl-incluye__paso--{{ chip_n }}">{{ forloop.index }}{% if paso != blank %} · {{ paso }}{% endif %}</span>
-                <strong class="sl-incluye__nombre">{{ c.title }}</strong>
+                <a class="sl-incluye__nombre" href="{% render 'sl-enlace-producto', producto: c %}" target="_blank" rel="noopener">{{ c.title }}</a>
                 {%- if beneficio != blank -%}
                   <span class="sl-incluye__beneficio">{{ beneficio }}</span>
                 {%- endif -%}
