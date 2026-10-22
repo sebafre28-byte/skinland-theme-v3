@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "quiz": {
@@ -9,6 +18,7 @@
             "question_role": "tipo_piel",
             "question_heading": "¿Cómo luce tu piel al mediodía, sin productos?",
             "question_sub": "Piensa en cómo la ves normalmente, sin haberte aplicado nada.",
+            "respuestas_aly": "tipo-piel-grasa | Entiendo, el brillo durante el día es muy común. Buscaremos texturas ligeras que no sobrecarguen tu piel.\ntipo-piel-seca | Gracias por contarme. Cuando la piel se siente tirante, lo ideal es limpiar suave e hidratar bien.\ntipo-piel-mixta | Clásico de la zona T: brillo al centro y mejillas más secas. Podemos equilibrar ambas zonas con productos ligeros.\ntipo-piel-sensible | Anotado. Para una piel que reacciona fácil, elegiré fórmulas suaves y vamos de a poco.",
             "question_image": "shopify://shop_images/ChatGPT_Image_16_may_2026_10_58_40_p.m..png",
             "opt1_label": "Brillante y grasa",
             "opt1_desc": "Especialmente en frente, nariz y mentón",
@@ -22,7 +32,12 @@
             "opt4_label": "Se enrojece o irrita fácil",
             "opt4_desc": "Reacciona a productos o clima",
             "opt4_tag": "tipo-piel-sensible",
-            "respuestas_aly": "tipo-piel-grasa | Entiendo, el brillo durante el día es muy común. Buscaremos texturas ligeras que no sobrecarguen tu piel.\ntipo-piel-seca | Gracias por contarme. Cuando la piel se siente tirante, lo ideal es limpiar suave e hidratar bien.\ntipo-piel-mixta | Clásico de la zona T: brillo al centro y mejillas más secas. Podemos equilibrar ambas zonas con productos ligeros.\ntipo-piel-sensible | Anotado. Para una piel que reacciona fácil, elegiré fórmulas suaves y vamos de a poco."
+            "opt5_label": "",
+            "opt5_desc": "",
+            "opt5_tag": "",
+            "opt6_label": "",
+            "opt6_desc": "",
+            "opt6_tag": ""
           }
         },
         "q_objetivo": {
@@ -31,6 +46,7 @@
             "question_role": "objetivo_principal",
             "question_heading": "Si pudieras resolver una sola cosa, ¿cuál sería?",
             "question_sub": "Elige la que más te pesa hoy. Es la que manda en tu recomendación.",
+            "respuestas_aly": "objetivo-antiacne | Entiendo, los granitos pueden ser molestos. Voy a buscar rutinas y kits pensados para que tu piel se vea más calmada y pareja.\nobjetivo-manchas | Perfecto. Buscaremos opciones que ayuden a que el tono se vea más parejo y luminoso, siempre con protector solar.\nobjetivo-antiedad | Muy bien. Pensaremos en hidratación y cuidado diario para que tu piel se vea descansada y cómoda.\nobjetivo-hidratar | Claro, cuando la piel se siente tirante se nota. Armaremos algo enfocado en hidratar y dar confort.\nobjetivo-calmar | Gracias por avisar. Priorizaré fórmulas suaves que ayuden a calmar la apariencia de la piel.\nobjetivo-poros | Entendido. Buscaremos algo que ayude a que los poros se vean más finos y el brillo se note menos.",
             "opt1_label": "Granitos o acné",
             "opt1_desc": "Brotes frecuentes o puntos negros",
             "opt1_tag": "objetivo-antiacne",
@@ -48,8 +64,7 @@
             "opt5_tag": "objetivo-calmar",
             "opt6_label": "Poros y brillo",
             "opt6_desc": "Poros visibles o exceso de grasa",
-            "opt6_tag": "objetivo-poros",
-            "respuestas_aly": "objetivo-antiacne | Entiendo, los granitos pueden ser molestos. Voy a buscar rutinas y kits pensados para que tu piel se vea más calmada y pareja.\nobjetivo-manchas | Perfecto. Buscaremos opciones que ayuden a que el tono se vea más parejo y luminoso, siempre con protector solar.\nobjetivo-antiedad | Muy bien. Pensaremos en hidratación y cuidado diario para que tu piel se vea descansada y cómoda.\nobjetivo-hidratar | Claro, cuando la piel se siente tirante se nota. Armaremos algo enfocado en hidratar y dar confort.\nobjetivo-calmar | Gracias por avisar. Priorizaré fórmulas suaves que ayuden a calmar la apariencia de la piel.\nobjetivo-poros | Entendido. Buscaremos algo que ayude a que los poros se vean más finos y el brillo se note menos."
+            "opt6_tag": "objetivo-poros"
           }
         },
         "q_extra": {
@@ -58,20 +73,25 @@
             "question_role": "objetivo_secundario",
             "question_heading": "¿Hay algo más que te gustaría trabajar?",
             "question_sub": "Si eliges algo, te armamos un kit enfocado. Si no, una rutina completa.",
+            "respuestas_aly": "objetivo-ninguno | Perfecto, entonces vamos con una rutina completa y simple.\nobjetivo-poros | Anotado: también poros y brillo. Lo sumo a tu perfil.\nobjetivo-manchas | Anotado: también el tono desigual. Lo sumo a tu perfil.\nobjetivo-hidratar | Anotado: también hidratación. Lo sumo a tu perfil.\nobjetivo-calmar | Anotado: también calmar la piel. Lo sumo a tu perfil.\nobjetivo-antiacne | Anotado: también los granitos. Lo sumo a tu perfil.",
             "opt1_label": "No, eso es lo principal",
             "opt1_desc": "Prefiero una rutina completa y simple",
             "opt1_tag": "objetivo-ninguno",
             "opt2_label": "Poros y brillo",
+            "opt2_desc": "",
             "opt2_tag": "objetivo-poros",
             "opt3_label": "Manchas o tono desigual",
+            "opt3_desc": "",
             "opt3_tag": "objetivo-manchas",
             "opt4_label": "Deshidratación",
+            "opt4_desc": "",
             "opt4_tag": "objetivo-hidratar",
             "opt5_label": "Rojeces o irritación",
+            "opt5_desc": "",
             "opt5_tag": "objetivo-calmar",
             "opt6_label": "Granitos o acné",
-            "opt6_tag": "objetivo-antiacne",
-            "respuestas_aly": "objetivo-ninguno | Perfecto, entonces vamos con una rutina completa y simple.\nobjetivo-poros | Anotado: también poros y brillo. Lo sumo a tu perfil.\nobjetivo-manchas | Anotado: también el tono desigual. Lo sumo a tu perfil.\nobjetivo-hidratar | Anotado: también hidratación. Lo sumo a tu perfil.\nobjetivo-calmar | Anotado: también calmar la piel. Lo sumo a tu perfil.\nobjetivo-antiacne | Anotado: también los granitos. Lo sumo a tu perfil."
+            "opt6_desc": "",
+            "opt6_tag": "objetivo-antiacne"
           }
         },
         "q_sens": {
@@ -80,6 +100,7 @@
             "question_role": "sensibilidad",
             "question_heading": "¿Cómo reacciona tu piel ante productos nuevos?",
             "question_sub": "Esto define qué tan intensa puede ser tu rutina.",
+            "respuestas_aly": "sensibilidad-ninguna | Qué bueno, eso me da más libertad para elegir.\nsensibilidad-reactiva | Gracias. Elegiré fórmulas suaves para esos días en que se irrita.\nsensibilidad-muy-reactiva | Entiendo. Iremos con mucho cuidado y de a pocos productos nuevos.",
             "opt1_label": "Bien, raramente reacciona",
             "opt1_desc": "Puedo usar casi cualquier cosa",
             "opt1_tag": "sensibilidad-ninguna",
@@ -89,7 +110,15 @@
             "opt3_label": "Reacciona a casi todo",
             "opt3_desc": "Necesito ir muy de a poco",
             "opt3_tag": "sensibilidad-muy-reactiva",
-            "respuestas_aly": "sensibilidad-ninguna | Qué bueno, eso me da más libertad para elegir.\nsensibilidad-reactiva | Gracias. Elegiré fórmulas suaves para esos días en que se irrita.\nsensibilidad-muy-reactiva | Entiendo. Iremos con mucho cuidado y de a pocos productos nuevos."
+            "opt4_label": "",
+            "opt4_desc": "",
+            "opt4_tag": "",
+            "opt5_label": "",
+            "opt5_desc": "",
+            "opt5_tag": "",
+            "opt6_label": "",
+            "opt6_desc": "",
+            "opt6_tag": ""
           }
         }
       },
@@ -100,10 +129,62 @@
         "q_sens"
       ],
       "settings": {
-        "quiz_collection": "recomendaciones-quiz",
-        "enable_routine_level_question": true,
+        "chat_nombre": "Aly",
+        "chat_avatar": "aly1",
+        "chat_saludo": "¡Hola! Te puedo recomendar un kit o rutina que se adapte a tus necesidades.",
         "routine_level_respuestas": "preferencia-rutina-3 | Perfecto, una rutina simple es más fácil de mantener todos los días.\npreferencia-rutina-4 | Genial, con experiencia podemos sumar un paso extra para trabajar tu piel.\npreferencia-kit | Entendido, buscaré un kit enfocado en esa necesidad.",
-        "results_sub": "La armé según tus respuestas, con los pasos en el orden correcto."
+        "eyebrow": "Test de piel · 2 minutos",
+        "titulo": "Encuentra tu rutina ideal",
+        "bajada": "Responde unas preguntas sobre tu piel y te recomendamos una rutina simple, con productos seleccionados por Skinland y en el orden correcto.",
+        "capture_heading": "Recibe tu rutina en tu correo",
+        "capture_sub": "Escribe tus datos y te enviamos tu recomendación, más consejos de skincare.",
+        "consent_text": "Acepto recibir comunicaciones de Skinland. Me puedo dar de baja cuando quiera.",
+        "klaviyo_public_key": "SPSSX4",
+        "klaviyo_list_id": "YarMfD",
+        "klaviyo_event_name": "Skin Quiz Completed",
+        "email_flow_active": false,
+        "debug_mode": false,
+        "enable_routine_level_question": true,
+        "routine_level_heading": "¿Qué se adapta mejor a ti hoy?",
+        "routine_level_sub": "Elige según tu experiencia y el cuidado que quieres mantener.",
+        "routine_level_3_label": "Quiero empezar simple",
+        "routine_level_3_desc": "Estoy empezando o prefiero una rutina fácil de mantener",
+        "routine_level_4_label": "Ya tengo experiencia con skincare",
+        "routine_level_4_desc": "Quiero trabajar mi piel con una rutina de 4 pasos",
+        "routine_level_kit_label": "Quiero tratar algo puntual",
+        "routine_level_kit_desc": "Prefiero un kit enfocado en una necesidad específica",
+        "quiz_collection": "recomendaciones-quiz",
+        "results_heading": "[nombre], esta es tu rutina",
+        "results_sub": "La armé según tus respuestas, con los pasos en el orden correcto.",
+        "copy_fuerte": "[nombre], esta rutina calza justo con lo que me contaste y es simple de seguir, paso a paso.",
+        "copy_parcial": "[nombre], es la que mejor se ajusta a lo que me contaste: reúne los pasos que tu piel necesita, en el orden correcto y lista para empezar hoy.",
+        "copy_base": "[nombre], esta es la base correcta para tu tipo de piel y la mejor forma de empezar: simple, ordenada y lista para usar.",
+        "wa_titulo": "¿Aún tienes dudas?",
+        "wa_texto": "Aly te asesora gratis por WhatsApp para elegir la que mejor te acomode.",
+        "wa_boton": "Hablar con Aly",
+        "wa_mensaje": "Hola Aly, hice el test de piel y quiero tu ayuda para elegir mi rutina.",
+        "no_match_heading": "Tu perfil necesita algo más específico",
+        "no_match_text": "Con tus respuestas no encontramos una rutina o kit que calce del todo. Preferimos decírtelo antes que recomendarte algo a medias. Escríbenos y te ayudamos.",
+        "no_match_url": "",
+        "no_match_cta": "Explorar productos →",
+        "ui_atras": "← Atrás",
+        "ui_ver_rutina": "Recibir mi rutina →",
+        "ui_guardando": "Guardando...",
+        "ui_sin_datos": "Ver resultados sin dejar datos",
+        "ui_reiniciar": "Empezar de nuevo",
+        "ui_ver_recomendacion": "Ver recomendación →",
+        "ui_nombre": "Nombre",
+        "ui_nombre_ph": "Tu nombre",
+        "ui_email": "Email",
+        "ui_email_ph": "tu@email.cl",
+        "ui_consent_error": "Debes aceptar para continuar.",
+        "ui_por_separado": "Si compras los productos por separado pagarías",
+        "ui_ahorras": "Ahorras [ahorro]",
+        "ui_alt_label_completa": "Si quieres una rutina más completa, también puedes elegir",
+        "ui_alt_titulo_completa": "Rutina Esencial · [pasos] pasos",
+        "ui_alt_label_simple": "Si prefieres algo más corto y simple, también puedes elegir",
+        "ui_alt_titulo_simple": "Rutina Express · [pasos] pasos",
+        "ui_alt_boton": "Ver rutina →"
       }
     }
   },
