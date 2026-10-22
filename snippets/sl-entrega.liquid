@@ -1,0 +1,39 @@
+{%- comment -%}
+  Promesa de entrega: Compra → Preparación → Entrega, con fechas calculadas en el navegador (hora de Chile, lunes a viernes).
+  Los plazos y textos salen de los ajustes del tema (Skinland · Sistema → Promesa de entrega). Sin JavaScript queda oculta.
+  Parámetros: ninguno.
+{%- endcomment -%}
+{%- if settings.sl_entrega_activa and settings.sl_entrega_prep_max > 0 and settings.sl_entrega_entrega_max > 0 -%}
+  {{ 'sl-entrega.css' | asset_url | stylesheet_tag }}
+  <sl-entrega
+    class="sl-entrega sl-scope"
+    data-prep-min="{{ settings.sl_entrega_prep_min | default: 0 }}"
+    data-prep-max="{{ settings.sl_entrega_prep_max }}"
+    data-entrega-min="{{ settings.sl_entrega_entrega_min | default: 0 }}"
+    data-entrega-max="{{ settings.sl_entrega_entrega_max }}"
+    hidden
+  >
+    <ol class="sl-entrega__pasos">
+      <li class="sl-entrega__paso">
+        <svg class="sl-entrega__icono" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <strong class="sl-entrega__fecha" data-sl-fecha="compra"></strong>
+        <span class="sl-entrega__etiqueta">{{ settings.sl_entrega_compra }}</span>
+      </li>
+      <li class="sl-entrega__paso">
+        <svg class="sl-entrega__icono" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.7"/><circle cx="17" cy="17.5" r="1.7"/></svg>
+        <strong class="sl-entrega__fecha" data-sl-fecha="preparacion"></strong>
+        <span class="sl-entrega__etiqueta">{{ settings.sl_entrega_preparacion }}</span>
+      </li>
+      <li class="sl-entrega__paso">
+        <svg class="sl-entrega__icono" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>
+        <strong class="sl-entrega__fecha" data-sl-fecha="entrega"></strong>
+        <span class="sl-entrega__etiqueta">{{ settings.sl_entrega_entrega }}</span>
+      </li>
+    </ol>
+    <p class="sl-entrega__nota">
+      {{ settings.sl_entrega_nota }}
+      {%- if shop.shipping_policy.url != blank and settings.sl_entrega_regiones != blank %} <a href="{{ shop.shipping_policy.url }}">{{ settings.sl_entrega_regiones }}</a>{% endif -%}
+    </p>
+  </sl-entrega>
+  <script src="{{ 'sl-entrega.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}

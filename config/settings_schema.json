@@ -43,6 +43,74 @@
         "info": "Se sugiere solo si está disponible, completa lo que falta y no es parte de la rutina."
       },
       {
+        "type": "header",
+        "content": "Promesa de entrega"
+      },
+      {
+        "type": "checkbox",
+        "id": "sl_entrega_activa",
+        "label": "Mostrar la promesa de entrega",
+        "info": "Línea de tiempo Compra, Preparación y Entrega en la ficha y en el carrito.",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "sl_entrega_prep_min",
+        "label": "Preparación: días hábiles mínimos",
+        "info": "Según la política de envío: 1 a 2 días hábiles.",
+        "default": 1
+      },
+      {
+        "type": "number",
+        "id": "sl_entrega_prep_max",
+        "label": "Preparación: días hábiles máximos",
+        "default": 2
+      },
+      {
+        "type": "number",
+        "id": "sl_entrega_entrega_min",
+        "label": "Entrega en Región Metropolitana: días hábiles mínimos desde el despacho",
+        "info": "Según la política de envío: 1 a 3 días hábiles.",
+        "default": 1
+      },
+      {
+        "type": "number",
+        "id": "sl_entrega_entrega_max",
+        "label": "Entrega en Región Metropolitana: días hábiles máximos desde el despacho",
+        "default": 3
+      },
+      {
+        "type": "text",
+        "id": "sl_entrega_compra",
+        "label": "Etiqueta de la compra",
+        "default": "Compra"
+      },
+      {
+        "type": "text",
+        "id": "sl_entrega_preparacion",
+        "label": "Etiqueta de la preparación",
+        "default": "Preparación"
+      },
+      {
+        "type": "text",
+        "id": "sl_entrega_entrega",
+        "label": "Etiqueta de la entrega",
+        "default": "Entrega"
+      },
+      {
+        "type": "text",
+        "id": "sl_entrega_nota",
+        "label": "Nota bajo la línea de tiempo",
+        "default": "Estimado para la Región Metropolitana, de lunes a viernes y sin contar feriados."
+      },
+      {
+        "type": "text",
+        "id": "sl_entrega_regiones",
+        "label": "Enlace a los plazos de otras regiones",
+        "info": "Lleva a la política de envío. Vacío = sin enlace.",
+        "default": "Otras regiones: ver plazos"
+      },
+      {
         "type": "text",
         "id": "sl_texto_cuotas",
         "label": "Texto de cuotas",

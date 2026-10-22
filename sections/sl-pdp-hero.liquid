@@ -342,6 +342,10 @@
             comp_form_id: comp_form_id
           %}
 
+          {%- if product.available -%}
+            {% render 'sl-entrega' %}
+          {%- endif -%}
+
           {% render 'sl-confianza' %}
         </div>
       </div>

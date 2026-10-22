@@ -1,0 +1,17 @@
+/* sl-entrega · promesa de entrega (Compra → Preparación → Entrega). Las fechas las calcula sl-entrega.js */
+.sl-entrega { display: block; margin: 14px 0 4px; padding: 14px 12px 12px; border: var(--sl-borde); border-radius: var(--sl-radio-l); background: var(--sl-blanco); color: var(--sl-tinta); }
+.sl-entrega[hidden] { display: none; }
+.sl-entrega__pasos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 0; padding: 0; list-style: none; }
+.sl-entrega__paso { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; font-size: 12px; line-height: 1.25; }
+.sl-entrega__paso::before { content: ''; position: absolute; top: 14px; right: calc(50% + 22px); width: calc(100% - 44px); border-top: 2px solid var(--sl-tinta); }
+.sl-entrega__paso:first-child::before { display: none; }
+.sl-entrega__icono { margin-bottom: 4px; }
+.sl-entrega__fecha { font-size: 12px; font-weight: 700; }
+.sl-entrega__etiqueta { font-size: 12px; opacity: .75; }
+.sl-entrega__nota { margin: 10px 0 0; font-size: 11px; line-height: 1.4; opacity: .75; text-align: center; }
+.sl-entrega__nota a { color: inherit; font-weight: 700; }
+
+@media screen and (min-width: 990px) {
+  .sl-entrega { padding: 16px 18px 14px; }
+  .sl-entrega__fecha, .sl-entrega__etiqueta { font-size: 13px; }
+}
