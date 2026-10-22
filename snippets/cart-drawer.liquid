@@ -436,7 +436,7 @@
               {%- endif -%}
               <div class="sl-cart__fila">
                 <dt>{{ settings.sl_cart_envio_linea }}</dt>
-                <dd>{{ settings.sl_cart_envio_calc }}</dd>
+                <dd>{% if umbral > 0 and falta == 0 %}{{ settings.sl_cart_envio_gratis }}{% else %}{{ settings.sl_cart_envio_calc }}{% endif %}</dd>
               </div>
             </dl>
           {%- endif -%}

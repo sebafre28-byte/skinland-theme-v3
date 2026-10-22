@@ -293,6 +293,13 @@
       },
       {
         "type": "text",
+        "id": "sl_cart_envio_gratis",
+        "label": "Texto del envío cuando ya es gratis",
+        "info": "Se muestra cuando el carrito supera el umbral de envío gratis.",
+        "default": "Gratis"
+      },
+      {
+        "type": "text",
         "id": "sl_cart_pagar",
         "label": "Botón de pago",
         "default": "Ir a pagar"
