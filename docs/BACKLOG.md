@@ -10,7 +10,7 @@ Detalle en `docs/klaviyo/LEEME.md` y `docs/klaviyo/COLECCIONES.md`.
 - [ ] Modo de uso, INCI y FAQ de rutinas y kits (`scripts/fase9/contenido-faltante.json`, bloque `productos`): revisar claims con Sebastián y cargar.
 - [ ] 8 rutinas y kits sin `alternativas` (`no_es` sale vacío): Kit Anti Manchas, Kit Anti Edad, Piel Seca/Mixta/Sensible (Esencial) y Express Seca/Mixta/Sensible.
 - [ ] 👤 En Klaviyo: cupón `SKINLAND10`, Web Feed `sl_feed` (`https://skinland.cl/pages/klaviyo-feed`), revisar los correos con perfiles reales y lanzar V3 · Quiz resultado (`Rm7C4H`) y V3 · Checkout abandonado (`V27TqG`), dejando en borrador `Vn75x2` y `SNcipY`.
-- [ ] 👤 Klaviyo, pendientes de revisar (22-oct): (1) formato de precios en los correos ("$82 791" con espacio vs "$64.990" con punto: ajustar el formato regional o usar el feed); (2) texto "Los traemos de distribuidores y por importación directa…" en el correo de checkout: confirmar que es verdad o ajustarlo; (3) decidir si se elimina el código público `SKINLAND10` de Shopify (los correos usan códigos únicos `SKIN-`); (4) en la compra de prueba, ver si el envío sigue gratis con 10 % en un carrito apenas sobre $64.990; (5) probar el cupón con un checkout abandonado real, ya con V3 publicado.
+- [ ] 👤 Klaviyo, pendientes de revisar (22-oct): (1) formato de precios en los correos ("$82 791" con espacio vs "$64.990" con punto: ajustar el formato regional o usar el feed); (2) texto "Los traemos de distribuidores y por importación directa…" en el correo de checkout: confirmar que es verdad o ajustarlo; (3) [hecho] código público eliminado; el código único de Klaviyo (`SKIN-…`) se probó en el checkout y baja 10 %; (4) en la compra de prueba, ver si el envío sigue gratis con 10 % en un carrito apenas sobre $64.990; (5) probar el cupón con un checkout abandonado real, ya con V3 publicado.
 - [ ] 👤 Cargar clave pública y lista de Klaviyo en la sección del quiz y hacer una prueba para ver el evento en el Activity Feed (Puerta 2).
 - [ ] Decidir sobre `sensibilidad-ninguna|reactiva|muy-reactiva` (el contrato dice `alta|ninguna`). Hoy lo cubre la propiedad `Sensitivity`.
 - [ ] `robots.txt.liquid` con `Disallow: /pages/klaviyo-feed`: agregar al publicar V3 y probar en `/robots.txt`.
@@ -62,7 +62,7 @@ Detalle en `docs/klaviyo/LEEME.md` y `docs/klaviyo/COLECCIONES.md`.
 | Colecciones «Rutinas Express» y «Rutinas Esencial» | Borrar las colecciones |
 | `nombre_corto` y `beneficio_corto` en 22 productos | `metafieldsDelete` en esos dos metacampos |
 | `version_nombre = Kit` en Kit Anti Manchas y Kit Anti Edad | Borrar el metacampo |
-| Código de descuento `SKINLAND10` en Shopify (22-oct): 10 % en todo, 1 uso por cliente, sin fecha de término, combina solo con envío | Admin → Descuentos → `SKINLAND10` → Eliminar (o `discountCodeDelete` del nodo `gid://shopify/DiscountCodeNode/1515100274879`) |
+| Código público `SKINLAND10` en Shopify (22-oct): creado por Claude y **eliminado por Sebastián el mismo día** (los correos usan códigos únicos `SKIN-` que genera Klaviyo) | Si se quiere un código público: Descuentos → Crear código, 10 %, 1 uso por cliente |
 
 ## Fotos de rutinas y kits: plan híbrido (aprobado)
 
