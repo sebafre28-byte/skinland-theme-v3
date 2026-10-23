@@ -94,3 +94,9 @@ Portadas = escena base de la IA (sin productos ni texto) + envases reales recort
 - Deshacer: cada plantilla tiene respaldo "[RESPALDO 22-oct D] <nombre>" (54 respaldos; Tu7T6Q: XPUQir).
 - No verificado: conteo exacto de espacios no cortantes (se escribieron como `&nbsp;`) y render real en Gmail/iPhone.
 - Pendiente: el `preview_text` propio de cada mensaje en los flows sigue con el texto anterior (Gmail usa el div oculto).
+
+## 23-oct · Logo transparente en correos (modo oscuro)
+- Nuevo logo con borde crema fino, fondo transparente: `assets/sl-logo-email.png` (en Klaviyo: imagen id 387856451, `.../images/766bd3fa-e921-4b20-95b3-5ed741544d6f.png`). Reemplaza el logo del encabezado de los 35 correos del flujo quiz.
+- Deshacer: en cada plantilla volver `766bd3fa-e921-4b20-95b3-5ed741544d6f.png` → `395a9b2b-7fa8-48b0-96e2-f0dccc6e302d.png`, reponer `;background:#F0ECE6` y `height="32"`. Sin respaldo nuevo por plantilla (los "[RESPALDO 22-oct D]" son anteriores a este cambio y al de vista previa).
+- Pendiente: los 20 correos del flujo checkout tienen "skinland." como texto en Cormorant Garamond (fuente vieja de Sense), no el logo. Proponer igualarlos al encabezado con imagen (necesita OK).
+- Pendiente: la conexión de Shopify de la sesión apuntaba a otra tienda (Ecoms); no se usó.
