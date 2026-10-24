@@ -95,8 +95,9 @@ Portadas = escena base de la IA (sin productos ni texto) + envases reales recort
 - No verificado: conteo exacto de espacios no cortantes (se escribieron como `&nbsp;`) y render real en Gmail/iPhone.
 - Pendiente: el `preview_text` propio de cada mensaje en los flows sigue con el texto anterior (Gmail usa el div oculto).
 
-## 23-oct · Logo transparente en correos (modo oscuro)
-- Nuevo logo con borde crema fino, fondo transparente: `assets/sl-logo-email.png` (en Klaviyo: imagen id 387856451, `.../images/766bd3fa-e921-4b20-95b3-5ed741544d6f.png`). Reemplaza el logo del encabezado de los 35 correos del flujo quiz.
-- Deshacer: en cada plantilla volver `766bd3fa-e921-4b20-95b3-5ed741544d6f.png` → `395a9b2b-7fa8-48b0-96e2-f0dccc6e302d.png`, reponer `;background:#F0ECE6` y `height="32"`. Sin respaldo nuevo por plantilla (los "[RESPALDO 22-oct D]" son anteriores a este cambio y al de vista previa).
+## 23-oct · Logo en correos del quiz: intento de logo transparente, revertido
+- Se cambió el logo del encabezado de los 35 correos del quiz por uno transparente con borde crema (modo oscuro). La imagen subida a Klaviyo (766bd3fa…) quedó corrupta por un error de copia mío y Gmail la mostraba rota. Los 35 correos se devolvieron al logo anterior (395a9b2b…, con `background:#F0ECE6`); las Cartas de Aly con 132×30.
+- Regla nueva: no cambiar un recurso de correos (imagen, logo) sin comprobar antes en un correo de prueba real que carga, y recién ahí cambiar el resto.
+- Pendiente (necesita OK): logo que se vea bien en modo nocturno. Hay que subir la imagen desde una URL pública (no por texto copiado). `assets/sl-logo-email.png` quedó en el tema como fuente; imágenes en Klaviyo sin uso: 387856451 y 388160221 (la 387856451 está corrupta).
 - Pendiente: los 20 correos del flujo checkout tienen "skinland." como texto en Cormorant Garamond (fuente vieja de Sense), no el logo. Proponer igualarlos al encabezado con imagen (necesita OK).
-- Pendiente: la conexión de Shopify de la sesión apuntaba a otra tienda (Ecoms); no se usó.
+- Aviso: la conexión de Shopify de la sesión apuntaba a otra tienda (Ecoms); no se usó.
