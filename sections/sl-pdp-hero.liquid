@@ -180,7 +180,7 @@
             </div>
           {%- endif -%}
 
-          <h1 class="sl-h1 sl-buybox__titulo">{{ product.title }}</h1>
+          <h1 class="sl-h1 sl-buybox__titulo{% if pasos == 0 %} sl-buybox__titulo--suelto{% endif %}">{{ product.title }}</h1>
 
           {%- if rating_n >= 1 -%}
             {%- if rating_n == 1 -%}

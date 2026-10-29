@@ -163,5 +163,16 @@
 .sl-galeria__chip { top: 26px; left: 26px; }
 .sl-galeria__ahorro { top: 8px; right: 8px; width: 80px; height: 80px; font-size: 12px; }
 
-/* Con beneficio: la foto termina antes y el beneficio va debajo, dentro del marco, sin tapar la imagen */
-.sl-galeria__escenario--con-beneficio .sl-galeria__item { bottom: 78px; }
+/* Con beneficio: foto cuadrada completa (las fotos son 1:1) y el beneficio debajo, dentro del marco, sin taparla */
+.sl-galeria__escenario--con-beneficio { aspect-ratio: auto; display: flex; flex-direction: column; gap: 10px; padding: 14px; }
+.sl-galeria__escenario--con-beneficio .sl-galeria__item { position: relative; inset: auto; width: 100%; aspect-ratio: 1 / 1; flex: none; }
+.sl-galeria__escenario--con-beneficio .sl-galeria__beneficio { position: static; flex: none; }
+@media screen and (min-width: 990px) {
+  .sl-galeria__escenario--con-beneficio { aspect-ratio: auto; flex: 1 1 auto; }
+}
+
+/* Productos sueltos: títulos largos, más chicos para que la primera vista en teléfono muestre precio y botón */
+.sl-buybox__titulo--suelto { font-size: 28px; line-height: 1.05; letter-spacing: -.03em; }
+@media screen and (min-width: 990px) {
+  .sl-buybox__titulo--suelto { font-size: 38px; }
+}
