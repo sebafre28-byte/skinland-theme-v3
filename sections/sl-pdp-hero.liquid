@@ -84,7 +84,11 @@
       <div class="sl-hero__grid">
         {%- comment -%} Galería {%- endcomment -%}
         <div class="sl-galeria" data-sl-galeria>
-          <div class="sl-galeria__escenario sl-galeria__escenario--{{ section.settings.imagen_ajuste }}">
+          {%- assign beneficio_chip = '' -%}
+          {%- if pasos == 0 -%}
+            {%- assign beneficio_chip = mf.beneficio_corto.value | default: mf.beneficios_clave.value.first -%}
+          {%- endif -%}
+          <div class="sl-galeria__escenario sl-galeria__escenario--{{ section.settings.imagen_ajuste }}{% if beneficio_chip != blank %} sl-galeria__escenario--con-beneficio{% endif %}">
             {%- for imagen in imagenes -%}
               {%- if forloop.index == 2 and tiene_video -%}
                 <div class="sl-galeria__item sl-galeria__item--video" data-sl-item hidden>
@@ -120,11 +124,8 @@
                 {%- if dias > 0 %} · {{ section.settings.texto_dura | replace: '[dias]', dias }}{% endif -%}
               </span>
             {%- endif -%}
-            {%- if pasos == 0 -%}
-              {%- assign beneficio_chip = mf.beneficio_corto.value | default: mf.beneficios_clave.value.first -%}
-              {%- if beneficio_chip != blank -%}
-                <span class="sl-galeria__beneficio">{% render 'sl-icon', name: 'check', size: 16 %}<span>{{ beneficio_chip }}</span></span>
-              {%- endif -%}
+            {%- if beneficio_chip != blank -%}
+              <span class="sl-galeria__beneficio">{% render 'sl-icon', name: 'check', size: 16 %}<span>{{ beneficio_chip }}</span></span>
             {%- endif -%}
             {%- if bs_ahorro > 0 -%}
               <span class="sl-galeria__ahorro">{{ section.settings.sticker_ahorro }}<br>{{ bs_ahorro | money_without_trailing_zeros }}</span>
