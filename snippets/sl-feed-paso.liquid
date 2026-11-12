@@ -45,4 +45,4 @@
   endcapture
   assign url_c = shop.secure_url | append: c.url
 -%}
-{"t":{{ c.title | json }},"corto":{{ corto | json }},"rol":{{ rol | json }},"precio":{{ precio_c }},"beneficio":{{ c.metafields.custom.beneficio_corto.value | default: '' | json }},"ing":[{{ ings }}],"am":{{ am }},"pm":{{ pm }}{% if puntual %},"puntual":true{% endif %},"handle":{{ c.handle | json }},"url":{{ url_c | json }},"img":{{ img_c | strip | json }},"precio_fmt":{{ v.price | money_without_trailing_zeros | json }}}
+{"t":{{ c.title | json }},"corto":{{ corto | json }},"rol":{{ rol | json }},"precio":{{ precio_c }},"beneficio":{{ c.metafields.custom.beneficio_corto.value | default: '' | json }},"ing":[{{ ings }}],"am":{{ am }},"pm":{{ pm }}{% if puntual %},"puntual":true{% endif %},"handle":{{ c.handle | json }},"url":{{ url_c | json }},"img":{{ img_c | strip | json }},"precio_fmt":{{ v.price | money_without_trailing_zeros | json }},"disponible":{{ c.available }}}
