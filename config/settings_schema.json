@@ -304,6 +304,25 @@
       },
       {
         "type": "text",
+        "id": "sl_cart_cross_titulo",
+        "label": "Venta cruzada: título",
+        "default": "Completa tu pedido"
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_cross_texto",
+        "label": "Venta cruzada: texto de cada producto",
+        "default": "[producto] · [precio]",
+        "info": "Usa [producto] y [precio]."
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_cross_ver",
+        "label": "Venta cruzada: botón si tiene varias versiones",
+        "default": "Ver opciones"
+      },
+      {
+        "type": "text",
         "id": "sl_cart_agregar",
         "label": "Botón agregar",
         "default": "Agregar"

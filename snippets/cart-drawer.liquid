@@ -392,6 +392,62 @@
             </div>
           {%- endif -%}
 
+          {%- comment -%} Venta cruzada: hasta 2 complementos de los productos del carrito (custom.complementos_recomendados), disponibles y que aún no estén en el carrito. {%- endcomment -%}
+          {%- liquid
+            assign xs_n = 0
+            assign xs_ids = '|'
+          -%}
+          {%- capture xs_tarjetas -%}
+            {%- unless mostrar_comp -%}
+              {%- for item in cart.items -%}
+                {%- for c in item.product.metafields.custom.complementos_recomendados.value -%}
+                  {%- if xs_n < 2 and c.available -%}
+                    {%- assign xs_marca = '|' | append: c.id | append: '|' -%}
+                    {%- assign xs_ya = false -%}
+                    {%- if xs_ids contains xs_marca -%}{%- assign xs_ya = true -%}{%- endif -%}
+                    {%- for otro in cart.items -%}
+                      {%- if otro.product.id == c.id -%}{%- assign xs_ya = true -%}{%- endif -%}
+                      {%- for rc in otro.product.metafields.custom.routine_products.value -%}
+                        {%- if rc.id == c.id -%}{%- assign xs_ya = true -%}{%- endif -%}
+                      {%- endfor -%}
+                    {%- endfor -%}
+                    {%- unless xs_ya -%}
+                      {%- assign xs_n = xs_n | plus: 1 -%}
+                      {%- assign xs_ids = xs_ids | append: c.id | append: '|' -%}
+                      {%- assign xs_var = c.selected_or_first_available_variant -%}
+                      {%- assign xs_precio_t = xs_var.price | money_without_trailing_zeros -%}
+                      <div class="sl-cart__complemento">
+                        {%- if c.featured_image -%}
+                          <img class="sl-cart__complemento-foto" src="{{ c.featured_image | image_url: width: 120 }}" alt="" width="52" height="52" loading="lazy">
+                        {%- endif -%}
+                        <p class="sl-cart__complemento-texto">{{ settings.sl_cart_cross_texto | replace: '[producto]', c.title | replace: '[precio]', xs_precio_t }}</p>
+                        {%- if c.variants.size > 1 -%}
+                          <a class="sl-btn sl-btn--sm" href="{{ c.url }}">{{ settings.sl_cart_cross_ver }}</a>
+                        {%- else -%}
+                          <product-form class="sl-cart__form" data-hide-errors="true">
+                            {%- form 'product', c, id: 'sl-cart-cross-form', class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                              <input type="hidden" name="id" value="{{ xs_var.id }}" class="product-variant-id">
+                              <button type="submit" name="add" class="sl-btn sl-btn--sm">
+                                <span>{{ settings.sl_cart_agregar }}</span>
+                                {%- render 'loading-spinner' -%}
+                              </button>
+                            {%- endform -%}
+                          </product-form>
+                        {%- endif -%}
+                      </div>
+                    {%- endunless -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endfor -%}
+            {%- endunless -%}
+          {%- endcapture -%}
+          {%- if xs_n > 0 -%}
+            <div class="sl-cart__cross">
+              <p class="sl-cart__cross-titulo">{{ settings.sl_cart_cross_titulo }}</p>
+              {{ xs_tarjetas }}
+            </div>
+          {%- endif -%}
+
           {%- if up != null -%}
             {%- assign up_var = up.selected_or_first_available_variant -%}
             {%- assign dif = up_var.price | minus: up_linea.variant.price -%}

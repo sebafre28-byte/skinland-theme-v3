@@ -111,3 +111,7 @@
   @keyframes sl-camion-rebota { from { transform: translateY(0); } to { transform: translateY(-2px); } }
   @keyframes sl-camion-viento { 0%, 100% { opacity: .15; transform: translateX(0); } 50% { opacity: .6; transform: translateX(-3px); } }
 }
+
+/* Venta cruzada del carrito: hasta 2 complementos de los productos que ya lleva */
+.sl-cart__cross { display: flex; flex-direction: column; gap: 8px; }
+.sl-cart__cross-titulo { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
