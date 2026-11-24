@@ -184,6 +184,63 @@
         "aviso_editor": "Reseñas ocultas: se muestran con reseñas manuales válidas de este producto (metaobjeto Skinland · Reseña) o con una app de reseñas y su bloque agregado aquí."
       }
     },
+    "rutinas": {
+      "type": "sl-rutinas",
+      "blocks": {
+        "express": {
+          "type": "version",
+          "settings": {
+            "etiqueta": "Express · 3 pasos",
+            "marcada": false,
+            "destacada": "rutina-express-piel-grasa",
+            "coleccion": "rutinas",
+            "texto_productos": "[n] productos",
+            "texto_por_separado": "Si compras los productos por separado pagarías",
+            "texto_ahorras": "Ahorras [ahorro]",
+            "boton": "Ver [titulo] →",
+            "texto_desde": "desde [precio]",
+            "texto_agotado": "Agotado"
+          }
+        },
+        "esencial": {
+          "type": "version",
+          "settings": {
+            "etiqueta": "Esencial · 4 pasos",
+            "marcada": true,
+            "destacada": "rutina-piel-grasa",
+            "coleccion": "rutinas",
+            "texto_productos": "[n] productos",
+            "texto_por_separado": "Si compras los productos por separado pagarías",
+            "texto_ahorras": "Ahorras [ahorro]",
+            "boton": "Ver [titulo] →",
+            "texto_desde": "desde [precio]",
+            "texto_agotado": "Agotado"
+          }
+        }
+      },
+      "block_order": [
+        "express",
+        "esencial"
+      ],
+      "settings": {
+        "titulo": "Tu rutina según tu piel"
+      }
+    },
+    "kit": {
+      "type": "sl-kit-destacado",
+      "settings": {
+        "kit": "kit-anti-acne",
+        "coleccion": "kits",
+        "eyebrow": "Kits por objetivo",
+        "titulo": "Todo en una caja",
+        "texto_productos": "[n] productos",
+        "texto_por_separado": "Si compras los productos por separado pagarías",
+        "texto_ahorras": "Ahorras [ahorro]",
+        "texto_desde": "[precio]",
+        "boton": "Ver [titulo] →",
+        "texto_agotado": "Agotado"
+      }
+    },
     "faq": {
       "type": "sl-faq",
       "settings": {
@@ -227,6 +284,8 @@
     "videos",
     "resenas",
     "faq",
+    "rutinas",
+    "kit",
     "cta_final",
     "sticky"
   ]
