@@ -111,6 +111,18 @@
         "aviso_editor": "Sección oculta: este producto no está en ninguna rutina o kit de las colecciones elegidas."
       }
     },
+    "complementa": {
+      "type": "sl-complementa",
+      "settings": {
+        "maximo": 3,
+        "eyebrow": "Para sacarle más partido",
+        "titulo": "Completa tu rutina",
+        "bajada": "Productos que se llevan bien con este paso.",
+        "texto_agregar": "Agregar",
+        "texto_ver": "Ver opciones",
+        "texto_agotado": "Agotado"
+      }
+    },
     "uso": {
       "type": "sl-uso",
       "settings": {
@@ -202,6 +214,7 @@
     "hero",
     "cinta",
     "combina",
+    "complementa",
     "uso",
     "para_ti",
     "ingredientes",

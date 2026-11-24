@@ -20,6 +20,18 @@
         "coleccion_kits": "kits"
       }
     },
+    "complementa": {
+      "type": "sl-complementa",
+      "settings": {
+        "maximo": 3,
+        "eyebrow": "Para sacarle más partido",
+        "titulo": "Completa tu rutina",
+        "bajada": "Productos que se llevan bien con este paso.",
+        "texto_agregar": "Agregar",
+        "texto_ver": "Ver opciones",
+        "texto_agotado": "Agotado"
+      }
+    },
     "videos": {
       "type": "sl-videos",
       "settings": {
@@ -98,6 +110,7 @@
     "hero",
     "cinta",
     "combina",
+    "complementa",
     "para_ti",
     "uso",
     "ingredientes",
