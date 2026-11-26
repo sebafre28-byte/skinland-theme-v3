@@ -120,7 +120,8 @@
         "bajada": "Productos que se llevan bien con este paso.",
         "texto_agregar": "Agregar",
         "texto_ver": "Ver opciones",
-        "texto_agotado": "Agotado"
+        "texto_agotado": "Agotado",
+        "aviso_editor": "Esta sección se oculta: el producto no tiene complementos recomendados disponibles."
       }
     },
     "uso": {
@@ -184,6 +185,28 @@
         "aviso_editor": "Reseñas ocultas: se muestran con reseñas manuales válidas de este producto (metaobjeto Skinland · Reseña) o con una app de reseñas y su bloque agregado aquí."
       }
     },
+    "faq": {
+      "type": "sl-faq",
+      "settings": {
+        "titulo": "Preguntas frecuentes",
+        "globales": [],
+        "texto_aly": "¿Otra duda? Pregúntale a Aly →",
+        "texto_whatsapp": "¿Otra duda? Escríbenos por WhatsApp →"
+      }
+    },
+    "cta_final": {
+      "type": "sl-cta-final",
+      "settings": {
+        "texto_ahorras": "Ahorras [ahorro]",
+        "titulo": "Tu rutina para [tipo de piel], lista para empezar.",
+        "titulo_alterno": "Tu [producto], lista para empezar.",
+        "titulo_individual": "[producto], listo para sumar a tu rutina.",
+        "coleccion_rutinas": "rutinas",
+        "texto_ver_rutina": "Ver la rutina completa: [titulo] →",
+        "cta_texto_defecto": "Comenzar mi rutina",
+        "agotado_texto": "Agotado"
+      }
+    },
     "rutinas": {
       "type": "sl-rutinas",
       "blocks": {
@@ -241,28 +264,6 @@
         "texto_agotado": "Agotado"
       }
     },
-    "faq": {
-      "type": "sl-faq",
-      "settings": {
-        "titulo": "Preguntas frecuentes",
-        "globales": [],
-        "texto_aly": "¿Otra duda? Pregúntale a Aly →",
-        "texto_whatsapp": "¿Otra duda? Escríbenos por WhatsApp →"
-      }
-    },
-    "cta_final": {
-      "type": "sl-cta-final",
-      "settings": {
-        "texto_ahorras": "Ahorras [ahorro]",
-        "titulo": "Tu rutina para [tipo de piel], lista para empezar.",
-        "titulo_alterno": "Tu [producto], lista para empezar.",
-        "titulo_individual": "[producto], listo para sumar a tu rutina.",
-        "coleccion_rutinas": "rutinas",
-        "texto_ver_rutina": "Ver la rutina completa: [titulo] →",
-        "cta_texto_defecto": "Comenzar mi rutina",
-        "agotado_texto": "Agotado"
-      }
-    },
     "sticky": {
       "type": "sl-sticky-atc",
       "settings": {
@@ -284,9 +285,9 @@
     "videos",
     "resenas",
     "faq",
+    "cta_final",
     "rutinas",
     "kit",
-    "cta_final",
     "sticky"
   ]
 }
