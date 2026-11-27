@@ -36,3 +36,13 @@
   .sl-footer__inner { padding-bottom: 36px; }
   .sl-footer__base::before { content: ''; flex: 0 0 100%; height: 1px; margin-bottom: 18px; background: color-mix(in srgb, var(--sl-crema) 22%, transparent); }
 }
+
+/* Redes sociales y WhatsApp (los enlaces vienen de los ajustes del tema) */
+.sl-footer__redes { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 14px; }
+.sl-footer__redes .list-social { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.sl-footer__redes .list-social__link { display: grid; place-items: center; width: 44px; height: 44px; border: 2px solid var(--sl-texto-oscuro-2); border-radius: 50%; color: var(--sl-crema); text-decoration: none; }
+.sl-footer__redes .list-social__link svg { width: 20px; height: 20px; }
+.sl-footer__redes .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.sl-footer__wa { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 2px solid var(--sl-texto-oscuro-2); border-radius: 999px; color: var(--sl-crema); font-size: 14px; font-weight: 700; text-decoration: none; }
+.sl-footer__redes .list-social__link:hover, .sl-footer__wa:hover { background: var(--sl-lima); border-color: var(--sl-lima); color: var(--sl-tinta); }
+.sl-footer__redes .svg-wrapper { display: grid; place-items: center; line-height: 0; }

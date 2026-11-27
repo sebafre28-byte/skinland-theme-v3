@@ -14,6 +14,20 @@
           {{ section.settings.contacto }}
         </p>
       {%- endif -%}
+      {%- capture wa_url -%}{% render 'sl-whatsapp-url' %}{%- endcapture -%}
+      {%- assign wa_url = wa_url | strip -%}
+      {%- capture redes -%}{% render 'social-icons' %}{%- endcapture -%}
+      {%- if redes contains 'list-social__link' or wa_url != blank -%}
+        <div class="sl-footer__redes" aria-label="{{ section.settings.texto_redes | escape }}">
+          {%- if redes contains 'list-social__link' -%}{{ redes }}{%- endif -%}
+          {%- if wa_url != blank -%}
+            <a class="sl-footer__wa" href="{{ wa_url }}" target="_blank" rel="noopener">
+              {% render 'sl-icon', name: 'chat', size: 20 %}
+              <span>{{ section.settings.texto_whatsapp }}</span>
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
     </div>
 
     {%- if section.blocks.size > 0 -%}
@@ -80,6 +94,20 @@
       "type": "text",
       "id": "contacto",
       "label": "Texto junto al correo"
+    },
+    {
+      "type": "text",
+      "id": "texto_redes",
+      "label": "Redes sociales (accesible)",
+      "info": "Los enlaces se cargan en Ajustes del tema → Redes sociales. Sin enlace, el ícono no aparece.",
+      "default": "Síguenos en redes"
+    },
+    {
+      "type": "text",
+      "id": "texto_whatsapp",
+      "label": "Texto del enlace a WhatsApp",
+      "info": "El enlace sale de los ajustes de WhatsApp o de Aly. Sin enlace, no aparece.",
+      "default": "WhatsApp"
     },
     {
       "type": "text",
