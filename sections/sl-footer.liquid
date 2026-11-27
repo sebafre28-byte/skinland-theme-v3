@@ -19,7 +19,7 @@
       {%- capture redes -%}{% render 'social-icons' %}{%- endcapture -%}
       {%- if redes contains 'list-social__link' or wa_url != blank -%}
         <div class="sl-footer__redes" aria-label="{{ section.settings.texto_redes | escape }}">
-          {%- if redes contains 'list-social__link' -%}{{ redes }}{%- endif -%}
+          {%- if redes contains 'list-social__link' -%}{{ redes | replace: 'class="link list-social__link"', 'class="link list-social__link" target="_blank" rel="noopener"' }}{%- endif -%}
           {%- if wa_url != blank -%}
             <a class="sl-footer__wa" href="{{ wa_url }}" target="_blank" rel="noopener">
               {% render 'sl-icon', name: 'chat', size: 20 %}
