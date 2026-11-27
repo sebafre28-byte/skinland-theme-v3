@@ -34,6 +34,7 @@
       ],
       "settings": {
         "email": "hola@skinland.cl",
+        "contacto": "",
         "texto_pagos": "Pago seguro con Mercado Pago, crédito y débito",
         "mostrar_medios_pago": true
       }
