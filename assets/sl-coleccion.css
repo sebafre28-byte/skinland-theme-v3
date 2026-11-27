@@ -31,3 +31,24 @@
   .sl-coleccion__titulo { font-size: 54px; }
   .sl-coleccion__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 }
+
+/* Filtros del tema: grupos de botones por tipo de piel, necesidad, tipo de producto y marca */
+.sl-filtros { display: flex; flex-direction: column; gap: 14px; max-width: calc(var(--sl-contenedor) + var(--sl-gutter) * 2); margin: 0 auto 18px; padding-inline: var(--sl-gutter); color: var(--sl-tinta); }
+.sl-filtros__grupos { display: flex; flex-direction: column; gap: 12px; }
+.sl-filtros__titulo { margin: 0 0 6px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.sl-filtros__fila { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+.sl-filtros__fila::-webkit-scrollbar { display: none; }
+.sl-filtros__abrir { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); font-size: 14px; font-weight: 700; cursor: pointer; list-style: none; }
+.sl-filtros__abrir::-webkit-details-marker { display: none; }
+.sl-filtros__detalle[open] .sl-filtros__abrir { background: var(--sl-lima); margin-bottom: 12px; }
+.sl-filtros__chip { flex: none; min-height: 40px; padding: 0 14px; border: var(--sl-borde); border-radius: 999px; background: var(--sl-blanco); color: var(--sl-tinta); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+.sl-filtros__chip[aria-pressed='true'] { background: var(--sl-lima); box-shadow: 2px 2px 0 var(--sl-tinta); }
+.sl-filtros__pie { display: flex; justify-content: flex-start; }
+.sl-filtros__limpiar { padding: 0; border: 0; background: none; color: var(--sl-tinta); font: inherit; font-size: 14px; font-weight: 700; text-decoration: underline; cursor: pointer; }
+.sl-filtros .sl-coleccion__vacio[hidden], .sl-filtros [hidden] { display: none; }
+@media screen and (min-width: 750px) {
+  .sl-filtros__abrir { display: none; }
+}
+@media screen and (min-width: 990px) {
+  .sl-filtros__fila { flex-wrap: wrap; overflow: visible; }
+}
